@@ -12,6 +12,7 @@ import Welcome from './src/container/Welcome';
 import Login from './src/container/Login';
 import Forgot from './src/container/Forgot';
 import Signup from './src/container/Signup';
+import Name from './src/container/Name';
 
 
 const instructions = Platform.select({
@@ -29,7 +30,8 @@ export default class App extends Component{
           <Scene key="Welcome" component={Welcome} title="Welcome" hideNavBar={true} />
           <Scene key="Login" component={Login} title="Login" />
           <Scene key="Forgot" component={Forgot} title="Forgot" />
-          <Scene key="Signup" component={Signup} title="Signup" initial />
+          <Scene key="Signup" component={Signup} title="Signup" />
+          <Scene key="Name" component={Name} title="Name" initial />
         </Scene>
       </Router>
     );
