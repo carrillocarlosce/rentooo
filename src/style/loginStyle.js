@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
     marginLeft: responsiveWidth(4),
     marginRight: responsiveWidth(4),
   },
-  welcomeText: {
+  ForgotText: {
     fontFamily: "TruenoSBd",
     fontSize: responsiveFontSize(3),
   },
@@ -21,14 +21,8 @@ const styles = StyleSheet.create({
     height: responsiveHeight(5),
     paddingLeft: 10
   },
-  forgotTextBtn: {
-    marginTop: responsiveHeight(1),
-    alignItems: "flex-end",
-  },
-  forgotText:{
+  resetText:{
     fontFamily: "SFProText-Regular",
-    color: "#1865FF",
-    height: responsiveHeight(5),
   },
   btnLoginLayout: {
     marginTop: responsiveHeight(1),

@@ -10,6 +10,7 @@ import {Platform, StyleSheet} from 'react-native';
 import { Router, Scene, ActionConst, Actions } from 'react-native-router-flux';
 import Welcome from './src/container/Welcome';
 import Login from './src/container/Login';
+import Forgot from './src/container/Forgot';
 
 
 const instructions = Platform.select({
@@ -25,7 +26,8 @@ export default class App extends Component{
       <Router>
         <Scene key="root">
           <Scene key="Welcome" component={Welcome} title="Welcome" hideNavBar={true} />
-          <Scene key="Login" component={Login} title="Login" initial/>
+          <Scene key="Login" component={Login} title="Login"/>
+          <Scene key="Forgot" component={Forgot} title="Forgot" initial/>
         </Scene>
       </Router>
     );
