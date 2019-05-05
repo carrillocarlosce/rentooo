@@ -1,48 +1,59 @@
 /**
- * RENTOO React Native App
+ * Login Screen
  * 
  * @format
  * @flow
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {Text, View, TextInput, TouchableOpacity, Image} from 'react-native';
 import { Action } from 'react-native-router-flux';
-
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+import styles from '../style/loginStyle'
 
 export default class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: "",
+      password: ""
+    }
+  }
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Login Component!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
+      <View style={{flex: 1, backgroundColor: "#ffffff"}}>
+        <View style={styles.container}>
+
+          <Text style={styles.welcomeText}>Welcome Back</Text>
+
+          <View style={styles.formLayout}>
+            <TextInput style={styles.formItem} placeholder="Email Address" placeholderTextColor="#979797" value={this.state.email} onChangeText={(email) => this.setState({email})} />
+            <TextInput style={styles.formItem} placeholder="Password" secureTextEntry value={this.state.password} onChangeText={(password) => this.setState({password})}/>
+            <TouchableOpacity style={styles.forgotTextBtn}>
+              <Text style={styles.forgotText}>Forgot your password?</Text>
+            </TouchableOpacity>
+          </View>
+          <View>
+            <TouchableOpacity style={styles.btnLoginLayout}>
+                <Text style={styles.btnLoginText}>Log in</Text>
+            </TouchableOpacity>
+            <Text style={styles.textLoginWithLayout}>or log in with</Text>
+            <TouchableOpacity style={styles.btnFBLayout}>
+              <Image source={require('../../assets/images/facebook.png')}/>
+              <Text style={styles.btnText}>Facebook</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.btnTwitterLayout}>
+              <Image source={require('../../assets/images/twitter.png')}/>
+              <Text style={styles.btnText}>Twitter</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.btnGoogleLayout}>
+              <Image source={require('../../assets/images/google.png')}/>
+              <Text style={styles.btnText}>Google</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#ff0000',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+
