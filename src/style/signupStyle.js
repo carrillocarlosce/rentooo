@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     marginLeft: responsiveWidth(4),
     marginRight: responsiveWidth(4),
   },
-  welcomeText: {
+  getstartedText: {
     fontFamily: "TruenoSBd",
     fontSize: responsiveFontSize(3),
   },
@@ -20,24 +20,16 @@ const styles = StyleSheet.create({
     height: responsiveHeight(5),
     paddingLeft: 10
   },
-  forgotTextBtn: {
-    marginTop: responsiveHeight(1),
-    alignItems: "flex-end",
-  },
-  forgotText:{
-    fontFamily: "SFProText-Regular",
-    color: "#1865FF",
-    height: responsiveHeight(5),
-  },
-  btnLoginLayout: {
-    marginTop: responsiveHeight(1),
+  
+  btnsignupLayout: {
+    marginTop: responsiveHeight(3),
     backgroundColor: "#99BBFF",
     width: responsiveWidth(92),
     height: responsiveHeight(5),
     justifyContent: "center",
     alignItems: "center",
   },
-  textLoginWithLayout: {
+  textSignWithLayout: {
     marginTop: responsiveHeight(2),
     width: responsiveWidth(92),
     height: responsiveHeight(4),
@@ -80,11 +72,29 @@ const styles = StyleSheet.create({
     fontSize: responsiveFontSize(2),
     textAlign: "center"
   },
-  btnLoginText: {
+  btnSignupText: {
     fontFamily: "SFProText-Semibold",
     fontSize: responsiveFontSize(2),
     textAlign: "center"
-  }
+  },
+  tosLayout: {
+    marginTop: responsiveHeight(2),
+    marginLeft: responsiveWidth(2),
+    marginRight: responsiveWidth(2),
+    flexDirection: "row",
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  
+  tosTextLeft:{
+    fontFamily: "SFProText-Regular",
+    fontSize: responsiveFontSize(1.6),
+  },
+  tosText:{
+    fontFamily: "SFProText-Regular",
+    textDecorationLine: 'underline',
+    fontSize: responsiveFontSize(1.6),
+  },
 });
 
-module.exports = styles;
+  module.exports = styles;
