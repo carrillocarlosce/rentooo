@@ -6,11 +6,8 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet} from 'react-native';
-import { Router, Scene, ActionConst, Actions } from 'react-native-router-flux';
-import Welcome from './src/container/Welcome';
-import Login from './src/container/Login';
-
+import {Platform, StyleSheet, Text, View} from 'react-native';
+import { Action } from 'react-native-router-flux';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -19,17 +16,14 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-export default class App extends Component{
+export default class Login extends Component {
   render() {
     return (
-      <Router>
-        <Scene key="root">
-          <Scene key="Welcome" component={Welcome} title="Welcome" hideNavBar={true} initial/>
-          <Scene key="Login" component={Login} title="Login">
-
-          </Scene>
-        </Scene>
-      </Router>
+      <View style={styles.container}>
+        <Text style={styles.welcome}>Login Component!</Text>
+        <Text style={styles.instructions}>To get started, edit App.js</Text>
+        <Text style={styles.instructions}>{instructions}</Text>
+      </View>
     );
   }
 }
@@ -39,7 +33,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#ff0000',
   },
   welcome: {
     fontSize: 20,
