@@ -15,6 +15,7 @@ import Signup from './src/container/Signup';
 import Name from './src/container/Name';
 import Number from './src/container/Number';
 import Code from './src/container/Code';
+import Search from './src/container/Search';
 
 
 const instructions = Platform.select({
@@ -35,7 +36,8 @@ export default class App extends Component{
           <Scene key="Signup" component={Signup} title="Signup" />
           <Scene key="Name" component={Name} title="Name" />
           <Scene key="Number" component={Number} title="Number" />
-          <Scene key="Code" component={Code} title="Code" initial />
+          <Scene key="Code" component={Code} title="Code" />
+          <Scene key="Search" component={Search} title="Search" initial />
         </Scene>
       </Router>
     );
