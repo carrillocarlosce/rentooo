@@ -173,6 +173,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center"
+  },
+  searchbarHeader: {
+    height: 1,
+    width: responsiveWidth(92),
+
+
   }
 });
 

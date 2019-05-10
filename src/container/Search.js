@@ -13,23 +13,31 @@ import { SearchBar } from 'react-native-elements';
 import { responsiveWidth, responsiveHeight } from 'react-native-responsive-dimensions';
 import StarView from '../component/Startview'
 import Rect from '../component/Rect'
+import { Searchbar } from 'react-native-paper';
 
 export default class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
       searchString: "",
+      firstQuery: "",
     }
   }
   render() {
+    const { firstQuery } = this.state;
+
     return (
       <ScrollView style={{flex: 1, backgroundColor: "#ffffff"}}>
         <View style={styles.container}>
           <Text style={styles.nameText}>Search</Text>
-
-          <View>
-            <SearchBar style={styles.formItem} placeholder="Search" placeholderTextColor="#979797" value={this.state.searchString} onChangeText={(searchString) => this.setState({searchString})} />
-          </View>
+          
+          <Searchbar
+            style={{backgroundColor: "#F2F2F2", marginTop: responsiveHeight(2), height: responsiveHeight(5)}}
+            placeholder="Search"
+            onChangeText={query => { this.setState({ firstQuery: query }); }}
+            value={firstQuery}
+          />
+        
           <View style={styles.btnContainer}>
             <TouchableOpacity style={styles.btnFiltersLayout}>
                 <Text style={styles.btnFilterText}>Nearby</Text>
