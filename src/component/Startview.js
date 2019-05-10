@@ -72,8 +72,8 @@ const Styles = StyleSheet.create({
     alignItems: 'center',
   },
   starImg: {
-    width: '80%',
-    height: '80%',
+    width: '100%',
+    height: '100%',
   },
 });
 

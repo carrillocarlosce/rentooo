@@ -87,6 +87,11 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     
   },
+  interestInsideContainer: {
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    
+  },
   interestHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -117,18 +122,20 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: responsiveHeight(1),
     top: responsiveHeight(1),
-    width: responsiveHeight(3),
-    height: responsiveHeight(3),
+    width: responsiveHeight(2),
+    height: responsiveHeight(2),
     backgroundColor: "#FFFFFF"
   },
   itemText: {
+    marginTop: responsiveHeight(1),
     fontFamily: "SFProText-Semibold",
-    fontSize: 10,
+    fontSize: 15,
   },
   currencyText: {
     marginTop: 5,
     fontFamily: "SFProText-Semibold",
-    fontSize: 10,
+    fontSize: 13,
+    color: "#767676"
   },
   currencyWrapper: {
     flexDirection: "row",
@@ -146,15 +153,22 @@ const styles = StyleSheet.create({
     height: responsiveHeight(3),
   },
   starLayout: {
-    marginTop: -8,
     flexDirection: "row",
-    // justifyContent: "flex-start",
-    // alignItems: "center",
-    
+    justifyContent: "flex-start",
+    alignSelf: "flex-start",
+    alignItems: "center"
+  },
+  starText: {
+    fontFamily: "SFProText-Semibold",
+    fontSize: 13,
+    marginLeft: 5, 
+    color: "#FFC08A"
+  },
+  starView: {
+    width: 50, 
+    height: 10, 
+    marginLeft: -3
   }
-
-  
-  
 });
 
   module.exports = styles;

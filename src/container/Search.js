@@ -64,11 +64,7 @@ export default class Search extends Component {
               </TouchableOpacity>
             </View>
             
-            <Rect color={"#ff0000"} />
-            <View style={{width: 20, height: 20, backgroundColor: "#FF0000"}}>
-
-            </View>
-            <View style={styles.interestContainer}>
+            <View style={styles.interestInsideContainer}>
               <View style={styles.interestImageContainer}>
                 <TouchableOpacity style={styles.itemIterestBtnContainer}>
                     <Image source={require('../../assets/images/canon-camera.png')}/>
@@ -84,113 +80,13 @@ export default class Search extends Component {
                     </View>
                   </TouchableOpacity>
                   <View style={styles.starLayout}>
-                    <StarView score={4} style={{width: 50, height: 10, marginTop: 5}} />
-                    <Text style={[styles.currencyText, {marginLeft: 5}]}>13</Text>
+                    <StarView score={4} style={styles.starView} />
+                    <Text style={styles.starText}>13</Text>
                   </View>
-                  
               </View>
-
-              <View style={styles.interestImageContainer}>
-                <TouchableOpacity style={styles.itemIterestBtnContainer}>
-                    <Image source={require('../../assets/images/canon-camera.png')}/>
-                    <View style={styles.rectWhiteColor}></View>
-                    <Text style={styles.itemText}>Black Canon Film{"\n"}Camera</Text>
-                    <View style={styles.currencyWrapper}>
-                      <Text style={styles.currencyText}>15$/day</Text>
-                      <View style={styles.currencyContainer}>
-                        <Image style={styles.currency} resizeMode="contain" source={require('../../assets/images/rentoo.png')}/>
-                        <Image style={styles.currency} resizeMode="contain" source={require('../../assets/images/bitcoin.png')}/>
-                        <Image style={styles.currency} resizeMode="contain" source={require('../../assets/images/waves.png')}/>
-                      </View>
-                    </View>
-                  </TouchableOpacity>
-                  <View style={styles.starLayout}>
-                    <StarView score={4} style={{width: 50, height: 10, marginTop: 5}} />
-                    <Text style={[styles.currencyText, {marginLeft: 5}]}>13</Text>
-                  </View>
-                  
-              </View>
-
-              <View style={styles.interestImageContainer}>
-                <TouchableOpacity style={styles.itemIterestBtnContainer}>
-                    <Image source={require('../../assets/images/canon-camera.png')}/>
-                    <View style={styles.rectWhiteColor}></View>
-                    <Text style={styles.itemText}>Black Canon Film{"\n"}Camera</Text>
-                    <View style={styles.currencyWrapper}>
-                      <Text style={styles.currencyText}>15$/day</Text>
-                      <View style={styles.currencyContainer}>
-                        <Image style={styles.currency} resizeMode="contain" source={require('../../assets/images/rentoo.png')}/>
-                        <Image style={styles.currency} resizeMode="contain" source={require('../../assets/images/bitcoin.png')}/>
-                        <Image style={styles.currency} resizeMode="contain" source={require('../../assets/images/waves.png')}/>
-                      </View>
-                    </View>
-                  </TouchableOpacity>
-                  <View style={styles.starLayout}>
-                    <StarView score={4} style={{width: 50, height: 10, marginTop: 5}} />
-                    <Text style={[styles.currencyText, {marginLeft: 5}]}>13</Text>
-                  </View>
-                  
-              </View>
-
-              <View style={styles.interestImageContainer}>
-                <TouchableOpacity style={styles.itemIterestBtnContainer}>
-                    <Image source={require('../../assets/images/canon-camera.png')}/>
-                    <View style={styles.rectWhiteColor}></View>
-                    <Text style={styles.itemText}>Black Canon Film{"\n"}Camera</Text>
-                    <View style={styles.currencyWrapper}>
-                      <Text style={styles.currencyText}>15$/day</Text>
-                      <View style={styles.currencyContainer}>
-                        <Image style={styles.currency} resizeMode="contain" source={require('../../assets/images/rentoo.png')}/>
-                        <Image style={styles.currency} resizeMode="contain" source={require('../../assets/images/bitcoin.png')}/>
-                        <Image style={styles.currency} resizeMode="contain" source={require('../../assets/images/waves.png')}/>
-                      </View>
-                    </View>
-                  </TouchableOpacity>
-                  <View style={styles.starLayout}>
-                    <StarView score={4} style={{width: 50, height: 10, marginTop: 5}} />
-                    <Text style={[styles.currencyText, {marginLeft: 5}]}>13</Text>
-                  </View>
-                  
-              </View>
-              
-              <TouchableOpacity>
-                <Image source={require('../../assets/images/canon-camera.png')}/>
-                <View />
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <Image source={require('../../assets/images/canon-camera.png')}/>
-                <View />
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <Image source={require('../../assets/images/canon-camera.png')}/>
-                <View />
-              </TouchableOpacity>
             </View>
           </View>
-          <View>
-            <Text>Popular on Rentoo</Text>
-            <TouchableOpacity>
-              <Text>Show all</Text>
-            </TouchableOpacity>
-            <View>
-              <TouchableOpacity>
-                <Image source={require('../../assets/images/canon-camera.png')}/>
-                <View />
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <Image source={require('../../assets/images/canon-camera.png')}/>
-                <View />
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <Image source={require('../../assets/images/canon-camera.png')}/>
-                <View />
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <Image source={require('../../assets/images/canon-camera.png')}/>
-                <View />
-              </TouchableOpacity>
-            </View>
-          </View>
+          
         </View>
       </ScrollView>
     );
