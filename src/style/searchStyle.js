@@ -168,6 +168,11 @@ const styles = StyleSheet.create({
     width: 50, 
     height: 10, 
     marginLeft: -3
+  },
+  interestRowContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center"
   }
 });
 
