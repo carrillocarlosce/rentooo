@@ -16,6 +16,7 @@ import Name from './src/container/Name';
 import Number from './src/container/Number';
 import Code from './src/container/Code';
 import Search from './src/container/Search';
+import Dashboard from './src/container/Dashboard';
 
 export default class App extends Component{
   render() {
@@ -29,7 +30,8 @@ export default class App extends Component{
           <Scene key="Name" component={Name} title="Name" />
           <Scene key="Number" component={Number} title="Number" />
           <Scene key="Code" component={Code} title="Code" />
-          <Scene key="Search" component={Search} title="Search" initial />
+          <Scene key="Search" component={Search} title="Search" />
+          <Scene key="Dashboard" component={Dashboard} title="Dashboard" initial />
         </Scene>
       </Router>
     );
