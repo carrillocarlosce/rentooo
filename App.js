@@ -22,6 +22,7 @@ import Past from './src/container/Past';
 import Watchlist from './src/container/Watchlist';
 import Myoffers from './src/container/Myoffers';
 import Wallets from './src/container/Wallets';
+import Yourbalance from './src/container/Yourbalance';
 
 export default class App extends Component{
   render() {
@@ -41,7 +42,8 @@ export default class App extends Component{
           <Scene key="Past" component={Past} title="Past"  />
           <Scene key="Watchlist" component={Watchlist} title="Watchlist"  />
           <Scene key="Myoffers" component={Myoffers} title="My offers"  />
-          <Scene key="Wallets" component={Wallets} title="Wallets" initial  />
+          <Scene key="Wallets" component={Wallets} title="Wallets" />
+          <Scene key="Yourbalance" component={Yourbalance} title="Yourbalance" initial  />
         </Scene>
       </Router>
     );
