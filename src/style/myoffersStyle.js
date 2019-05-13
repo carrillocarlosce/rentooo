@@ -3,6 +3,7 @@ import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-nat
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: responsiveHeight(4),
     marginLeft: responsiveWidth(4),
     marginRight: responsiveWidth(4),
   },
@@ -98,8 +99,8 @@ const styles = StyleSheet.create({
   },
   interestImageContainer: {
     flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: "flex-start",
+    alignSelf: "flex-start",
     width: responsiveWidth(40),
     height: responsiveHeight(30),
   },
@@ -132,7 +133,7 @@ const styles = StyleSheet.create({
     // alignItems: "center",
   },
   currencyContainer: {
-    width: responsiveWidth(10),
+    width: responsiveWidth(7),
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
@@ -143,9 +144,7 @@ const styles = StyleSheet.create({
   },
   starLayout: {
     flexDirection: "row",
-    justifyContent: "flex-start",
-    alignSelf: "flex-start",
-    alignItems: "center"
+    marginLeft: 30,
   },
   starText: {
     fontFamily: "SFProText-Semibold",
@@ -156,7 +155,6 @@ const styles = StyleSheet.create({
   starView: {
     width: 50, 
     height: 10, 
-    marginLeft: -3
   },
   interestRowContainer: {
     flexDirection: "row",

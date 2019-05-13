@@ -5,6 +5,7 @@ const styles = StyleSheet.create({
   container: {
     marginLeft: responsiveWidth(4),
     marginRight: responsiveWidth(4),
+    marginTop: responsiveHeight(4),
   },
   nameText: {
     fontFamily: "TruenoSBd",
@@ -98,8 +99,8 @@ const styles = StyleSheet.create({
   },
   interestImageContainer: {
     flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: "flex-start",
+    alignSelf: "flex-start",
     width: responsiveWidth(40),
     height: responsiveHeight(30),
   },
@@ -124,7 +125,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
     fontFamily: "SFProText-Semibold",
     fontSize: 13,
-    color: "#767676"
+    color: "#0062FF"
   },
   currencyWrapper: {
     flexDirection: "row",
@@ -148,15 +149,12 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   starText: {
+    marginTop: responsiveHeight(1),
     fontFamily: "SFProText-Semibold",
     fontSize: 13,
-    marginLeft: 5, 
-    color: "#FFC08A"
-  },
-  starView: {
-    width: 50, 
-    height: 10, 
-    marginLeft: -3
+    color: "#828282",
+    alignSelf: "flex-start"
+    
   },
   interestRowContainer: {
     flexDirection: "row",

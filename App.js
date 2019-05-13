@@ -36,10 +36,10 @@ export default class App extends Component{
           <Scene key="Code" component={Code} title="Code" />
           <Scene key="Search" component={Search} title="Search" />
           <Scene key="Dashboard" component={Dashboard} title="Dashboard" />
-          <Scene key="Upcoming" component={Upcoming} title="Upcoming" />
-          <Scene key="Past" component={Past} title="Past" initial />
-          <Scene key="Watchlist" component={Watchlist} title="Watchlist" />
-          <Scene key="Myoffers" component={Myoffers} title="My offers"  />
+          <Scene key="Upcoming" component={Upcoming} title="Upcoming"  />
+          <Scene key="Past" component={Past} title="Past"  />
+          <Scene key="Watchlist" component={Watchlist} title="Watchlist"  />
+          <Scene key="Myoffers" component={Myoffers} title="My offers" initial />
         </Scene>
       </Router>
     );

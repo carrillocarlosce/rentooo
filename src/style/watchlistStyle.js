@@ -3,6 +3,7 @@ import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-nat
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: responsiveHeight(4),
     marginLeft: responsiveWidth(4),
     marginRight: responsiveWidth(4),
   },
@@ -98,8 +99,8 @@ const styles = StyleSheet.create({
   },
   interestImageContainer: {
     flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: "flex-start",
+    alignSelf: "flex-start",
     width: responsiveWidth(40),
     height: responsiveHeight(30),
   },
@@ -107,13 +108,13 @@ const styles = StyleSheet.create({
     flexDirection: "column",
 
   },
-  rectWhiteColor: {
+  rectRedColor: {
     position: "absolute",
     right: responsiveHeight(1),
     top: responsiveHeight(1),
     width: responsiveHeight(2),
     height: responsiveHeight(2),
-    backgroundColor: "#FFFFFF"
+    backgroundColor: "#FF0000"
   },
   itemText: {
     marginTop: responsiveHeight(1),
@@ -132,7 +133,7 @@ const styles = StyleSheet.create({
     // alignItems: "center",
   },
   currencyContainer: {
-    width: responsiveWidth(10),
+    width: responsiveWidth(7),
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
