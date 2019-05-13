@@ -7,7 +7,7 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
-import { Action } from 'react-native-router-flux';
+import { Actions } from 'react-native-router-flux';
 import styles from '../style/welcomeStyle';
 import { responsiveWidth } from 'react-native-responsive-dimensions';
 
@@ -27,10 +27,10 @@ export default class Welcome extends Component {
             <Text style={styles.welcomeText}>Welcome to your sharing economy platform,{"\n"}where everything can be{"\n"}rented by everyone.</Text>
           </View>
           <View style={styles.btnLayout}>
-            <TouchableOpacity style={styles.btnSignUpLayout}>
+            <TouchableOpacity style={styles.btnSignUpLayout} onPress={()=>Actions.Signup()}>
               <Text style={styles.btnText}>Sign up</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.btnLoginLayout}>
+            <TouchableOpacity style={styles.btnLoginLayout} onPress={()=>Actions.Login()}>
               <Text style={styles.btnText}>Log in</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.btnNotNowLayout}>

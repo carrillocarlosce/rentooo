@@ -33,13 +33,16 @@ export default class App extends Component{
     return (
       <Router>
         <Scene key="root">
-          <Scene key="Welcome" component={Welcome} title="Welcome" hideNavBar={true} />
-          <Scene key="Login" component={Login} title="Login" />
+          
+          <Scene key="Welcome" component={Welcome} title="Welcome" hideNavBar={true} initial />
+          <Scene key="Login" component={Login} title="Login" backTitle=" "/>
           <Scene key="Forgot" component={Forgot} title="Forgot" />
-          <Scene key="Signup" component={Signup} title="Signup" />
+          <Scene key="Signup" component={Signup} title="" backTitle=" "/>
+
           <Scene key="Name" component={Name} title="Name" />
           <Scene key="Number" component={Number} title="Number" />
           <Scene key="Code" component={Code} title="Code" />
+
           <Scene key="Search" component={Search} title="Search" />
           <Scene key="Dashboard" component={Dashboard} title="Dashboard"  />
           <Scene key="Upcoming" component={Upcoming} title="Upcoming"  />
@@ -50,7 +53,7 @@ export default class App extends Component{
           <Scene key="Yourbalance" component={Yourbalance} title="Yourbalance" />
           <Scene key="Inbox" component={Inbox} title="Inbox" />
           <Scene key="Inboxdetails" component={Inboxdetails} />
-          <Scene key="Profile" component={Profile} title="Profile" initial />
+          <Scene key="Profile" component={Profile} title="Profile"  />
         </Scene>
       </Router>
     );

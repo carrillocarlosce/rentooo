@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
     height: responsiveHeight(5),
     justifyContent: "center",
     alignItems: "center",
+    borderRadius: 5,
   },
   textSignWithLayout: {
     marginTop: responsiveHeight(2),
@@ -38,6 +39,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     fontFamily: "SFProText-Regular",
     fontSize: responsiveFontSize(2),
+    borderRadius: 5,
   },
   btnFBLayout: {
     marginTop: responsiveHeight(1),
@@ -46,7 +48,8 @@ const styles = StyleSheet.create({
     height: responsiveHeight(5),
     justifyContent: "center",
     alignItems: "center",
-    flexDirection: "row"
+    flexDirection: "row",
+    borderRadius: 5,
   },
   btnTwitterLayout: {
     marginTop: responsiveHeight(1),
@@ -55,7 +58,8 @@ const styles = StyleSheet.create({
     height: responsiveHeight(5),
     justifyContent: "center",
     alignItems: "center",
-    flexDirection: "row"
+    flexDirection: "row",
+    borderRadius: 5,
   },
   btnGoogleLayout: {
     marginTop: responsiveHeight(1),
@@ -64,7 +68,8 @@ const styles = StyleSheet.create({
     height: responsiveHeight(5),
     justifyContent: "center",
     alignItems: "center",
-    flexDirection: "row"
+    flexDirection: "row",
+    borderRadius: 5
   },
   btnText: {
     marginLeft: 10,

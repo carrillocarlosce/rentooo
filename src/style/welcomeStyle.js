@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
     height: responsiveHeight(5),
     justifyContent: "center",
     alignItems: "center",
+    borderRadius: 5,
   },
   btnLoginLayout: {
     marginTop: responsiveHeight(1),
@@ -50,6 +51,7 @@ const styles = StyleSheet.create({
     height: responsiveHeight(5),
     justifyContent: "center",
     alignItems: "center",
+    borderRadius: 5,
   },
   btnNotNowLayout: {
     marginTop: responsiveHeight(1),
