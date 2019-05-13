@@ -7,7 +7,7 @@
 
 import React, {Component} from 'react';
 import {Text, View, TextInput, TouchableOpacity, Image} from 'react-native';
-import { Action } from 'react-native-router-flux';
+import { Actions } from 'react-native-router-flux';
 import styles from '../style/loginStyle'
 
 export default class Login extends Component {
@@ -28,12 +28,12 @@ export default class Login extends Component {
           <View style={styles.formLayout}>
             <TextInput style={styles.formItem} placeholder="Email Address" placeholderTextColor="#979797" value={this.state.email} onChangeText={(email) => this.setState({email})} />
             <TextInput style={styles.formItem} placeholder="Password" secureTextEntry value={this.state.password} onChangeText={(password) => this.setState({password})}/>
-            <TouchableOpacity style={styles.forgotTextBtn}>
+            <TouchableOpacity style={styles.forgotTextBtn} onPress={()=>Actions.Forgot()}>
               <Text style={styles.forgotText}>Forgot your password?</Text>
             </TouchableOpacity>
           </View>
           <View>
-            <TouchableOpacity style={styles.btnLoginLayout}>
+            <TouchableOpacity style={styles.btnLoginLayout} onPress={()=>Actions.Search()}>
                 <Text style={styles.btnLoginText}>Log in</Text>
             </TouchableOpacity>
             <Text style={styles.textLoginWithLayout}>or log in with</Text>

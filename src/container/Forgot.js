@@ -29,7 +29,7 @@ export default class Forgot extends Component {
             <TextInput style={styles.formItem} placeholder="Email Address" placeholderTextColor="#979797" value={this.state.email} onChangeText={(email) => this.setState({email})} />
           </View>
           <View>
-            <TouchableOpacity style={styles.btnConfirmLayout}>
+            <TouchableOpacity style={styles.btnConfirmLayout} onPress={()=>Actions.Login()}>
                 <Text style={styles.btnConfirmText}>Confirm</Text>
             </TouchableOpacity>
           </View>

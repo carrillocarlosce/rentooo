@@ -35,25 +35,25 @@ export default class App extends Component{
         <Scene key="root">
           
           <Scene key="Welcome" component={Welcome} title="Welcome" hideNavBar={true} initial />
-          <Scene key="Login" component={Login} title="Login" backTitle=" "/>
-          <Scene key="Forgot" component={Forgot} title="Forgot" />
-          <Scene key="Signup" component={Signup} title="" backTitle=" "/>
+          <Scene key="Login" component={Login} backTitle=" "/>
+          <Scene key="Forgot" component={Forgot} backTitle=" "/>
+          <Scene key="Signup" component={Signup} backTitle=" "/>
 
-          <Scene key="Name" component={Name} title="Name" />
-          <Scene key="Number" component={Number} title="Number" />
-          <Scene key="Code" component={Code} title="Code" />
+          <Scene key="Name" component={Name} />
+          <Scene key="Number" component={Number} />
+          <Scene key="Code" component={Code} />
 
-          <Scene key="Search" component={Search} title="Search" />
-          <Scene key="Dashboard" component={Dashboard} title="Dashboard"  />
-          <Scene key="Upcoming" component={Upcoming} title="Upcoming"  />
-          <Scene key="Past" component={Past} title="Past"  />
-          <Scene key="Watchlist" component={Watchlist} title="Watchlist"  />
-          <Scene key="Myoffers" component={Myoffers} title="My offers"  />
-          <Scene key="Wallets" component={Wallets} title="Wallets" />
-          <Scene key="Yourbalance" component={Yourbalance} title="Yourbalance" />
-          <Scene key="Inbox" component={Inbox} title="Inbox" />
+          <Scene key="Search" component={Search} />
+          <Scene key="Dashboard" component={Dashboard}  />
+          <Scene key="Upcoming" component={Upcoming}  />
+          <Scene key="Past" component={Past} />
+          <Scene key="Watchlist" component={Watchlist} />
+          <Scene key="Myoffers" component={Myoffers} />
+          <Scene key="Wallets" component={Wallets} />
+          <Scene key="Yourbalance" component={Yourbalance} />
+          <Scene key="Inbox" component={Inbox} />
           <Scene key="Inboxdetails" component={Inboxdetails} />
-          <Scene key="Profile" component={Profile} title="Profile"  />
+          <Scene key="Profile" component={Profile} />
         </Scene>
       </Router>
     );
