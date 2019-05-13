@@ -55,6 +55,8 @@
 	</dict>
 	<key>UIAppFonts</key>
 	<array>
+		<string>SFProText-Regular.ttf</string>
+		<string>SFProText-Semibold.ttf</string>
 		<string>TruenoBd.otf</string>
 		<string>TruenoBdIt.otf</string>
 		<string>TruenoBdOl.otf</string>
@@ -75,8 +77,6 @@
 		<string>TruenoSBdIt.otf</string>
 		<string>TruenoUltLt.otf</string>
 		<string>TruenoUltLtIt.otf</string>
-		<string>SFProText-Regular.ttf</string>
-		<string>SFProText-Semibold.ttf</string>
 		<string>AntDesign.ttf</string>
 		<string>Entypo.ttf</string>
 		<string>EvilIcons.ttf</string>
@@ -90,11 +90,11 @@
 		<string>MaterialCommunityIcons.ttf</string>
 		<string>MaterialIcons.ttf</string>
 		<string>Octicons.ttf</string>
-		<string>SimpleLineIcons.ttf</string>
-		<string>Zocial.ttf</string>
 		<string>Roboto_medium.ttf</string>
 		<string>Roboto.ttf</string>
 		<string>rubicon-icon-font.ttf</string>
+		<string>SimpleLineIcons.ttf</string>
+		<string>Zocial.ttf</string>
 	</array>
 </dict>
 </plist>
