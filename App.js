@@ -21,6 +21,7 @@ import Upcoming from './src/container/Upcoming';
 import Past from './src/container/Past';
 import Watchlist from './src/container/Watchlist';
 import Myoffers from './src/container/Myoffers';
+import Wallets from './src/container/Wallets';
 
 export default class App extends Component{
   render() {
@@ -35,11 +36,12 @@ export default class App extends Component{
           <Scene key="Number" component={Number} title="Number" />
           <Scene key="Code" component={Code} title="Code" />
           <Scene key="Search" component={Search} title="Search" />
-          <Scene key="Dashboard" component={Dashboard} title="Dashboard" initial />
+          <Scene key="Dashboard" component={Dashboard} title="Dashboard"  />
           <Scene key="Upcoming" component={Upcoming} title="Upcoming"  />
           <Scene key="Past" component={Past} title="Past"  />
           <Scene key="Watchlist" component={Watchlist} title="Watchlist"  />
           <Scene key="Myoffers" component={Myoffers} title="My offers"  />
+          <Scene key="Wallets" component={Wallets} title="Wallets" initial  />
         </Scene>
       </Router>
     );
