@@ -25,6 +25,7 @@ import Wallets from './src/container/Wallets';
 import Yourbalance from './src/container/Yourbalance';
 import Inbox from './src/container/Inbox';
 import Inboxdetails from './src/container/Inboxdetails';
+import Profiledetails from './src/container/Profiledetails';
 
 export default class App extends Component{
   render() {
@@ -47,7 +48,8 @@ export default class App extends Component{
           <Scene key="Wallets" component={Wallets} title="Wallets" />
           <Scene key="Yourbalance" component={Yourbalance} title="Yourbalance" />
           <Scene key="Inbox" component={Inbox} title="Inbox" />
-          <Scene key="Inboxdetails" component={Inboxdetails} title="Inboxdetails" initial  />
+          <Scene key="Inboxdetails" component={Inboxdetails} title="Inboxdetails" />
+          <Scene key="Profiledetails" component={Profiledetails} title="Profiledetails" initial  />
         </Scene>
       </Router>
     );
