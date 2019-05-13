@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     alignItems: "flex-start",
     width: responsiveWidth(44.5),
-    height: responsiveHeight(15),
+    height: responsiveHeight(14),
     paddingLeft: responsiveWidth(2),
     borderRadius: 5,
   },
