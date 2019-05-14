@@ -6,7 +6,7 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text} from 'react-native';
+import {Platform, StyleSheet, Text, Image} from 'react-native';
 import { Router, Scene, ActionConst, Actions, Tabs } from 'react-native-router-flux';
 import Welcome from './src/container/Welcome';
 import Login from './src/container/Login';
@@ -65,15 +65,15 @@ export default class App extends Component{
             <Tabs
               key="dashboardContainerTabs"
               swipeEnabled
-              showLabel={true}
+              showLabel={false}
               tabBarPosition='bottom'
               hideNavBar={true}
               >
-                <Scene key="Search1" component={Search} hideNavBar={true} />
-                <Scene key="Dashboard2" component={Dashboard} hideNavBar={true}  />
-                <Scene key="Wallets2" component={Wallets} hideNavBar={true} />
-                <Scene key="Inbox2" component={Inbox} hideNavBar={true} />
-                <Scene key="Profile" component={Profile} hideNavBar={true} />
+                <Scene key={"Search1"} component={Search} hideNavBar={true} title="" icon={()=>(<Image source={require('./assets/images/tab1.png')}/>)} />
+                <Scene key="Dashboard2" component={Dashboard} hideNavBar={true} icon={()=>(<Image source={require('./assets/images/tab2.png')}/>)} />
+                <Scene key="Wallets2" component={Wallets} hideNavBar={true} icon={()=>(<Image source={require('./assets/images/tab3.png')}/>)} />
+                <Scene key="Inbox2" component={Inbox} hideNavBar={true} icon={()=>(<Image source={require('./assets/images/tab4.png')}/>)} />
+                <Scene key="Profile" component={Profile} hideNavBar={true} icon={()=>(<Image source={require('./assets/images/tab5.png')}/>)} />
               </Tabs>
           </Scene>
           
