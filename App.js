@@ -6,8 +6,8 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet} from 'react-native';
-import { Router, Scene, ActionConst, Actions } from 'react-native-router-flux';
+import {Platform, StyleSheet, Text} from 'react-native';
+import { Router, Scene, ActionConst, Actions, Tabs } from 'react-native-router-flux';
 import Welcome from './src/container/Welcome';
 import Login from './src/container/Login';
 import Forgot from './src/container/Forgot';
@@ -27,6 +27,12 @@ import Inbox from './src/container/Inbox';
 import Inboxdetails from './src/container/Inboxdetails';
 import Profiledetails from './src/container/Profiledetails';
 import Profile from './src/container/Profile';
+
+const TabIcon = ({ selected, title }) => {
+  return (
+    <Text style={{color: selected ? 'red' :'black'}}>{title}</Text>
+  );
+}
 
 export default class App extends Component{
   render() {
@@ -54,6 +60,23 @@ export default class App extends Component{
           <Scene key="Inbox" component={Inbox} />
           <Scene key="Inboxdetails" component={Inboxdetails} />
           <Scene key="Profile" component={Profile} />
+
+          <Scene key="dashboardContainerScreen" initial >
+            <Tabs
+              key="dashboardContainerTabs"
+              swipeEnabled
+              showLabel={true}
+              tabBarPosition='bottom'
+              hideNavBar={true}
+              >
+                <Scene key="Search1" component={Search} hideNavBar={true} />
+                <Scene key="Dashboard2" component={Dashboard} hideNavBar={true}  />
+                <Scene key="Wallets2" component={Wallets} hideNavBar={true} />
+                <Scene key="Inbox2" component={Inbox} hideNavBar={true} />
+                <Scene key="Profile" component={Profile} hideNavBar={true} />
+              </Tabs>
+          </Scene>
+          
         </Scene>
       </Router>
     );
