@@ -177,8 +177,6 @@ const styles = StyleSheet.create({
   searchbarHeader: {
     height: 1,
     width: responsiveWidth(92),
-
-
   }
 });
 

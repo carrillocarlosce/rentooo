@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
     height: responsiveHeight(5),
     justifyContent: "center",
     alignItems: "center",
+    borderRadius: 5,
   },
   btnNextText: {
     fontFamily: "SFProText-Semibold",

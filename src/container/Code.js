@@ -7,7 +7,7 @@
 
 import React, {Component} from 'react';
 import {Text, View, TextInput, TouchableOpacity, Image} from 'react-native';
-import { Action } from 'react-native-router-flux';
+import { Actions } from 'react-native-router-flux';
 import styles from '../style/codeStyle'
 
 export default class Code extends Component {
@@ -32,7 +32,7 @@ export default class Code extends Component {
             </TouchableOpacity>
           </View>
           <View>
-            <TouchableOpacity style={styles.btnVerifyLayout}>
+            <TouchableOpacity style={styles.btnVerifyLayout} onPress={()=>Actions.Search()}>
                 <Text style={styles.btnVerifyText}>Verify</Text>
             </TouchableOpacity>
           </View>

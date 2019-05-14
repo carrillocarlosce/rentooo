@@ -7,7 +7,7 @@
 
 import React, {Component} from 'react';
 import {Text, View, TextInput, TouchableOpacity, Image} from 'react-native';
-import { Action } from 'react-native-router-flux';
+import { Actions } from 'react-native-router-flux';
 import styles from '../style/signupStyle'
 
 export default class Signup extends Component {
@@ -30,7 +30,7 @@ export default class Signup extends Component {
             <TextInput style={styles.formItem} placeholder="Password" secureTextEntry value={this.state.password} onChangeText={(password) => this.setState({password})}/>
           </View>
           <View>
-            <TouchableOpacity style={styles.btnsignupLayout}>
+            <TouchableOpacity style={styles.btnsignupLayout} onPress={()=>Actions.Name()}>
                 <Text style={styles.btnSignupText}>Sign up</Text>
             </TouchableOpacity>
             <Text style={styles.textSignWithLayout}>or sign up with</Text>

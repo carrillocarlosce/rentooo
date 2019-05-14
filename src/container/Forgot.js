@@ -7,7 +7,7 @@
 
 import React, {Component} from 'react';
 import {Text, View, TextInput, TouchableOpacity, Image} from 'react-native';
-import { Action } from 'react-native-router-flux';
+import { Actions } from 'react-native-router-flux';
 import styles from '../style/forgotStyle'
 
 export default class Forgot extends Component {

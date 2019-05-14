@@ -7,7 +7,7 @@
 
 import React, {Component} from 'react';
 import {Text, View, TextInput, TouchableOpacity, Image} from 'react-native';
-import { Action } from 'react-native-router-flux';
+import { Actions } from 'react-native-router-flux';
 import styles from '../style/nameStyle'
 
 export default class Name extends Component {
@@ -30,7 +30,7 @@ export default class Name extends Component {
             <TextInput style={styles.formItem} placeholder="Last name" value={this.state.lastName} onChangeText={(lastName) => this.setState({lastName})}/>
           </View>
           <View>
-            <TouchableOpacity style={styles.btnNextLayout}>
+            <TouchableOpacity style={styles.btnNextLayout} onPress={()=>Actions.Number()}>
                 <Text style={styles.btnNextText}>Next</Text>
             </TouchableOpacity>
           </View>
