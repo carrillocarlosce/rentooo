@@ -33,7 +33,7 @@ export default class Login extends Component {
             </TouchableOpacity>
           </View>
           <View>
-            <TouchableOpacity style={styles.btnLoginLayout} onPress={()=>Actions.Search()}>
+            <TouchableOpacity style={styles.btnLoginLayout} onPress={()=>Actions.dashboardContainerScreen()}>
                 <Text style={styles.btnLoginText}>Log in</Text>
             </TouchableOpacity>
             <Text style={styles.textLoginWithLayout}>or log in with</Text>

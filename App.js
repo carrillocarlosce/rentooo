@@ -61,7 +61,7 @@ export default class App extends Component{
           <Scene key="Inboxdetails" component={Inboxdetails} />
           <Scene key="Profile" component={Profile} />
 
-          <Scene key="dashboardContainerScreen" initial >
+          <Scene key="dashboardContainerScreen"  >
             <Tabs
               key="dashboardContainerTabs"
               swipeEnabled

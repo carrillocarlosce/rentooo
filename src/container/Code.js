@@ -32,7 +32,7 @@ export default class Code extends Component {
             </TouchableOpacity>
           </View>
           <View>
-            <TouchableOpacity style={styles.btnVerifyLayout} onPress={()=>Actions.Search()}>
+            <TouchableOpacity style={styles.btnVerifyLayout} onPress={()=>Actions.dashboardContainerScreen()}>
                 <Text style={styles.btnVerifyText}>Verify</Text>
             </TouchableOpacity>
           </View>
