@@ -111,13 +111,14 @@ const styles = StyleSheet.create({
   },
   interestImageContainer: {
     flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
     width: responsiveWidth(43.2),
     height: responsiveHeight(30),
   },
   itemIterestBtnContainer: {
     flexDirection: "column",
+    justifyContent: "flex-start",
     alignItems: "flex-start",
   },
   heartIcon: {

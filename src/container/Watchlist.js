@@ -10,7 +10,7 @@ import {Text, View, TextInput, TouchableOpacity, Image, ScrollView} from 'react-
 import { Action } from 'react-native-router-flux';
 import styles from '../style/watchlistStyle'
 import { responsiveWidth, responsiveHeight } from 'react-native-responsive-dimensions';
-import StarView from '../component/Startview'
+import StarView from 'react-native-star-view'
 
 export default class Watchlist extends Component {
   constructor(props) {
@@ -24,8 +24,8 @@ export default class Watchlist extends Component {
             <View style={styles.interestRowContainer}>
             <View style={styles.interestImageContainer}>
                 <TouchableOpacity style={styles.itemIterestBtnContainer}>
-                    <Image source={require('../../assets/images/canon-camera.png')}/>
-                    <View style={styles.rectRedColor}></View>
+                    <Image style={styles.itemImage} source={require('../../assets/images/canon-camera.png')}/>
+                      <Image style={styles.heartIcon} source={require('../../assets/images/red-heart.png')}/>
                     <Text style={styles.itemText}>Black ATV</Text>
                     <View style={styles.currencyWrapper}>
                     <Text style={styles.currencyText}>20$/day</Text>
@@ -42,8 +42,8 @@ export default class Watchlist extends Component {
             </View>
             <View style={styles.interestImageContainer}>
                 <TouchableOpacity style={styles.itemIterestBtnContainer}>
-                    <Image source={require('../../assets/images/canon-camera.png')}/>
-                    <View style={styles.rectRedColor}></View>
+                    <Image style={styles.itemImage} source={require('../../assets/images/canon-camera.png')}/>
+                    <Image style={styles.heartIcon} source={require('../../assets/images/red-heart.png')}/>
                     <Text style={styles.itemText}>DJI Phantom 3 Pro</Text>
                     <View style={styles.currencyWrapper}>
                     <Text style={styles.currencyText}>15$/day</Text>
@@ -62,8 +62,8 @@ export default class Watchlist extends Component {
             <View style={styles.interestRowContainer}>
             <View style={styles.interestImageContainer}>
                 <TouchableOpacity style={styles.itemIterestBtnContainer}>
-                    <Image source={require('../../assets/images/canon-camera.png')}/>
-                    <View style={styles.rectRedColor}></View>
+                    <Image style={styles.itemImage} source={require('../../assets/images/canon-camera.png')}/>
+                    <Image style={styles.heartIcon} source={require('../../assets/images/red-heart.png')}/>
                     <Text style={styles.itemText}>Califonia Van</Text>
                     <View style={styles.currencyWrapper}>
                     <Text style={styles.currencyText}>20$/day</Text>
@@ -80,8 +80,8 @@ export default class Watchlist extends Component {
             </View>
             <View style={styles.interestImageContainer}>
                 <TouchableOpacity style={styles.itemIterestBtnContainer}>
-                    <Image source={require('../../assets/images/canon-camera.png')}/>
-                    <View style={styles.rectRedColor}></View>
+                    <Image style={styles.itemImage} source={require('../../assets/images/canon-camera.png')}/>
+                    <Image style={styles.heartIcon} source={require('../../assets/images/red-heart.png')}/>
                     <Text style={styles.itemText}>Set of Tools</Text>
                     <View style={styles.currencyWrapper}>
                     <Text style={styles.currencyText}>20$/day</Text>

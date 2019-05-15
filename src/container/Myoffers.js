@@ -10,7 +10,7 @@ import {Text, View, TextInput, TouchableOpacity, Image, ScrollView} from 'react-
 import { Action } from 'react-native-router-flux';
 import styles from '../style/watchlistStyle'
 import { responsiveWidth, responsiveHeight } from 'react-native-responsive-dimensions';
-import StarView from '../component/Startview'
+import StarView from 'react-native-star-view'
 
 export default class Watchlist extends Component {
   constructor(props) {

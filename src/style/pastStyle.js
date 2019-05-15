@@ -3,9 +3,8 @@ import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-nat
 
 const styles = StyleSheet.create({
   container: {
-    marginLeft: responsiveWidth(4),
-    marginRight: responsiveWidth(4),
-    marginTop: responsiveHeight(4),
+    marginHorizontal: responsiveWidth(5.33),
+    marginTop: responsiveHeight(3.94),
   },
   nameText: {
     fontFamily: "TruenoSBd",
@@ -101,7 +100,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "flex-start",
     alignSelf: "flex-start",
-    width: responsiveWidth(40),
+    width: responsiveWidth(43.2),
     height: responsiveHeight(30),
   },
   itemIterestBtnContainer: {

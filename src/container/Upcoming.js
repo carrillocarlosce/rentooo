@@ -22,7 +22,7 @@ export default class Upcoming extends Component {
             <View style={styles.interestRowContainer}>
                 <View style={styles.interestImageContainer}>
                     <TouchableOpacity style={styles.itemIterestBtnContainer}>
-                        <Image source={require('../../assets/images/canon-camera.png')}/>
+                        <Image style={styles.itemImage} source={require('../../assets/images/canon-camera.png')}/>
                         <Text style={styles.itemText}>Black Canon Film{"\n"}Camera</Text>
                         <View style={styles.currencyWrapper}>
                             <Text style={styles.currencyText}>21 Apr. to 23 Apr.</Text>

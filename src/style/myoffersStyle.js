@@ -3,99 +3,12 @@ import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-nat
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: responsiveHeight(4),
-    marginLeft: responsiveWidth(4),
-    marginRight: responsiveWidth(4),
+    marginHorizontal: responsiveWidth(5.33),
+    marginTop: responsiveHeight(3.94),
   },
   nameText: {
     fontFamily: "TruenoSBd",
     fontSize: responsiveFontSize(3),
-  },
-  formItem: {
-    marginTop: responsiveHeight(1),
-    backgroundColor: "#F2F2F2", 
-    height: responsiveHeight(5),
-    paddingLeft: 10
-  },
-  btnFiltersLayout: {
-    marginTop: responsiveFontSize(1),
-    marginRight: responsiveWidth(2),
-    width: responsiveWidth(18),
-    height: responsiveHeight(4),
-    backgroundColor: "#A3A3BD",
-    borderRadius: 5,
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  btnFilterText: {
-    fontFamily: "SFProText-Semibold",
-    fontSize: 12,
-    color: "#FFFFFF"
-  },
-  btnGroupLayout: {
-    marginTop: responsiveHeight(2),
-    marginRight: responsiveWidth(2),
-    width: responsiveWidth(26),
-    height: responsiveHeight(14),
-    backgroundColor: "#0055FF",
-    borderRadius: 5,
-  },
-  btnGroupLayout2: {
-    marginTop: responsiveHeight(2),
-    marginRight: responsiveWidth(2),
-    width: responsiveWidth(26),
-    height: responsiveHeight(14),
-    backgroundColor: "#0B49C8",
-    borderRadius: 5,
-  },
-  btnGroupLayout3: {
-    marginTop: responsiveHeight(2),
-    marginRight: responsiveWidth(2),
-    width: responsiveWidth(26),
-    height: responsiveHeight(14),
-    backgroundColor: "#063696",
-    borderRadius: 5,
-  },
-  btnGroupLayout4: {
-    marginTop: responsiveHeight(2),
-    marginRight: responsiveWidth(2),
-    width: responsiveWidth(26),
-    height: responsiveHeight(14),
-    backgroundColor: "#032464",
-    borderRadius: 5,
-  },
-  btnContainer: {
-    flexDirection: "row", 
-    justifyContent: "flex-start", 
-    alignItems: "center"
-  },
-  itemGroupImage: {
-    position: "absolute",
-    top: responsiveHeight(1),
-    left: responsiveHeight(1)
-  },
-  itemGroupText: {
-    position: "absolute",
-    bottom: responsiveHeight(1),
-    left: responsiveHeight(1),
-    fontFamily: "SFProText-Semibold",
-    fontSize: 14,
-    color: "#FFFFFF"
-  },
-  interestHeader: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  text1IterestHeader: {
-    fontFamily: "SFProText-Semibold",
-    fontSize: 16,
-    color: "#222222"
-  },
-  text2IterestHeader: {
-    fontFamily: "SFProText-Semibold",
-    fontSize: 12,
-    color: "#0061FF"
   },
   interestImageContainer: {
     flexDirection: "column",
