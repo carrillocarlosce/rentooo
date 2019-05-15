@@ -13,7 +13,7 @@ import { SearchBar } from 'react-native-elements';
 import { responsiveWidth, responsiveHeight } from 'react-native-responsive-dimensions';
 import StarView from '../component/Startview'
 import Rect from '../component/Rect'
-import { Searchbar } from 'react-native-paper';
+import { Searchbar } from '../component/react-native-paper';
 
 export default class Search extends Component {
   constructor(props) {
