@@ -3,8 +3,7 @@ import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-nat
 
 const styles = StyleSheet.create({
   container: {
-    marginLeft: responsiveWidth(4),
-    marginRight: responsiveWidth(4),
+    marginHorizontal: responsiveWidth(5.33),
   },
   nameText: {
     fontFamily: "TruenoSBd",
@@ -89,7 +88,7 @@ const styles = StyleSheet.create({
   },
   interestInsideContainer: {
     flexDirection: "column",
-    justifyContent: "flex-start",
+    justifyContent: "center",
     
   },
   interestHeader: {
@@ -111,11 +110,12 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    width: responsiveWidth(40),
+    width: responsiveWidth(43.2),
     height: responsiveHeight(30),
   },
   itemIterestBtnContainer: {
     flexDirection: "column",
+    alignItems: "flex-start"
 
   },
   rectWhiteColor: {
@@ -172,11 +172,11 @@ const styles = StyleSheet.create({
   interestRowContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center"
+    alignItems: "center",
   },
-  searchbarHeader: {
-    height: 1,
-    width: responsiveWidth(92),
+  itemImage: {
+    width: 162,
+    height: 122,
   }
 });
 

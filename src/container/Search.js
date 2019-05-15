@@ -32,7 +32,7 @@ export default class Search extends Component {
           <Text style={styles.nameText}>Search</Text>
           
           <Searchbar
-            style={{backgroundColor: "#F2F2F2", marginTop: responsiveHeight(2), height: responsiveHeight(5)}}
+            style={{flex: 1, evalation: 2, backgroundColor: "#F2F2F2", marginTop: responsiveHeight(2), height: responsiveHeight(5)}}
             placeholder="Search"
             onChangeText={query => { this.setState({ firstQuery: query }); }}
             value={firstQuery}
@@ -77,7 +77,7 @@ export default class Search extends Component {
               <View style={styles.interestRowContainer}>
                 <View style={styles.interestImageContainer}>
                   <TouchableOpacity style={styles.itemIterestBtnContainer}>
-                      <Image source={require('../../assets/images/canon-camera.png')}/>
+                      <Image style={styles.itemImage} source={require('../../assets/images/canon-camera.png')}/>
                       <View style={styles.rectWhiteColor}></View>
                       <Text style={styles.itemText}>Black Canon Film{"\n"}Camera</Text>
                       <View style={styles.currencyWrapper}>
