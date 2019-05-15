@@ -32,7 +32,7 @@ export default class Search extends Component {
           <Text style={styles.nameText}>Search</Text>
           
           <Searchbar
-            style={{flex: 1, evalation: 2, backgroundColor: "#F2F2F2", marginTop: responsiveHeight(2), height: responsiveHeight(5)}}
+            style={styles.searchBar}
             placeholder="Search"
             onChangeText={query => { this.setState({ firstQuery: query }); }}
             value={firstQuery}
@@ -46,7 +46,7 @@ export default class Search extends Component {
                 <Text style={styles.btnFilterText}>Dates</Text> 
             </TouchableOpacity>
           </View>
-          <View style={styles.btnContainer}>
+          <ScrollView showsHorizontalScrollIndicator={false} horizontal>
             <TouchableOpacity style={styles.btnGroupLayout}>
               <Image style={styles.itemGroupImage} source={require('../../assets/images/camera.png')}/>
               <Text style={styles.itemGroupText}>Image{"\n"}& Video</Text>
@@ -63,7 +63,7 @@ export default class Search extends Component {
               <Image style={styles.itemGroupImage} source={require('../../assets/images/sport.png')}/>
               <Text style={styles.itemGroupText}>Sport</Text>
             </TouchableOpacity>
-          </View>
+          </ScrollView>
 
           <View style={styles.interestContainer}>
             <View style={styles.interestHeader}>
@@ -78,7 +78,7 @@ export default class Search extends Component {
                 <View style={styles.interestImageContainer}>
                   <TouchableOpacity style={styles.itemIterestBtnContainer}>
                       <Image style={styles.itemImage} source={require('../../assets/images/canon-camera.png')}/>
-                      <View style={styles.rectWhiteColor}></View>
+                      <Image style={styles.heartIcon} source={require('../../assets/images/heart.png')}/>
                       <Text style={styles.itemText}>Black Canon Film{"\n"}Camera</Text>
                       <View style={styles.currencyWrapper}>
                         <Text style={styles.currencyText}>15$/day</Text>
@@ -97,7 +97,7 @@ export default class Search extends Component {
                 <View style={styles.interestImageContainer}>
                   <TouchableOpacity style={styles.itemIterestBtnContainer}>
                       <Image source={require('../../assets/images/canon-camera.png')}/>
-                      <View style={styles.rectWhiteColor}></View>
+                      <Image style={styles.heartIcon} source={require('../../assets/images/heart.png')}/>
                       <Text style={styles.itemText}>Black Canon Film{"\n"}Camera</Text>
                       <View style={styles.currencyWrapper}>
                         <Text style={styles.currencyText}>15$/day</Text>
@@ -118,7 +118,7 @@ export default class Search extends Component {
                 <View style={styles.interestImageContainer}>
                   <TouchableOpacity style={styles.itemIterestBtnContainer}>
                       <Image source={require('../../assets/images/canon-camera.png')}/>
-                      <View style={styles.rectWhiteColor}></View>
+                      <Image style={styles.heartIcon} source={require('../../assets/images/heart.png')}/>
                       <Text style={styles.itemText}>Black Canon Film{"\n"}Camera</Text>
                       <View style={styles.currencyWrapper}>
                         <Text style={styles.currencyText}>15$/day</Text>
@@ -137,7 +137,7 @@ export default class Search extends Component {
                 <View style={styles.interestImageContainer}>
                   <TouchableOpacity style={styles.itemIterestBtnContainer}>
                       <Image source={require('../../assets/images/canon-camera.png')}/>
-                      <View style={styles.rectWhiteColor}></View>
+                      <Image style={styles.heartIcon} source={require('../../assets/images/heart.png')}/>
                       <Text style={styles.itemText}>Black Canon Film{"\n"}Camera</Text>
                       <View style={styles.currencyWrapper}>
                         <Text style={styles.currencyText}>15$/day</Text>
@@ -170,7 +170,7 @@ export default class Search extends Component {
                 <View style={styles.interestImageContainer}>
                   <TouchableOpacity style={styles.itemIterestBtnContainer}>
                       <Image source={require('../../assets/images/canon-camera.png')}/>
-                      <View style={styles.rectWhiteColor}></View>
+                      <Image style={styles.heartIcon} source={require('../../assets/images/heart.png')}/>
                       <Text style={styles.itemText}>Black Canon Film{"\n"}Camera</Text>
                       <View style={styles.currencyWrapper}>
                         <Text style={styles.currencyText}>15$/day</Text>
@@ -189,7 +189,7 @@ export default class Search extends Component {
                 <View style={styles.interestImageContainer}>
                   <TouchableOpacity style={styles.itemIterestBtnContainer}>
                       <Image source={require('../../assets/images/canon-camera.png')}/>
-                      <View style={styles.rectWhiteColor}></View>
+                      <Image style={styles.heartIcon} source={require('../../assets/images/heart.png')}/>
                       <Text style={styles.itemText}>Black Canon Film{"\n"}Camera</Text>
                       <View style={styles.currencyWrapper}>
                         <Text style={styles.currencyText}>15$/day</Text>
@@ -210,7 +210,7 @@ export default class Search extends Component {
                 <View style={styles.interestImageContainer}>
                   <TouchableOpacity style={styles.itemIterestBtnContainer}>
                       <Image source={require('../../assets/images/canon-camera.png')}/>
-                      <View style={styles.rectWhiteColor}></View>
+                      <Image style={styles.heartIcon} source={require('../../assets/images/heart.png')}/>
                       <Text style={styles.itemText}>Black Canon Film{"\n"}Camera</Text>
                       <View style={styles.currencyWrapper}>
                         <Text style={styles.currencyText}>15$/day</Text>
@@ -229,7 +229,7 @@ export default class Search extends Component {
                 <View style={styles.interestImageContainer}>
                   <TouchableOpacity style={styles.itemIterestBtnContainer}>
                       <Image source={require('../../assets/images/canon-camera.png')}/>
-                      <View style={styles.rectWhiteColor}></View>
+                      <Image style={styles.heartIcon} source={require('../../assets/images/heart.png')}/>
                       <Text style={styles.itemText}>Black Canon Film{"\n"}Camera</Text>
                       <View style={styles.currencyWrapper}>
                         <Text style={styles.currencyText}>15$/day</Text>

@@ -7,16 +7,19 @@ const styles = StyleSheet.create({
   },
   nameText: {
     fontFamily: "TruenoSBd",
-    fontSize: responsiveFontSize(3),
+    fontSize: responsiveFontSize(3.2),
+  },
+  searchBar: {
+    backgroundColor: "#F2F2F2",
+    marginTop: responsiveHeight(1.48),
+    height: responsiveHeight(4.4)
   },
   formItem: {
-    marginTop: responsiveHeight(1),
     backgroundColor: "#F2F2F2", 
     height: responsiveHeight(5),
     paddingLeft: 10
   },
   btnFiltersLayout: {
-    marginTop: responsiveFontSize(1),
     marginRight: responsiveWidth(2),
     width: responsiveWidth(18),
     height: responsiveHeight(4),
@@ -27,57 +30,57 @@ const styles = StyleSheet.create({
   },
   btnFilterText: {
     fontFamily: "SFProText-Semibold",
-    fontSize: 12,
+    fontSize: 13,
     color: "#FFFFFF"
   },
   btnGroupLayout: {
-    marginTop: responsiveHeight(2),
-    marginRight: responsiveWidth(2),
-    width: responsiveWidth(26),
-    height: responsiveHeight(14),
+    marginTop: responsiveHeight(3),
+    marginRight: responsiveWidth(2.7),
+    width: responsiveWidth(25.6),
+    height: responsiveHeight(13.8),
     backgroundColor: "#0055FF",
     borderRadius: 5,
   },
   btnGroupLayout2: {
-    marginTop: responsiveHeight(2),
-    marginRight: responsiveWidth(2),
-    width: responsiveWidth(26),
-    height: responsiveHeight(14),
+    marginTop: responsiveHeight(3),
+    marginRight: responsiveWidth(2.7),
+    width: responsiveWidth(25.6),
+    height: responsiveHeight(13.8),
     backgroundColor: "#0B49C8",
     borderRadius: 5,
   },
   btnGroupLayout3: {
-    marginTop: responsiveHeight(2),
-    marginRight: responsiveWidth(2),
-    width: responsiveWidth(26),
-    height: responsiveHeight(14),
+    marginTop: responsiveHeight(3),
+    marginRight: responsiveWidth(2.7),
+    width: responsiveWidth(25.6),
+    height: responsiveHeight(13.8),
     backgroundColor: "#063696",
     borderRadius: 5,
   },
   btnGroupLayout4: {
-    marginTop: responsiveHeight(2),
-    marginRight: responsiveWidth(2),
-    width: responsiveWidth(26),
-    height: responsiveHeight(14),
+    marginTop: responsiveHeight(3),
+    width: responsiveWidth(25.6),
+    height: responsiveHeight(13.8),
     backgroundColor: "#032464",
     borderRadius: 5,
   },
   btnContainer: {
+    marginTop: responsiveHeight(1.48),
     flexDirection: "row", 
     justifyContent: "flex-start", 
     alignItems: "center"
   },
   itemGroupImage: {
     position: "absolute",
-    top: responsiveHeight(1),
-    left: responsiveHeight(1)
+    top: responsiveWidth(3.2),
+    left: responsiveWidth(3.2)
   },
   itemGroupText: {
     position: "absolute",
-    bottom: responsiveHeight(1),
-    left: responsiveHeight(1),
+    bottom: responsiveWidth(3.2),
+    left: responsiveWidth(3.2),
     fontFamily: "SFProText-Semibold",
-    fontSize: 14,
+    fontSize: 15,
     color: "#FFFFFF"
   },
   interestContainer: {
@@ -98,13 +101,13 @@ const styles = StyleSheet.create({
   },
   text1IterestHeader: {
     fontFamily: "SFProText-Semibold",
-    fontSize: 16,
-    color: "#222222"
+    fontSize: 20,
+    color: "#000000"
   },
   text2IterestHeader: {
     fontFamily: "SFProText-Semibold",
-    fontSize: 12,
-    color: "#0061FF"
+    fontSize: 15,
+    color: "#0055FF"
   },
   interestImageContainer: {
     flexDirection: "column",
@@ -115,16 +118,12 @@ const styles = StyleSheet.create({
   },
   itemIterestBtnContainer: {
     flexDirection: "column",
-    alignItems: "flex-start"
-
+    alignItems: "flex-start",
   },
-  rectWhiteColor: {
+  heartIcon: {
     position: "absolute",
     right: responsiveHeight(1),
     top: responsiveHeight(1),
-    width: responsiveHeight(2),
-    height: responsiveHeight(2),
-    backgroundColor: "#FFFFFF"
   },
   itemText: {
     marginTop: responsiveHeight(1),
@@ -140,13 +139,13 @@ const styles = StyleSheet.create({
   currencyWrapper: {
     flexDirection: "row",
     justifyContent: "space-between",
-    // alignItems: "center",
+    alignSelf: "stretch",
   },
   currencyContainer: {
     width: responsiveWidth(10),
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center",
+    alignItems: "center"
   },
   currency: {
     width: responsiveWidth(3),
@@ -167,7 +166,6 @@ const styles = StyleSheet.create({
   starView: {
     width: 50, 
     height: 10, 
-    marginLeft: -3
   },
   interestRowContainer: {
     flexDirection: "row",
