@@ -6,7 +6,7 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, Image} from 'react-native';
+import {Platform, StyleSheet, Text, Image, TouchableOpacity, View} from 'react-native';
 import { Router, Scene, ActionConst, Actions, Tabs } from 'react-native-router-flux';
 import Welcome from './src/container/Welcome';
 import Login from './src/container/Login';
@@ -27,6 +27,8 @@ import Inbox from './src/container/Inbox';
 import Inboxdetails from './src/container/Inboxdetails';
 import Profiledetails from './src/container/Profiledetails';
 import Profile from './src/container/Profile';
+
+import styles from './src/style/appStyle'
 
 const TabIcon = ({ selected, title }) => {
   return (
@@ -61,7 +63,10 @@ export default class App extends Component{
           <Scene key="Inboxdetails" component={Inboxdetails} />
           <Scene key="Profile" component={Profile} />
 
-          <Scene key="dashboardContainerScreen"  >
+          <Scene key="dashboardContainerScreen" renderLeftButton={() => <View />} renderRightButton = {() => 
+              <Image style={styles.plusBtn} source={require('./assets/images/plus.png')}/>
+            }
+          >
             <Tabs
               key="dashboardContainerTabs"
               swipeEnabled
@@ -83,21 +88,3 @@ export default class App extends Component{
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
