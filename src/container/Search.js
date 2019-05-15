@@ -11,7 +11,7 @@ import { Action } from 'react-native-router-flux';
 import styles from '../style/searchStyle'
 import { SearchBar } from 'react-native-elements';
 import { responsiveWidth, responsiveHeight } from 'react-native-responsive-dimensions';
-import StarView from '../component/Startview'
+import StarView from 'react-native-star-view';
 import Rect from '../component/Rect'
 import { Searchbar } from '../component/react-native-paper';
 
