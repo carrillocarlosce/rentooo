@@ -36,6 +36,10 @@ const TabIcon = ({ selected, title }) => {
   );
 }
 
+// renderLeftButton={() => <View />} renderRightButton = {() => 
+//   <Image style={styles.plusBtn} source={require('./assets/images/plus.png')}/>
+// }
+
 export default class App extends Component{
   render() {
     return (
@@ -63,10 +67,7 @@ export default class App extends Component{
           <Scene key="Inboxdetails" component={Inboxdetails} />
           <Scene key="Profile" component={Profile} />
 
-          <Scene key="dashboardContainerScreen" renderLeftButton={() => <View />} renderRightButton = {() => 
-              <Image style={styles.plusBtn} source={require('./assets/images/plus.png')}/>
-            }
-          >
+          <Scene key="dashboardContainerScreen" hideNavBar={true}>
             <Tabs
               key="dashboardContainerTabs"
               swipeEnabled
@@ -74,11 +75,51 @@ export default class App extends Component{
               tabBarPosition='bottom'
               hideNavBar={true}
               >
-                <Scene key={"Search1"} component={Search} hideNavBar={true} title="" icon={()=>(<Image source={require('./assets/images/tab1.png')}/>)} />
-                <Scene key="Dashboard2" component={Dashboard} hideNavBar={true} icon={()=>(<Image source={require('./assets/images/tab2.png')}/>)} />
-                <Scene key="Wallets2" component={Wallets} hideNavBar={true} icon={()=>(<Image source={require('./assets/images/tab3.png')}/>)} />
-                <Scene key="Inbox2" component={Inbox} hideNavBar={true} icon={()=>(<Image source={require('./assets/images/tab4.png')}/>)} />
-                <Scene key="Profile" component={Profile} hideNavBar={true} icon={()=>(<Image source={require('./assets/images/tab5.png')}/>)} />
+                <Scene key={"Search1"} 
+                  component={Search} 
+                  hideNavBar={false} 
+                  title="" 
+                  renderRightButton = {() => 
+                    <Image style={styles.plusBtn} source={require('./assets/images/plus.png')}/>
+                  } 
+                  icon={()=><Image source={require('./assets/images/tab1.png')}/>} 
+                />
+                <Scene 
+                  key="Dashboard2" 
+                  component={Dashboard} 
+                  hideNavBar={false} 
+                  renderRightButton = {() => 
+                    <Image style={styles.plusBtn} source={require('./assets/images/bell.png')}/>
+                  } 
+                  icon={()=>(<Image source={require('./assets/images/tab2.png')}/>)} 
+                />
+                <Scene
+                  key="Wallets2" 
+                  component={Wallets} 
+                  hideNavBar={true}
+                  renderRightButton = {() => 
+                    <Image style={styles.plusBtn} source={require('./assets/images/add-wallet.png')}/>
+                  }  
+                  icon={()=>(<Image source={require('./assets/images/tab3.png')}/>)} 
+                />
+                <Scene 
+                  key="Inbox2" 
+                  component={Inbox} 
+                  hideNavBar={true} 
+                  renderRightButton = {() => 
+                    <Image style={styles.plusBtn} source={require('./assets/images/box.png')}/>
+                  } 
+                  icon={()=>(<Image source={require('./assets/images/tab4.png')}/>)} 
+                />
+                <Scene 
+                  key="Profile" 
+                  component={Profile} 
+                  hideNavBar={true} 
+                  renderRightButton = {() => 
+                    <Image style={styles.plusBtn} source={require('./assets/images/setting.png')}/>
+                  } 
+                  icon={()=>(<Image source={require('./assets/images/tab5.png')}/>)} 
+                />
               </Tabs>
           </Scene>
           
