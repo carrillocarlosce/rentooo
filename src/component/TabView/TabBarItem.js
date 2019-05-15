@@ -41,8 +41,8 @@ type Props<T> = {|
   style: ViewStyleProp,
 |};
 
-const DEFAULT_ACTIVE_COLOR = 'rgba(255, 255, 255, 1)';
-const DEFAULT_INACTIVE_COLOR = 'rgba(255, 255, 255, 0.7)';
+const DEFAULT_ACTIVE_COLOR = 'rgba(0, 0, 0, 1)';
+const DEFAULT_INACTIVE_COLOR = 'rgba(0, 0, 0, 0.4)';
 
 export default function TabBarItem<T: Route>({
   route,
@@ -121,7 +121,7 @@ export default function TabBarItem<T: Route>({
                 style={[
                   styles.label,
                   // eslint-disable-next-line react-native/no-inline-styles
-                  icon && { marginTop: 0 },
+                  icon && { marginTop: 0},
                   { color },
                   labelStyle,
                 ]}
@@ -215,6 +215,8 @@ const styles = StyleSheet.create({
   label: {
     margin: 4,
     backgroundColor: 'transparent',
+    fontFamily: "SFProText-Semibold",
+    fontSize: 15,
   },
   icon: {
     margin: 2,

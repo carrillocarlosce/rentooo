@@ -46,7 +46,7 @@ export default function TabBarIndicator<T: Route>(props: Props<T>) {
 
 const styles = StyleSheet.create({
   indicator: {
-    backgroundColor: '#ffeb3b',
+    backgroundColor: '#0055FF',
     position: 'absolute',
     left: 0,
     bottom: 0,

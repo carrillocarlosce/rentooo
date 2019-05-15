@@ -23,7 +23,7 @@ const LOLLIPOP = 21;
 
 export default class TouchableItem extends React.Component<Props> {
   static defaultProps = {
-    pressColor: 'rgba(255, 255, 255, .4)',
+    pressColor: 'rgba(0, 0, 0, .3)',
   };
 
   render() {

@@ -375,7 +375,7 @@ const styles = StyleSheet.create({
     overflow: 'scroll',
   },
   tabBar: {
-    backgroundColor: '#2196f3',
+    backgroundColor: '#FFFFFF',
     elevation: 4,
     shadowColor: 'black',
     shadowOpacity: 0.1,
