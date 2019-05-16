@@ -7,7 +7,7 @@
 
 import React, {Component} from 'react';
 import {Text, View, TextInput, TouchableOpacity, Image, ScrollView} from 'react-native';
-import { Action } from 'react-native-router-flux';
+import { Actions } from 'react-native-router-flux';
 import styles from '../style/inboxStyle'
 import { responsiveWidth, responsiveHeight } from 'react-native-responsive-dimensions';
 import StarView from '../component/Startview'
@@ -24,7 +24,7 @@ export default class Inbox extends Component {
                 
         <ScrollView style={styles.midContainer}>
           
-          <View style={styles.itemLayout}>
+          <TouchableOpacity style={styles.itemLayout} onPress={()=>Actions.Inboxdetails()}>
             <Image style={styles.checkbox} source={require('../../assets/images/profile.png')}/>
             <View style={styles.itemContainer}>
               <View style={styles.upperItem}>
@@ -37,10 +37,10 @@ export default class Inbox extends Component {
                 <Text style={styles.inlineText}>9:41</Text>
               </View>
             </View>
-          </View>
+          </TouchableOpacity>
           <View style={styles.bottomline}/>
           
-          <View style={styles.itemLayout}>
+          <TouchableOpacity style={styles.itemLayout}>
             <Image style={styles.checkbox} source={require('../../assets/images/profile.png')}/>
             <View style={styles.itemContainer}>
               <View style={styles.upperItem}>
@@ -53,10 +53,10 @@ export default class Inbox extends Component {
                 <Text style={styles.inlineText}>21 Apr, 2019</Text>
               </View>
             </View>
-          </View>
+          </TouchableOpacity>
           <View style={styles.bottomline}/>
           
-          <View style={styles.itemLayout}>
+          <TouchableOpacity style={styles.itemLayout}>
             <Image style={styles.checkbox} source={require('../../assets/images/profile.png')}/>
             <View style={styles.itemContainer}>
               <View style={styles.upperItem}>
@@ -69,10 +69,10 @@ export default class Inbox extends Component {
                 <Text style={styles.inlineText}>19 Apr, 2019</Text>
               </View>
             </View>
-          </View>
+          </TouchableOpacity>
           <View style={styles.bottomline}/>
           
-          <View style={styles.itemLayout}>
+          <TouchableOpacity style={styles.itemLayout}>
             <Image style={styles.checkbox} source={require('../../assets/images/profile.png')}/>
             <View style={styles.itemContainer}>
               <View style={styles.upperItem}>
@@ -85,7 +85,7 @@ export default class Inbox extends Component {
                 <Text style={styles.inlineText}>11 Apr, 2019</Text>
               </View>
             </View>
-          </View>
+          </TouchableOpacity>
           <View style={styles.bottomline}/>
 
         </ScrollView>

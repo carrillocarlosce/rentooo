@@ -50,7 +50,7 @@ export default class Inboxdetails extends Component {
 				</ScrollView>
 
 				<View style={styles.bottomContainer}>
-					<TextInput style={styles.textinput} />
+					<TextInput style={styles.textinput} placeholder="Write a message" />
 					<View style={styles.buttonBottomLayout}>
 						<View style={styles.leftbtn}>
 							<TouchableOpacity>

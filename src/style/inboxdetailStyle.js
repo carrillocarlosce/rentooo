@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
 		alignSelf: 'flex-end'
 	},
 	messgengerRightName: {
+		fontFamily: "SFProText-Regular",
 		marginTop: responsiveHeight(2),
 		alignSelf: 'flex-end',
 		fontSize: 11,
@@ -110,22 +111,24 @@ const styles = StyleSheet.create({
 	},
 	messgengerLeftName: {
 		marginTop: responsiveHeight(2),
-		marginLeft: responsiveWidth(4),
+		marginLeft: responsiveWidth(2),
 		alignSelf: 'flex-start',
+		fontFamily: "SFProText-Regular",
 		fontSize: 11,
 		color: "#818185"
 	},
-	messgengerRightPart: {
+	messgengerLeftPart: {
+		fontFamily: "SFProText-Regular",
 		fontSize: 15,
-		color: "white",
 	},
 	messgengerRightPart: {
+		fontFamily: "SFProText-Regular",
 		fontSize: 15,
 		color: "white",
 	},
 	bottomContainer: {
 		width: responsiveWidth(100),
-		height: responsiveHeight(15),
+		height: responsiveHeight(16.2),
 		backgroundColor: "#FFFFFF",
 		position: 'absolute',
 		bottom: 0,

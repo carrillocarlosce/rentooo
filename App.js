@@ -74,7 +74,7 @@ export default class App extends Component{
             }
           />
           <Scene key="Inbox" component={Inbox} />
-          <Scene key="Inboxdetails" component={Inboxdetails} />
+          <Scene key="Inboxdetails" component={Inboxdetails} title="Paulina Gayoso"/>
           <Scene key="Profile" component={Profile} />
 
           <Scene key="dashboardContainerScreen" hideNavBar={true}>
