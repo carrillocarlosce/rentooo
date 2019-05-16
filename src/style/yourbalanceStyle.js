@@ -45,16 +45,20 @@ const styles = StyleSheet.create({
 		fontSize: 15,
 		color: "white"
 	},
+	checkbox: {
+		width: responsiveWidth(10.1),
+		height: responsiveWidth(10.1)
+	},
 	itemLayout: {
 		flexDirection: "row",
 		justifyContent: "flex-start",
 		alignItems: "center",
 		marginTop: responsiveHeight(2),
-		marginBottom: responsiveHeight(2)
+		marginBottom: responsiveHeight(2),
 	},
 	itemContainer: {
-		marginLeft: responsiveWidth(2),
-		width: responsiveWidth(80),
+		marginLeft: responsiveWidth(3.2),
+		width: responsiveWidth(76),
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		alignItems: 'center',
@@ -128,7 +132,7 @@ const styles = StyleSheet.create({
 		bottom: 0,
 		flexDirection: 'row',
 		justifyContent: 'space-between',
-		paddingHorizontal: responsiveWidth(4),
+		paddingHorizontal: responsiveWidth(5.33),
 		paddingBottom: 20,
 		paddingTop: responsiveHeight(2),
 	},
