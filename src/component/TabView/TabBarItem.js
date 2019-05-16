@@ -213,7 +213,7 @@ export default function TabBarItem<T: Route>({
 
 const styles = StyleSheet.create({
   label: {
-    margin: 4,
+    margin: 0,
     backgroundColor: 'transparent',
     fontFamily: "SFProText-Semibold",
     fontSize: 15,

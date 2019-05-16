@@ -56,7 +56,7 @@ export default class App extends Component{
           <Scene key="Code" component={Code} />
 
           <Scene key="Search" component={Search} />
-          <Scene key="Dashboard" component={Dashboard} />
+          <Scene key="Dashboard" component={Dashboard}/>
           <Scene key="Upcoming" component={Upcoming}  />
           <Scene key="Past" component={Past} />
           <Scene key="Watchlist" component={Watchlist} />

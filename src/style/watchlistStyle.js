@@ -3,7 +3,7 @@ import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-nat
 
 const styles = StyleSheet.create({
   container: {
-    marginHorizontal: responsiveWidth(5.33),
+    // marginHorizontal: responsiveWidth(5.33),
     marginTop: responsiveHeight(3.94),
   },
   nameText: {
@@ -62,7 +62,6 @@ const styles = StyleSheet.create({
   starView: {
     width: 50, 
     height: 10, 
-    marginLeft: -3
   },
   interestRowContainer: {
     flexDirection: "row",

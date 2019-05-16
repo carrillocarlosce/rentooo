@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, StyleSheet, Dimensions } from 'react-native';
+import { View, StyleSheet, Dimensions, Text, SafeAreaView } from 'react-native';
 import { TabView, SceneMap } from '../component/TabView';
 import Upcoming from './Upcoming';
 import Past from './Past';
@@ -33,7 +33,10 @@ export default class TabViewExample extends React.Component {
 
   render() {
     return (
+      <View style={{flex: 1, backgroundColor: '#fff'}}>
+        <Text style={styles.nameText}>Rental dashboard</Text>
         <TabView
+          style={styles.tabContainer}
           navigationState={this.state}
           renderScene={SceneMap({
             first: Upcoming,
@@ -44,6 +47,7 @@ export default class TabViewExample extends React.Component {
           onIndexChange={index => this.setState({ index })}
           initialLayout={{ width: Dimensions.get('window').width }}
         />
+      </View>
     );
   }
 }

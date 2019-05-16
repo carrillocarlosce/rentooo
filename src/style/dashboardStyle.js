@@ -2,9 +2,15 @@ import { StyleSheet, Dimensions } from 'react-native';
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 
 const styles = StyleSheet.create({
-  container: {
+  tabContainer: {
     marginHorizontal: responsiveWidth(5.33),
-    marginTop: responsiveHeight(3.94),
+    zIndex: 999,
+  },
+  nameText: {
+    marginLeft: responsiveWidth(5.33),
+    fontFamily: "TruenoSBd",
+    fontSize: responsiveFontSize(3.2),
+
   },
   scene: {
     flex: 1,
