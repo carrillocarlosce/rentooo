@@ -56,7 +56,7 @@ export default class App extends Component{
           <Scene key="Code" component={Code} />
 
           <Scene key="Search" component={Search} />
-          <Scene key="Dashboard" component={Dashboard} initial />
+          <Scene key="Dashboard" component={Dashboard} />
           <Scene key="Upcoming" component={Upcoming}  />
           <Scene key="Past" component={Past} />
           <Scene key="Watchlist" component={Watchlist} />
@@ -96,7 +96,7 @@ export default class App extends Component{
                 <Scene
                   key="Wallets2" 
                   component={Wallets} 
-                  hideNavBar={true}
+                  hideNavBar={false}
                   renderRightButton = {() => 
                     <Image style={styles.plusBtn} source={require('./assets/images/add-wallet.png')}/>
                   }  
@@ -105,7 +105,7 @@ export default class App extends Component{
                 <Scene 
                   key="Inbox2" 
                   component={Inbox} 
-                  hideNavBar={true} 
+                  hideNavBar={false} 
                   renderRightButton = {() => 
                     <Image style={styles.plusBtn} source={require('./assets/images/box.png')}/>
                   } 
@@ -114,7 +114,7 @@ export default class App extends Component{
                 <Scene 
                   key="Profile" 
                   component={Profile} 
-                  hideNavBar={true} 
+                  hideNavBar={false} 
                   renderRightButton = {() => 
                     <Image style={styles.plusBtn} source={require('./assets/images/setting.png')}/>
                   } 
