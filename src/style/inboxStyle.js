@@ -8,15 +8,14 @@ const styles = StyleSheet.create({
 		position: 'relative',
 	},
 	inboxText: {
-		marginLeft: responsiveWidth(4),
+		marginLeft: responsiveWidth(5.33),
 		marginTop: responsiveHeight(2),
     marginBottom: responsiveHeight(2),
     fontFamily: "TruenoSBd",
     fontSize: responsiveFontSize(3),
   },
 	midContainer: {
-		paddingLeft: responsiveWidth(4),
-		paddingRight: responsiveWidth(4),
+		paddingHorizontal: responsiveWidth(5.33),
 		height: responsiveHeight(47)
 	},	
 	itemLayout: {
@@ -30,8 +29,8 @@ const styles = StyleSheet.create({
 		width: responsiveWidth(10),
 	},
 	itemContainer: {
-		marginLeft: responsiveWidth(2),
-		width: responsiveWidth(80),
+		marginLeft: responsiveWidth(3.2),
+		width: responsiveWidth(76.14),
 		flexDirection: 'column',
 		justifyContent: 'space-between',
 		alignSelf: 'flex-start'
@@ -43,14 +42,17 @@ const styles = StyleSheet.create({
 		alignItems: 'center'
 	},
   upperText: {
+		fontFamily: "SFProText-Semibold",
     color: "black",
     fontSize: 15
   },
   inlineText: {
+		fontFamily: "SFProText-Regular",
     color: "#676767",
     fontSize: 13,
 	},
   inlineBlackText: {
+		fontFamily: "SFProText-Regular",
     color: "black",
     fontSize: 13,
 	},
