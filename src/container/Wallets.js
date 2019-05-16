@@ -7,7 +7,7 @@
 
 import React, {Component} from 'react';
 import {Text, View, TextInput, TouchableOpacity, Image, ScrollView} from 'react-native';
-import { Action } from 'react-native-router-flux';
+import { Actions } from 'react-native-router-flux';
 import styles from '../style/walletsStyle'
 import { responsiveWidth, responsiveHeight } from 'react-native-responsive-dimensions';
 import StarView from '../component/Startview'
@@ -24,10 +24,10 @@ export default class Wallets extends Component {
           <Text style={styles.walletsText}>Wallets</Text>
 
           <View style={styles.walletsRowLayout}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={()=>Actions.Yourbalance()}>
               <View style={[styles.walletItemLayout, {backgroundColor: "#F5922F"}]}>
                 <Image source={require('../../assets/images/bitcoin-1.png')}/>
-                <Text>BITCOIN</Text>
+                <Text style={styles.coinText}>BITCOIN</Text>
                 <Text style={styles.priceText}>0.32</Text>
               </View>
             </TouchableOpacity>

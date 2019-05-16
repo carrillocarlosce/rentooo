@@ -61,8 +61,14 @@ export default class App extends Component{
           <Scene key="Past" component={Past} />
           <Scene key="Watchlist" component={Watchlist} />
           <Scene key="Myoffers" component={Myoffers} />
-          <Scene key="Wallets" component={Wallets} />
-          <Scene key="Yourbalance" component={Yourbalance} />
+          <Scene key="Wallets" component={Wallets} initial sceneStyle={{ backgroundColor: 'red'}}/>
+          <Scene key="Yourbalance" 
+            component={Yourbalance} 
+            title="Your balance" 
+            titleStyle={{color: "white"}} 
+            navigationBarStyle={{ backgroundColor: '#0055FF'}}
+            renderLeftButton={<Image style={styles.leftBtn} source={require('./assets/images/left.png')}/>}
+          />
           <Scene key="Inbox" component={Inbox} />
           <Scene key="Inboxdetails" component={Inboxdetails} />
           <Scene key="Profile" component={Profile} />

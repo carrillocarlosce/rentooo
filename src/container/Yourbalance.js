@@ -15,8 +15,8 @@ import StarView from '../component/Startview'
 export default class Yourbalance extends Component {
   constructor(props) {
     super(props);
-    
   }
+
   render() {
     return (
       <View style={styles.container}>
@@ -41,7 +41,7 @@ export default class Yourbalance extends Component {
                 <Text style={styles.inlineText}>21 Apr, 2019</Text>
               </View>
               <View style={styles.rightItem}>
-                <Text style={styles.UpperText}>-100 000 000.0</Text>
+                <Text style={styles.upperText}>-100 000 000.0</Text>
                 <Text style={styles.inlineText}>RENTOO</Text>
               </View>
             </View>
@@ -49,14 +49,14 @@ export default class Yourbalance extends Component {
           <View style={styles.bottomline}/>
 
           <View style={styles.itemLayout}>
-            <Image style={styles.checkbox} source={require('../../assets/images/hole.png')}/>
+            <Image style={styles.rotateIcons} source={require('../../assets/images/hole.png')}/>
             <View style={styles.itemContainer}>
               <View style={styles.leftItem}>
-                <Text style={styles.UpperText}>Received</Text>
+                <Text style={styles.upperText}>Received</Text>
                 <Text style={styles.inlineText}>21 Apr, 2019</Text>
               </View>
               <View style={styles.rightItem}>
-                <Text style={styles.UpperText}>+88 900 000.0</Text>
+                <Text style={styles.upperText}>+88 900 000.0</Text>
                 <Text style={styles.inlineText}>RENTOO</Text>
               </View>
             </View>
@@ -67,11 +67,11 @@ export default class Yourbalance extends Component {
             <Image style={styles.checkbox} source={require('../../assets/images/hole.png')}/>
             <View style={styles.itemContainer}>
               <View style={styles.leftItem}>
-                <Text style={styles.UpperText}>Sent</Text>
+                <Text style={styles.upperText}>Sent</Text>
                 <Text style={styles.inlineText}>19 Apr, 2019</Text>
               </View>
               <View style={styles.rightItem}>
-                <Text style={styles.UpperText}>-5400.5</Text>
+                <Text style={styles.upperText}>-5400.5</Text>
                 <Text style={styles.inlineText}>RENTOO</Text>
               </View>
             </View>
@@ -79,14 +79,14 @@ export default class Yourbalance extends Component {
           <View style={styles.bottomline}/>
 
           <View style={styles.itemLayout}>
-            <Image style={styles.checkbox} source={require('../../assets/images/hole.png')}/>
+            <Image style={styles.rotateIcons} source={require('../../assets/images/hole.png')}/>
             <View style={styles.itemContainer}>
               <View style={styles.leftItem}>
-                <Text style={styles.UpperText}>Received</Text>
+                <Text style={styles.upperText}>Received</Text>
                 <Text style={styles.inlineText}>5 Apr, 2019</Text>
               </View>
               <View style={styles.rightItem}>
-                <Text style={styles.UpperText}>+100 000 000.0</Text>
+                <Text style={styles.upperText}>+100 000 000.0</Text>
                 <Text style={styles.inlineText}>RENTOO</Text>
               </View>
             </View>
@@ -97,11 +97,26 @@ export default class Yourbalance extends Component {
             <Image style={styles.checkbox} source={require('../../assets/images/hole.png')}/>
             <View style={styles.itemContainer}>
               <View style={styles.leftItem}>
-                <Text style={styles.UpperText}>Sent</Text>
+                <Text style={styles.upperText}>Sent</Text>
                 <Text style={styles.inlineText}>2 Apr, 2019</Text>
               </View>
               <View style={styles.rightItem}>
-                <Text style={styles.UpperText}>-88 900 000.0</Text>
+                <Text style={styles.upperText}>-88 900 000.0</Text>
+                <Text style={styles.inlineText}>RENTOO</Text>
+              </View>
+            </View>
+          </View>
+          <View style={styles.bottomline}/>
+
+          <View style={styles.itemLayout}>
+            <Image style={styles.rotateIcons} source={require('../../assets/images/hole.png')}/>
+            <View style={styles.itemContainer}>
+              <View style={styles.leftItem}>
+                <Text style={styles.upperText}>Sent</Text>
+                <Text style={styles.inlineText}>2 Apr, 2019</Text>
+              </View>
+              <View style={styles.rightItem}>
+                <Text style={styles.upperText}>-100 000 000.0</Text>
                 <Text style={styles.inlineText}>RENTOO</Text>
               </View>
             </View>
@@ -112,26 +127,11 @@ export default class Yourbalance extends Component {
             <Image style={styles.checkbox} source={require('../../assets/images/hole.png')}/>
             <View style={styles.itemContainer}>
               <View style={styles.leftItem}>
-                <Text style={styles.UpperText}>Sent</Text>
+                <Text style={styles.upperText}>Sent</Text>
                 <Text style={styles.inlineText}>2 Apr, 2019</Text>
               </View>
               <View style={styles.rightItem}>
-                <Text style={styles.UpperText}>-100 000 000.0</Text>
-                <Text style={styles.inlineText}>RENTOO</Text>
-              </View>
-            </View>
-          </View>
-          <View style={styles.bottomline}/>
-
-          <View style={styles.itemLayout}>
-            <Image style={styles.checkbox} source={require('../../assets/images/hole.png')}/>
-            <View style={styles.itemContainer}>
-              <View style={styles.leftItem}>
-                <Text style={styles.UpperText}>Sent</Text>
-                <Text style={styles.inlineText}>2 Apr, 2019</Text>
-              </View>
-              <View style={styles.rightItem}>
-                <Text style={styles.UpperText}>-100 000 000.0</Text>
+                <Text style={styles.upperText}>-100 000 000.0</Text>
                 <Text style={styles.inlineText}>RENTOO</Text>
               </View>
             </View>
@@ -141,11 +141,11 @@ export default class Yourbalance extends Component {
         </ScrollView>
         <View style={styles.bottomContainer}>
           <TouchableOpacity style={[styles.bottomButton, {backgroundColor: "#A3A3BD"}]}>
-            <View style={styles.whiteBox}/>
+            <Image source={require('../../assets/images/toparrow.png')}/>
             <Text style={styles.buttonText}>Send</Text>
           </TouchableOpacity>
           <TouchableOpacity style={[styles.bottomButton, {backgroundColor: "#0055FF"}]}>
-            <View style={styles.whiteBox}/>
+            <Image style={styles.rotateIcons} source={require('../../assets/images/toparrow.png')}/>
             <Text style={styles.buttonText}>Receive</Text>
           </TouchableOpacity>
         </View>

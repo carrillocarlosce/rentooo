@@ -4,6 +4,9 @@ import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-nat
 const styles = StyleSheet.create({
   plusBtn: {
 		marginRight: 20,
+	},
+	leftBtn: {
+		marginLeft: 20,
 	}
 });
 

@@ -3,27 +3,30 @@ import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-nat
 
 const styles = StyleSheet.create({
   container: {
-    marginLeft: responsiveWidth(4),
-    marginRight: responsiveWidth(4),
+    marginHorizontal: responsiveWidth(5.33),
   },
   walletsText: {
-    marginBottom: responsiveHeight(2),
     fontFamily: "TruenoSBd",
     fontSize: responsiveFontSize(3),
+    marginBottom: responsiveHeight(3.94),
   },
   walletsRowLayout: {
     flexDirection: 'row',
     justifyContent: "space-between",
     alignItems: 'center',
-    
+    marginBottom: responsiveHeight(1.23)
+  },
+  coinText: {
+    fontFamily: "SFProText-Semibold",
+    fontSize: 13,
+    color: 'black'
   },
   walletItemLayout: {
-    marginTop: responsiveHeight(1.5),
     flexDirection: "column",
     justifyContent: "space-around",
     alignItems: "flex-start",
-    width: responsiveWidth(44.5),
-    height: responsiveHeight(14),
+    width: responsiveWidth(43.2),
+    height: responsiveHeight(13.5),
     paddingLeft: responsiveWidth(2),
     borderRadius: 5,
   },
@@ -32,6 +35,7 @@ const styles = StyleSheet.create({
     fontSize: 17
   },
   priceText: {
+    fontFamily: 'SFProText-Semibold',
     color: "white",
     fontSize: 17,
   }

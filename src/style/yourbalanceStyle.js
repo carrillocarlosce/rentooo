@@ -14,19 +14,21 @@ const styles = StyleSheet.create({
 		backgroundColor: "#0055FF",
 		width: responsiveWidth(100),
 		height: responsiveHeight(18),
-		paddingLeft: responsiveWidth(4),
+		paddingLeft: responsiveWidth(5.33),
 		paddingBottom: responsiveHeight(2),
 	},
 	rentooText: {
-		marginLeft: 5,
+		fontFamily: "SFProText-Semibold",
+		fontSize: 13,
+		marginLeft: 8,
 	},
 	rentooCurrentyText:{
-		fontSize: 25,
+		fontFamily: "TruenoSBd",
+		fontSize: 38,
 		color: "white"
 	},
 	midContainer: {
-		paddingLeft: responsiveWidth(4),
-		paddingRight: responsiveWidth(4),
+		paddingHorizontal: responsiveWidth(5.33),
 		height: responsiveHeight(47)
 	},	
 	totopLayout: {
@@ -39,6 +41,7 @@ const styles = StyleSheet.create({
 		color: "white"
 	},
 	dollarCurrency: {
+		fontFamily: "SFProText-Regular",
 		fontSize: 15,
 		color: "white"
 	},
@@ -48,9 +51,6 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		marginTop: responsiveHeight(2),
 		marginBottom: responsiveHeight(2)
-	},
-	checkbox: {
-		width: responsiveWidth(10),
 	},
 	itemContainer: {
 		marginLeft: responsiveWidth(2),
@@ -92,16 +92,19 @@ const styles = StyleSheet.create({
     borderRadius: 5,
 	},
 	title: {
-		marginTop: responsiveHeight(3),
-		marginBottom: responsiveHeight(3),
-		marginLeft: responsiveWidth(4),
-		fontSize: 19
+		marginTop: responsiveHeight(2.95),
+		marginBottom: responsiveHeight(2),
+		marginLeft: responsiveWidth(5.33),
+		fontSize: 20,
+		fontFamily: "TruenoSBd",
 	},
   upperText: {
+		fontFamily: "SFProText-Semibold",
     color: "black",
     fontSize: 15
   },
   inlineText: {
+		fontFamily: "SFProText-Regular",
     color: "#676767",
     fontSize: 13,
 	},
@@ -130,8 +133,8 @@ const styles = StyleSheet.create({
 		paddingTop: responsiveHeight(2),
 	},
 	bottomButton: {
-		width: responsiveWidth(40),
-		height: responsiveHeight(5),
+		width: responsiveWidth(43.2),
+		height: responsiveHeight(5.66),
 		borderRadius: 5,
 		flexDirection: "row",
 		alignItems: "center",
@@ -139,10 +142,14 @@ const styles = StyleSheet.create({
 
 	},
 	buttonText: {
-		marginLeft: 5,
+		marginLeft: 12,
 		textAlign: "center",
+		fontFamily: "SFProText-Semibold",
 		fontSize: 15,
 		color: "white"
+	},
+	rotateIcons: {
+    transform: [{ rotate: '180deg'}]
 	}
 });
 
