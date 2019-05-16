@@ -5,7 +5,7 @@ import Upcoming from './Upcoming';
 import Past from './Past';
 import Watchlist from './Watchlist';
 import Myoffers from './/Myoffers';
-
+import styles from '../style/dashboardStyle';
 
 const FirstRoute = () => (
   <View style={[styles.scene, { backgroundColor: '#ff4081' }]} />
@@ -33,23 +33,18 @@ export default class TabViewExample extends React.Component {
 
   render() {
     return (
-      <TabView
-        navigationState={this.state}
-        renderScene={SceneMap({
-          first: Upcoming,
-          second: Past,
-          third: Watchlist,
-          fourth: Myoffers,
-        })}
-        onIndexChange={index => this.setState({ index })}
-        initialLayout={{ width: Dimensions.get('window').width }}
-      />
+        <TabView
+          navigationState={this.state}
+          renderScene={SceneMap({
+            first: Upcoming,
+            second: Past,
+            third: Watchlist,
+            fourth: Myoffers,
+          })}
+          onIndexChange={index => this.setState({ index })}
+          initialLayout={{ width: Dimensions.get('window').width }}
+        />
     );
   }
 }
 
-const styles = StyleSheet.create({
-  scene: {
-    flex: 1,
-  },
-});

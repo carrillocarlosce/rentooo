@@ -114,7 +114,7 @@ export default class Search extends Component {
                     </View>
                 </View>
               </View>
-              <View style={styles.interestRowContainer}>
+              <View style={[styles.interestRowContainer, {marginTop: responsiveHeight(1.48)}]}>
                 <View style={styles.interestImageContainer}>
                   <TouchableOpacity style={styles.itemIterestBtnContainer}>
                       <Image source={require('../../assets/images/canon-camera.png')}/>
@@ -206,7 +206,7 @@ export default class Search extends Component {
                     </View>
                 </View>
               </View>
-              <View style={styles.interestRowContainer}>
+              <View style={[styles.interestRowContainer, {marginTop: responsiveHeight(1.48)}]}>
                 <View style={styles.interestImageContainer}>
                   <TouchableOpacity style={styles.itemIterestBtnContainer}>
                       <Image source={require('../../assets/images/canon-camera.png')}/>

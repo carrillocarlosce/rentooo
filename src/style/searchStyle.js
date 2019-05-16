@@ -84,12 +84,13 @@ const styles = StyleSheet.create({
     color: "#FFFFFF"
   },
   interestContainer: {
-    marginTop: responsiveHeight(2),
+    marginTop: responsiveHeight(3.94),
     flexDirection: "column",
     justifyContent: "flex-start",
     
   },
   interestInsideContainer: {
+    marginTop: responsiveHeight(2.95),
     flexDirection: "column",
     justifyContent: "center",
     
@@ -114,7 +115,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "flex-start",
     width: responsiveWidth(43.2),
-    height: responsiveHeight(30),
+    // height: responsiveHeight(30),
   },
   itemIterestBtnContainer: {
     flexDirection: "column",
