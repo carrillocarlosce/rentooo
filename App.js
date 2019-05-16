@@ -61,13 +61,17 @@ export default class App extends Component{
           <Scene key="Past" component={Past} />
           <Scene key="Watchlist" component={Watchlist} />
           <Scene key="Myoffers" component={Myoffers} />
-          <Scene key="Wallets" component={Wallets} initial sceneStyle={{ backgroundColor: 'red'}}/>
+          <Scene key="Wallets" component={Wallets} />
           <Scene key="Yourbalance" 
             component={Yourbalance} 
             title="Your balance" 
             titleStyle={{color: "white"}} 
             navigationBarStyle={{ backgroundColor: '#0055FF'}}
-            renderLeftButton={<Image style={styles.leftBtn} source={require('./assets/images/left.png')}/>}
+            renderLeftButton={
+              <TouchableOpacity onPress={()=>Actions.pop()}>
+                <Image style={styles.leftBtn} source={require('./assets/images/left.png')}/>
+              </TouchableOpacity>
+            }
           />
           <Scene key="Inbox" component={Inbox} />
           <Scene key="Inboxdetails" component={Inboxdetails} />
