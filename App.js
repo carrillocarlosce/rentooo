@@ -43,7 +43,7 @@ const TabIcon = ({ selected, title }) => {
 export default class App extends Component{
   render() {
     return (
-      <Router>
+      <Router navigationBarStyle={{ borderBottomColor: 'transparent' }}>
         <Scene key="root">
           
           <Scene key="Welcome" component={Welcome} title="Welcome" hideNavBar={true} initial />
