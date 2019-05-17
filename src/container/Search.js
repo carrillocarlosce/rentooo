@@ -7,7 +7,7 @@
 
 import React, {Component} from 'react';
 import {Text, View, TextInput, TouchableOpacity, Image, ScrollView} from 'react-native';
-import { Action } from 'react-native-router-flux';
+import { Actions } from 'react-native-router-flux';
 import styles from '../style/searchStyle'
 import { SearchBar } from 'react-native-elements';
 import { responsiveWidth, responsiveHeight } from 'react-native-responsive-dimensions';
@@ -23,6 +23,7 @@ export default class Search extends Component {
       firstQuery: "",
     }
   }
+
   render() {
     const { firstQuery } = this.state;
 
@@ -36,6 +37,7 @@ export default class Search extends Component {
             placeholder="Search"
             onChangeText={query => { this.setState({ firstQuery: query }); }}
             value={firstQuery}
+            onSubmitEditing={()=>Actions.Searchresult()}
           />
         
           <View style={styles.btnContainer}>

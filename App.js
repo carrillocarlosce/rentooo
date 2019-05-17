@@ -16,6 +16,7 @@ import Name from './src/container/Name';
 import Number from './src/container/Number';
 import Code from './src/container/Code';
 import Search from './src/container/Search';
+import Searchresult from './src/container/Searchresult';
 import Dashboard from './src/container/Dashboard';
 import Upcoming from './src/container/Upcoming';
 import Past from './src/container/Past';
@@ -56,6 +57,7 @@ export default class App extends Component{
           <Scene key="Code" component={Code} />
 
           <Scene key="Search" component={Search} />
+          <Scene key="Searchresult" component={Searchresult} />
           <Scene key="Dashboard" component={Dashboard}/>
           <Scene key="Upcoming" component={Upcoming}  />
           <Scene key="Past" component={Past} />

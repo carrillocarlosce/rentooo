@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   text1IterestHeader: {
-    fontFamily: "SFProText-Semibold",
+    fontFamily: "TruenoSBd",
     fontSize: 20,
     color: "#000000"
   },
@@ -111,10 +111,11 @@ const styles = StyleSheet.create({
     color: "#0055FF"
   },
   interestImageContainer: {
+		marginBottom: responsiveHeight(2),
     flexDirection: "column",
     justifyContent: "flex-start",
     alignItems: "flex-start",
-    width: responsiveWidth(43.2),
+    width: responsiveWidth(89.3),
     // height: responsiveHeight(30),
   },
   itemIterestBtnContainer: {
@@ -123,19 +124,21 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
   },
   heartIcon: {
-    position: "absolute",
-    right: responsiveHeight(1),
-    top: responsiveHeight(1),
+		position: "absolute",
+		width: 24,
+		height: 24,
+    right: responsiveWidth(2.6),
+    top: responsiveWidth(2.6),
   },
   itemText: {
     marginTop: responsiveHeight(1),
     fontFamily: "SFProText-Semibold",
-    fontSize: 15,
+    fontSize: 17,
   },
   currencyText: {
     marginTop: 5,
     fontFamily: "SFProText-Semibold",
-    fontSize: 13,
+    fontSize: 15,
     color: "#767676"
   },
   currencyWrapper: {
@@ -144,14 +147,14 @@ const styles = StyleSheet.create({
     alignSelf: "stretch",
   },
   currencyContainer: {
-    width: responsiveWidth(10),
+    width: responsiveWidth(15),
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center"
   },
   currency: {
-    width: responsiveWidth(3),
-    height: responsiveHeight(3),
+    width: responsiveWidth(4.26),
+    height: responsiveHeight(4.36),
   },
   starLayout: {
     flexDirection: "row",
@@ -166,8 +169,8 @@ const styles = StyleSheet.create({
     color: "#FFC08A"
   },
   starView: {
-    width: 50, 
-    height: 10, 
+    width: 75, 
+    height: 15, 
   },
   interestRowContainer: {
     flexDirection: "row",
@@ -175,8 +178,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   itemImage: {
-    width: 162,
-    height: 122,
+    width: responsiveWidth(89.3),
+    height: responsiveHeight(31),
   },
 });
 
