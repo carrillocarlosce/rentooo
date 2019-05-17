@@ -157,10 +157,10 @@ const styles = StyleSheet.create({
     height: responsiveHeight(4.36),
   },
   starLayout: {
+		marginTop: -7,
     flexDirection: "row",
     justifyContent: "flex-start",
     alignSelf: "flex-start",
-    alignItems: "center"
   },
   starText: {
     fontFamily: "SFProText-Semibold",
