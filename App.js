@@ -37,10 +37,6 @@ const TabIcon = ({ selected, title }) => {
   );
 }
 
-// renderLeftButton={() => <View />} renderRightButton = {() => 
-//   <Image style={styles.plusBtn} source={require('./assets/images/plus.png')}/>
-// }
-
 export default class App extends Component{
   render() {
     return (
@@ -48,16 +44,77 @@ export default class App extends Component{
         <Scene key="root">
           
           <Scene key="Welcome" component={Welcome} title="Welcome" hideNavBar={true} initial />
-          <Scene key="Login" component={Login} backTitle=" "/>
-          <Scene key="Forgot" component={Forgot} backTitle=" "/>
-          <Scene key="Signup" component={Signup} backTitle=" "/>
+          <Scene key="Login" 
+            renderLeftButton={
+              <TouchableOpacity onPress={()=>Actions.pop()}>
+                <Image style={styles.leftBtn} source={require('./assets/images/back3x.png')}/>
+              </TouchableOpacity>
+            }
+            component={Login} backTitle=" "
+          />
+          <Scene key="Forgot" 
+            component={Forgot} 
+            backTitle=" "
+            renderLeftButton={
+              <TouchableOpacity onPress={()=>Actions.pop()}>
+                <Image style={styles.leftBtn} source={require('./assets/images/back3x.png')}/>
+              </TouchableOpacity>
+            }
+          />
+          <Scene key="Signup" 
+            component={Signup} 
+            backTitle=" "
+            renderLeftButton={
+              <TouchableOpacity onPress={()=>Actions.pop()}>
+                <Image style={styles.leftBtn} source={require('./assets/images/back3x.png')}/>
+              </TouchableOpacity>
+            }
+          />
 
-          <Scene key="Name" component={Name} />
-          <Scene key="Number" component={Number} />
-          <Scene key="Code" component={Code} />
+          <Scene key="Name" 
+            component={Name} 
+            renderLeftButton={
+              <TouchableOpacity onPress={()=>Actions.pop()}>
+                <Image style={styles.leftBtn} source={require('./assets/images/back3x.png')}/>
+              </TouchableOpacity>
+            }
+          />
+          <Scene key="Number" 
+            component={Number} 
+            renderLeftButton={
+              <TouchableOpacity onPress={()=>Actions.pop()}>
+                <Image style={styles.leftBtn} source={require('./assets/images/back3x.png')}/>
+              </TouchableOpacity>
+            }
+          />
+          <Scene key="Code" 
+            component={Code} 
+            renderLeftButton={
+              <TouchableOpacity onPress={()=>Actions.pop()}>
+                <Image style={styles.leftBtn} source={require('./assets/images/back3x.png')}/>
+              </TouchableOpacity>
+            }
+          />
 
-          <Scene key="Search" component={Search} />
-          <Scene key="Searchresult" component={Searchresult} />
+          <Scene key="Search" 
+            component={Search} 
+            renderLeftButton={
+              <TouchableOpacity onPress={()=>Actions.pop()}>
+                <Image style={styles.leftBtn} source={require('./assets/images/back3x.png')}/>
+              </TouchableOpacity>
+            }
+          />
+          <Scene key="Searchresult" 
+            component={Searchresult} 
+            renderLeftButton={
+              <TouchableOpacity onPress={()=>Actions.pop()}>
+                <Image style={styles.leftBtn} source={require('./assets/images/back3x.png')}/>
+              </TouchableOpacity>
+            }
+            renderRightButton = {() => 
+              <Image style={styles.plusBtn} source={require('./assets/images/map3x.png')}/>
+            } 
+          />
           <Scene key="Dashboard" component={Dashboard}/>
           <Scene key="Upcoming" component={Upcoming}  />
           <Scene key="Past" component={Past} />
