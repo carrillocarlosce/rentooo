@@ -3,35 +3,36 @@ import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-nat
 
 const styles = StyleSheet.create({
   container: {
-    marginLeft: responsiveWidth(4),
-    marginRight: responsiveWidth(4),
+    marginHorizontal: responsiveWidth(5.33)
   },
   codeText: {
     fontFamily: "TruenoSBd",
-    fontSize: responsiveFontSize(3),
+    fontSize: 26,
   },
   formLayout: {
-    marginTop: responsiveHeight(5),
+    marginTop: responsiveHeight(4.92),
     flexDirection: "column",
   },
   formItem: {
     marginTop: responsiveHeight(1),
     backgroundColor: "#F2F2F2", 
-    height: responsiveHeight(5),
+    height: responsiveHeight(5.66),
     paddingLeft: 10
   },
   btnVerifyLayout: {
-    marginTop: responsiveHeight(3),
+    marginTop: responsiveHeight(2.95),
     backgroundColor: "#99BBFF",
-    width: responsiveWidth(92),
-    height: responsiveHeight(5),
+    width: responsiveWidth(89.34),
+    height: responsiveHeight(5.66),
     justifyContent: "center",
     alignItems: "center",
+    borderRadius: 5,
   },
   btnVerifyText: {
     fontFamily: "SFProText-Semibold",
-    fontSize: responsiveFontSize(2),
-    textAlign: "center"
+    fontSize: 17,
+    textAlign: "center",
+    borderRadius: 5,
   },
   recieveText:{
     marginTop: responsiveHeight(2),
