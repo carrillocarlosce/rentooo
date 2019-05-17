@@ -80,7 +80,7 @@ export default class Searchresult extends Component {
                   <TouchableOpacity style={styles.itemIterestBtnContainer}>
                       <Image style={styles.itemImage} source={require('../../assets/images/canon-camera.png')}/>
                       <Image style={styles.heartIcon} source={require('../../assets/images/heart.png')}/>
-                      <Text style={styles.itemText}>Black Canon Film{"\n"}Camera</Text>
+                      <Text style={styles.itemText}>Black Canon Film Camera</Text>
                       <View style={styles.currencyWrapper}>
                         <Text style={styles.currencyText}>15$/day</Text>
                         <View style={styles.currencyContainer}>
