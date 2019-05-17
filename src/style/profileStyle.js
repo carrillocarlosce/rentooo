@@ -14,8 +14,8 @@ const styles = StyleSheet.create({
 		height: responsiveHeight(30),
 	},
 	name: {
+		fontFamily: "TruenoSBd",
 		fontSize: 20,
-
 	},
 	location: {
 		flexDirection: 'row',
@@ -25,9 +25,12 @@ const styles = StyleSheet.create({
 	locationText: {
 		marginLeft: 5,
 		fontSize: 15,
+		fontFamily: "SFProText-Regular"
 	},
 	profileContent: {
+		fontFamily: "SFProText-Regular",
 		fontSize: 15,
+		marginTop: responsiveHeight(2.95)
 	},
 	inboxText: {
 		marginLeft: responsiveWidth(4),
@@ -37,8 +40,7 @@ const styles = StyleSheet.create({
     fontSize: responsiveFontSize(3),
   },
 	midContainer: {
-		paddingLeft: responsiveWidth(4),
-		paddingRight: responsiveWidth(4),
+		paddingHorizontal: responsiveWidth(5.33),
 		height: responsiveHeight(47),
 		width: responsiveWidth(96)
 	},	
@@ -230,17 +232,23 @@ const styles = StyleSheet.create({
   },
   
 	rental: {
+		fontFamily: "TruenoSBd",
 		fontSize: 20,
-		marginBottom: responsiveHeight(2),
-		marginTop: responsiveHeight(3),
-		marginLeft: responsiveWidth(4),
+		marginBottom: responsiveHeight(2.95),
+		marginTop: responsiveHeight(2.95),
+		marginLeft: responsiveWidth(5.33),
 		borderTopWidth: 2,
 	},
 	borderline: {
-		height: 2,
+		height: 1,
 		backgroundColor: '#E5E5E5',
-		marginTop: responsiveHeight(3)
-	}
+		marginTop: responsiveHeight(3.94)
+	},
+	heartIcon: {
+    position: "absolute",
+    right: responsiveHeight(1),
+    top: responsiveHeight(1),
+  },
 
 });
 

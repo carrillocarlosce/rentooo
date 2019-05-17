@@ -196,6 +196,11 @@ export default class App extends Component{
                   key="Profile" 
                   component={Profile} 
                   hideNavBar={false} 
+                  renderLeftButton={
+                    <TouchableOpacity>
+                      <Text style={{ marginLeft: 20, color: "#0055FF", fontSize: 17, fontFamily: "SFProText-Semibold"}}>Edit</Text>
+                    </TouchableOpacity>
+                  }
                   renderRightButton = {() => 
                     <Image style={styles.plusBtn} source={require('./assets/images/setting.png')}/>
                   } 

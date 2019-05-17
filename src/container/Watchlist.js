@@ -25,7 +25,7 @@ export default class Watchlist extends Component {
             <View style={styles.interestImageContainer}>
                 <TouchableOpacity style={styles.itemIterestBtnContainer}>
                     <Image style={styles.itemImage} source={require('../../assets/images/canon-camera.png')}/>
-                      <Image style={styles.heartIcon} source={require('../../assets/images/red-heart.png')}/>
+                    <Image style={styles.heartIcon} source={require('../../assets/images/red-heart.png')}/>
                     <Text style={styles.itemText}>Black ATV</Text>
                     <View style={styles.currencyWrapper}>
                     <Text style={styles.currencyText}>20$/day</Text>

@@ -8,9 +8,9 @@
 import React, {Component} from 'react';
 import {Text, View, TextInput, TouchableOpacity, Image, ScrollView} from 'react-native';
 import { Action } from 'react-native-router-flux';
-import styles from '../style/profiledetailsStyle'
+import styles from '../style/profileStyle'
 import { responsiveWidth, responsiveHeight } from 'react-native-responsive-dimensions';
-import StarView from '../component/Startview'
+import StarView from 'react-native-star-view';
 
 export default class Profile extends Component {
   constructor(props) {
@@ -45,7 +45,7 @@ export default class Profile extends Component {
 							<View style={styles.interestImageContainer}>
 								<TouchableOpacity style={styles.itemIterestBtnContainer}>
 										<Image source={require('../../assets/images/canon-camera.png')}/>
-										<View style={styles.rectWhiteColor}></View>
+										<Image style={styles.heartIcon} source={require('../../assets/images/red-heart.png')}/>
 										<Text style={styles.itemText}>Snowboard</Text>
 										<View style={styles.currencyWrapper}>
 											<Text style={styles.currencyText}>18$/day</Text>
