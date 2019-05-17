@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
   codeText:{
     marginTop: responsiveHeight(2),
     fontFamily: "SFProText-Regular",
+    fontSize: 17
   },
 });
 

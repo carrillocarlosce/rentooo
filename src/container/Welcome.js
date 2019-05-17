@@ -21,7 +21,7 @@ export default class Welcome extends Component {
         <View style={styles.innerContainer}>
           <View style={styles.midLayout}>
             <Image style={styles.ooIcon} source={require('../../assets/images/oo.png')}/>
-            <Text style={styles.rentText}>Rent Everything,{"\n"}Everywhere</Text>
+            <Text style={styles.rentText}>Rent Everything, Everywhere</Text>
             <Text style={styles.welcomeText}>Welcome to your sharing economy platform, where everything can be{"\n"}rented by everyone.</Text>
           </View>
           <View style={styles.btnLayout}>

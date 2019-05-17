@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
   recieveText:{
     marginTop: responsiveHeight(2),
     fontFamily: "SFProText-Regular",
+    fontSize: 17,
   },
   resendTextBtn: {
     marginTop: responsiveHeight(1),
@@ -45,6 +46,7 @@ const styles = StyleSheet.create({
   resendText:{
     fontFamily: "SFProText-Regular",
     color: "#1865FF",
+    fontSize: 15
   },
 });
 
