@@ -9,6 +9,7 @@ import React, {Component} from 'react';
 import {Text, View, TextInput, TouchableOpacity, Image} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import styles from '../style/signupStyle'
+import { responsiveHeight } from 'react-native-responsive-dimensions';
 
 export default class Signup extends Component {
   constructor(props) {
@@ -26,7 +27,7 @@ export default class Signup extends Component {
           <Text style={styles.getstartedText}>Get Started</Text>
 
           <View style={styles.formLayout}>
-            <TextInput style={styles.formItem} placeholder="Email Address" placeholderTextColor="#979797" value={this.state.email} onChangeText={(email) => this.setState({email})} />
+            <TextInput style={[styles.formItem, {marginBottom: responsiveHeight(1.47)}]} placeholder="Email Address" placeholderTextColor="#979797" value={this.state.email} onChangeText={(email) => this.setState({email})} />
             <TextInput style={styles.formItem} placeholder="Password" secureTextEntry value={this.state.password} onChangeText={(password) => this.setState({password})}/>
           </View>
           <View>
