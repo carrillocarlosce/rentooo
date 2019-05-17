@@ -145,7 +145,15 @@ export default class App extends Component{
             }
           />
           <Scene key="Inbox" component={Inbox} />
-          <Scene key="Inboxdetails" component={Inboxdetails} title="Paulina Gayoso"/>
+          <Scene key="Inboxdetails" 
+            component={Inboxdetails} 
+            title="Paulina Gayoso"
+            renderLeftButton={
+              <TouchableOpacity onPress={()=>Actions.pop()}>
+                <Image style={styles.leftBtn} source={require('./assets/images/back3x.png')}/>
+              </TouchableOpacity>
+            }
+          />
           <Scene key="Profile" component={Profile} />
 
           <Scene key="dashboardContainerScreen" hideNavBar={true}>
