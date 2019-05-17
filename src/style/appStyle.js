@@ -13,6 +13,12 @@ const styles = StyleSheet.create({
 		width: 24,
 		height: 24,
 		resizeMode: 'contain'
+	},
+	rightSignupBtn: {
+		marginRight: 20,
+		fontFamily: 'SFProText-Regular',
+		fontSize: 15,
+		color: "#666666"
 	}
 });
 

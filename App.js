@@ -69,6 +69,9 @@ export default class App extends Component{
                 <Image style={styles.leftBtn} source={require('./assets/images/back3x.png')}/>
               </TouchableOpacity>
             }
+            renderRightButton = {() => 
+              <Text style={styles.rightSignupBtn}>1 of 4</Text>
+            } 
           />
 
           <Scene key="Name" 
@@ -78,6 +81,9 @@ export default class App extends Component{
                 <Image style={styles.leftBtn} source={require('./assets/images/back3x.png')}/>
               </TouchableOpacity>
             }
+            renderRightButton = {() => 
+              <Text style={styles.rightSignupBtn}>2 of 4</Text>
+            } 
           />
           <Scene key="Number" 
             component={Number} 
@@ -86,6 +92,9 @@ export default class App extends Component{
                 <Image style={styles.leftBtn} source={require('./assets/images/back3x.png')}/>
               </TouchableOpacity>
             }
+            renderRightButton = {() => 
+              <Text style={styles.rightSignupBtn}>3 of 4</Text>
+            } 
           />
           <Scene key="Code" 
             component={Code} 
@@ -94,6 +103,9 @@ export default class App extends Component{
                 <Image style={styles.leftBtn} source={require('./assets/images/back3x.png')}/>
               </TouchableOpacity>
             }
+            renderRightButton = {() => 
+              <Text style={styles.rightSignupBtn}>4 of 4</Text>
+            } 
           />
 
           <Scene key="Search" 
