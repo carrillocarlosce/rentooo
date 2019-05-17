@@ -19,12 +19,10 @@ export default class Welcome extends Component {
           <Image source={require('../../assets/images/welcomeGridView.png')}/>
         </View>
         <View style={styles.innerContainer}>
-          <View>
-            <Image source={require('../../assets/images/oo.png')}/>
-          </View>
-          <View style={styles.textLayout}>
+          <View style={styles.midLayout}>
+            <Image style={styles.ooIcon} source={require('../../assets/images/oo.png')}/>
             <Text style={styles.rentText}>Rent Everything,{"\n"}Everywhere</Text>
-            <Text style={styles.welcomeText}>Welcome to your sharing economy platform,{"\n"}where everything can be{"\n"}rented by everyone.</Text>
+            <Text style={styles.welcomeText}>Welcome to your sharing economy platform, where everything can be{"\n"}rented by everyone.</Text>
           </View>
           <View style={styles.btnLayout}>
             <TouchableOpacity style={styles.btnSignUpLayout} onPress={()=>Actions.Signup()}>
@@ -34,7 +32,7 @@ export default class Welcome extends Component {
               <Text style={styles.btnText}>Log in</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.btnNotNowLayout}>
-              <Text style={styles.btnText}>Not now</Text>
+              <Text style={styles.notNowBtnText}>Not now</Text>
             </TouchableOpacity>
           </View>
         </View>
