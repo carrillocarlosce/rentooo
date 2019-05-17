@@ -3,12 +3,11 @@ import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-nat
 
 const styles = StyleSheet.create({
   container: {
-    marginLeft: responsiveWidth(4),
-    marginRight: responsiveWidth(4),
+    marginHorizontal: responsiveWidth(5.33)
   },
   getstartedText: {
     fontFamily: "TruenoSBd",
-    fontSize: responsiveFontSize(3),
+    fontSize: 26,
   },
   formLayout: {
     marginTop: responsiveHeight(5),
@@ -17,14 +16,15 @@ const styles = StyleSheet.create({
   formItem: {
     marginTop: responsiveHeight(1),
     backgroundColor: "#F2F2F2", 
-    height: responsiveHeight(5),
-    paddingLeft: 10
+    height: responsiveHeight(5.66),
+    paddingLeft: 10,
+    borderRadius: 5,
   },
   
   btnsignupLayout: {
     marginTop: responsiveHeight(3),
     backgroundColor: "#99BBFF",
-    width: responsiveWidth(92),
+    width: responsiveWidth(89.34),
     height: responsiveHeight(5),
     justifyContent: "center",
     alignItems: "center",
@@ -32,19 +32,19 @@ const styles = StyleSheet.create({
   },
   textSignWithLayout: {
     marginTop: responsiveHeight(2),
-    width: responsiveWidth(92),
+    width: responsiveWidth(89.34),
     height: responsiveHeight(4),
     textAlign: "center",
     justifyContent: "center", 
     alignItems: "center",
     fontFamily: "SFProText-Regular",
-    fontSize: responsiveFontSize(2),
+    fontSize: 17,
     borderRadius: 5,
   },
   btnFBLayout: {
     marginTop: responsiveHeight(1),
     backgroundColor: "#4469B0",
-    width: responsiveWidth(92),
+    width: responsiveWidth(89.34),
     height: responsiveHeight(5),
     justifyContent: "center",
     alignItems: "center",
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   btnTwitterLayout: {
     marginTop: responsiveHeight(1),
     backgroundColor: "#58ADEB",
-    width: responsiveWidth(92),
+    width: responsiveWidth(89.34),
     height: responsiveHeight(5),
     justifyContent: "center",
     alignItems: "center",
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   btnGoogleLayout: {
     marginTop: responsiveHeight(1),
     backgroundColor: "#E8453C",
-    width: responsiveWidth(92),
+    width: responsiveWidth(89.34),
     height: responsiveHeight(5),
     justifyContent: "center",
     alignItems: "center",
@@ -74,13 +74,15 @@ const styles = StyleSheet.create({
   btnText: {
     marginLeft: 10,
     fontFamily: "SFProText-Semibold",
-    fontSize: responsiveFontSize(2),
-    textAlign: "center"
+    fontSize: 17,
+    textAlign: "center",
+    color: "white"
   },
   btnSignupText: {
     fontFamily: "SFProText-Semibold",
-    fontSize: responsiveFontSize(2),
-    textAlign: "center"
+    fontSize: 17,
+    textAlign: "center",
+    color: "white"
   },
   tosLayout: {
     marginTop: responsiveHeight(2),
