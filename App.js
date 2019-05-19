@@ -31,10 +31,48 @@ import Profile from './src/container/Profile';
 
 import styles from './src/style/appStyle'
 
-const TabIcon = ({ selected, title }) => {
-  return (
-    <Text style={{color: selected ? 'red' :'black'}}>{title}</Text>
-  );
+class TabbarIcon1 extends Component {
+  render() {
+    if (this.props.focused)
+      return <Image source={require('./assets/images/tab1.png')}/>
+    else
+      return <Image source={require('./assets/images/tab1-1.png')}/>
+  }
+}
+
+class TabbarIcon2 extends Component {
+  render() {
+    if (this.props.focused)
+      return <Image source={require('./assets/images/tab2.png')}/>
+    else
+      return <Image source={require('./assets/images/tab2-1.png')}/>
+  }
+}
+class TabbarIcon3 extends Component {
+  render() {
+    if (this.props.focused)
+      return <Image source={require('./assets/images/tab3.png')}/>
+    else
+      return <Image source={require('./assets/images/tab3-1.png')}/>
+  }
+}
+
+class TabbarIcon4 extends Component {
+  render() {
+    if (this.props.focused)
+      return <Image source={require('./assets/images/tab4.png')}/>
+    else
+      return <Image source={require('./assets/images/tab4-1.png')}/>
+  }
+}
+
+class TabbarIcon5 extends Component {
+  render() {
+    if (this.props.focused)
+      return <Image source={require('./assets/images/tab5.png')}/>
+    else
+      return <Image source={require('./assets/images/tab5-1.png')}/>
+  }
 }
 
 export default class App extends Component{
@@ -171,7 +209,7 @@ export default class App extends Component{
                   renderRightButton = {() => 
                     <Image style={styles.plusBtn} source={require('./assets/images/plus.png')}/>
                   } 
-                  icon={()=><Image source={require('./assets/images/tab1.png')}/>} 
+                  icon={TabbarIcon1} 
                 />
                 <Scene 
                   key="Dashboard2" 
@@ -180,7 +218,7 @@ export default class App extends Component{
                   renderRightButton = {() => 
                     <Image style={styles.plusBtn} source={require('./assets/images/bell.png')}/>
                   } 
-                  icon={()=>(<Image source={require('./assets/images/tab2.png')}/>)} 
+                  icon={TabbarIcon2} 
                 />
                 <Scene
                   key="Wallets2" 
@@ -189,7 +227,7 @@ export default class App extends Component{
                   renderRightButton = {() => 
                     <Image style={styles.plusBtn} source={require('./assets/images/add-wallet.png')}/>
                   }  
-                  icon={()=>(<Image source={require('./assets/images/tab3.png')}/>)} 
+                  icon={TabbarIcon3} 
                 />
                 <Scene 
                   key="Inbox2" 
@@ -198,7 +236,7 @@ export default class App extends Component{
                   renderRightButton = {() => 
                     <Image style={styles.plusBtn} source={require('./assets/images/box.png')}/>
                   } 
-                  icon={()=>(<Image source={require('./assets/images/tab4.png')}/>)} 
+                  icon={TabbarIcon4}  
                 />
                 <Scene 
                   key="Profile" 
@@ -212,7 +250,7 @@ export default class App extends Component{
                   renderRightButton = {() => 
                     <Image style={styles.plusBtn} source={require('./assets/images/setting.png')}/>
                   } 
-                  icon={()=>(<Image source={require('./assets/images/tab5.png')}/>)} 
+                  icon={TabbarIcon5} 
                 />
               </Tabs>
           </Scene>
