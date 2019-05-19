@@ -6,11 +6,13 @@
  */
 
 import React, {Component} from 'react';
-import {Text, View, TextInput, TouchableOpacity, Image} from 'react-native';
+import {Text, View, TextInput, TouchableOpacity, Image, ScrollView} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import StarView from 'react-native-star-view';
 
-import styles from '../style/codeStyle'
+
+import styles from '../style/mapsearchStyle'
 
 export default class MapSearch extends Component {
   constructor(props) {
@@ -21,7 +23,10 @@ export default class MapSearch extends Component {
   }
   render() {
     return (
-      <View style={{flex: 1, backgroundColor: "#ffffff"}}>
+      <View style={styles.container}>
+          <TouchableOpacity style={styles.closeBtn}>
+            <Image style={styles.closeImage} source={require("../../assets/images/closebtn3x.png")} />
+          </TouchableOpacity>
         <MapView
           provider={PROVIDER_GOOGLE}
           style={{flex: 1}}
@@ -33,6 +38,76 @@ export default class MapSearch extends Component {
           }}
           showsUserLocation={true}
         />
+        <View style={styles.bottomContainer}>
+          <View style={styles.titleContainer}>
+            <Text style={styles.leftText}>120 rentals</Text>
+            <TouchableOpacity style={styles.rightBtn}>
+              <Text style={styles.rightText}>Filters</Text>
+            </TouchableOpacity>
+          </View>
+          <ScrollView horizontal style={{marginTop: 24}}>
+            <View style={styles.interestImageContainer}>
+            
+              <TouchableOpacity style={styles.itemIterestBtnContainer}>
+                  <Image style={styles.itemImage} source={require('../../assets/images/canon-camera.png')}/>
+                  <Image style={styles.heartIcon} source={require('../../assets/images/heart.png')}/>
+                  <Text style={styles.itemText}>Black Canon Film{"\n"}Camera</Text>
+                  <View style={styles.currencyWrapper}>
+                    <Text style={styles.currencyText}>15$/day</Text>
+                    <View style={styles.currencyContainer}>
+                      <Image style={styles.currency} resizeMode="contain" source={require('../../assets/images/rentoo.png')}/>
+                      <Image style={styles.currency} resizeMode="contain" source={require('../../assets/images/bitcoin.png')}/>
+                      <Image style={styles.currency} resizeMode="contain" source={require('../../assets/images/waves.png')}/>
+                    </View>
+                  </View>
+                </TouchableOpacity>
+                <View style={styles.starLayout}>
+                  <StarView score={4} style={styles.starView} />
+                  <Text style={styles.starText}>13</Text>
+                </View>
+            </View>
+            <View style={styles.interestImageContainer}>
+            
+              <TouchableOpacity style={styles.itemIterestBtnContainer}>
+                  <Image style={styles.itemImage} source={require('../../assets/images/canon-camera.png')}/>
+                  <Image style={styles.heartIcon} source={require('../../assets/images/heart.png')}/>
+                  <Text style={styles.itemText}>Black Canon Film{"\n"}Camera</Text>
+                  <View style={styles.currencyWrapper}>
+                    <Text style={styles.currencyText}>15$/day</Text>
+                    <View style={styles.currencyContainer}>
+                      <Image style={styles.currency} resizeMode="contain" source={require('../../assets/images/rentoo.png')}/>
+                      <Image style={styles.currency} resizeMode="contain" source={require('../../assets/images/bitcoin.png')}/>
+                      <Image style={styles.currency} resizeMode="contain" source={require('../../assets/images/waves.png')}/>
+                    </View>
+                  </View>
+                </TouchableOpacity>
+                <View style={styles.starLayout}>
+                  <StarView score={4} style={styles.starView} />
+                  <Text style={styles.starText}>13</Text>
+                </View>
+            </View>
+            <View style={styles.interestImageContainer}>
+            
+              <TouchableOpacity style={styles.itemIterestBtnContainer}>
+                  <Image style={styles.itemImage} source={require('../../assets/images/canon-camera.png')}/>
+                  <Image style={styles.heartIcon} source={require('../../assets/images/heart.png')}/>
+                  <Text style={styles.itemText}>Black Canon Film{"\n"}Camera</Text>
+                  <View style={styles.currencyWrapper}>
+                    <Text style={styles.currencyText}>15$/day</Text>
+                    <View style={styles.currencyContainer}>
+                      <Image style={styles.currency} resizeMode="contain" source={require('../../assets/images/rentoo.png')}/>
+                      <Image style={styles.currency} resizeMode="contain" source={require('../../assets/images/bitcoin.png')}/>
+                      <Image style={styles.currency} resizeMode="contain" source={require('../../assets/images/waves.png')}/>
+                    </View>
+                  </View>
+                </TouchableOpacity>
+                <View style={styles.starLayout}>
+                  <StarView score={4} style={styles.starView} />
+                  <Text style={styles.starText}>13</Text>
+                </View>
+            </View>
+          </ScrollView>
+        </View>
       </View>
     );
   }

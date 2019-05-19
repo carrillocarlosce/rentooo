@@ -281,7 +281,7 @@ export default class App extends Component {
           <Scene key="Watchlist" component={Watchlist} />
           <Scene key="Myoffers" component={Myoffers} />
           <Scene key="Wallets" component={Wallets} />
-          <Scene key="MapSearch" component={MapSearch} initial/>
+          <Scene key="MapSearch" component={MapSearch} hideNavBar={true} initial/>
           <Scene key="Yourbalance" 
             component={Yourbalance} 
             title="Your balance" 
