@@ -1,5 +1,5 @@
 /**
- * Code Screen
+ * MapSearch Screen
  * 
  * @format
  * @flow
@@ -24,7 +24,7 @@ export default class MapSearch extends Component {
   render() {
     return (
       <View style={styles.container}>
-          <TouchableOpacity style={styles.closeBtn}>
+          <TouchableOpacity style={styles.closeBtn} onPress={() => Actions.pop()}>
             <Image style={styles.closeImage} source={require("../../assets/images/closebtn3x.png")} />
           </TouchableOpacity>
         <MapView
