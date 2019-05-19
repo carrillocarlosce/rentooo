@@ -23,6 +23,7 @@ export default class MapSearch extends Component {
     return (
       <View style={{flex: 1, backgroundColor: "#ffffff"}}>
         <MapView
+          provider={PROVIDER_GOOGLE}
           style={{flex: 1}}
           region={{
             latitude: 42.882004,

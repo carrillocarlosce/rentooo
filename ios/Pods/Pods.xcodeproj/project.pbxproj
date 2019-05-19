@@ -1,0 +1,886 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		BCE3DE68053C99B18AAD56BE1F98BD73 /* GoogleMaps */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 46921981F609C5BA3CB72EC4EA41299D /* Build configuration list for PBXAggregateTarget "GoogleMaps" */;
+			buildPhases = (
+			);
+			dependencies = (
+			);
+			name = GoogleMaps;
+			productName = GoogleMaps;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		016DF30648BFECEEA342FBC3D18CD23F /* Pods-rentooTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DCDD195A3951AD6E20423A055F47292 /* Pods-rentooTests-dummy.m */; };
+		42FDD2EF2FB371AA2CFC5FD783101E61 /* Pods-rentoo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7550E930682C079C7BE84EE7DAAC4E27 /* Pods-rentoo-dummy.m */; };
+		5AFFA2555D1347E8AE4AE952348A385B /* Pods-rentoo-tvOSTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6040A19ACB76FC4EB795ABDDF7A42CCE /* Pods-rentoo-tvOSTests-dummy.m */; };
+		E11B93CBFFBAEF50D44E2052226F553B /* Pods-rentoo-tvOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2078B995EE8B4DA7E3C4091732AD58D7 /* Pods-rentoo-tvOS-dummy.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		83A3A834F10014560934A9B857281A24 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FEF67038A2B53FD93AAB72785DE4B363;
+			remoteInfo = "Pods-rentoo";
+		};
+		84736CED2291B46C005DA782 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 84736CE92291B46C005DA782 /* AirMaps.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 11FA5C511C4A1296003AC2EE;
+			remoteInfo = AirMaps;
+		};
+		91B9347409BDE594C0D7AC8C414EA12B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 16308CB124AC148F697D48C861DF9CDF;
+			remoteInfo = "Pods-rentoo-tvOS";
+		};
+		9E431107D2397943FC2DC884CA710891 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BCE3DE68053C99B18AAD56BE1F98BD73;
+			remoteInfo = GoogleMaps;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1CB38272AFBDC29F4A401885C672C019 /* libPods-rentoo-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-rentoo-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2078B995EE8B4DA7E3C4091732AD58D7 /* Pods-rentoo-tvOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-rentoo-tvOS-dummy.m"; sourceTree = "<group>"; };
+		2DCDD195A3951AD6E20423A055F47292 /* Pods-rentooTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-rentooTests-dummy.m"; sourceTree = "<group>"; };
+		4544257264E1204B8E00B35AC8AE8EEF /* Pods-rentoo-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-rentoo-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		472C0808F7A20C77E98555CB3524BFC5 /* Pods-rentoo-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-rentoo-resources.sh"; sourceTree = "<group>"; };
+		521C05AB6AE7B9910A233B63B560FF70 /* GoogleMaps.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
+		523BF278B5A9CD036C9E08E43DA3BEF8 /* Pods-rentoo-tvOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-rentoo-tvOS-acknowledgements.plist"; sourceTree = "<group>"; };
+		551F63664537853F32071E13FE4CC4FF /* GoogleMapsBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMapsBase.framework; path = Base/Frameworks/GoogleMapsBase.framework; sourceTree = "<group>"; };
+		55BB5DCEBBC735687C99C0A2CE759F46 /* Pods-rentoo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-rentoo.release.xcconfig"; sourceTree = "<group>"; };
+		57AE30912198F4934EE096226B6A4EED /* Pods-rentoo-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-rentoo-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		57D9FA4165DF3BE40D64BE0FBCED4AE9 /* Pods-rentooTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-rentooTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		5BEF52437C1E4AB431C3FBA86771C36E /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = Maps/Frameworks/GoogleMaps.framework; sourceTree = "<group>"; };
+		6040A19ACB76FC4EB795ABDDF7A42CCE /* Pods-rentoo-tvOSTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-rentoo-tvOSTests-dummy.m"; sourceTree = "<group>"; };
+		6BAEF80BF2C17624F235CDA35794677F /* Pods-rentoo-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-rentoo-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		7550E930682C079C7BE84EE7DAAC4E27 /* Pods-rentoo-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-rentoo-dummy.m"; sourceTree = "<group>"; };
+		76AECD197A76FF25A56E45FFEFEE460E /* Pods-rentoo-tvOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-rentoo-tvOS-acknowledgements.markdown"; sourceTree = "<group>"; };
+		80C6E3B3EA393289746C53A42D73D106 /* Pods-rentooTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-rentooTests.release.xcconfig"; sourceTree = "<group>"; };
+		84736CE92291B46C005DA782 /* AirMaps.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AirMaps.xcodeproj; path = "../../node_modules/react-native-maps/lib/ios/AirMaps.xcodeproj"; sourceTree = "<group>"; };
+		85C1E5DD04D570566FB7F1363EFA8714 /* Pods-rentoo-tvOSTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-rentoo-tvOSTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		8B5B8AFE05A296A27CC9AB0AB030850F /* Pods-rentoo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-rentoo.debug.xcconfig"; sourceTree = "<group>"; };
+		8C2B5D150CEE6BBB83CC0A67F1F8E93A /* GoogleMapsCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMapsCore.framework; path = Maps/Frameworks/GoogleMapsCore.framework; sourceTree = "<group>"; };
+		99A7FC825E9B0F2480FE489D78549565 /* libPods-rentoo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-rentoo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		BEC4BA947152A0019F0A081AEA00A0A2 /* libPods-rentooTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-rentooTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC0008749F65B05177801A1B72F2F1EC /* GoogleMaps.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GoogleMaps.xcconfig; sourceTree = "<group>"; };
+		CC25116B012FD254919E8C72A8FA16AC /* libPods-rentoo-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-rentoo-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1067E0B729B0F8D442644ED6AFC347F /* Pods-rentooTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-rentooTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D54ACA35C5765B4597759B7386C5DE13 /* Pods-rentoo-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-rentoo-acknowledgements.plist"; sourceTree = "<group>"; };
+		E600BE19593B46E79E0F7D49EB0D3265 /* Pods-rentoo-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-rentoo-acknowledgements.markdown"; sourceTree = "<group>"; };
+		EA96B3358ADEFB35265C8B3CBD2C29F1 /* Pods-rentooTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-rentooTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		ED9E31E40F93338098B24C130CCF1908 /* Pods-rentoo-tvOSTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-rentoo-tvOSTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		F6E362C25B7BE340B790747FAA60C7C5 /* Pods-rentoo-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-rentoo-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		00183960721E65FDD11EE9D736369606 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		48C09DCD76724AF7AE05835AF139D4E6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9DC698C7BB1CD4B5DA72CEBB09DA56AC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C742A9F1F8907D9DB5093EBA9625F6EC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0C2F29C2BEEAD8E5198C5AB8E34D59EF /* Pods-rentooTests */ = {
+			isa = PBXGroup;
+			children = (
+				57D9FA4165DF3BE40D64BE0FBCED4AE9 /* Pods-rentooTests-acknowledgements.markdown */,
+				EA96B3358ADEFB35265C8B3CBD2C29F1 /* Pods-rentooTests-acknowledgements.plist */,
+				2DCDD195A3951AD6E20423A055F47292 /* Pods-rentooTests-dummy.m */,
+				D1067E0B729B0F8D442644ED6AFC347F /* Pods-rentooTests.debug.xcconfig */,
+				80C6E3B3EA393289746C53A42D73D106 /* Pods-rentooTests.release.xcconfig */,
+			);
+			name = "Pods-rentooTests";
+			path = "Target Support Files/Pods-rentooTests";
+			sourceTree = "<group>";
+		};
+		2C4EB33A076BB7654667F327222F2A96 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				CC0008749F65B05177801A1B72F2F1EC /* GoogleMaps.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/GoogleMaps";
+			sourceTree = "<group>";
+		};
+		35E3EB8DBFC134236000C3B6AF35DBFC /* Pods-rentoo-tvOS */ = {
+			isa = PBXGroup;
+			children = (
+				76AECD197A76FF25A56E45FFEFEE460E /* Pods-rentoo-tvOS-acknowledgements.markdown */,
+				523BF278B5A9CD036C9E08E43DA3BEF8 /* Pods-rentoo-tvOS-acknowledgements.plist */,
+				2078B995EE8B4DA7E3C4091732AD58D7 /* Pods-rentoo-tvOS-dummy.m */,
+				F6E362C25B7BE340B790747FAA60C7C5 /* Pods-rentoo-tvOS.debug.xcconfig */,
+				6BAEF80BF2C17624F235CDA35794677F /* Pods-rentoo-tvOS.release.xcconfig */,
+			);
+			name = "Pods-rentoo-tvOS";
+			path = "Target Support Files/Pods-rentoo-tvOS";
+			sourceTree = "<group>";
+		};
+		635C391EBEDEECEBED7C587C09F80C29 /* Maps */ = {
+			isa = PBXGroup;
+			children = (
+				7A2FE3E30CF6F7F1C609C86668A4411D /* Frameworks */,
+				CB4FFE30125DB944A69FABB13465CBF9 /* Resources */,
+			);
+			name = Maps;
+			sourceTree = "<group>";
+		};
+		6DC984D737DB841E41A9D175E8069AED /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				E31401A986F325F1E4863EC2F7E087C0 /* Frameworks */,
+			);
+			name = Base;
+			sourceTree = "<group>";
+		};
+		78AA522FA849F9246D70E1D9D2D8A53A /* Pods-rentoo */ = {
+			isa = PBXGroup;
+			children = (
+				E600BE19593B46E79E0F7D49EB0D3265 /* Pods-rentoo-acknowledgements.markdown */,
+				D54ACA35C5765B4597759B7386C5DE13 /* Pods-rentoo-acknowledgements.plist */,
+				7550E930682C079C7BE84EE7DAAC4E27 /* Pods-rentoo-dummy.m */,
+				472C0808F7A20C77E98555CB3524BFC5 /* Pods-rentoo-resources.sh */,
+				8B5B8AFE05A296A27CC9AB0AB030850F /* Pods-rentoo.debug.xcconfig */,
+				55BB5DCEBBC735687C99C0A2CE759F46 /* Pods-rentoo.release.xcconfig */,
+			);
+			name = "Pods-rentoo";
+			path = "Target Support Files/Pods-rentoo";
+			sourceTree = "<group>";
+		};
+		7A2FE3E30CF6F7F1C609C86668A4411D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5BEF52437C1E4AB431C3FBA86771C36E /* GoogleMaps.framework */,
+				8C2B5D150CEE6BBB83CC0A67F1F8E93A /* GoogleMapsCore.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7D220CA85724700E16C8384FCA31EECE /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				84736CE92291B46C005DA782 /* AirMaps.xcodeproj */,
+				78AA522FA849F9246D70E1D9D2D8A53A /* Pods-rentoo */,
+				35E3EB8DBFC134236000C3B6AF35DBFC /* Pods-rentoo-tvOS */,
+				B9B2E7855ECBA3ADD39A6034D4A8F1BF /* Pods-rentoo-tvOSTests */,
+				0C2F29C2BEEAD8E5198C5AB8E34D59EF /* Pods-rentooTests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		84736CEA2291B46C005DA782 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				84736CEE2291B46C005DA782 /* libAirMaps.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AEB2EB54AE51001ACA52CF2A5CD80017 /* GoogleMaps */ = {
+			isa = PBXGroup;
+			children = (
+				6DC984D737DB841E41A9D175E8069AED /* Base */,
+				635C391EBEDEECEBED7C587C09F80C29 /* Maps */,
+				2C4EB33A076BB7654667F327222F2A96 /* Support Files */,
+			);
+			path = GoogleMaps;
+			sourceTree = "<group>";
+		};
+		B9B2E7855ECBA3ADD39A6034D4A8F1BF /* Pods-rentoo-tvOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				85C1E5DD04D570566FB7F1363EFA8714 /* Pods-rentoo-tvOSTests-acknowledgements.markdown */,
+				ED9E31E40F93338098B24C130CCF1908 /* Pods-rentoo-tvOSTests-acknowledgements.plist */,
+				6040A19ACB76FC4EB795ABDDF7A42CCE /* Pods-rentoo-tvOSTests-dummy.m */,
+				57AE30912198F4934EE096226B6A4EED /* Pods-rentoo-tvOSTests.debug.xcconfig */,
+				4544257264E1204B8E00B35AC8AE8EEF /* Pods-rentoo-tvOSTests.release.xcconfig */,
+			);
+			name = "Pods-rentoo-tvOSTests";
+			path = "Target Support Files/Pods-rentoo-tvOSTests";
+			sourceTree = "<group>";
+		};
+		CB4FFE30125DB944A69FABB13465CBF9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				521C05AB6AE7B9910A233B63B560FF70 /* GoogleMaps.bundle */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				D89477F20FB1DE18A04690586D7808C4 /* Frameworks */,
+				DF3634087891871FA7B65CC4A8E6DB71 /* Pods */,
+				E28F02D7530362AD5B88F4E790FABAFB /* Products */,
+				7D220CA85724700E16C8384FCA31EECE /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D89477F20FB1DE18A04690586D7808C4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DF3634087891871FA7B65CC4A8E6DB71 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AEB2EB54AE51001ACA52CF2A5CD80017 /* GoogleMaps */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		E28F02D7530362AD5B88F4E790FABAFB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				99A7FC825E9B0F2480FE489D78549565 /* libPods-rentoo.a */,
+				1CB38272AFBDC29F4A401885C672C019 /* libPods-rentoo-tvOS.a */,
+				CC25116B012FD254919E8C72A8FA16AC /* libPods-rentoo-tvOSTests.a */,
+				BEC4BA947152A0019F0A081AEA00A0A2 /* libPods-rentooTests.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E31401A986F325F1E4863EC2F7E087C0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				551F63664537853F32071E13FE4CC4FF /* GoogleMapsBase.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		0C2CDE0F33357A9C09915006B4BC353C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66F702C6A02AE9AE4B193EF0A32DC5C1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DFAE15053319CFCC75975BB4DA9704E7 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E2D7BE1D9E0BB5AED7C14CF7932302D6 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		16308CB124AC148F697D48C861DF9CDF /* Pods-rentoo-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 737E91F72BAECC3674EA6EAC63E58204 /* Build configuration list for PBXNativeTarget "Pods-rentoo-tvOS" */;
+			buildPhases = (
+				0C2CDE0F33357A9C09915006B4BC353C /* Headers */,
+				382098600CC3B1BBA0F37161A140E393 /* Sources */,
+				00183960721E65FDD11EE9D736369606 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-rentoo-tvOS";
+			productName = "Pods-rentoo-tvOS";
+			productReference = 1CB38272AFBDC29F4A401885C672C019 /* libPods-rentoo-tvOS.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		80035773B67766A92E0DEAADCAD5518A /* Pods-rentooTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 996A93D984DDB98F6218EAF12BCE2ADF /* Build configuration list for PBXNativeTarget "Pods-rentooTests" */;
+			buildPhases = (
+				DFAE15053319CFCC75975BB4DA9704E7 /* Headers */,
+				31F66D74274501471D07212AAC6742B2 /* Sources */,
+				9DC698C7BB1CD4B5DA72CEBB09DA56AC /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				30830BD2E6D7236CE659DB17AD935428 /* PBXTargetDependency */,
+			);
+			name = "Pods-rentooTests";
+			productName = "Pods-rentooTests";
+			productReference = BEC4BA947152A0019F0A081AEA00A0A2 /* libPods-rentooTests.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		D4B36502869E6D6038975DA93C46B64B /* Pods-rentoo-tvOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C60B75BCD0C80BFBEF47A84FD01FB037 /* Build configuration list for PBXNativeTarget "Pods-rentoo-tvOSTests" */;
+			buildPhases = (
+				66F702C6A02AE9AE4B193EF0A32DC5C1 /* Headers */,
+				5A8217252548FAEA693D762DB51D8D42 /* Sources */,
+				48C09DCD76724AF7AE05835AF139D4E6 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D064E97ED7426E27826F6244BF942356 /* PBXTargetDependency */,
+			);
+			name = "Pods-rentoo-tvOSTests";
+			productName = "Pods-rentoo-tvOSTests";
+			productReference = CC25116B012FD254919E8C72A8FA16AC /* libPods-rentoo-tvOSTests.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		FEF67038A2B53FD93AAB72785DE4B363 /* Pods-rentoo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 24084751A9DC88E476B6D6DDB3F7CF95 /* Build configuration list for PBXNativeTarget "Pods-rentoo" */;
+			buildPhases = (
+				E2D7BE1D9E0BB5AED7C14CF7932302D6 /* Headers */,
+				AE23A869429D85B5D5057C2C076F3983 /* Sources */,
+				C742A9F1F8907D9DB5093EBA9625F6EC /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E0F4647E8F43FEC1BBFA44FEEF55DACF /* PBXTargetDependency */,
+			);
+			name = "Pods-rentoo";
+			productName = "Pods-rentoo";
+			productReference = 99A7FC825E9B0F2480FE489D78549565 /* libPods-rentoo.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1020;
+				LastUpgradeCheck = 1020;
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = E28F02D7530362AD5B88F4E790FABAFB /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 84736CEA2291B46C005DA782 /* Products */;
+					ProjectRef = 84736CE92291B46C005DA782 /* AirMaps.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				BCE3DE68053C99B18AAD56BE1F98BD73 /* GoogleMaps */,
+				FEF67038A2B53FD93AAB72785DE4B363 /* Pods-rentoo */,
+				16308CB124AC148F697D48C861DF9CDF /* Pods-rentoo-tvOS */,
+				D4B36502869E6D6038975DA93C46B64B /* Pods-rentoo-tvOSTests */,
+				80035773B67766A92E0DEAADCAD5518A /* Pods-rentooTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		84736CEE2291B46C005DA782 /* libAirMaps.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libAirMaps.a;
+			remoteRef = 84736CED2291B46C005DA782 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXSourcesBuildPhase section */
+		31F66D74274501471D07212AAC6742B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				016DF30648BFECEEA342FBC3D18CD23F /* Pods-rentooTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		382098600CC3B1BBA0F37161A140E393 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E11B93CBFFBAEF50D44E2052226F553B /* Pods-rentoo-tvOS-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5A8217252548FAEA693D762DB51D8D42 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5AFFA2555D1347E8AE4AE952348A385B /* Pods-rentoo-tvOSTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AE23A869429D85B5D5057C2C076F3983 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42FDD2EF2FB371AA2CFC5FD783101E61 /* Pods-rentoo-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		30830BD2E6D7236CE659DB17AD935428 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-rentoo";
+			target = FEF67038A2B53FD93AAB72785DE4B363 /* Pods-rentoo */;
+			targetProxy = 83A3A834F10014560934A9B857281A24 /* PBXContainerItemProxy */;
+		};
+		D064E97ED7426E27826F6244BF942356 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-rentoo-tvOS";
+			target = 16308CB124AC148F697D48C861DF9CDF /* Pods-rentoo-tvOS */;
+			targetProxy = 91B9347409BDE594C0D7AC8C414EA12B /* PBXContainerItemProxy */;
+		};
+		E0F4647E8F43FEC1BBFA44FEEF55DACF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GoogleMaps;
+			target = BCE3DE68053C99B18AAD56BE1F98BD73 /* GoogleMaps */;
+			targetProxy = 9E431107D2397943FC2DC884CA710891 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2C19B140B3ABFEB4CFF64799BC7BC601 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F6E362C25B7BE340B790747FAA60C7C5 /* Pods-rentoo-tvOS.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.2;
+			};
+			name = Debug;
+		};
+		3431446EF500F9E2847DB06A2F778322 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6BAEF80BF2C17624F235CDA35794677F /* Pods-rentoo-tvOS.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4AA46832D8A16AA4E4811383B204D2A4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CC0008749F65B05177801A1B72F2F1EC /* GoogleMaps.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		552492E6423F4C65B133DA276AC66286 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8B5B8AFE05A296A27CC9AB0AB030850F /* Pods-rentoo.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		68F07807C8D62F2D76C744A41F3D874D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+				TVOS_DEPLOYMENT_TARGET = 9.2;
+			};
+			name = Release;
+		};
+		7A59C05BDA306B1906888ECEAB66FE72 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 80C6E3B3EA393289746C53A42D73D106 /* Pods-rentooTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8C2925955DE726ADF1F347E789812769 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 55BB5DCEBBC735687C99C0A2CE759F46 /* Pods-rentoo.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B351CB119CA8A5533EA6F242CD9A7F60 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4544257264E1204B8E00B35AC8AE8EEF /* Pods-rentoo-tvOSTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C7565AEA7FCD8F66CAF546DC5AF1404F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CC0008749F65B05177801A1B72F2F1EC /* GoogleMaps.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D2A2599DACF5A05CA16F499F95067F75 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1067E0B729B0F8D442644ED6AFC347F /* Pods-rentooTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E1ED6DABFEFD9C54EE38EDA3D2F7092C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+				TVOS_DEPLOYMENT_TARGET = 9.2;
+			};
+			name = Debug;
+		};
+		F5104BA8517AC90178D667B821378D25 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 57AE30912198F4934EE096226B6A4EED /* Pods-rentoo-tvOSTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.2;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		24084751A9DC88E476B6D6DDB3F7CF95 /* Build configuration list for PBXNativeTarget "Pods-rentoo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				552492E6423F4C65B133DA276AC66286 /* Debug */,
+				8C2925955DE726ADF1F347E789812769 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		46921981F609C5BA3CB72EC4EA41299D /* Build configuration list for PBXAggregateTarget "GoogleMaps" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4AA46832D8A16AA4E4811383B204D2A4 /* Debug */,
+				C7565AEA7FCD8F66CAF546DC5AF1404F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E1ED6DABFEFD9C54EE38EDA3D2F7092C /* Debug */,
+				68F07807C8D62F2D76C744A41F3D874D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		737E91F72BAECC3674EA6EAC63E58204 /* Build configuration list for PBXNativeTarget "Pods-rentoo-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C19B140B3ABFEB4CFF64799BC7BC601 /* Debug */,
+				3431446EF500F9E2847DB06A2F778322 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		996A93D984DDB98F6218EAF12BCE2ADF /* Build configuration list for PBXNativeTarget "Pods-rentooTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2A2599DACF5A05CA16F499F95067F75 /* Debug */,
+				7A59C05BDA306B1906888ECEAB66FE72 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C60B75BCD0C80BFBEF47A84FD01FB037 /* Build configuration list for PBXNativeTarget "Pods-rentoo-tvOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F5104BA8517AC90178D667B821378D25 /* Debug */,
+				B351CB119CA8A5533EA6F242CD9A7F60 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}
