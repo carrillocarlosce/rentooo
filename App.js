@@ -28,6 +28,7 @@ import Inbox from './src/container/Inbox';
 import Inboxdetails from './src/container/Inboxdetails';
 import Profiledetails from './src/container/Profiledetails';
 import Profile from './src/container/Profile';
+import MapSearch from './src/container/MapSearch';
 
 import styles from './src/style/appStyle'
 
@@ -171,6 +172,7 @@ export default class App extends Component{
           <Scene key="Watchlist" component={Watchlist} />
           <Scene key="Myoffers" component={Myoffers} />
           <Scene key="Wallets" component={Wallets} />
+          <Scene key="MapSearch" component={MapSearch} initial/>
           <Scene key="Yourbalance" 
             component={Yourbalance} 
             title="Your balance" 
