@@ -313,11 +313,15 @@ export default class App extends Component {
             key="AddWallet"
             component={AddWallet}
             title="Add wallet"
+            navigationBarStyle={{
+              borderBottomWidth: 1,
+              borderBottomColor: "#F5F5FD"
+            }}
             renderLeftButton={
               <TouchableOpacity onPress={() => Actions.pop()}>
                 <Image
                   style={styles.leftBtn}
-                  source={require("./assets/images/left.png")}
+                  source={require("./assets/images/back3x.png")}
                 />
               </TouchableOpacity>
             }

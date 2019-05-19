@@ -10,23 +10,36 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#FFFFFF",
     position: "relative",
-    paddingHorizontal: responsiveWidth(5)
+    paddingHorizontal: responsiveWidth(5),
+    paddingTop: responsiveHeight(3)
   },
   itemCrypto: {
     flexDirection: "row",
-    justifyContent: "flex-start",
+    justifyContent: "space-between",
     alignItems: "center",
     width: "100%"
+  },
+  titleCryptoContainer: {
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center"
   },
   cryptoLogoContainer: {
     height: responsiveWidth(10),
     width: responsiveWidth(10),
     borderRadius: 200,
-    marginRight: 20
+    marginRight: 20,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  cryptoLogo: {
+    height: "50%",
+    width: "50%"
   },
   cryptoText: {
     fontSize: responsiveFontSize(2.4)
   },
+  isCheckedCrypto: { height: responsiveWidth(7), width: responsiveWidth(7) },
   separatorLine: {
     alignSelf: "flex-end",
     width: "80%",
