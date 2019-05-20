@@ -30,6 +30,7 @@ import Inboxdetails from './src/container/Inboxdetails';
 import Profiledetails from './src/container/Profiledetails';
 import Profile from './src/container/Profile';
 import MapSearch from './src/container/MapSearch';
+import ItemDetails from './src/container/ItemDetails';
 
 import {
   responsiveHeight,
@@ -284,6 +285,7 @@ export default class App extends Component {
           <Scene key="Myoffers" component={Myoffers} />
           <Scene key="Wallets" component={Wallets} />
           <Scene key="MapSearch" component={MapSearch} hideNavBar={true}/>
+          <Scene key="ItemDetails" component={ItemDetails} hideNavBar={true}/>
           <Scene key="Yourbalance" 
             component={Yourbalance} 
             title="Your balance" 

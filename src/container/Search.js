@@ -78,7 +78,7 @@ export default class Search extends Component {
             <View style={styles.interestInsideContainer}>
               <View style={styles.interestRowContainer}>
                 <View style={styles.interestImageContainer}>
-                  <TouchableOpacity style={styles.itemIterestBtnContainer}>
+                  <TouchableOpacity style={styles.itemIterestBtnContainer} onPress={()=> Actions.ItemDetails()}>
                       <Image style={styles.itemImage} source={require('../../assets/images/canon-camera.png')}/>
                       <Image style={styles.heartIcon} source={require('../../assets/images/heart.png')}/>
                       <Text style={styles.itemText}>Black Canon Film{"\n"}Camera</Text>
