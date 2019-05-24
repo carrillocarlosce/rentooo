@@ -5379,6 +5379,13 @@ react-native-gesture-handler@^1.2.1:
     invariant "^2.2.2"
     prop-types "^15.5.10"
 
+react-native-grid-component@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-grid-component/-/react-native-grid-component-2.0.0.tgz#e8861d2a00051d87abc814adda6ae0d973fee7e5"
+  integrity sha512-OMJ/YMSuEO+eDjIqK/Psh/Qf0P4HBYIddWeCJiPGoPJOKIRl/F4Kc5QqtUoINjent0VXYdnhWBKHg5dRHGFtsQ==
+  dependencies:
+    prop-types "^15.5.10"
+
 react-native-image-slider-show@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/react-native-image-slider-show/-/react-native-image-slider-show-1.0.3.tgz#4df4c0ba520074f7a5513cca9a83ea48ac8868a5"
@@ -5471,6 +5478,13 @@ react-native-status-bar-height@^2.2.0:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/react-native-status-bar-height/-/react-native-status-bar-height-2.3.1.tgz#b92ce9112c2367290847ac11284d9d84a6330169"
   integrity sha512-m9nGKYfFn6ljF1abafzF5cFaD9JCzXwj7kNE9CuF+g0TgtItH70eY2uHaCV9moENTftqd5XIS3Cx0mf4WfistA==
+
+react-native-super-grid@^3.0.4:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/react-native-super-grid/-/react-native-super-grid-3.0.4.tgz#bc0888f68d0960557dfe445970f96e36a0d61a1d"
+  integrity sha512-aoK71FGP5sFcLujuODYkAqyFDAZZRpvTeEwwaoXsc0JENhExEG7rGg65T5ELqyykiDOLBihuCLKasK5gLb0WtQ==
+  dependencies:
+    prop-types "^15.6.0"
 
 react-native-tab-view@^0.0.77:
   version "0.0.77"

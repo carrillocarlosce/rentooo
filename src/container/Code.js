@@ -25,7 +25,6 @@ export default class Code extends Component {
 
     const createdUser = {
       email: email,
-      password: password,
       firstname: firstName,
       lastname: lastName,
       number: number

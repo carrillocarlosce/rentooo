@@ -1,90 +1,127 @@
 /**
  * Wallets Screen
- * 
+ *
  * @format
  * @flow
  */
 
-import React, {Component} from 'react';
-import {Text, View, TextInput, TouchableOpacity, Image, ScrollView} from 'react-native';
-import { Actions } from 'react-native-router-flux';
-import styles from '../style/walletsStyle'
-import { responsiveWidth, responsiveHeight } from 'react-native-responsive-dimensions';
-import StarView from '../component/Startview'
+import React, { Component } from "react";
+import {
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+  Image,
+  ScrollView
+} from "react-native";
+import { Actions } from "react-native-router-flux";
+import Grid from "react-native-grid-component";
+import firebase from "react-native-firebase";
+
+import styles from "../style/walletsStyle";
+import {
+  responsiveWidth,
+  responsiveHeight
+} from "react-native-responsive-dimensions";
+import StarView from "../component/Startview";
+
+const cryptoList = [
+  {
+    name: "euro",
+    logo: require("../../assets/coins/euro.png"),
+    color: "#30A4E8"
+  },
+  {
+    name: "dollar",
+    logo: require("../../assets/coins/dollar.png"),
+    color: "#17A370"
+  },
+  {
+    name: "rentoo",
+    logo: require("../../assets/coins/rentoo.png"),
+    color: "#226BFB"
+  },
+  {
+    name: "bitcoin",
+    logo: require("../../assets/coins/bitcoin.png"),
+    color: "#F5922F"
+  },
+  {
+    name: "litecoin",
+    logo: require("../../assets/coins/litecoin.png"),
+    color: "#638EA9"
+  },
+  {
+    name: "binance",
+    logo: require("../../assets/coins/binance.png"),
+    color: "#D79E28"
+  }
+];
 
 export default class Wallets extends Component {
   constructor(props) {
     super(props);
-    
+
+    this.state = {
+      wallet: []
+    };
   }
+
+  componentDidMount() {
+    this.getWalletData();
+  }
+
+  getWalletData() {
+    firebase
+      .database()
+      .ref("users/" + window.currentUser["userID"] + "/wallet")
+      .on("value", walletSnapshot => {
+        let wallet = [];
+
+        this.setState({ wallet: walletSnapshot.val() });
+      });
+  }
+
+  _renderItem = (data, i) => (
+    <TouchableOpacity
+      style={[styles.walletItemLayout, { backgroundColor: data.color }]}
+      onPress={() => Actions.Yourbalance()}
+    >
+      <View style={styles.itemCrypto}>
+        <Image
+          resizeMode="contain"
+          style={{ height: "60%", width: "60%" }}
+          source={data.logo}
+        />
+      </View>
+      <Text style={styles.coinText}>{data.name.toUpperCase()}</Text>
+      <Text style={styles.priceText}>{this.state.wallet[data.name]}</Text>
+    </TouchableOpacity>
+  );
+
   render() {
+    const { wallet } = this.state;
+
     return (
-      <ScrollView style={{flex: 1, backgroundColor: "#ffffff"}}>
+      <ScrollView style={{ flex: 1, backgroundColor: "#ffffff" }}>
         <View style={styles.container}>
           <Text style={styles.walletsText}>Wallets</Text>
 
           <View style={styles.walletsRowLayout}>
-            <TouchableOpacity onPress={()=>Actions.Yourbalance()}>
-              <View style={[styles.walletItemLayout, {backgroundColor: "#F5922F"}]}>
-                <Image source={require('../../assets/images/bitcoin-1.png')}/>
-                <Text style={styles.coinText}>BITCOIN</Text>
-                <Text style={styles.priceText}>0.32</Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity>
-            <View style={[styles.walletItemLayout, {backgroundColor: "#105CFA"}]}>
-                <Image source={require('../../assets/images/waves-1.png')}/>
-                <Text>WAVES</Text>
-                <Text style={styles.priceText}>120.5</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.walletsRowLayout}>
-            <TouchableOpacity>
-            <View style={[styles.walletItemLayout, {backgroundColor: "#0A4A90"}]}>
-                <Image source={require('../../assets/images/euro-1.png')}/>
-                <Text>EURO</Text>
-                <Text style={styles.priceText}>1230.0</Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity>
-            <View style={[styles.walletItemLayout, {backgroundColor: "#1D9C5A"}]}>
-                <Image source={require('../../assets/images/dollar-1.png')}/>
-                <Text>DOLLAR</Text>
-                <Text style={styles.priceText}>0.0</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.walletsRowLayout}>
-            <TouchableOpacity>
-            <View style={[styles.walletItemLayout, {backgroundColor: "#0055FF"}]}>
-                <Image source={require('../../assets/images/rentoo-1.png')}/>
-                <Text>RENTOO</Text>
-                <Text style={styles.priceText}>1 000 000.0</Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity>
-            <View style={[styles.walletItemLayout, {backgroundColor: "#5481A1"}]}>
-                <Image source={require('../../assets/images/ethereum-1.png')}/>
-                <Text>ETHEREUM</Text>
-                <Text style={styles.priceText}>2.4</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.walletsRowLayout}>
-            <TouchableOpacity>
-            <View style={[styles.walletItemLayout, {backgroundColor: "#365E9B"}]}>
-                <Image source={require('../../assets/images/litecoin-1.png')}/>
-                <Text>LITECOIN</Text>
-                <Text style={styles.priceText}>37.2</Text>
-              </View>
-            </TouchableOpacity>
-            
+            <Grid
+              style={{ flex: 1 }}
+              renderItem={this._renderItem}
+              renderPlaceholder={i => (
+                <View
+                  style={{ flex: 1, margin: 5, height: responsiveHeight(13.5) }}
+                />
+              )}
+              data={cryptoList}
+              numColumns={2}
+            />
           </View>
         </View>
       </ScrollView>
     );
   }
 }
-
-
