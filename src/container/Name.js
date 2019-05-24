@@ -6,7 +6,14 @@
  */
 
 import React, { Component } from "react";
-import { Text, View, TextInput, TouchableOpacity, Image } from "react-native";
+import {
+  Alert,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+  Image
+} from "react-native";
 import { Actions } from "react-native-router-flux";
 import styles from "../style/nameStyle";
 
@@ -23,12 +30,16 @@ export default class Name extends Component {
     const { email, password } = this.props;
     const { firstName, lastName } = this.state;
 
-    Actions.Number({
-      email: email,
-      password: password,
-      firstName: firstName,
-      lastName: lastName
-    });
+    if (firstName.length > 0 && lastName.length > 0) {
+      Actions.Number({
+        email: email,
+        password: password,
+        firstName: firstName,
+        lastName: lastName
+      });
+    } else {
+      Alert.alert("Make sure your name and lastname are long enough.");
+    }
   }
 
   render() {

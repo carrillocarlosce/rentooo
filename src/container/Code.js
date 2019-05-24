@@ -8,7 +8,7 @@
 import React, { Component } from "react";
 import { Text, View, TextInput, TouchableOpacity, Image } from "react-native";
 import { Actions } from "react-native-router-flux";
-import auth from "@react-native-firebase/auth";
+import firebase from "react-native-firebase";
 
 import styles from "../style/codeStyle";
 
@@ -21,14 +21,37 @@ export default class Code extends Component {
   }
 
   async createAccount() {
-    const { email, password } = this.props;
+    const { email, password, firstName, lastName, number } = this.props;
 
-    try {
-      await auth().createUserWithEmailAndPassword(email, password);
-      Actions.dashboardContainerScreen();
-    } catch (e) {
-      console.error(e.message);
-    }
+    const createdUser = {
+      email: email,
+      password: password,
+      firstname: firstName,
+      lastname: lastName,
+      number: number
+    };
+
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then(function() {
+        firebase
+          .database()
+          .ref("users")
+          .push(createdUser)
+          .then(userData => {
+            window.currentUser = createdUser;
+            window.currentUser["userID"] = userData.key;
+            firebase
+              .database()
+              .ref("users/" + window.currentUser["userID"])
+              .update(window.currentUser);
+            Actions.reset("dashboardContainerScreen");
+          })
+          .catch(err => {
+            console.log("error===", err);
+          });
+      });
   }
 
   render() {

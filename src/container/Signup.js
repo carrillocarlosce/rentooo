@@ -6,7 +6,14 @@
  */
 
 import React, { Component } from "react";
-import { Text, View, TextInput, TouchableOpacity, Image } from "react-native";
+import {
+  Text,
+  Alert,
+  View,
+  TextInput,
+  TouchableOpacity,
+  Image
+} from "react-native";
 import { Actions } from "react-native-router-flux";
 import styles from "../style/signupStyle";
 import { responsiveHeight } from "react-native-responsive-dimensions";
@@ -23,7 +30,11 @@ export default class Signup extends Component {
   nextSignupStep() {
     const { email, password } = this.state;
 
-    Actions.Name({ email: email, password: password });
+    if (email.length > 4 && password.length > 4) {
+      Actions.Name({ email: email, password: password });
+    } else {
+      Alert.alert("Please check your mail and/or password.");
+    }
   }
 
   render() {

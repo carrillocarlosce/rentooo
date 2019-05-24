@@ -6,8 +6,16 @@
  */
 
 import React, { Component } from "react";
-import { Text, View, TextInput, TouchableOpacity, Image } from "react-native";
+import {
+  Alert,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+  Image
+} from "react-native";
 import { Actions } from "react-native-router-flux";
+
 import styles from "../style/numberStyle";
 
 export default class Name extends Component {
@@ -22,13 +30,17 @@ export default class Name extends Component {
     const { email, password, firstName, lastName } = this.props;
     const { number } = this.state;
 
-    Actions.Code({
-      email: email,
-      password: password,
-      firstName: firstName,
-      lastName: lastName,
-      number: number
-    });
+    if (number.length > 6) {
+      Actions.Code({
+        email: email,
+        password: password,
+        firstName: firstName,
+        lastName: lastName,
+        number: number
+      });
+    } else {
+      Alert.alert("Make sure your number is correct");
+    }
   }
 
   render() {
@@ -42,6 +54,7 @@ export default class Name extends Component {
 
           <View style={styles.formLayout}>
             <TextInput
+              keyboardType="numeric"
               style={styles.formItem}
               placeholder="Phone number"
               placeholderTextColor="#979797"

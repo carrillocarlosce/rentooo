@@ -99,6 +99,7 @@
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		B7CF159026E14A5C8ED3CB9D /* SFProText-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 903AAC40CE0346D89CD9BB81 /* SFProText-Semibold.ttf */; };
 		BA60C3C25BF434DE1AC99369 /* libPods-rentoo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB327D25F0A5011DE7CBF850 /* libPods-rentoo.a */; };
+		C11B3932AF1F4EEF837D8DB8 /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FE93369CFF54E888900D225 /* libRNFirebase.a */; };
 		C299B5D35CE044B0896D136E /* TruenoBdOlIt.otf in Resources */ = {isa = PBXBuildFile; fileRef = E6F0B0FC56D4491DB22BA4CC /* TruenoBdOlIt.otf */; };
 		C4B8B2111E2E4274B99C107F /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0929E490583F4214A5E6400D /* FontAwesome5_Brands.ttf */; };
 		C60C595C80544086BF31C823 /* TruenoSBdIt.otf in Resources */ = {isa = PBXBuildFile; fileRef = E66718F5354046E7999443C9 /* TruenoSBdIt.otf */; };
@@ -107,6 +108,7 @@
 		CBED5C10D9714A91BFAD48D6 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1D29CCB9227C4BF98AB22A6F /* Octicons.ttf */; };
 		D2681BF5F64642CF8EA450A2 /* TruenoSBd.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7CB57CA36B084E718C1727AA /* TruenoSBd.otf */; };
 		DA12FD2416A14FB59B210889 /* TruenoExBd.otf in Resources */ = {isa = PBXBuildFile; fileRef = FA9E786240F0401C956159A5 /* TruenoExBd.otf */; };
+		E4E2841722981132008CD95B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4E283EB22981131008CD95B /* GoogleService-Info.plist */; };
 		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
 		ED2971652150620600B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2971642150620600B7C4FE /* JavaScriptCore.framework */; };
 		F745A6080C5447D0BF507B06 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CEEFA817E3C46F6BF993597 /* Foundation.ttf */; };
@@ -431,6 +433,13 @@
 			remoteGlobalIDString = 358F4ED71D1E81A9004DF814;
 			remoteInfo = RCTBlob;
 		};
+		E4E2845622981184008CD95B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9046EA41EBB04EBE882AACF3 /* RNFirebase.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNFirebase;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -446,6 +455,7 @@
 		0224BC9E78BE4549B70C6D62 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/native-base/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		0929E490583F4214A5E6400D /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/native-base/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
 		0D22D33609F54CA0B20B7E39 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/native-base/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
+		0E2E09A32F6A074FFC635A3D /* Pods-rentoo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rentoo.release.xcconfig"; path = "Pods/Target Support Files/Pods-rentoo/Pods-rentoo.release.xcconfig"; sourceTree = "<group>"; };
 		0F83F99774B7457E80E52031 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/native-base/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		12B9AD06D06D4B85BDEFE6E0 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/native-base/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
@@ -466,6 +476,7 @@
 		1D29CCB9227C4BF98AB22A6F /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/native-base/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		1F32ECD1A4CB40ED924E3790 /* TruenoUltLtIt.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = TruenoUltLtIt.otf; path = ../assets/fonts/TruenoUltLtIt.otf; sourceTree = "<group>"; };
 		2AEE87456DFB41FB984CEAAB /* TruenoUltLt.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = TruenoUltLt.otf; path = ../assets/fonts/TruenoUltLt.otf; sourceTree = "<group>"; };
+		2B01994E422BDA1CEB737EB2 /* Pods-rentooTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rentooTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-rentooTests/Pods-rentooTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2CD32CDD42724B4DA8249904 /* TruenoLt.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = TruenoLt.otf; path = ../assets/fonts/TruenoLt.otf; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* rentoo-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "rentoo-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* rentoo-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "rentoo-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -485,6 +496,8 @@
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		5E9BAE7CB41346BD8F8537D4 /* TruenoExBdIt.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = TruenoExBdIt.otf; path = ../assets/fonts/TruenoExBdIt.otf; sourceTree = "<group>"; };
 		5ED8FA2504F4083162193549 /* Pods-rentoo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rentoo.debug.xcconfig"; path = "Target Support Files/Pods-rentoo/Pods-rentoo.debug.xcconfig"; sourceTree = "<group>"; };
+		6486E9EEA2DF2BE3CB39982E /* Pods-rentoo-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rentoo-tvOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-rentoo-tvOSTests/Pods-rentoo-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		660507825ED3522B001F747E /* Pods-rentoo-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rentoo-tvOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-rentoo-tvOS/Pods-rentoo-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		67F2ABB59F6E512587B5C89D /* Pods-rentoo-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rentoo-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-rentoo-tvOS/Pods-rentoo-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		6B88CCB54374406681CEC19C /* TruenoRg.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = TruenoRg.otf; path = ../assets/fonts/TruenoRg.otf; sourceTree = "<group>"; };
 		6CEEFA817E3C46F6BF993597 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/native-base/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
@@ -546,13 +559,19 @@
 		85C2DEED8F73476DB5D1F96B /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/native-base/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		8E9B949CE7A64D95A683DB8B /* TruenoExBdOlIt.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = TruenoExBdOlIt.otf; path = ../assets/fonts/TruenoExBdOlIt.otf; sourceTree = "<group>"; };
 		903AAC40CE0346D89CD9BB81 /* SFProText-Semibold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProText-Semibold.ttf"; path = "../assets/fonts/SFProText-Semibold.ttf"; sourceTree = "<group>"; };
+		9046EA41EBB04EBE882AACF3 /* RNFirebase.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFirebase.xcodeproj; path = "../node_modules/react-native-firebase/ios/RNFirebase.xcodeproj"; sourceTree = "<group>"; };
 		927A65D5772DF9A860F984D5 /* Pods-rentooTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rentooTests.release.xcconfig"; path = "Target Support Files/Pods-rentooTests/Pods-rentooTests.release.xcconfig"; sourceTree = "<group>"; };
+		9B09C62A3CA93100F6648019 /* Pods-rentoo-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rentoo-tvOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-rentoo-tvOSTests/Pods-rentoo-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		9CF0BE9DC90B4346B0531C0D /* libAirMaps.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libAirMaps.a; sourceTree = "<group>"; };
+		9FD2FCC2A2FB7E5430FB834E /* Pods-rentoo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rentoo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-rentoo/Pods-rentoo.debug.xcconfig"; sourceTree = "<group>"; };
+		9FE93369CFF54E888900D225 /* libRNFirebase.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFirebase.a; sourceTree = "<group>"; };
 		A59AEA01F7F043A086BBF024 /* TruenoBlk.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = TruenoBlk.otf; path = ../assets/fonts/TruenoBlk.otf; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		ADDCF17B6152496E8F26708B /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/native-base/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
+		B301A124699F8D62A7824762 /* Pods-rentooTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rentooTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-rentooTests/Pods-rentooTests.release.xcconfig"; sourceTree = "<group>"; };
 		B6FF344528E3425EAEFA5B80 /* TruenoExBdOl.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = TruenoExBdOl.otf; path = ../assets/fonts/TruenoExBdOl.otf; sourceTree = "<group>"; };
 		BA6AF5489079EF7834EF300E /* Pods-rentoo-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rentoo-tvOS.release.xcconfig"; path = "Target Support Files/Pods-rentoo-tvOS/Pods-rentoo-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		C80B0663ADFEDE3BBBB8E97F /* Pods-rentoo-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rentoo-tvOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-rentoo-tvOS/Pods-rentoo-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		C8DE3C34072F4B27AC89E02F /* TruenoRgIt.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = TruenoRgIt.otf; path = ../assets/fonts/TruenoRgIt.otf; sourceTree = "<group>"; };
 		CCE1E677693C4C4F9F01F8F9 /* libRNGestureHandler.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNGestureHandler.a; sourceTree = "<group>"; };
 		D4F77EA15CF545CA91742135 /* TruenoBlkOlIt.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = TruenoBlkOlIt.otf; path = ../assets/fonts/TruenoBlkOlIt.otf; sourceTree = "<group>"; };
@@ -560,6 +579,7 @@
 		DB327D25F0A5011DE7CBF850 /* libPods-rentoo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-rentoo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEFF601E7B61464E8CC88AAF /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
 		E4CCAE7E77D44BA69074AA60 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/native-base/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
+		E4E283EB22981131008CD95B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E66718F5354046E7999443C9 /* TruenoSBdIt.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = TruenoSBdIt.otf; path = ../assets/fonts/TruenoSBdIt.otf; sourceTree = "<group>"; };
 		E6F0B0FC56D4491DB22BA4CC /* TruenoBdOlIt.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = TruenoBdOlIt.otf; path = ../assets/fonts/TruenoBdOlIt.otf; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -604,6 +624,7 @@
 				84736D4A2291BC5A005DA782 /* libRNGestureHandler.a in Frameworks */,
 				84736D472291BC36005DA782 /* libAirMaps.a in Frameworks */,
 				BA60C3C25BF434DE1AC99369 /* libPods-rentoo.a in Frameworks */,
+				C11B3932AF1F4EEF837D8DB8 /* libRNFirebase.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -765,6 +786,14 @@
 				7B3F4933ED845C634ADF2A13 /* Pods-rentoo-tvOSTests.release.xcconfig */,
 				15375CD42FED404D28549CFC /* Pods-rentooTests.debug.xcconfig */,
 				927A65D5772DF9A860F984D5 /* Pods-rentooTests.release.xcconfig */,
+				9FD2FCC2A2FB7E5430FB834E /* Pods-rentoo.debug.xcconfig */,
+				0E2E09A32F6A074FFC635A3D /* Pods-rentoo.release.xcconfig */,
+				660507825ED3522B001F747E /* Pods-rentoo-tvOS.debug.xcconfig */,
+				C80B0663ADFEDE3BBBB8E97F /* Pods-rentoo-tvOS.release.xcconfig */,
+				6486E9EEA2DF2BE3CB39982E /* Pods-rentoo-tvOSTests.debug.xcconfig */,
+				9B09C62A3CA93100F6648019 /* Pods-rentoo-tvOSTests.release.xcconfig */,
+				2B01994E422BDA1CEB737EB2 /* Pods-rentooTests.debug.xcconfig */,
+				B301A124699F8D62A7824762 /* Pods-rentooTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -820,6 +849,7 @@
 				4A7024A84837487EBC9B6513 /* RNVectorIcons.xcodeproj */,
 				16D7798BB12F4F61B62A4C35 /* RNReanimated.xcodeproj */,
 				41AC09B72D7F4654B3ED714F /* RNGestureHandler.xcodeproj */,
+				9046EA41EBB04EBE882AACF3 /* RNFirebase.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -836,6 +866,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				E4E283EB22981131008CD95B /* GoogleService-Info.plist */,
 				84736CFB2291BBC8005DA782 /* AirGoogleMaps */,
 				13B07FAE1A68108700A75B9A /* rentoo */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -871,6 +902,7 @@
 				9CF0BE9DC90B4346B0531C0D /* libAirMaps.a */,
 				3FD18B627E19459D80E0ABD1 /* libRNVectorIcons-tvOS.a */,
 				3617E191B92E4E0F8534DC56 /* libRNGestureHandler-tvOS.a */,
+				9FE93369CFF54E888900D225 /* libRNFirebase.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -1017,6 +1049,14 @@
 				12B9AD06D06D4B85BDEFE6E0 /* Zocial.ttf */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		E4E2845322981184008CD95B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E4E2845722981184008CD95B /* libRNFirebase.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1190,6 +1230,10 @@
 				{
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+				},
+				{
+					ProductGroup = E4E2845322981184008CD95B /* Products */;
+					ProjectRef = 9046EA41EBB04EBE882AACF3 /* RNFirebase.xcodeproj */;
 				},
 				{
 					ProductGroup = 84736CE12291B366005DA782 /* Products */;
@@ -1516,6 +1560,13 @@
 			remoteRef = ADBDB9261DFEBF0700ED6528 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		E4E2845722981184008CD95B /* libRNFirebase.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNFirebase.a;
+			remoteRef = E4E2845622981184008CD95B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -1540,6 +1591,7 @@
 				C299B5D35CE044B0896D136E /* TruenoBdOlIt.otf in Resources */,
 				89B2B63C987E4ABB9F8B5FC9 /* TruenoBlk.otf in Resources */,
 				59772C71E5844D8B93667CF0 /* TruenoBlkIt.otf in Resources */,
+				E4E2841722981132008CD95B /* GoogleService-Info.plist in Resources */,
 				0B5F7504D570476BAD38495C /* TruenoBlkOl.otf in Resources */,
 				3C5ABFFD0E88452F878069A6 /* TruenoBlkOlIt.otf in Resources */,
 				DA12FD2416A14FB59B210889 /* TruenoExBd.otf in Resources */,
@@ -1670,15 +1722,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-rentoo/Pods-rentoo-resources.sh",
 				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
 			);
@@ -1834,12 +1882,14 @@
 					"$(SRCROOT)/../node_modules/react-native-reanimated/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 				);
 				INFOPLIST_FILE = rentooTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1869,12 +1919,14 @@
 					"$(SRCROOT)/../node_modules/react-native-reanimated/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 				);
 				INFOPLIST_FILE = rentooTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1912,8 +1964,10 @@
 					"$(SRCROOT)/../node_modules/react-native-reanimated/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 				);
 				INFOPLIST_FILE = rentoo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1945,8 +1999,10 @@
 					"$(SRCROOT)/../node_modules/react-native-reanimated/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 				);
 				INFOPLIST_FILE = rentoo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1978,11 +2034,13 @@
 					"$(SRCROOT)/../node_modules/react-native-reanimated/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 				);
 				INFOPLIST_FILE = "rentoo-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -2021,11 +2079,13 @@
 					"$(SRCROOT)/../node_modules/react-native-reanimated/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 				);
 				INFOPLIST_FILE = "rentoo-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -2063,6 +2123,7 @@
 					"$(SRCROOT)/../node_modules/react-native-reanimated/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 				);
 				INFOPLIST_FILE = "rentoo-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -2074,8 +2135,10 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
+					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
@@ -2105,6 +2168,7 @@
 					"$(SRCROOT)/../node_modules/react-native-reanimated/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 				);
 				INFOPLIST_FILE = "rentoo-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -2116,8 +2180,10 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
+					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);

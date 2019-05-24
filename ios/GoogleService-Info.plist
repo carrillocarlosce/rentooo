@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>837434009816-np1ud63fa38iq2830cbe3pk70k6p9901.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.837434009816-np1ud63fa38iq2830cbe3pk70k6p9901</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA79nuufy2N7vjlB_yQzwcmtQZu0zuFwSk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>837434009816</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.agency.rentapp</string>
+	<key>PROJECT_ID</key>
+	<string>rentapp-a7aee</string>
+	<key>STORAGE_BUCKET</key>
+	<string>rentapp-a7aee.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:837434009816:ios:da04fb8f596713b4</string>
+	<key>DATABASE_URL</key>
+	<string>https://rentapp-a7aee.firebaseio.com</string>
+</dict>
+</plist>
