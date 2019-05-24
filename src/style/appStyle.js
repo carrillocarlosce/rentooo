@@ -12,9 +12,8 @@ const styles = StyleSheet.create({
   },
   plusBtn: {
     marginRight: 20,
-    width: 20,
-    height: 20,
-    resizeMode: "contain"
+    width: responsiveWidth(6),
+    height: responsiveWidth(6)
   },
   leftBtn: {
     marginLeft: 20,

@@ -1,19 +1,55 @@
 /**
  * Search Screen
- * 
+ *
  * @format
  * @flow
  */
 
-import React, {Component} from 'react';
-import {Text, View, TextInput, TouchableOpacity, Image, ScrollView} from 'react-native';
-import { Actions } from 'react-native-router-flux';
-import styles from '../style/searchStyle'
-import { SearchBar } from 'react-native-elements';
-import { responsiveWidth, responsiveHeight } from 'react-native-responsive-dimensions';
-import StarView from 'react-native-star-view';
-import Rect from '../component/Rect'
-import { Searchbar } from '../component/react-native-paper';
+import React, { Component } from "react";
+import {
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+  Image,
+  ScrollView
+} from "react-native";
+import { Actions } from "react-native-router-flux";
+import styles from "../style/searchStyle";
+import { SearchBar } from "react-native-elements";
+import {
+  responsiveWidth,
+  responsiveHeight
+} from "react-native-responsive-dimensions";
+import Grid from "react-native-grid-component";
+import firebase from "react-native-firebase";
+
+import StarView from "react-native-star-view";
+import Rect from "../component/Rect";
+import { Searchbar } from "../component/react-native-paper";
+
+const categories = [
+  {
+    title: "Home",
+    logo: require("../../assets/images/home.png"),
+    color: "#0055FF"
+  },
+  {
+    title: "Tech",
+    logo: require("../../assets/images/rocket.png"),
+    color: "#0B49C8"
+  },
+  {
+    title: "Sport",
+    logo: require("../../assets/images/sport.png"),
+    color: "#063696"
+  },
+  {
+    title: "Image\n& Video",
+    logo: require("../../assets/images/camera.png"),
+    color: "#032464"
+  }
+];
 
 export default class Search extends Component {
   constructor(props) {
@@ -21,141 +57,132 @@ export default class Search extends Component {
     this.state = {
       searchString: "",
       firstQuery: "",
-    }
+      rents: []
+    };
   }
+
+  componentDidMount() {
+    this.getRents();
+  }
+
+  getRents() {
+    firebase
+      .database()
+      .ref("users/rents")
+      .on("value", rents => {
+        let wallet = [];
+      });
+  }
+
+  _renderItem = (data, i) => (
+    <View style={styles.interestImageContainer}>
+      <TouchableOpacity
+        style={styles.itemIterestBtnContainer}
+        onPress={() => Actions.ItemDetails()}
+      >
+        <Image
+          style={styles.itemImage}
+          source={require("../../assets/images/canon-camera.png")}
+        />
+        <Image
+          style={styles.heartIcon}
+          source={require("../../assets/images/heart.png")}
+        />
+        <Text style={styles.itemText}>Black Canon Film{"\n"}Camera</Text>
+        <View style={styles.currencyWrapper}>
+          <Text style={styles.currencyText}>15$/day</Text>
+          <View style={styles.currencyContainer}>
+            <Image
+              style={styles.currency}
+              resizeMode="contain"
+              source={require("../../assets/images/rentoo.png")}
+            />
+            <Image
+              style={styles.currency}
+              resizeMode="contain"
+              source={require("../../assets/images/bitcoin.png")}
+            />
+            <Image
+              style={styles.currency}
+              resizeMode="contain"
+              source={require("../../assets/images/waves.png")}
+            />
+          </View>
+        </View>
+      </TouchableOpacity>
+      <View style={styles.starLayout}>
+        <StarView score={4} style={styles.starView} />
+        <Text style={styles.starText}>13</Text>
+      </View>
+    </View>
+  );
 
   render() {
     const { firstQuery } = this.state;
 
     return (
-      <ScrollView style={{flex: 1, backgroundColor: "#ffffff"}}>
+      <ScrollView style={{ flex: 1, backgroundColor: "#ffffff" }}>
         <View style={styles.container}>
-          <Text style={styles.nameText}>Search</Text>
-          
           <Searchbar
             style={styles.searchBar}
             placeholder="Search"
-            onChangeText={query => { this.setState({ firstQuery: query }); }}
+            onChangeText={query => {
+              this.setState({ firstQuery: query });
+            }}
             value={firstQuery}
-            onSubmitEditing={()=>Actions.Searchresult()}
+            onSubmitEditing={() => Actions.Searchresult()}
           />
-        
+
           <View style={styles.btnContainer}>
             <TouchableOpacity style={styles.btnFiltersLayout}>
-                <Text style={styles.btnFilterText}>Nearby</Text>
+              <Text style={styles.btnFilterText}>Nearby</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.btnFiltersLayout}>
-                <Text style={styles.btnFilterText}>Dates</Text> 
+              <Text style={styles.btnFilterText}>Dates</Text>
             </TouchableOpacity>
           </View>
+
+          <View
+            style={[styles.interestHeader, { marginTop: responsiveHeight(4) }]}
+          >
+            <Text style={styles.text1IterestHeader}>Categories</Text>
+          </View>
+
           <ScrollView showsHorizontalScrollIndicator={false} horizontal>
-            <TouchableOpacity style={styles.btnGroupLayout}>
-              <Image style={styles.itemGroupImage} source={require('../../assets/images/camera.png')}/>
-              <Text style={styles.itemGroupText}>Image{"\n"}& Video</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.btnGroupLayout2}>
-              <Image style={styles.itemGroupImage} source={require('../../assets/images/rocket.png')}/>
-              <Text style={styles.itemGroupText}>Tech</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.btnGroupLayout3}>
-              <Image style={styles.itemGroupImage} source={require('../../assets/images/home.png')}/>
-              <Text style={styles.itemGroupText}>Home</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.btnGroupLayout4}>
-              <Image style={styles.itemGroupImage} source={require('../../assets/images/sport.png')}/>
-              <Text style={styles.itemGroupText}>Sport</Text>
-            </TouchableOpacity>
+            {categories.map(itemCategory => {
+              return (
+                <TouchableOpacity
+                  style={[
+                    styles.btnGroupLayout,
+                    { backgroundColor: itemCategory.color }
+                  ]}
+                >
+                  <Image
+                    style={styles.itemGroupImage}
+                    source={itemCategory.logo}
+                  />
+                  <Text style={styles.itemGroupText}>{itemCategory.title}</Text>
+                </TouchableOpacity>
+              );
+            })}
           </ScrollView>
 
           <View style={styles.interestContainer}>
             <View style={styles.interestHeader}>
-              <Text style={styles.text1IterestHeader}>It might interest you</Text>
+              <Text style={styles.text1IterestHeader}>
+                It might interest you
+              </Text>
               <TouchableOpacity>
                 <Text style={styles.text2IterestHeader}>Show all</Text>
               </TouchableOpacity>
             </View>
-            
+
             <View style={styles.interestInsideContainer}>
-              <View style={styles.interestRowContainer}>
-                <View style={styles.interestImageContainer}>
-                  <TouchableOpacity style={styles.itemIterestBtnContainer} onPress={()=> Actions.ItemDetails()}>
-                      <Image style={styles.itemImage} source={require('../../assets/images/canon-camera.png')}/>
-                      <Image style={styles.heartIcon} source={require('../../assets/images/heart.png')}/>
-                      <Text style={styles.itemText}>Black Canon Film{"\n"}Camera</Text>
-                      <View style={styles.currencyWrapper}>
-                        <Text style={styles.currencyText}>15$/day</Text>
-                        <View style={styles.currencyContainer}>
-                          <Image style={styles.currency} resizeMode="contain" source={require('../../assets/images/rentoo.png')}/>
-                          <Image style={styles.currency} resizeMode="contain" source={require('../../assets/images/bitcoin.png')}/>
-                          <Image style={styles.currency} resizeMode="contain" source={require('../../assets/images/waves.png')}/>
-                        </View>
-                      </View>
-                    </TouchableOpacity>
-                    <View style={styles.starLayout}>
-                      <StarView score={4} style={styles.starView} />
-                      <Text style={styles.starText}>13</Text>
-                    </View>
-                </View>
-                <View style={styles.interestImageContainer}>
-                  <TouchableOpacity style={styles.itemIterestBtnContainer}>
-                      <Image source={require('../../assets/images/canon-camera.png')}/>
-                      <Image style={styles.heartIcon} source={require('../../assets/images/heart.png')}/>
-                      <Text style={styles.itemText}>Black Canon Film{"\n"}Camera</Text>
-                      <View style={styles.currencyWrapper}>
-                        <Text style={styles.currencyText}>15$/day</Text>
-                        <View style={styles.currencyContainer}>
-                          <Image style={styles.currency} resizeMode="contain" source={require('../../assets/images/rentoo.png')}/>
-                          <Image style={styles.currency} resizeMode="contain" source={require('../../assets/images/bitcoin.png')}/>
-                          <Image style={styles.currency} resizeMode="contain" source={require('../../assets/images/waves.png')}/>
-                        </View>
-                      </View>
-                    </TouchableOpacity>
-                    <View style={styles.starLayout}>
-                      <StarView score={4} style={styles.starView} />
-                      <Text style={styles.starText}>13</Text>
-                    </View>
-                </View>
-              </View>
-              <View style={[styles.interestRowContainer, {marginTop: responsiveHeight(1.48)}]}>
-                <View style={styles.interestImageContainer}>
-                  <TouchableOpacity style={styles.itemIterestBtnContainer}>
-                      <Image source={require('../../assets/images/canon-camera.png')}/>
-                      <Image style={styles.heartIcon} source={require('../../assets/images/heart.png')}/>
-                      <Text style={styles.itemText}>Black Canon Film{"\n"}Camera</Text>
-                      <View style={styles.currencyWrapper}>
-                        <Text style={styles.currencyText}>15$/day</Text>
-                        <View style={styles.currencyContainer}>
-                          <Image style={styles.currency} resizeMode="contain" source={require('../../assets/images/rentoo.png')}/>
-                          <Image style={styles.currency} resizeMode="contain" source={require('../../assets/images/bitcoin.png')}/>
-                          <Image style={styles.currency} resizeMode="contain" source={require('../../assets/images/waves.png')}/>
-                        </View>
-                      </View>
-                    </TouchableOpacity>
-                    <View style={styles.starLayout}>
-                      <StarView score={4} style={styles.starView} />
-                      <Text style={styles.starText}>13</Text>
-                    </View>
-                </View>
-                <View style={styles.interestImageContainer}>
-                  <TouchableOpacity style={styles.itemIterestBtnContainer}>
-                      <Image source={require('../../assets/images/canon-camera.png')}/>
-                      <Image style={styles.heartIcon} source={require('../../assets/images/heart.png')}/>
-                      <Text style={styles.itemText}>Black Canon Film{"\n"}Camera</Text>
-                      <View style={styles.currencyWrapper}>
-                        <Text style={styles.currencyText}>15$/day</Text>
-                        <View style={styles.currencyContainer}>
-                          <Image style={styles.currency} resizeMode="contain" source={require('../../assets/images/rentoo.png')}/>
-                          <Image style={styles.currency} resizeMode="contain" source={require('../../assets/images/bitcoin.png')}/>
-                          <Image style={styles.currency} resizeMode="contain" source={require('../../assets/images/waves.png')}/>
-                        </View>
-                      </View>
-                    </TouchableOpacity>
-                    <View style={styles.starLayout}>
-                      <StarView score={4} style={styles.starView} />
-                      <Text style={styles.starText}>13</Text>
-                    </View>
-                </View>
-              </View>
+              <Grid
+                renderItem={this._renderItem}
+                data={["black", "white", "red", "green"]}
+                numColumns={2}
+              />
             </View>
           </View>
 
@@ -166,95 +193,18 @@ export default class Search extends Component {
                 <Text style={styles.text2IterestHeader}>Show all</Text>
               </TouchableOpacity>
             </View>
-            
+
             <View style={styles.interestInsideContainer}>
-              <View style={styles.interestRowContainer}>
-                <View style={styles.interestImageContainer}>
-                  <TouchableOpacity style={styles.itemIterestBtnContainer}>
-                      <Image source={require('../../assets/images/canon-camera.png')}/>
-                      <Image style={styles.heartIcon} source={require('../../assets/images/heart.png')}/>
-                      <Text style={styles.itemText}>Black Canon Film{"\n"}Camera</Text>
-                      <View style={styles.currencyWrapper}>
-                        <Text style={styles.currencyText}>15$/day</Text>
-                        <View style={styles.currencyContainer}>
-                          <Image style={styles.currency} resizeMode="contain" source={require('../../assets/images/rentoo.png')}/>
-                          <Image style={styles.currency} resizeMode="contain" source={require('../../assets/images/bitcoin.png')}/>
-                          <Image style={styles.currency} resizeMode="contain" source={require('../../assets/images/waves.png')}/>
-                        </View>
-                      </View>
-                    </TouchableOpacity>
-                    <View style={styles.starLayout}>
-                      <StarView score={4} style={styles.starView} />
-                      <Text style={styles.starText}>13</Text>
-                    </View>
-                </View>
-                <View style={styles.interestImageContainer}>
-                  <TouchableOpacity style={styles.itemIterestBtnContainer}>
-                      <Image source={require('../../assets/images/canon-camera.png')}/>
-                      <Image style={styles.heartIcon} source={require('../../assets/images/heart.png')}/>
-                      <Text style={styles.itemText}>Black Canon Film{"\n"}Camera</Text>
-                      <View style={styles.currencyWrapper}>
-                        <Text style={styles.currencyText}>15$/day</Text>
-                        <View style={styles.currencyContainer}>
-                          <Image style={styles.currency} resizeMode="contain" source={require('../../assets/images/rentoo.png')}/>
-                          <Image style={styles.currency} resizeMode="contain" source={require('../../assets/images/bitcoin.png')}/>
-                          <Image style={styles.currency} resizeMode="contain" source={require('../../assets/images/waves.png')}/>
-                        </View>
-                      </View>
-                    </TouchableOpacity>
-                    <View style={styles.starLayout}>
-                      <StarView score={4} style={styles.starView} />
-                      <Text style={styles.starText}>13</Text>
-                    </View>
-                </View>
-              </View>
-              <View style={[styles.interestRowContainer, {marginTop: responsiveHeight(1.48)}]}>
-                <View style={styles.interestImageContainer}>
-                  <TouchableOpacity style={styles.itemIterestBtnContainer}>
-                      <Image source={require('../../assets/images/canon-camera.png')}/>
-                      <Image style={styles.heartIcon} source={require('../../assets/images/heart.png')}/>
-                      <Text style={styles.itemText}>Black Canon Film{"\n"}Camera</Text>
-                      <View style={styles.currencyWrapper}>
-                        <Text style={styles.currencyText}>15$/day</Text>
-                        <View style={styles.currencyContainer}>
-                          <Image style={styles.currency} resizeMode="contain" source={require('../../assets/images/rentoo.png')}/>
-                          <Image style={styles.currency} resizeMode="contain" source={require('../../assets/images/bitcoin.png')}/>
-                          <Image style={styles.currency} resizeMode="contain" source={require('../../assets/images/waves.png')}/>
-                        </View>
-                      </View>
-                    </TouchableOpacity>
-                    <View style={styles.starLayout}>
-                      <StarView score={4} style={styles.starView} />
-                      <Text style={styles.starText}>13</Text>
-                    </View>
-                </View>
-                <View style={styles.interestImageContainer}>
-                  <TouchableOpacity style={styles.itemIterestBtnContainer}>
-                      <Image source={require('../../assets/images/canon-camera.png')}/>
-                      <Image style={styles.heartIcon} source={require('../../assets/images/heart.png')}/>
-                      <Text style={styles.itemText}>Black Canon Film{"\n"}Camera</Text>
-                      <View style={styles.currencyWrapper}>
-                        <Text style={styles.currencyText}>15$/day</Text>
-                        <View style={styles.currencyContainer}>
-                          <Image style={styles.currency} resizeMode="contain" source={require('../../assets/images/rentoo.png')}/>
-                          <Image style={styles.currency} resizeMode="contain" source={require('../../assets/images/bitcoin.png')}/>
-                          <Image style={styles.currency} resizeMode="contain" source={require('../../assets/images/waves.png')}/>
-                        </View>
-                      </View>
-                    </TouchableOpacity>
-                    <View style={styles.starLayout}>
-                      <StarView score={4} style={styles.starView} />
-                      <Text style={styles.starText}>13</Text>
-                    </View>
-                </View>
-              </View>
+              <Grid
+                style={{ flex: 1 }}
+                renderItem={this._renderItem}
+                data={["black", "white", "red", "green"]}
+                numColumns={2}
+              />
             </View>
           </View>
         </View>
-          
       </ScrollView>
     );
   }
 }
-
-

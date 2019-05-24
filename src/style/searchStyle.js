@@ -1,13 +1,13 @@
-import { StyleSheet, Dimensions } from 'react-native';
-import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+import { StyleSheet, Dimensions } from "react-native";
+import {
+  responsiveHeight,
+  responsiveWidth,
+  responsiveFontSize
+} from "react-native-responsive-dimensions";
 
 const styles = StyleSheet.create({
   container: {
-    marginHorizontal: responsiveWidth(5.33),
-  },
-  nameText: {
-    fontFamily: "TruenoSBd",
-    fontSize: responsiveFontSize(3.2),
+    marginHorizontal: responsiveWidth(5.33)
   },
   searchBar: {
     backgroundColor: "#F2F2F2",
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     height: responsiveHeight(4.4)
   },
   formItem: {
-    backgroundColor: "#F2F2F2", 
+    backgroundColor: "#F2F2F2",
     height: responsiveHeight(5),
     paddingLeft: 10
   },
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   },
   btnFilterText: {
     fontFamily: "SFProText-Semibold",
-    fontSize: 13,
+    fontSize: responsiveFontSize(1.5),
     color: "#FFFFFF"
   },
   btnGroupLayout: {
@@ -38,36 +38,12 @@ const styles = StyleSheet.create({
     marginRight: responsiveWidth(2.7),
     width: responsiveWidth(25.6),
     height: responsiveHeight(13.8),
-    backgroundColor: "#0055FF",
-    borderRadius: 5,
-  },
-  btnGroupLayout2: {
-    marginTop: responsiveHeight(3),
-    marginRight: responsiveWidth(2.7),
-    width: responsiveWidth(25.6),
-    height: responsiveHeight(13.8),
-    backgroundColor: "#0B49C8",
-    borderRadius: 5,
-  },
-  btnGroupLayout3: {
-    marginTop: responsiveHeight(3),
-    marginRight: responsiveWidth(2.7),
-    width: responsiveWidth(25.6),
-    height: responsiveHeight(13.8),
-    backgroundColor: "#063696",
-    borderRadius: 5,
-  },
-  btnGroupLayout4: {
-    marginTop: responsiveHeight(3),
-    width: responsiveWidth(25.6),
-    height: responsiveHeight(13.8),
-    backgroundColor: "#032464",
-    borderRadius: 5,
+    borderRadius: 5
   },
   btnContainer: {
     marginTop: responsiveHeight(1.48),
-    flexDirection: "row", 
-    justifyContent: "flex-start", 
+    flexDirection: "row",
+    justifyContent: "flex-start",
     alignItems: "center"
   },
   itemGroupImage: {
@@ -86,62 +62,60 @@ const styles = StyleSheet.create({
   interestContainer: {
     marginTop: responsiveHeight(3.94),
     flexDirection: "column",
-    justifyContent: "flex-start",
-    
+    justifyContent: "flex-start"
   },
   interestInsideContainer: {
     marginTop: responsiveHeight(2.95),
     flexDirection: "column",
-    justifyContent: "center",
-    
+    justifyContent: "center"
   },
   interestHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center",
+    alignItems: "center"
   },
   text1IterestHeader: {
     fontFamily: "SFProText-Semibold",
-    fontSize: 20,
+    fontSize: responsiveFontSize(2.5),
     color: "#000000"
   },
   text2IterestHeader: {
     fontFamily: "SFProText-Semibold",
-    fontSize: 15,
+    fontSize: responsiveFontSize(2.1),
     color: "#0055FF"
   },
   interestImageContainer: {
+    flex: 1,
     flexDirection: "column",
     justifyContent: "flex-start",
     alignItems: "flex-start",
-    width: responsiveWidth(43.2),
-    // height: responsiveHeight(30),
+    margin: 5
   },
   itemIterestBtnContainer: {
     flexDirection: "column",
     justifyContent: "flex-start",
-    alignItems: "flex-start",
+    alignItems: "flex-start"
   },
   heartIcon: {
     position: "absolute",
     right: responsiveHeight(1),
-    top: responsiveHeight(1),
+    top: responsiveHeight(1)
   },
   itemText: {
     marginTop: responsiveHeight(1),
     fontFamily: "SFProText-Semibold",
-    fontSize: 15,
+    fontSize: responsiveFontSize(1.8)
   },
   currencyText: {
     marginTop: 5,
     fontFamily: "SFProText-Semibold",
-    fontSize: 13,
+    fontSize: responsiveFontSize(1.5),
     color: "#767676"
   },
   currencyWrapper: {
     flexDirection: "row",
     justifyContent: "space-between",
-    alignSelf: "stretch",
+    alignSelf: "stretch"
   },
   currencyContainer: {
     width: responsiveWidth(10),
@@ -151,7 +125,7 @@ const styles = StyleSheet.create({
   },
   currency: {
     width: responsiveWidth(3),
-    height: responsiveHeight(3),
+    height: responsiveHeight(3)
   },
   starLayout: {
     flexDirection: "row",
@@ -161,23 +135,23 @@ const styles = StyleSheet.create({
   },
   starText: {
     fontFamily: "SFProText-Semibold",
-    fontSize: 13,
-    marginLeft: 5, 
+    fontSize: responsiveFontSize(1.5),
+    marginLeft: 5,
     color: "#FFC08A"
   },
   starView: {
-    width: 50, 
-    height: 10, 
+    width: 50,
+    height: 10
   },
   interestRowContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center",
+    alignItems: "center"
   },
   itemImage: {
     width: 162,
-    height: 122,
-  },
+    height: 122
+  }
 });
 
-  module.exports = styles;
+module.exports = styles;
