@@ -35,6 +35,7 @@ export default class NewOfferMeeting extends Component {
     let meetingPlace = { country, address, zip, city };
 
     newRentalItem["meetingPlace"] = meetingPlace;
+    newRentalItem["owner"] = window.currentUser["userID"];
 
     firebase
       .database()

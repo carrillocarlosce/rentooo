@@ -15,24 +15,61 @@ import {
   ScrollView
 } from "react-native";
 import { Action } from "react-native-router-flux";
-import styles from "../style/profileStyle";
-import {
-  responsiveWidth,
-  responsiveHeight
-} from "react-native-responsive-dimensions";
 import StarView from "react-native-star-view";
+import Grid from "react-native-grid-component";
+import firebase from "react-native-firebase";
+
+import styles from "../style/profileStyle";
+import ItemRental from "../component/ItemRental";
 
 export default class Profile extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      userRentals: []
+    };
   }
+
+  componentDidMount() {
+    this.getUserRentals();
+  }
+
+  getUserRentals() {
+    let userRentals = window.currentUser["userRentals"];
+
+    firebase
+      .database()
+      .ref("rentals/")
+      .on("value", rentalsSnapshot => {
+        let userRentals = [];
+        let i = 0;
+
+        rentalsSnapshot.forEach(function(childSnapshot) {
+          var item = childSnapshot.val();
+          item.key = i++;
+
+          if (userRentals.includes(item.rentalID)) {
+            userRentals.push(item);
+          }
+        });
+
+        this.setState({ userRentals });
+      });
+  }
+
+  getUserRentals;
+
+  _renderItem = (data, i) => <ItemRental data={data} />;
 
   render() {
     const userName =
       window.currentUser["firstname"] + " " + window.currentUser["lastname"];
 
+    const { userRentals } = this.state;
+
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <View style={styles.upperContainer}>
           <Image source={require("../../assets/images/Oval.png")} />
           <Text style={styles.name}>{userName}</Text>
@@ -54,47 +91,15 @@ export default class Profile extends Component {
 
         <ScrollView style={styles.midContainer}>
           <View style={styles.interestInsideContainer}>
-            <View style={styles.interestRowContainer}>
-              <View style={styles.interestImageContainer}>
-                <TouchableOpacity style={styles.itemIterestBtnContainer}>
-                  <Image
-                    source={require("../../assets/images/canon-camera.png")}
-                  />
-                  <Image
-                    style={styles.heartIcon}
-                    source={require("../../assets/images/red-heart.png")}
-                  />
-                  <Text style={styles.itemText}>Snowboard</Text>
-                  <View style={styles.currencyWrapper}>
-                    <Text style={styles.currencyText}>18$/day</Text>
-                    <View style={styles.currencyContainer}>
-                      <Image
-                        style={styles.currency}
-                        resizeMode="contain"
-                        source={require("../../assets/images/rentoo.png")}
-                      />
-                      <Image
-                        style={styles.currency}
-                        resizeMode="contain"
-                        source={require("../../assets/images/bitcoin.png")}
-                      />
-                      <Image
-                        style={styles.currency}
-                        resizeMode="contain"
-                        source={require("../../assets/images/waves.png")}
-                      />
-                    </View>
-                  </View>
-                </TouchableOpacity>
-                <View style={styles.starLayout}>
-                  <StarView score={4} style={styles.starView} />
-                  <Text style={styles.starText}>13</Text>
-                </View>
-              </View>
-            </View>
+            <Grid
+              style={{ marginHorizontal: -10 }}
+              renderItem={this._renderItem}
+              data={userRentals}
+              numColumns={2}
+            />
           </View>
         </ScrollView>
-      </View>
+      </ScrollView>
     );
   }
 }

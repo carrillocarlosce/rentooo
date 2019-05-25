@@ -27,6 +27,7 @@ import firebase from "react-native-firebase";
 import StarView from "react-native-star-view";
 import Rect from "../component/Rect";
 import { Searchbar } from "../component/react-native-paper";
+import ItemRental from "../component/ItemRental";
 
 import categories from "../data/categories";
 import cryptoList from "../data/cryptoList";
@@ -73,45 +74,7 @@ export default class Search extends Component {
     });
   }
 
-  _renderItem = (data, i) => (
-    <View style={styles.interestImageContainer}>
-      <TouchableOpacity
-        style={styles.itemIterestBtnContainer}
-        onPress={() => Actions.ItemDetails({ data: data })}
-      >
-        <Image
-          style={styles.itemImage}
-          source={require("../../assets/images/canon-camera.png")}
-        />
-        <Image
-          style={styles.heartIcon}
-          source={require("../../assets/images/heart.png")}
-        />
-        <Text style={styles.itemText}>{data.title}</Text>
-        <View style={styles.currencyWrapper}>
-          <Text style={styles.currencyText}>{data.dailyDollarPrice}$/day</Text>
-          <View style={styles.currencyContainer}>
-            {data["currencies"].map((item, index) => {
-              return (
-                <View style={styles.itemCurrency}>
-                  <Image
-                    key={index}
-                    style={styles.currency}
-                    resizeMode="contain"
-                    source={require("../../assets/coins/bitcoin.png")}
-                  />
-                </View>
-              );
-            })}
-          </View>
-        </View>
-      </TouchableOpacity>
-      <View style={styles.starLayout}>
-        <StarView score={4} style={styles.starView} />
-        <Text style={styles.starText}>13</Text>
-      </View>
-    </View>
-  );
+  _renderItem = (data, i) => <ItemRental data={data} />;
 
   render() {
     const { firstQuery, rentals } = this.state;
