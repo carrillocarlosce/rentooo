@@ -12,7 +12,8 @@ const styles = StyleSheet.create({
   searchBar: {
     backgroundColor: "#F2F2F2",
     marginTop: responsiveHeight(1.48),
-    height: responsiveHeight(4.4)
+    height: responsiveHeight(4.4),
+    fontSize: responsiveFontSize(1.2)
   },
   formItem: {
     backgroundColor: "#F2F2F2",

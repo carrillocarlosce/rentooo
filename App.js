@@ -35,6 +35,13 @@ import Search from "./src/container/Search";
 import Searchresult from "./src/container/Searchresult";
 
 import NewOfferTitle from "./src/container/NewOfferTitle";
+import NewOfferPhotos from "./src/container/NewOfferPhotos";
+import NewOfferCategories from "./src/container/NewOfferCategories";
+import NewOfferAvailability from "./src/container/NewOfferAvailability";
+import NewOfferPrice from "./src/container/NewOfferPrice";
+import NewOfferCurrency from "./src/container/NewOfferCurrency";
+import NewOfferMeeting from "./src/container/NewOfferMeeting";
+import NewOfferDone from "./src/container/NewOfferDone";
 
 import Dashboard from "./src/container/Dashboard";
 import Upcoming from "./src/container/Upcoming";
@@ -354,6 +361,13 @@ export default class App extends Component {
           <Scene key="Profile" component={Profile} />
 
           <Scene key="NewOfferTitle" component={NewOfferTitle} />
+          <Scene key="NewOfferPhotos" component={NewOfferPhotos} />
+          <Scene key="NewOfferCategories" component={NewOfferCategories} />
+          <Scene key="NewOfferAvailability" component={NewOfferAvailability} />
+          <Scene key="NewOfferPrice" component={NewOfferPrice} />
+          <Scene key="NewOfferCurrency" component={NewOfferCurrency} />
+          <Scene key="NewOfferMeeting" component={NewOfferMeeting} />
+          <Scene key="NewOfferDone" component={NewOfferDone} />
 
           <Scene key="dashboardContainerScreen" hideNavBar={true}>
             <Tabs

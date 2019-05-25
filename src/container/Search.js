@@ -99,9 +99,9 @@ export default class Search extends Component {
           style={styles.heartIcon}
           source={require("../../assets/images/heart.png")}
         />
-        <Text style={styles.itemText}>Black Canon Film{"\n"}Camera</Text>
+        <Text style={styles.itemText}>{data.title}</Text>
         <View style={styles.currencyWrapper}>
-          <Text style={styles.currencyText}>15$/day</Text>
+          <Text style={styles.currencyText}>{data.dailyPrice}$/day</Text>
           <View style={styles.currencyContainer}>
             <Image
               style={styles.currency}
