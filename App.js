@@ -41,7 +41,6 @@ import NewOfferAvailability from "./src/container/NewOfferAvailability";
 import NewOfferPrice from "./src/container/NewOfferPrice";
 import NewOfferCurrency from "./src/container/NewOfferCurrency";
 import NewOfferMeeting from "./src/container/NewOfferMeeting";
-import NewOfferDone from "./src/container/NewOfferDone";
 
 import Dashboard from "./src/container/Dashboard";
 import Upcoming from "./src/container/Upcoming";
@@ -443,18 +442,6 @@ export default class App extends Component {
             }
             key="NewOfferMeeting"
             component={NewOfferMeeting}
-          />
-          <Scene
-            renderLeftButton={
-              <TouchableOpacity onPress={() => Actions.pop()}>
-                <Image
-                  style={styles.leftBtn}
-                  source={require("./assets/images/back3x.png")}
-                />
-              </TouchableOpacity>
-            }
-            key="NewOfferDone"
-            component={NewOfferDone}
           />
 
           <Scene key="dashboardContainerScreen" hideNavBar={true}>

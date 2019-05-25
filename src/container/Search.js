@@ -80,7 +80,7 @@ export default class Search extends Component {
         />
         <Text style={styles.itemText}>{data.title}</Text>
         <View style={styles.currencyWrapper}>
-          <Text style={styles.currencyText}>{data.dollarDailyPrice}$/day</Text>
+          <Text style={styles.currencyText}>{data.dailyDollarPrice}$/day</Text>
           <View style={styles.currencyContainer}>
             <Image
               style={styles.currency}

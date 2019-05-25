@@ -39,7 +39,7 @@ export default class NewOfferAvailability extends Component {
 
         <TouchableOpacity
           style={styles.btnNext}
-          onPress={() => Actions.NewOfferCategories({ title, summary })}
+          onPress={() => Actions.NewOfferPrice({ title, summary })}
         >
           <Text style={styles.textBtnNext}>Next</Text>
         </TouchableOpacity>

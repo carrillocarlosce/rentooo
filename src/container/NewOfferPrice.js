@@ -7,7 +7,7 @@
 
 import React, { Component } from "react";
 import { Text, View, TextInput, TouchableOpacity, Image } from "react-native";
-import { Action } from "react-native-router-flux";
+import { Actions } from "react-native-router-flux";
 import {
   responsiveWidth,
   responsiveHeight
@@ -15,61 +15,48 @@ import {
 
 import styles from "../style/newOfferStyle";
 
-export default class NewOfferTitle extends Component {
+export default class NewOfferPrice extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      title: "",
+      price: "",
       summary: ""
     };
   }
 
   render() {
-    const { title, summary } = this.state;
+    const { price } = this.state;
 
     return (
       <View style={styles.container}>
         <View style={styles.pageHeader}>
-          <Text style={styles.pageTitle}>New offer</Text>
+          <Text style={styles.pageTitle}>Price</Text>
           <Text style={styles.pageInstructions}>
-            Write a title and a summary.
+            Set the default daily price renters will see for your offer.
           </Text>
         </View>
 
         <View style={styles.headerInput}>
-          <Text style={styles.headerInputTitle}>Title</Text>
-          <Text>{40 - title.length}</Text>
+          <Text style={styles.headerInputTitle}>$ DOLLAR AMOUNT</Text>
         </View>
 
         <TextInput
-          placeholder="Title"
-          value={title}
-          onChangeText={title => this.setState({ title })}
+          placeholder="0"
+          value={price}
+          onChangeText={price => this.setState({ price })}
           maxLength={40}
+          style={styles.priceText}
         />
 
         <View style={styles.separatorLine} />
 
-        <View style={styles.headerInput}>
-          <Text style={styles.headerInputTitle}>Summary</Text>
-          <Text>{400 - summary.length}</Text>
-        </View>
-
-        <TextInput
-          placeholder="Summary"
-          value={summary}
-          onChangeText={summary => this.setState({ summary })}
-          maxLength={400}
-          multiline={true}
-          numberOfLines={4}
-        />
-
-        <View style={styles.separatorLine} />
-
-        <View style={styles.btnNext}>
+        <TouchableOpacity
+          style={styles.btnNext}
+          onPress={() => Actions.NewOfferCurrency()}
+        >
           <Text style={styles.textBtnNext}>Next</Text>
-        </View>
+        </TouchableOpacity>
       </View>
     );
   }

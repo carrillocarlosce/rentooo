@@ -44,9 +44,12 @@ export default class NewOfferCategories extends Component {
           </Text>
         </View>
 
-        {categories.map(categoryItem => {
+        {categories.map((categoryItem, key) => {
           return (
-            <TouchableOpacity onPress={() => this.selectCategory(categoryItem)}>
+            <TouchableOpacity
+              key={key}
+              onPress={() => this.selectCategory(categoryItem)}
+            >
               <View style={styles.itemCrypto}>
                 <View style={styles.titleCryptoContainer}>
                   <View
@@ -61,7 +64,10 @@ export default class NewOfferCategories extends Component {
                       source={categoryItem.logo}
                     />
                   </View>
-                  <Text style={styles.categoryText}>{categoryItem.title}</Text>
+                  <Text style={styles.categoryText}>
+                    {categoryItem.title.charAt(0).toUpperCase() +
+                      categoryItem.title.slice(1)}
+                  </Text>
                 </View>
                 {categoryItem.isSelected ? (
                   <Image

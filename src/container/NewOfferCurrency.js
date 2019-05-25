@@ -7,15 +7,17 @@
 
 import React, { Component } from "react";
 import { Text, View, TextInput, TouchableOpacity, Image } from "react-native";
-import { Action } from "react-native-router-flux";
+import { Actions } from "react-native-router-flux";
 import {
   responsiveWidth,
   responsiveHeight
 } from "react-native-responsive-dimensions";
+import Switch from "react-native-switch-pro";
 
 import styles from "../style/newOfferStyle";
+import cryptoList from "../data/cryptoList";
 
-export default class NewOfferTitle extends Component {
+export default class NewOfferCurrency extends Component {
   constructor(props) {
     super(props);
 
@@ -31,45 +33,60 @@ export default class NewOfferTitle extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.pageHeader}>
-          <Text style={styles.pageTitle}>New offer</Text>
+          <Text style={styles.pageTitle}>Currency</Text>
           <Text style={styles.pageInstructions}>
-            Write a title and a summary.
+            Set the currencies accepted for the rental of your offer.
           </Text>
         </View>
 
-        <View style={styles.headerInput}>
-          <Text style={styles.headerInputTitle}>Title</Text>
-          <Text>{40 - title.length}</Text>
-        </View>
+        {cryptoList.map((cryptoItem, key) => {
+          return (
+            <TouchableOpacity
+              key={key}
+              onPress={() => this.selectCategory(cryptoItem)}
+            >
+              <View style={styles.itemCrypto}>
+                <View style={styles.titleCryptoContainer}>
+                  <View
+                    style={[
+                      styles.categoryLogoContainer,
+                      { backgroundColor: cryptoItem.color }
+                    ]}
+                  >
+                    <Image
+                      resizeMode="contain"
+                      style={styles.categoryLogo}
+                      source={cryptoItem.logo}
+                    />
+                  </View>
+                  <Text style={styles.categoryText}>
+                    {cryptoItem.name.charAt(0).toUpperCase() +
+                      cryptoItem.name.slice(1)}
+                  </Text>
+                </View>
+                <Switch
+                  width={50}
+                  height={30}
+                  style={{ paddingHorizontal: 2 }}
+                  circleStyle={{ height: 25, width: 25 }}
+                  backgroundInactive="#A3A3BD"
+                  backgroundActive="#0055FF"
+                  onSyncPress={value => {
+                    console.log(value);
+                  }}
+                />
+              </View>
+              <View style={styles.categoriesSeparatorLine} />
+            </TouchableOpacity>
+          );
+        })}
 
-        <TextInput
-          placeholder="Title"
-          value={title}
-          onChangeText={title => this.setState({ title })}
-          maxLength={40}
-        />
-
-        <View style={styles.separatorLine} />
-
-        <View style={styles.headerInput}>
-          <Text style={styles.headerInputTitle}>Summary</Text>
-          <Text>{400 - summary.length}</Text>
-        </View>
-
-        <TextInput
-          placeholder="Summary"
-          value={summary}
-          onChangeText={summary => this.setState({ summary })}
-          maxLength={400}
-          multiline={true}
-          numberOfLines={4}
-        />
-
-        <View style={styles.separatorLine} />
-
-        <View style={styles.btnNext}>
+        <TouchableOpacity
+          style={styles.btnNext}
+          onPress={() => Actions.NewOfferMeeting()}
+        >
           <Text style={styles.textBtnNext}>Next</Text>
-        </View>
+        </TouchableOpacity>
       </View>
     );
   }

@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     marginBottom: responsiveHeight(2)
   },
   pageInstructions: {
-    fontSize: responsiveFontSize(2.3)
+    fontSize: responsiveFontSize(2)
   },
   headerInput: {
     flexDirection: "row",
@@ -31,13 +31,15 @@ const styles = StyleSheet.create({
   headerInputTitle: {
     color: "rgba(0,0,0,0.6)"
   },
+  priceText: {
+    fontSize: responsiveFontSize(5)
+  },
   separatorLine: {
     width: "100%",
     height: 1,
     backgroundColor: "rgba(0,0,0,0.1)",
-    marginVertical: responsiveHeight(4)
+    marginVertical: responsiveHeight(2.5)
   },
-
   itemCrypto: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -50,8 +52,8 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   categoryLogoContainer: {
-    height: responsiveWidth(10),
-    width: responsiveWidth(10),
+    height: responsiveWidth(8),
+    width: responsiveWidth(8),
     borderRadius: 200,
     marginRight: 20,
     justifyContent: "center",
@@ -72,6 +74,22 @@ const styles = StyleSheet.create({
     backgroundColor: "#F5F5FD",
     marginVertical: responsiveHeight(2)
   },
+  btnCurrentLocation: {
+    flexDirection: "row",
+    width: "100%",
+    height: responsiveHeight(6),
+    borderRadius: 5,
+    backgroundColor: "#A3A3BD",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: responsiveHeight(3)
+  },
+  locationIcon: { height: 23, width: 23, marginRight: 15 },
+  textBtnCurrentLocation: {
+    fontFamily: "SFProText-Semibold",
+    color: "#fff",
+    fontSize: responsiveFontSize(2)
+  },
   btnNext: {
     position: "absolute",
     bottom: responsiveHeight(5),
@@ -84,6 +102,7 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   textBtnNext: {
+    fontFamily: "SFProText-Semibold",
     color: "#fff",
     fontSize: responsiveFontSize(2.4)
   }

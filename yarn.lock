@@ -5479,12 +5479,12 @@ react-native-status-bar-height@^2.2.0:
   resolved "https://registry.yarnpkg.com/react-native-status-bar-height/-/react-native-status-bar-height-2.3.1.tgz#b92ce9112c2367290847ac11284d9d84a6330169"
   integrity sha512-m9nGKYfFn6ljF1abafzF5cFaD9JCzXwj7kNE9CuF+g0TgtItH70eY2uHaCV9moENTftqd5XIS3Cx0mf4WfistA==
 
-react-native-super-grid@^3.0.4:
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/react-native-super-grid/-/react-native-super-grid-3.0.4.tgz#bc0888f68d0960557dfe445970f96e36a0d61a1d"
-  integrity sha512-aoK71FGP5sFcLujuODYkAqyFDAZZRpvTeEwwaoXsc0JENhExEG7rGg65T5ELqyykiDOLBihuCLKasK5gLb0WtQ==
+react-native-switch-pro@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/react-native-switch-pro/-/react-native-switch-pro-1.0.4.tgz#9007628e4b8721b44fa0d6ecd07013f6afd0031a"
+  integrity sha512-HCuvKVrCbN/wO6rFfwCS9ds4CbqldUMdtINosbVVrR72Zf9YiG/rLrsDC/8ezJSc1Q2P03vCF89odaS81bJyow==
   dependencies:
-    prop-types "^15.6.0"
+    prop-types "^15.5.10"
 
 react-native-tab-view@^0.0.77:
   version "0.0.77"
