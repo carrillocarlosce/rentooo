@@ -360,14 +360,102 @@ export default class App extends Component {
           />
           <Scene key="Profile" component={Profile} />
 
-          <Scene key="NewOfferTitle" component={NewOfferTitle} />
-          <Scene key="NewOfferPhotos" component={NewOfferPhotos} />
-          <Scene key="NewOfferCategories" component={NewOfferCategories} />
-          <Scene key="NewOfferAvailability" component={NewOfferAvailability} />
-          <Scene key="NewOfferPrice" component={NewOfferPrice} />
-          <Scene key="NewOfferCurrency" component={NewOfferCurrency} />
-          <Scene key="NewOfferMeeting" component={NewOfferMeeting} />
-          <Scene key="NewOfferDone" component={NewOfferDone} />
+          <Scene
+            renderLeftButton={
+              <TouchableOpacity onPress={() => Actions.pop()}>
+                <Image
+                  style={styles.leftBtn}
+                  source={require("./assets/images/back3x.png")}
+                />
+              </TouchableOpacity>
+            }
+            key="NewOfferTitle"
+            component={NewOfferTitle}
+          />
+          <Scene
+            renderLeftButton={
+              <TouchableOpacity onPress={() => Actions.pop()}>
+                <Image
+                  style={styles.leftBtn}
+                  source={require("./assets/images/back3x.png")}
+                />
+              </TouchableOpacity>
+            }
+            key="NewOfferPhotos"
+            component={NewOfferPhotos}
+          />
+          <Scene
+            renderLeftButton={
+              <TouchableOpacity onPress={() => Actions.pop()}>
+                <Image
+                  style={styles.leftBtn}
+                  source={require("./assets/images/back3x.png")}
+                />
+              </TouchableOpacity>
+            }
+            key="NewOfferCategories"
+            component={NewOfferCategories}
+          />
+          <Scene
+            renderLeftButton={
+              <TouchableOpacity onPress={() => Actions.pop()}>
+                <Image
+                  style={styles.leftBtn}
+                  source={require("./assets/images/back3x.png")}
+                />
+              </TouchableOpacity>
+            }
+            key="NewOfferAvailability"
+            component={NewOfferAvailability}
+          />
+          <Scene
+            renderLeftButton={
+              <TouchableOpacity onPress={() => Actions.pop()}>
+                <Image
+                  style={styles.leftBtn}
+                  source={require("./assets/images/back3x.png")}
+                />
+              </TouchableOpacity>
+            }
+            key="NewOfferPrice"
+            component={NewOfferPrice}
+          />
+          <Scene
+            renderLeftButton={
+              <TouchableOpacity onPress={() => Actions.pop()}>
+                <Image
+                  style={styles.leftBtn}
+                  source={require("./assets/images/back3x.png")}
+                />
+              </TouchableOpacity>
+            }
+            key="NewOfferCurrency"
+            component={NewOfferCurrency}
+          />
+          <Scene
+            renderLeftButton={
+              <TouchableOpacity onPress={() => Actions.pop()}>
+                <Image
+                  style={styles.leftBtn}
+                  source={require("./assets/images/back3x.png")}
+                />
+              </TouchableOpacity>
+            }
+            key="NewOfferMeeting"
+            component={NewOfferMeeting}
+          />
+          <Scene
+            renderLeftButton={
+              <TouchableOpacity onPress={() => Actions.pop()}>
+                <Image
+                  style={styles.leftBtn}
+                  source={require("./assets/images/back3x.png")}
+                />
+              </TouchableOpacity>
+            }
+            key="NewOfferDone"
+            component={NewOfferDone}
+          />
 
           <Scene key="dashboardContainerScreen" hideNavBar={true}>
             <Tabs

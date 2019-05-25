@@ -37,6 +37,41 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0,0,0,0.1)",
     marginVertical: responsiveHeight(4)
   },
+
+  itemCrypto: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: "100%"
+  },
+  titleCryptoContainer: {
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center"
+  },
+  categoryLogoContainer: {
+    height: responsiveWidth(10),
+    width: responsiveWidth(10),
+    borderRadius: 200,
+    marginRight: 20,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  categoryLogo: {
+    height: "50%",
+    width: "50%"
+  },
+  categoryText: {
+    fontSize: responsiveFontSize(2)
+  },
+  isCheckedCrypto: { height: responsiveWidth(7), width: responsiveWidth(7) },
+  categoriesSeparatorLine: {
+    alignSelf: "flex-end",
+    width: "80%",
+    height: 1,
+    backgroundColor: "#F5F5FD",
+    marginVertical: responsiveHeight(2)
+  },
   btnNext: {
     position: "absolute",
     bottom: responsiveHeight(5),

@@ -28,28 +28,7 @@ import StarView from "react-native-star-view";
 import Rect from "../component/Rect";
 import { Searchbar } from "../component/react-native-paper";
 
-const categories = [
-  {
-    title: "Home",
-    logo: require("../../assets/images/home.png"),
-    color: "#0055FF"
-  },
-  {
-    title: "Tech",
-    logo: require("../../assets/images/rocket.png"),
-    color: "#0B49C8"
-  },
-  {
-    title: "Sport",
-    logo: require("../../assets/images/sport.png"),
-    color: "#063696"
-  },
-  {
-    title: "Image\n& Video",
-    logo: require("../../assets/images/camera.png"),
-    color: "#032464"
-  }
-];
+import categories from "../data/categories";
 
 export default class Search extends Component {
   constructor(props) {
@@ -101,7 +80,7 @@ export default class Search extends Component {
         />
         <Text style={styles.itemText}>{data.title}</Text>
         <View style={styles.currencyWrapper}>
-          <Text style={styles.currencyText}>{data.dailyPrice}$/day</Text>
+          <Text style={styles.currencyText}>{data.dollarDailyPrice}$/day</Text>
           <View style={styles.currencyContainer}>
             <Image
               style={styles.currency}
@@ -212,7 +191,7 @@ export default class Search extends Component {
               <Grid
                 style={{ flex: 1 }}
                 renderItem={this._renderItem}
-                data={["black", "white", "red", "green"]}
+                data={rentals}
                 numColumns={2}
               />
             </View>

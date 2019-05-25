@@ -7,7 +7,7 @@
 
 import React, { Component } from "react";
 import { Text, View, TextInput, TouchableOpacity, Image } from "react-native";
-import { Action } from "react-native-router-flux";
+import { Actions } from "react-native-router-flux";
 import {
   responsiveWidth,
   responsiveHeight
@@ -15,7 +15,7 @@ import {
 
 import styles from "../style/newOfferStyle";
 
-export default class NewOfferTitle extends Component {
+export default class NewOfferPhotos extends Component {
   constructor(props) {
     super(props);
 
@@ -26,50 +26,23 @@ export default class NewOfferTitle extends Component {
   }
 
   render() {
-    const { title, summary } = this.state;
+    const { title, summary } = this.props;
 
     return (
       <View style={styles.container}>
         <View style={styles.pageHeader}>
-          <Text style={styles.pageTitle}>New offer</Text>
+          <Text style={styles.pageTitle}>Add photos</Text>
           <Text style={styles.pageInstructions}>
-            Write a title and a summary.
+            Highlight your offer with one, two or three photos.
           </Text>
         </View>
 
-        <View style={styles.headerInput}>
-          <Text style={styles.headerInputTitle}>Title</Text>
-          <Text>{40 - title.length}</Text>
-        </View>
-
-        <TextInput
-          placeholder="Title"
-          value={title}
-          onChangeText={title => this.setState({ title })}
-          maxLength={40}
-        />
-
-        <View style={styles.separatorLine} />
-
-        <View style={styles.headerInput}>
-          <Text style={styles.headerInputTitle}>Summary</Text>
-          <Text>{400 - summary.length}</Text>
-        </View>
-
-        <TextInput
-          placeholder="Summary"
-          value={summary}
-          onChangeText={summary => this.setState({ summary })}
-          maxLength={400}
-          multiline={true}
-          numberOfLines={4}
-        />
-
-        <View style={styles.separatorLine} />
-
-        <View style={styles.btnNext}>
+        <TouchableOpacity
+          style={styles.btnNext}
+          onPress={() => Actions.NewOfferCategories({ title, summary })}
+        >
           <Text style={styles.textBtnNext}>Next</Text>
-        </View>
+        </TouchableOpacity>
       </View>
     );
   }

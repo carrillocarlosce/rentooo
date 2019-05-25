@@ -7,7 +7,7 @@
 
 import React, { Component } from "react";
 import { Text, View, TextInput, TouchableOpacity, Image } from "react-native";
-import { Action } from "react-native-router-flux";
+import { Actions } from "react-native-router-flux";
 import {
   responsiveWidth,
   responsiveHeight
@@ -67,9 +67,12 @@ export default class NewOfferTitle extends Component {
 
         <View style={styles.separatorLine} />
 
-        <View style={styles.btnNext}>
+        <TouchableOpacity
+          style={styles.btnNext}
+          onPress={() => Actions.NewOfferPhotos({ title, summary })}
+        >
           <Text style={styles.textBtnNext}>Next</Text>
-        </View>
+        </TouchableOpacity>
       </View>
     );
   }
