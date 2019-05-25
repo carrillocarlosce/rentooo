@@ -51,7 +51,12 @@ export default class Wallets extends Component {
   _renderItem = (data, i) => (
     <TouchableOpacity
       style={[styles.walletItemLayout, { backgroundColor: data.color }]}
-      onPress={() => Actions.Yourbalance()}
+      onPress={() =>
+        Actions.Yourbalance({
+          data: data,
+          balance: this.state.wallet[data.name]
+        })
+      }
     >
       <View style={styles.itemCrypto}>
         <Image

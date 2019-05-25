@@ -29,6 +29,7 @@ import Rect from "../component/Rect";
 import { Searchbar } from "../component/react-native-paper";
 
 import categories from "../data/categories";
+import cryptoList from "../data/cryptoList";
 
 export default class Search extends Component {
   constructor(props) {
@@ -63,11 +64,20 @@ export default class Search extends Component {
       });
   }
 
+  getCorrespondingLogo(crypto) {
+    cryptoList.map((item, key) => {
+      if (crypto == item.name) {
+        console.log(item.logo);
+        return item.logo;
+      }
+    });
+  }
+
   _renderItem = (data, i) => (
     <View style={styles.interestImageContainer}>
       <TouchableOpacity
         style={styles.itemIterestBtnContainer}
-        onPress={() => Actions.ItemDetails()}
+        onPress={() => Actions.ItemDetails({ data: data })}
       >
         <Image
           style={styles.itemImage}
@@ -81,21 +91,18 @@ export default class Search extends Component {
         <View style={styles.currencyWrapper}>
           <Text style={styles.currencyText}>{data.dailyDollarPrice}$/day</Text>
           <View style={styles.currencyContainer}>
-            <Image
-              style={styles.currency}
-              resizeMode="contain"
-              source={require("../../assets/images/rentoo.png")}
-            />
-            <Image
-              style={styles.currency}
-              resizeMode="contain"
-              source={require("../../assets/images/bitcoin.png")}
-            />
-            <Image
-              style={styles.currency}
-              resizeMode="contain"
-              source={require("../../assets/images/waves.png")}
-            />
+            {data["currencies"].map((item, index) => {
+              return (
+                <View style={styles.itemCurrency}>
+                  <Image
+                    key={index}
+                    style={styles.currency}
+                    resizeMode="contain"
+                    source={require("../../assets/coins/bitcoin.png")}
+                  />
+                </View>
+              );
+            })}
           </View>
         </View>
       </TouchableOpacity>
@@ -155,7 +162,10 @@ export default class Search extends Component {
                     style={styles.itemGroupImage}
                     source={itemCategory.logo}
                   />
-                  <Text style={styles.itemGroupText}>{itemCategory.title}</Text>
+                  <Text style={styles.itemGroupText}>
+                    {itemCategory.title.charAt(0).toUpperCase() +
+                      itemCategory.title.slice(1)}
+                  </Text>
                 </TouchableOpacity>
               );
             })}

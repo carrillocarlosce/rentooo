@@ -40,8 +40,17 @@ export default class NewOfferMeeting extends Component {
       .database()
       .ref("rentals")
       .push(newRentalItem)
-      .then(userData => {
-        Actions.reset("dashboardContainerScreen");
+      .then(newRentalData => {
+        firebase
+          .database()
+          .ref("users/" + window.currentUser["userID"] + "/userRentals")
+          .push(newRentalData.key)
+          .then(result => {
+            Actions.reset("dashboardContainerScreen");
+          })
+          .catch(err => {
+            console.log("error===", err);
+          });
       })
       .catch(err => {
         console.log("error===", err);

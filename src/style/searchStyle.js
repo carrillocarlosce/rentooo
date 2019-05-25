@@ -123,14 +123,23 @@ const styles = StyleSheet.create({
     alignSelf: "stretch"
   },
   currencyContainer: {
-    width: responsiveWidth(10),
+    width: "50%",
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "flex-end",
     alignItems: "center"
   },
-  currency: {
+  itemCurrency: {
+    backgroundColor: "blue",
+    height: responsiveWidth(3),
     width: responsiveWidth(3),
-    height: responsiveHeight(3)
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 120,
+    marginLeft: responsiveWidth(0.5)
+  },
+  currency: {
+    width: "50%",
+    height: "50%"
   },
   starLayout: {
     flexDirection: "row",
