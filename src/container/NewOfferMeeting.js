@@ -12,6 +12,7 @@ import {
   responsiveWidth,
   responsiveHeight
 } from "react-native-responsive-dimensions";
+import firebase from "react-native-firebase";
 
 import styles from "../style/newOfferStyle";
 
@@ -29,10 +30,22 @@ export default class NewOfferMeeting extends Component {
 
   onDoneNewRentalItem() {
     const { newRentalItem } = this.props;
+    const { country, address, zip, city } = this.state;
 
-    console.log(newRentalItem);
+    let meetingPlace = { country, address, zip, city };
 
-    Actions.reset("dashboardContainerScreen");
+    newRentalItem["meetingPlace"] = meetingPlace;
+
+    firebase
+      .database()
+      .ref("rentals")
+      .push(newRentalItem)
+      .then(userData => {
+        Actions.reset("dashboardContainerScreen");
+      })
+      .catch(err => {
+        console.log("error===", err);
+      });
   }
 
   render() {

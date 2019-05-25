@@ -30,16 +30,27 @@ export default class NewOfferCurrency extends Component {
     const { cryptos } = this.state;
 
     cryptos.map(item => {
-      item == cryptoItem ? (item.isSelected = true) : (item.isSelected = false);
+      if (item == cryptoItem) {
+        item.isSelected = true;
+      }
     });
-    this.setState({ cryptos });
 
-    console.log(cryptos);
+    this.setState({ cryptos });
   }
 
   nextStep() {
     const { newRentalItem } = this.props;
     const { cryptos } = this.state;
+
+    let selectedCryptos = [];
+
+    cryptos.map(item => {
+      if (item.isSelected) {
+        selectedCryptos.push(item.name);
+      }
+    });
+
+    newRentalItem["currencies"] = selectedCryptos;
 
     Actions.NewOfferMeeting({ newRentalItem: newRentalItem });
   }
@@ -58,10 +69,7 @@ export default class NewOfferCurrency extends Component {
 
         {cryptos.map((cryptoItem, key) => {
           return (
-            <TouchableOpacity
-              key={key}
-              onPress={() => this.selectCategory(cryptoItem)}
-            >
+            <View>
               <View style={styles.itemCrypto}>
                 <View style={styles.titleCryptoContainer}>
                   <View
@@ -94,7 +102,7 @@ export default class NewOfferCurrency extends Component {
                 />
               </View>
               <View style={styles.categoriesSeparatorLine} />
-            </TouchableOpacity>
+            </View>
           );
         })}
 

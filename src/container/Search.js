@@ -45,10 +45,9 @@ export default class Search extends Component {
   }
 
   getRentals() {
-    console.log("salut");
     firebase
       .database()
-      .ref("rents/")
+      .ref("rentals/")
       .on("value", rentalsSnapshot => {
         let rentals = [];
         let i = 0;
@@ -109,8 +108,6 @@ export default class Search extends Component {
 
   render() {
     const { firstQuery, rentals } = this.state;
-
-    console.log(rentals);
 
     return (
       <ScrollView style={{ flex: 1, backgroundColor: "#ffffff" }}>
