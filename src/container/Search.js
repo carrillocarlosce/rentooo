@@ -57,20 +57,31 @@ export default class Search extends Component {
     this.state = {
       searchString: "",
       firstQuery: "",
-      rents: []
+      rentals: []
     };
   }
 
-  componentDidMount() {
-    this.getRents();
+  componentWillMount() {
+    this.getRentals();
   }
 
-  getRents() {
+  getRentals() {
+    console.log("salut");
     firebase
       .database()
-      .ref("users/rents")
-      .on("value", rents => {
-        let wallet = [];
+      .ref("rents/")
+      .on("value", rentalsSnapshot => {
+        let rentals = [];
+        let i = 0;
+
+        rentalsSnapshot.forEach(function(childSnapshot) {
+          var item = childSnapshot.val();
+          item.key = i++;
+
+          rentals.push(item);
+        });
+
+        this.setState({ rentals });
       });
   }
 
@@ -118,7 +129,9 @@ export default class Search extends Component {
   );
 
   render() {
-    const { firstQuery } = this.state;
+    const { firstQuery, rentals } = this.state;
+
+    console.log(rentals);
 
     return (
       <ScrollView style={{ flex: 1, backgroundColor: "#ffffff" }}>
@@ -149,9 +162,10 @@ export default class Search extends Component {
           </View>
 
           <ScrollView showsHorizontalScrollIndicator={false} horizontal>
-            {categories.map(itemCategory => {
+            {categories.map((itemCategory, key) => {
               return (
                 <TouchableOpacity
+                  key={key}
                   style={[
                     styles.btnGroupLayout,
                     { backgroundColor: itemCategory.color }
@@ -180,7 +194,7 @@ export default class Search extends Component {
             <View style={styles.interestInsideContainer}>
               <Grid
                 renderItem={this._renderItem}
-                data={["black", "white", "red", "green"]}
+                data={rentals}
                 numColumns={2}
               />
             </View>

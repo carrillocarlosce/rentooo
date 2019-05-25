@@ -27,7 +27,7 @@ export default class Code extends Component {
       email: email,
       firstname: firstName,
       lastname: lastName,
-      number: number
+      phoneNumber: number
     };
 
     firebase

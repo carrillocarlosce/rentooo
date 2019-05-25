@@ -5,32 +5,51 @@
  * @flow
  */
 
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, Image, TouchableOpacity, View} from 'react-native';
-import { Router, Scene, ActionConst, Actions, Tabs } from 'react-native-router-flux';
-import Welcome from './src/container/Welcome';
-import Login from './src/container/Login';
-import Forgot from './src/container/Forgot';
-import Signup from './src/container/Signup';
-import Name from './src/container/Name';
-import Number from './src/container/Number';
-import Code from './src/container/Code';
-import Search from './src/container/Search';
-import Searchresult from './src/container/Searchresult';
-import Dashboard from './src/container/Dashboard';
-import Upcoming from './src/container/Upcoming';
-import Past from './src/container/Past';
-import Watchlist from './src/container/Watchlist';
-import Myoffers from './src/container/Myoffers';
-import Wallets from './src/container/Wallets';
+import React, { Component } from "react";
+import {
+  Platform,
+  StyleSheet,
+  Text,
+  Image,
+  TouchableOpacity,
+  View
+} from "react-native";
+import {
+  Router,
+  Scene,
+  ActionConst,
+  Actions,
+  Tabs
+} from "react-native-router-flux";
+
+import Welcome from "./src/container/Welcome";
+import Login from "./src/container/Login";
+import Forgot from "./src/container/Forgot";
+
+import Signup from "./src/container/Signup";
+import Name from "./src/container/Name";
+import Number from "./src/container/Number";
+import Code from "./src/container/Code";
+
+import Search from "./src/container/Search";
+import Searchresult from "./src/container/Searchresult";
+
+import NewOfferTitle from "./src/container/NewOfferTitle";
+
+import Dashboard from "./src/container/Dashboard";
+import Upcoming from "./src/container/Upcoming";
+import Past from "./src/container/Past";
+import Watchlist from "./src/container/Watchlist";
+import Myoffers from "./src/container/Myoffers";
+import Wallets from "./src/container/Wallets";
 import AddWallet from "./src/container/AddWallet";
-import Yourbalance from './src/container/Yourbalance';
-import Inbox from './src/container/Inbox';
-import Inboxdetails from './src/container/Inboxdetails';
-import Profiledetails from './src/container/Profiledetails';
-import Profile from './src/container/Profile';
-import MapSearch from './src/container/MapSearch';
-import ItemDetails from './src/container/ItemDetails';
+import Yourbalance from "./src/container/Yourbalance";
+import Inbox from "./src/container/Inbox";
+import Inboxdetails from "./src/container/Inboxdetails";
+import Profiledetails from "./src/container/Profiledetails";
+import Profile from "./src/container/Profile";
+import MapSearch from "./src/container/MapSearch";
+import ItemDetails from "./src/container/ItemDetails";
 
 import {
   responsiveHeight,
@@ -284,13 +303,14 @@ export default class App extends Component {
           <Scene key="Watchlist" component={Watchlist} />
           <Scene key="Myoffers" component={Myoffers} />
           <Scene key="Wallets" component={Wallets} />
-          <Scene key="MapSearch" component={MapSearch} hideNavBar={true}/>
-          <Scene key="ItemDetails" component={ItemDetails} hideNavBar={true}/>
-          <Scene key="Yourbalance" 
-            component={Yourbalance} 
-            title="Your balance" 
-            titleStyle={{color: "white"}} 
-            navigationBarStyle={{ backgroundColor: '#0055FF'}}
+          <Scene key="MapSearch" component={MapSearch} hideNavBar={true} />
+          <Scene key="ItemDetails" component={ItemDetails} hideNavBar={true} />
+          <Scene
+            key="Yourbalance"
+            component={Yourbalance}
+            title="Your balance"
+            titleStyle={{ color: "white" }}
+            navigationBarStyle={{ backgroundColor: "#0055FF" }}
             renderLeftButton={
               <TouchableOpacity onPress={() => Actions.pop()}>
                 <Image
@@ -333,6 +353,8 @@ export default class App extends Component {
           />
           <Scene key="Profile" component={Profile} />
 
+          <Scene key="NewOfferTitle" component={NewOfferTitle} />
+
           <Scene key="dashboardContainerScreen" hideNavBar={true}>
             <Tabs
               key="dashboardContainerTabs"
@@ -348,10 +370,12 @@ export default class App extends Component {
                 hideNavBar={false}
                 title=""
                 renderRightButton={() => (
-                  <Image
-                    style={styles.plusBtn}
-                    source={require("./assets/images/plus.png")}
-                  />
+                  <TouchableOpacity onPress={() => Actions.NewOfferTitle()}>
+                    <Image
+                      style={styles.plusBtn}
+                      source={require("./assets/images/plus.png")}
+                    />
+                  </TouchableOpacity>
                 )}
                 icon={TabbarIcon1}
               />

@@ -76,8 +76,6 @@ export default class Wallets extends Component {
       .database()
       .ref("users/" + window.currentUser["userID"] + "/wallet")
       .on("value", walletSnapshot => {
-        let wallet = [];
-
         this.setState({ wallet: walletSnapshot.val() });
       });
   }
