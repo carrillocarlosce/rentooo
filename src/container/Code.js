@@ -65,6 +65,7 @@ export default class Code extends Component {
 
           <View style={styles.formLayout}>
             <TextInput
+              keyboardType="numeric"
               style={styles.formItem}
               placeholder="Code"
               placeholderTextColor="#979797"

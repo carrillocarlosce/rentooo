@@ -20,9 +20,17 @@ export default class NewOfferPrice extends Component {
     super(props);
 
     this.state = {
-      price: "",
-      summary: ""
+      price: ""
     };
+  }
+
+  nextStep() {
+    const { newRentalItem } = this.props;
+    const { price } = this.state;
+
+    newRentalItem["dailyDollarPrice"] = price;
+
+    Actions.NewOfferCurrency({ newRentalItem: newRentalItem });
   }
 
   render() {
@@ -42,6 +50,7 @@ export default class NewOfferPrice extends Component {
         </View>
 
         <TextInput
+          keyboardType="numeric"
           placeholder="0"
           value={price}
           onChangeText={price => this.setState({ price })}
@@ -53,7 +62,7 @@ export default class NewOfferPrice extends Component {
 
         <TouchableOpacity
           style={styles.btnNext}
-          onPress={() => Actions.NewOfferCurrency()}
+          onPress={() => this.nextStep()}
         >
           <Text style={styles.textBtnNext}>Next</Text>
         </TouchableOpacity>

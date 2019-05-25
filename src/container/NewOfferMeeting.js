@@ -27,6 +27,14 @@ export default class NewOfferMeeting extends Component {
     };
   }
 
+  onDoneNewRentalItem() {
+    const { newRentalItem } = this.props;
+
+    console.log(newRentalItem);
+
+    Actions.reset("dashboardContainerScreen");
+  }
+
   render() {
     const { country, address, zip, city } = this.state;
 
@@ -105,7 +113,7 @@ export default class NewOfferMeeting extends Component {
 
         <TouchableOpacity
           style={styles.btnNext}
-          onPress={() => Actions.reset("dashboardContainerScreen")}
+          onPress={() => this.onDoneNewRentalItem()}
         >
           <Text style={styles.textBtnNext}>Done</Text>
         </TouchableOpacity>

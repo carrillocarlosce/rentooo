@@ -25,6 +25,12 @@ export default class NewOfferTitle extends Component {
     };
   }
 
+  nextStep() {
+    const { title, summary } = this.state;
+    const newRentalItem = { title: title, summary: summary };
+    Actions.NewOfferPhotos({ newRentalItem: newRentalItem });
+  }
+
   render() {
     const { title, summary } = this.state;
 
@@ -69,7 +75,7 @@ export default class NewOfferTitle extends Component {
 
         <TouchableOpacity
           style={styles.btnNext}
-          onPress={() => Actions.NewOfferPhotos({ title, summary })}
+          onPress={() => this.nextStep()}
         >
           <Text style={styles.textBtnNext}>Next</Text>
         </TouchableOpacity>

@@ -1,6 +1,6 @@
 /**
  * Item Details Screen
- * 
+ *
  * @format
  * @flow
  */
@@ -45,14 +45,14 @@ const itemList = [
     dayRent: "15$/day",
     startCount: 4
   },
-  
+
 ];
 
 
 export default class ItemDetails extends Component {
 	constructor(props) {
     super(props);
- 
+
     this.state = {
       position: 1,
       interval: null,
@@ -67,7 +67,7 @@ export default class ItemDetails extends Component {
       ],
     };
   }
- 
+
   componentWillMount() {
     this.setState({
       interval: setInterval(() => {
@@ -77,20 +77,15 @@ export default class ItemDetails extends Component {
       }, 2000)
     });
   }
- 
+
   componentWillUnmount() {
     clearInterval(this.state.interval);
   }
- 
+
   render() {
     return (
 			<View style={styles.container}>
-				<Slideshow
-				style={{height: "50%", width: "100%"}} 
-				dataSource={this.state.dataSource}
-				position={this.state.position}
-				onPositionChanged={position => this.setState({ position })} />
-		
+
 			<View style={styles.navContainer}>
 				<TouchableOpacity onPress={() => Actions.pop()}>
 					<Image
@@ -106,7 +101,14 @@ export default class ItemDetails extends Component {
 					/>
 				</TouchableOpacity>
 			</View>
+
 			<ScrollView style={styles.scrollViewContainer}>
+        <Slideshow
+        style={styles.slideshow}
+        dataSource={this.state.dataSource}
+        position={this.state.position}
+        onPositionChanged={position => this.setState({ position })} />
+
 				<Text style={styles.title}>DJI Phantom 3 Pro</Text>
 				<View style={styles.threeContainer}>
 					<View style={styles.starContainer}>
@@ -147,7 +149,7 @@ export default class ItemDetails extends Component {
 						showsUserLocation={true}
 					/>
 				</View>
-				
+
 				<View style={styles.kudoConainer}>
 					<View style={styles.leftKudoContainer}>
 						<Image source={require('../../assets/images/profile.png')}/>
@@ -157,9 +159,9 @@ export default class ItemDetails extends Component {
 						<Text style={styles.rightKudoText}>See 6 others</Text>
 					</TouchableOpacity>
 				</View>
-				
+
 				<View>
-						<Text style={styles.interestText}>It might iterest you</Text>
+						<Text style={styles.interestText}>It might interest you</Text>
 						<View style={styles.interestInsideContainer}>
               <View style={styles.interestRowContainer}>
                 <View style={styles.interestImageContainer}>
@@ -244,7 +246,7 @@ export default class ItemDetails extends Component {
             </View>
 				</View>
 			</ScrollView>
-			
+
 
 			<View style={styles.bottomAbContainer}>
 				<View>
@@ -264,5 +266,3 @@ export default class ItemDetails extends Component {
     );
   }
 }
-
-

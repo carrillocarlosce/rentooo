@@ -140,7 +140,11 @@ export default class Search extends Component {
             <Text style={styles.text1IterestHeader}>Categories</Text>
           </View>
 
-          <ScrollView showsHorizontalScrollIndicator={false} horizontal>
+          <ScrollView
+            style={styles.categoriesContainer}
+            showsHorizontalScrollIndicator={false}
+            horizontal
+          >
             {categories.map((itemCategory, key) => {
               return (
                 <TouchableOpacity
@@ -172,6 +176,7 @@ export default class Search extends Component {
 
             <View style={styles.interestInsideContainer}>
               <Grid
+                style={{ marginHorizontal: -5 }}
                 renderItem={this._renderItem}
                 data={rentals}
                 numColumns={2}
@@ -189,7 +194,7 @@ export default class Search extends Component {
 
             <View style={styles.interestInsideContainer}>
               <Grid
-                style={{ flex: 1 }}
+                style={{ marginHorizontal: -5 }}
                 renderItem={this._renderItem}
                 data={rentals}
                 numColumns={2}

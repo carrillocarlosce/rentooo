@@ -25,6 +25,12 @@ export default class NewOfferPhotos extends Component {
     };
   }
 
+  nextStep() {
+    const { newRentalItem } = this.props;
+    console.log(newRentalItem);
+    Actions.NewOfferCategories({ newRentalItem: newRentalItem });
+  }
+
   render() {
     const { title, summary } = this.props;
 
@@ -39,7 +45,7 @@ export default class NewOfferPhotos extends Component {
 
         <TouchableOpacity
           style={styles.btnNext}
-          onPress={() => Actions.NewOfferCategories({ title, summary })}
+          onPress={() => this.nextStep()}
         >
           <Text style={styles.textBtnNext}>Next</Text>
         </TouchableOpacity>

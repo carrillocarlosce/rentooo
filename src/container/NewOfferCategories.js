@@ -32,6 +32,11 @@ export default class NewOfferCategories extends Component {
     this.setState({ categories });
   }
 
+  nextStep() {
+    const { newRentalItem } = this.props;
+    Actions.NewOfferAvailability({ newRentalItem: newRentalItem });
+  }
+
   render() {
     const { title, summary } = this.props;
 
@@ -90,7 +95,7 @@ export default class NewOfferCategories extends Component {
 
         <TouchableOpacity
           style={styles.btnNext}
-          onPress={() => Actions.NewOfferAvailability({ title, summary })}
+          onPress={() => this.nextStep()}
         >
           <Text style={styles.textBtnNext}>Next</Text>
         </TouchableOpacity>

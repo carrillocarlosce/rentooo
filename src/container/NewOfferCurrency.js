@@ -22,13 +22,30 @@ export default class NewOfferCurrency extends Component {
     super(props);
 
     this.state = {
-      title: "",
-      summary: ""
+      cryptos: cryptoList
     };
   }
 
+  switchOnCrypto(value, cryptoItem) {
+    const { cryptos } = this.state;
+
+    cryptos.map(item => {
+      item == cryptoItem ? (item.isSelected = true) : (item.isSelected = false);
+    });
+    this.setState({ cryptos });
+
+    console.log(cryptos);
+  }
+
+  nextStep() {
+    const { newRentalItem } = this.props;
+    const { cryptos } = this.state;
+
+    Actions.NewOfferMeeting({ newRentalItem: newRentalItem });
+  }
+
   render() {
-    const { title, summary } = this.state;
+    const { cryptos } = this.state;
 
     return (
       <View style={styles.container}>
@@ -39,7 +56,7 @@ export default class NewOfferCurrency extends Component {
           </Text>
         </View>
 
-        {cryptoList.map((cryptoItem, key) => {
+        {cryptos.map((cryptoItem, key) => {
           return (
             <TouchableOpacity
               key={key}
@@ -72,7 +89,7 @@ export default class NewOfferCurrency extends Component {
                   backgroundInactive="#A3A3BD"
                   backgroundActive="#0055FF"
                   onSyncPress={value => {
-                    console.log(value);
+                    this.switchOnCrypto(value, cryptoItem);
                   }}
                 />
               </View>
@@ -83,7 +100,7 @@ export default class NewOfferCurrency extends Component {
 
         <TouchableOpacity
           style={styles.btnNext}
-          onPress={() => Actions.NewOfferMeeting()}
+          onPress={() => this.nextStep()}
         >
           <Text style={styles.textBtnNext}>Next</Text>
         </TouchableOpacity>

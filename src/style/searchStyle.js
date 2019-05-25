@@ -60,6 +60,10 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: "#FFFFFF"
   },
+  categoriesContainer: {
+    marginHorizontal: responsiveWidth(-5.33),
+    paddingHorizontal: responsiveWidth(5.33)
+  },
   interestContainer: {
     marginTop: responsiveHeight(3.94),
     flexDirection: "column",
@@ -90,7 +94,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "flex-start",
     alignItems: "flex-start",
-    margin: 5
+    margin: 10
   },
   itemIterestBtnContainer: {
     flexDirection: "column",

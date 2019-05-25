@@ -3,11 +3,12 @@ import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-nat
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1, 
-    backgroundColor: "#ffffff", 
+    flex: 1,
+    backgroundColor: "#ffffff",
     position: "relative"
 	},
 	navContainer: {
+    zIndex: 300,
 		position: "absolute",
 		left: 0,
 		top: 0,
@@ -31,6 +32,11 @@ const styles = StyleSheet.create({
 		overflow: "hidden",
 		resizeMode: "contain"
 	},
+  slideshow: {
+    height: "50%",
+    width: "50%",
+    marginHorizontal: -80
+  },
 	title: {
 		fontFamily: "TruenoSBd",
 		fontSize: 26,
@@ -49,7 +55,7 @@ const styles = StyleSheet.create({
 	itemText: {
 		fontFamily: "SFProText-Semibold",
 		fontSize: 17,
-		
+
 	},
 	subItemText: {
 		marginTop: 4,
@@ -72,7 +78,7 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		justifyContent: "space-around",
 		marginTop: responsiveHeight(2)
-		
+
 	},
 	scrollViewContainer: {
 		paddingHorizontal: responsiveWidth(5.33),
@@ -171,9 +177,9 @@ const styles = StyleSheet.create({
 	},
 	// -----------------------------
   closeBtn: {
-    position: "absolute", 
-    left: 20, 
-    top: 52, 
+    position: "absolute",
+    left: 20,
+    top: 52,
     zIndex: 999
   },
   closeImage: {
@@ -182,38 +188,38 @@ const styles = StyleSheet.create({
     height: 48,
   },
   bottomContainer: {
-    position: "absolute", 
-    width: "100%", 
-    height: "39.16%", 
-    backgroundColor: "white", 
-    left: 0, 
+    position: "absolute",
+    width: "100%",
+    height: "39.16%",
+    backgroundColor: "white",
+    left: 0,
     top: "60.84%"
   },
   titleContainer: {
-    flexDirection: "row", 
-    justifyContent: "space-between", 
-    alignItems: "center", 
-    paddingHorizontal: "5.33%", 
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingHorizontal: "5.33%",
     marginTop: 16
   },
   leftText: {
-    fontFamily: "TruenoSBd", 
+    fontFamily: "TruenoSBd",
     fontSize: 20
   },
   rightBtn: {
-    width: 64, 
-    height: 32, 
-    backgroundColor: "#A3A3BD", 
-    borderRadius: 5, 
-    justifyContent: "center", 
+    width: 64,
+    height: 32,
+    backgroundColor: "#A3A3BD",
+    borderRadius: 5,
+    justifyContent: "center",
     alignItems: "center"
   },
   rightText: {
-    fontFamily: "SFProText-Semibold", 
+    fontFamily: "SFProText-Semibold",
     fontSize: 13,
     color: "white"
   },
-  
+
   interestImageContainer: {
     flexDirection: "column",
     justifyContent: "flex-start",
@@ -276,12 +282,12 @@ const styles = StyleSheet.create({
   starText: {
     fontFamily: "SFProText-Semibold",
     fontSize: 13,
-    marginLeft: 5, 
+    marginLeft: 5,
     color: "#FFC08A"
   },
   starView: {
-    width: 50, 
-    height: 10, 
+    width: 50,
+    height: 10,
   },
   interestRowContainer: {
     flexDirection: "row",

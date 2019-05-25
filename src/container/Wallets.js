@@ -75,7 +75,7 @@ export default class Wallets extends Component {
 
           <View style={styles.walletsRowLayout}>
             <Grid
-              style={{ flex: 1 }}
+              style={{ marginHorizontal: -5 }}
               renderItem={this._renderItem}
               renderPlaceholder={i => (
                 <View
