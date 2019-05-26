@@ -28,14 +28,10 @@ export default class NewOfferAvailability extends Component {
   nextStep() {
     const { newRentalItem } = this.props;
 
-    console.log(newRentalItem);
-
     Actions.NewOfferPrice({ newRentalItem: newRentalItem });
   }
 
   render() {
-    const { title, summary } = this.state;
-
     return (
       <View style={styles.container}>
         <View style={styles.pageHeader}>

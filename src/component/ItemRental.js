@@ -30,11 +30,7 @@ export default class ItemRental extends Component {
           style={styles.itemIterestBtnContainer}
           onPress={() => Actions.ItemDetails({ data: data })}
         >
-          <Image
-            resizeMode="contain"
-            style={styles.itemImage}
-            source={{ uri: data.pictures[0] }}
-          />
+          <Image style={styles.itemImage} source={{ uri: data.pictures[0] }} />
           <Image
             style={styles.heartIcon}
             source={require("../../assets/images/heart.png")}
@@ -80,13 +76,13 @@ const styles = StyleSheet.create({
   itemIterestBtnContainer: {
     flexDirection: "column",
     justifyContent: "flex-start",
-    alignItems: "flex-start",
-    borderRadius: 5,
-    overflow: "hidden"
+    alignItems: "flex-start"
   },
   itemImage: {
     width: 162,
-    height: 122
+    height: 122,
+    borderRadius: 5,
+    overflow: "hidden"
   },
   heartIcon: {
     position: "absolute",

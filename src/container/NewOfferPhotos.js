@@ -28,6 +28,8 @@ import uuid from "uuid/v4"; // Import UUID to generate UUID
 import styles from "../style/newOfferStyle";
 
 const options = {
+  mediaType: "photo",
+  quality: 1,
   title: "Select Image",
   storageOptions: {
     skipBackup: true,
@@ -51,13 +53,13 @@ export default class NewOfferPhotos extends Component {
   pickImage = () => {
     ImagePicker.showImagePicker(options, response => {
       if (response.didCancel) {
-        console.log("You cancelled image picker 😟");
+        console.log("You cancelled image picker.");
       } else if (response.error) {
         alert("And error occured: ", response.error);
       } else {
         const source = { uri: response.uri };
 
-        ImageResizer.createResizedImage(response.uri, 500, 500, "JPEG", 80)
+        ImageResizer.createResizedImage(response.uri, 400, 300, "JPEG", 80)
           .then(({ uri }) => {
             this.setState({
               imgSource: source,
@@ -163,12 +165,14 @@ export default class NewOfferPhotos extends Component {
           </TouchableOpacity>
         </View>
 
-        <TouchableOpacity
-          style={styles.btnNext}
-          onPress={() => this.nextStep()}
-        >
-          <Text style={styles.textBtnNext}>Next</Text>
-        </TouchableOpacity>
+        {imagesList.length > 0 && (
+          <TouchableOpacity
+            style={styles.btnNext}
+            onPress={() => this.nextStep()}
+          >
+            <Text style={styles.textBtnNext}>Next</Text>
+          </TouchableOpacity>
+        )}
       </View>
     );
   }

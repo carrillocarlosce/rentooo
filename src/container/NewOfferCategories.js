@@ -21,7 +21,8 @@ export default class NewOfferCategories extends Component {
     super(props);
 
     this.state = {
-      categories: categories
+      categories: categories,
+      hasSelectedOne: false
     };
   }
 
@@ -29,7 +30,7 @@ export default class NewOfferCategories extends Component {
     categories.map(item => {
       item == category ? (item.isSelected = true) : (item.isSelected = false);
     });
-    this.setState({ categories });
+    this.setState({ categories: categories, hasSelectedOne: true });
   }
 
   nextStep() {
@@ -46,7 +47,7 @@ export default class NewOfferCategories extends Component {
   }
 
   render() {
-    const { title, summary } = this.props;
+    const { hasSelectedOne } = this.state;
 
     return (
       <View style={styles.container}>
@@ -101,12 +102,14 @@ export default class NewOfferCategories extends Component {
           );
         })}
 
-        <TouchableOpacity
-          style={styles.btnNext}
-          onPress={() => this.nextStep()}
-        >
-          <Text style={styles.textBtnNext}>Next</Text>
-        </TouchableOpacity>
+        {hasSelectedOne && (
+          <TouchableOpacity
+            style={styles.btnNext}
+            onPress={() => this.nextStep()}
+          >
+            <Text style={styles.textBtnNext}>Next</Text>
+          </TouchableOpacity>
+        )}
       </View>
     );
   }

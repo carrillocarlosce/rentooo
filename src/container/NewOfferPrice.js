@@ -60,12 +60,14 @@ export default class NewOfferPrice extends Component {
 
         <View style={styles.separatorLine} />
 
-        <TouchableOpacity
-          style={styles.btnNext}
-          onPress={() => this.nextStep()}
-        >
-          <Text style={styles.textBtnNext}>Next</Text>
-        </TouchableOpacity>
+        {price !== "" && (
+          <TouchableOpacity
+            style={styles.btnNext}
+            onPress={() => this.nextStep()}
+          >
+            <Text style={styles.textBtnNext}>Next</Text>
+          </TouchableOpacity>
+        )}
       </View>
     );
   }

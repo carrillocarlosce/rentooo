@@ -22,20 +22,29 @@ export default class NewOfferCurrency extends Component {
     super(props);
 
     this.state = {
-      cryptos: cryptoList
+      cryptos: cryptoList,
+      oneIsSwitched: false
     };
   }
 
   switchOnCrypto(value, cryptoItem) {
     const { cryptos } = this.state;
 
+    let numberSelected = 0;
+
     cryptos.map(item => {
       if (item == cryptoItem) {
-        item.isSelected = true;
+        item.isSelected = value;
+      }
+      if (item.isSelected) {
+        numberSelected++;
       }
     });
 
-    this.setState({ cryptos });
+    this.setState({
+      cryptos: cryptos,
+      oneIsSwitched: numberSelected > 0 ? true : false
+    });
   }
 
   nextStep() {
@@ -56,7 +65,7 @@ export default class NewOfferCurrency extends Component {
   }
 
   render() {
-    const { cryptos } = this.state;
+    const { cryptos, oneIsSwitched } = this.state;
 
     return (
       <View style={styles.container}>
@@ -106,12 +115,14 @@ export default class NewOfferCurrency extends Component {
           );
         })}
 
-        <TouchableOpacity
-          style={styles.btnNext}
-          onPress={() => this.nextStep()}
-        >
-          <Text style={styles.textBtnNext}>Next</Text>
-        </TouchableOpacity>
+        {oneIsSwitched && (
+          <TouchableOpacity
+            style={styles.btnNext}
+            onPress={() => this.nextStep()}
+          >
+            <Text style={styles.textBtnNext}>Next</Text>
+          </TouchableOpacity>
+        )}
       </View>
     );
   }

@@ -56,7 +56,8 @@ const styles = StyleSheet.create({
     height: responsiveWidth(25),
     width: responsiveWidth(25),
     marginRight: responsiveWidth(4),
-    borderRadius: 5
+    borderRadius: 5,
+    overflow: "hidden"
   },
   itemCrypto: {
     flexDirection: "row",

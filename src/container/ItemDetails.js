@@ -64,39 +64,19 @@ export default class ItemDetails extends Component {
     this.state = {
       position: 1,
       interval: null,
-      dataSource: [
-        {
-          url: "http://placeimg.com/640/480/any"
-        },
-        {
-          url: "http://placeimg.com/640/480/any"
-        },
-        {
-          url: "http://placeimg.com/640/480/any"
-        }
-      ]
+      dataSource: []
     };
   }
 
   componentWillMount() {
-    this.setState({
-      interval: setInterval(() => {
-        this.setState({
-          position:
-            this.state.position === this.state.dataSource.length
-              ? 0
-              : this.state.position + 1
-        });
-      }, 2000)
+    const { data } = this.props;
+    const { dataSource } = this.state;
+
+    data["pictures"].map((item, index) => {
+      dataSource.push({ url: item });
     });
-  }
 
-  componentDidMount() {
-    console.log(this.props.data);
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.state.interval);
+    this.setState({ dataSource });
   }
 
   render() {
