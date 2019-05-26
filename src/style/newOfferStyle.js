@@ -40,6 +40,18 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0,0,0,0.1)",
     marginVertical: responsiveHeight(2.5)
   },
+  addPicture: {
+    height: responsiveWidth(25),
+    width: responsiveWidth(25),
+    backgroundColor: "#F5F5FD",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 5
+  },
+  addPictureIcon: {
+    height: "40%",
+    width: "40%"
+  },
   itemCrypto: {
     flexDirection: "row",
     justifyContent: "space-between",
