@@ -23,72 +23,47 @@ import ImagePicker from "react-native-image-picker";
 import ImageResizer from "react-native-image-resizer";
 import RNFetchBlob from "react-native-fetch-blob";
 import firebase from "react-native-firebase";
+import uuid from "uuid/v4"; // Import UUID to generate UUID
 
 import styles from "../style/newOfferStyle";
 
-function uploadImage(uri, mime = "application/octet-stream") {
-  const Blob = RNFetchBlob.polyfill.Blob;
-  const fs = RNFetchBlob.fs;
-  window.XMLHttpRequest = RNFetchBlob.polyfill.XMLHttpRequest;
-  window.Blob = Blob;
-  const currentTimeStamp = new Date().getTime() + ".png";
-
-  return new Promise((resolve, reject) => {
-    const uploadUri = Platform.OS === "ios" ? uri.replace("file://", "") : uri;
-    let uploadBlob = null;
-    const imageRef = firebase
-      .storage()
-      .ref("rentalsImages")
-      .child(`${currentTimeStamp}`);
-
-    fs.readFile(uploadUri, "base64")
-      .then(data => {
-        console.log(data);
-        return Blob.build(data, { type: `${mime};BASE64` });
-      })
-      .then(blob => {
-        uploadBlob = blob;
-        return imageRef.put(blob, { contentType: mime });
-      })
-      .then(() => {
-        uploadBlob.close();
-        return imageRef.getDownloadURL();
-      })
-      .then(url => {
-        resolve(url);
-      })
-      .catch(error => {
-        reject(error);
-      });
-  });
-}
+const options = {
+  title: "Select Image",
+  storageOptions: {
+    skipBackup: true,
+    path: "images"
+  }
+};
 
 export default class NewOfferPhotos extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      isImageupload: false,
-      rentalImages: []
+      imgSource: "",
+      imageUri: "",
+      uploading: false,
+      progress: 0,
+      imagesList: []
     };
-    this.uploadImageAsync = this.uploadImageAsync.bind(this);
   }
 
-  componentDidMount() {}
+  pickImage = () => {
+    ImagePicker.showImagePicker(options, response => {
+      if (response.didCancel) {
+        console.log("You cancelled image picker 😟");
+      } else if (response.error) {
+        alert("And error occured: ", response.error);
+      } else {
+        const source = { uri: response.uri };
 
-  pickImagefromGallery = async () => {
-    let options = {
-      mediaType: "photo",
-      quality: 1,
-      allowsEditing: true,
-      aspect: [4, 3]
-    };
-    ImagePicker.launchImageLibrary(options, response => {
-      if (!response.didCancel) {
         ImageResizer.createResizedImage(response.uri, 500, 500, "JPEG", 80)
           .then(({ uri }) => {
-            this.uploadImageAsync(uri);
-            this.setState({ isImageupload: true });
+            this.setState({
+              imgSource: source,
+              imageUri: uri
+            });
+            this.uploadImage();
           })
           .catch(err => {
             console.log("error=", err);
@@ -97,25 +72,55 @@ export default class NewOfferPhotos extends Component {
     });
   };
 
-  async uploadImageAsync(uri) {
-    this.setState({ isImageupload: true });
-    uploadImage(uri)
-      .then(url => {
-        imagesList[0] = url;
-        this.setState({ isImageupload: false, rentalImages: url });
-        dismissKeyboard();
-      })
-      .catch(error => console.warn(error));
-  }
+  uploadImage = () => {
+    const ext = "jpg"; // Extract image extension
+    const filename = `${uuid()}.${ext}`; // Generate unique name
+    this.setState({ uploading: true });
+    firebase
+      .storage()
+      .ref("rentalsImages/" + filename)
+      .putFile(this.state.imageUri)
+      .on(
+        firebase.storage.TaskEvent.STATE_CHANGED,
+        snapshot => {
+          let state = {};
+          state = {
+            ...state,
+            progress: (snapshot.bytesTransferred / snapshot.totalBytes) * 100 // Calculate progress percentage
+          };
+          if (snapshot.state === firebase.storage.TaskState.SUCCESS) {
+            const allImages = this.state.imagesList;
+            allImages.push(snapshot.downloadURL);
+            console.log(snapshot.downloadURL);
+            state = {
+              ...state,
+              uploading: false,
+              imgSource: "",
+              imageUri: "",
+              progress: 0,
+              imagesList: allImages
+            };
+          }
+          this.setState(state);
+        },
+        error => {
+          unsubscribe();
+          alert("Sorry, Try again.");
+        }
+      );
+  };
 
   nextStep() {
     const { newRentalItem } = this.props;
-    console.log(newRentalItem);
+    const { imagesList } = this.state;
+
+    newRentalItem["pictures"] = imagesList;
+
     Actions.NewOfferCategories({ newRentalItem: newRentalItem });
   }
 
   render() {
-    const { title, summary } = this.props;
+    const { imagesList } = this.state;
 
     return (
       <View style={styles.container}>
@@ -126,12 +131,36 @@ export default class NewOfferPhotos extends Component {
           </Text>
         </View>
 
-        <View style={styles.addPicture}>
-          <Image
-            resizeMode="contain"
-            style={styles.addPictureIcon}
-            source={require("../../assets/images/camera2.png")}
-          />
+        <View
+          style={{
+            flex: 1,
+            flexDirection: "row",
+            justifyContent: "flex-start"
+          }}
+        >
+          {imagesList.map((item, index) => {
+            return (
+              <View style={styles.addedPhoto}>
+                <Image
+                  key={index}
+                  resizeMode="contain"
+                  source={{ uri: item }}
+                  style={{ width: "100%", height: "100%" }}
+                />
+              </View>
+            );
+          })}
+
+          <TouchableOpacity
+            onPress={() => this.pickImage()}
+            style={styles.addPicture}
+          >
+            <Image
+              resizeMode="contain"
+              style={styles.addPictureIcon}
+              source={require("../../assets/images/camera2.png")}
+            />
+          </TouchableOpacity>
         </View>
 
         <TouchableOpacity

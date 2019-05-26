@@ -52,6 +52,12 @@ const styles = StyleSheet.create({
     height: "40%",
     width: "40%"
   },
+  addedPhoto: {
+    height: responsiveWidth(25),
+    width: responsiveWidth(25),
+    marginRight: responsiveWidth(4),
+    borderRadius: 5
+  },
   itemCrypto: {
     flexDirection: "row",
     justifyContent: "space-between",

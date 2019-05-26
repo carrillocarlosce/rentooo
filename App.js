@@ -456,16 +456,8 @@ export default class App extends Component {
               <Scene
                 key={"Search1"}
                 component={Search}
-                hideNavBar={false}
+                hideNavBar={true}
                 title=""
-                renderRightButton={() => (
-                  <TouchableOpacity onPress={() => Actions.NewOfferTitle()}>
-                    <Image
-                      style={styles.plusBtn}
-                      source={require("./assets/images/plus.png")}
-                    />
-                  </TouchableOpacity>
-                )}
                 icon={TabbarIcon1}
               />
               <Scene

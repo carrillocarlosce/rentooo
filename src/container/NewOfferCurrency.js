@@ -69,7 +69,7 @@ export default class NewOfferCurrency extends Component {
 
         {cryptos.map((cryptoItem, key) => {
           return (
-            <View>
+            <View key={key}>
               <View style={styles.itemCrypto}>
                 <View style={styles.titleCryptoContainer}>
                   <View

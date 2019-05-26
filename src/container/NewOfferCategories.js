@@ -34,6 +34,14 @@ export default class NewOfferCategories extends Component {
 
   nextStep() {
     const { newRentalItem } = this.props;
+    const { categories } = this.state;
+
+    categories.map(item => {
+      if (item.isSelected) {
+        newRentalItem["category"] = item.title;
+      }
+    });
+
     Actions.NewOfferAvailability({ newRentalItem: newRentalItem });
   }
 

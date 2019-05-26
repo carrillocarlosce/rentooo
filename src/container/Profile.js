@@ -14,7 +14,7 @@ import {
   Image,
   ScrollView
 } from "react-native";
-import { Action } from "react-native-router-flux";
+import { Actions } from "react-native-router-flux";
 import StarView from "react-native-star-view";
 import Grid from "react-native-grid-component";
 import firebase from "react-native-firebase";
@@ -49,7 +49,7 @@ export default class Profile extends Component {
           var item = childSnapshot.val();
           item.key = i++;
 
-          if (userRentals.includes(item.rentalID)) {
+          if (item.owner == window.currentUser["userID"]) {
             userRentals.push(item);
           }
         });
@@ -73,6 +73,7 @@ export default class Profile extends Component {
         <View style={styles.upperContainer}>
           <Image source={require("../../assets/images/Oval.png")} />
           <Text style={styles.name}>{userName}</Text>
+
           <View style={styles.location}>
             <Image source={require("../../assets/images/location.png")} />
             <Text style={styles.locationText}>Paris, France</Text>
@@ -84,6 +85,18 @@ export default class Profile extends Component {
             dapibus sit amet neque eget volutpat
           </Text>
         </View>
+
+        <TouchableOpacity
+          style={styles.btnPostOffer}
+          onPress={() => Actions.NewOfferTitle()}
+        >
+          <Image
+            resizeMode="contain"
+            style={styles.plusIcon}
+            source={require("../../assets/images/plusWhite.png")}
+          />
+          <Text style={styles.textBtnPostOffer}>Post an offer</Text>
+        </TouchableOpacity>
 
         <View style={styles.borderline} />
 

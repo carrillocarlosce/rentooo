@@ -12,10 +12,10 @@ import {
   TextInput,
   TouchableOpacity,
   Image,
-  ScrollView
+  ScrollView,
+  SafeAreaView
 } from "react-native";
 import { Actions } from "react-native-router-flux";
-import styles from "../style/searchStyle";
 import { SearchBar } from "react-native-elements";
 import {
   responsiveWidth,
@@ -23,8 +23,9 @@ import {
 } from "react-native-responsive-dimensions";
 import Grid from "react-native-grid-component";
 import firebase from "react-native-firebase";
-
 import StarView from "react-native-star-view";
+
+import styles from "../style/searchStyle";
 import Rect from "../component/Rect";
 import { Searchbar } from "../component/react-native-paper";
 import ItemRental from "../component/ItemRental";
@@ -81,7 +82,7 @@ export default class Search extends Component {
 
     return (
       <ScrollView style={{ flex: 1, backgroundColor: "#ffffff" }}>
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
           <Searchbar
             style={styles.searchBar}
             placeholder="Search"
@@ -171,7 +172,7 @@ export default class Search extends Component {
               />
             </View>
           </View>
-        </View>
+        </SafeAreaView>
       </ScrollView>
     );
   }

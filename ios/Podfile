@@ -5,6 +5,22 @@ target 'rentoo' do
   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
   # use_frameworks!
 
+  # Add these to your Podfile
+  pod 'React', :path => '../node_modules/react-native', :subspecs => [
+    'Core',
+    'DevSupport', # Include this to enable In-App Devmenu if RN >= 0.43
+    'RCTText',
+    'RCTNetwork',
+    'RCTWebSocket', # needed for debugging
+    'RCTImage'
+  ]
+  pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
+
+  # Third party deps podspec link
+  pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
+  pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
+  pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
+
   # Pods for rentoo
   pod 'GoogleMaps'
 
@@ -12,10 +28,23 @@ target 'rentoo' do
   pod 'Firebase/Core', '~> 5.20.1'
   pod 'Firebase/Auth', '~> 5.20.1'
   pod 'Firebase/Database', '~> 5.20.1'
+  pod 'Firebase/Storage', '~> 5.20.1'
+
+  pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
+  pod 'react-native-image-resizer', :path => '../node_modules/react-native-image-resizer'
+  pod 'react-native-fetch-blob', :path => '../node_modules/react-native-fetch-blob'
 
   target 'rentooTests' do
     inherit! :search_paths
     # Pods for testing
+  end
+
+  post_install do |installer|
+    installer.pods_project.targets.each do |target|
+      if target.name == "React"
+        target.remove_from_project
+      end
+    end
   end
 
 end

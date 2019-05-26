@@ -17,6 +17,10 @@ import {
 } from "react-native-responsive-dimensions";
 
 export default class ItemRental extends Component {
+  componentDidMount() {
+    console.log(this.props.data.pictures[0]);
+  }
+
   render() {
     const { data } = this.props;
 
@@ -27,8 +31,9 @@ export default class ItemRental extends Component {
           onPress={() => Actions.ItemDetails({ data: data })}
         >
           <Image
+            resizeMode="contain"
             style={styles.itemImage}
-            source={require("../../assets/images/canon-camera.png")}
+            source={{ uri: data.pictures[0] }}
           />
           <Image
             style={styles.heartIcon}
@@ -75,7 +80,13 @@ const styles = StyleSheet.create({
   itemIterestBtnContainer: {
     flexDirection: "column",
     justifyContent: "flex-start",
-    alignItems: "flex-start"
+    alignItems: "flex-start",
+    borderRadius: 5,
+    overflow: "hidden"
+  },
+  itemImage: {
+    width: 162,
+    height: 122
   },
   heartIcon: {
     position: "absolute",

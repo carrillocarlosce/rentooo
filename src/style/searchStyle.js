@@ -93,10 +93,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center"
-  },
-  itemImage: {
-    width: 162,
-    height: 122
   }
 });
 
