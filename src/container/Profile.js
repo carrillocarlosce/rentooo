@@ -41,6 +41,8 @@ export default class Profile extends Component {
     firebase
       .database()
       .ref("rentals/")
+      .orderByChild("owner")
+      .equalTo(window.currentUser["userID"])
       .on("value", rentalsSnapshot => {
         let userRentals = [];
         let i = 0;
@@ -49,12 +51,10 @@ export default class Profile extends Component {
           var item = childSnapshot.val();
           item.key = i++;
 
-          if (item.owner == window.currentUser["userID"]) {
-            userRentals.push(item);
-          }
+          userRentals.push(item);
         });
 
-        this.setState({ userRentals });
+        this.setState({ userRentals: userRentals.reverse() });
       });
   }
 

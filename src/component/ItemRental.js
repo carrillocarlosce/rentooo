@@ -17,10 +17,6 @@ import {
 } from "react-native-responsive-dimensions";
 
 export default class ItemRental extends Component {
-  componentDidMount() {
-    console.log(this.props.data.pictures[0]);
-  }
-
   render() {
     const { data } = this.props;
 
@@ -71,7 +67,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "flex-start",
     alignItems: "flex-start",
-    margin: 10
+    margin: 5
   },
   itemIterestBtnContainer: {
     flexDirection: "column",
@@ -79,7 +75,7 @@ const styles = StyleSheet.create({
     alignItems: "flex-start"
   },
   itemImage: {
-    width: responsiveWidth(40),
+    width: responsiveWidth(43),
     height: responsiveWidth(30),
     borderRadius: 5,
     overflow: "hidden"

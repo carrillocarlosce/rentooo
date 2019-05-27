@@ -62,7 +62,7 @@ export default class Search extends Component {
           rentals.push(item);
         });
 
-        this.setState({ rentals });
+        this.setState({ rentals: rentals.reverse().slice(0, 4) });
       });
   }
 
@@ -85,6 +85,7 @@ export default class Search extends Component {
         <SafeAreaView style={styles.container}>
           <Searchbar
             style={styles.searchBar}
+            inputStyle={styles.searchBarInput}
             placeholder="Search"
             onChangeText={query => {
               this.setState({ firstQuery: query });

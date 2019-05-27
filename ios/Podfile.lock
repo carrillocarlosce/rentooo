@@ -88,8 +88,6 @@ PODS:
   - nanopb/encode (0.3.901)
   - React (0.59.8):
     - React/Core (= 0.59.8)
-  - react-native-fetch-blob (0.10.6):
-    - React/Core
   - react-native-image-picker (0.28.1):
     - React
   - react-native-image-resizer (1.0.1):
@@ -124,7 +122,6 @@ DEPENDENCIES:
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - GoogleMaps
-  - react-native-fetch-blob (from `../node_modules/react-native-fetch-blob`)
   - react-native-image-picker (from `../node_modules/react-native-image-picker`)
   - react-native-image-resizer (from `../node_modules/react-native-image-resizer`)
   - React/Core (from `../node_modules/react-native`)
@@ -162,8 +159,6 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
   React:
     :path: "../node_modules/react-native"
-  react-native-fetch-blob:
-    :path: "../node_modules/react-native-fetch-blob"
   react-native-image-picker:
     :path: "../node_modules/react-native-image-picker"
   react-native-image-resizer:
@@ -191,11 +186,10 @@ SPEC CHECKSUMS:
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   React: 76e6aa2b87d05eb6cccb6926d72685c9a07df152
-  react-native-fetch-blob: 2bef9be702de8726f4d7bf58d2345579aaaee60d
   react-native-image-picker: fd93361c666f397bdf72f9c6c23f13d2685b9173
   react-native-image-resizer: 48eb06a18a6d0a632ffa162a51ca61a68fb5322f
   yoga: 92b2102c3d373d1a790db4ab761d2b0ffc634f64
 
-PODFILE CHECKSUM: 1146da855563a1eaa01e6e01c498ac6b6a908758
+PODFILE CHECKSUM: 34132a52346cb3e746dff36fb08acd81a9a13d49
 
 COCOAPODS: 1.7.0

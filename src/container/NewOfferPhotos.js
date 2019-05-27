@@ -21,7 +21,6 @@ import {
 } from "react-native-responsive-dimensions";
 import ImagePicker from "react-native-image-picker";
 import ImageResizer from "react-native-image-resizer";
-import RNFetchBlob from "react-native-fetch-blob";
 import firebase from "react-native-firebase";
 import uuid from "uuid/v4"; // Import UUID to generate UUID
 
@@ -32,8 +31,10 @@ const options = {
   quality: 1,
   title: "Select Image",
   storageOptions: {
-    skipBackup: true,
-    path: "images"
+    mediaType: "photo",
+    quality: 1,
+    allowsEditing: true,
+    aspect: [4, 3]
   }
 };
 
@@ -52,12 +53,10 @@ export default class NewOfferPhotos extends Component {
 
   pickImage = () => {
     ImagePicker.showImagePicker(options, response => {
-      if (response.didCancel) {
-        console.log("You cancelled image picker.");
-      } else if (response.error) {
-        alert("And error occured: ", response.error);
-      } else {
+      if (!response.didCancel) {
         const source = { uri: response.uri };
+
+        console.log(response);
 
         ImageResizer.createResizedImage(response.uri, 400, 300, "JPEG", 80)
           .then(({ uri }) => {

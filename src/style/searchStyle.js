@@ -12,8 +12,11 @@ const styles = StyleSheet.create({
   searchBar: {
     backgroundColor: "#F2F2F2",
     marginTop: responsiveHeight(1.48),
-    height: responsiveHeight(4.4),
-    fontSize: responsiveFontSize(1.2)
+    height: responsiveHeight(6)
+  },
+  searchBarInput: {
+    fontFamily: "SFProText-Regular",
+    fontSize: responsiveFontSize(2)
   },
   formItem: {
     backgroundColor: "#F2F2F2",
@@ -31,7 +34,7 @@ const styles = StyleSheet.create({
   },
   btnFilterText: {
     fontFamily: "SFProText-Semibold",
-    fontSize: responsiveFontSize(1.5),
+    fontSize: responsiveFontSize(1.8),
     color: "#FFFFFF"
   },
   btnGroupLayout: {

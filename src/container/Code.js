@@ -11,6 +11,7 @@ import { Actions } from "react-native-router-flux";
 import firebase from "react-native-firebase";
 
 import styles from "../style/codeStyle";
+import cryptoList from "../data/cryptoList";
 
 export default class Code extends Component {
   constructor(props) {
@@ -23,11 +24,18 @@ export default class Code extends Component {
   async createAccount() {
     const { email, password, firstName, lastName, number } = this.props;
 
+    const wallet = {};
+
+    cryptoList.map(item => {
+      wallet[item.name] = 250;
+    });
+
     const createdUser = {
       email: email,
       firstname: firstName,
       lastname: lastName,
-      phoneNumber: number
+      phoneNumber: number,
+      wallet: wallet
     };
 
     firebase

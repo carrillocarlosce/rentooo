@@ -28,8 +28,9 @@ export default class Login extends Component {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(function() {
-        let databaseRef = firebase.database().ref("users/");
-        databaseRef
+        firebase
+          .database()
+          .ref("users/")
           .orderByChild("email")
           .equalTo(email)
           .on("child_added", function(userData) {
