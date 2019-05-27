@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   text1IterestHeader: {
-    fontFamily: "SFProText-Semibold",
+    fontFamily: "SFProText-Regular",
     fontSize: responsiveFontSize(2.5),
     color: "#000000"
   },

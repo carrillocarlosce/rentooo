@@ -482,6 +482,7 @@ export default class App extends Component {
                 renderRightButton={() => (
                   <TouchableOpacity onPress={() => Actions.AddWallet()}>
                     <Image
+                      resizeMode="contain"
                       style={styles.plusBtn}
                       source={require("./assets/images/add-wallet.png")}
                     />

@@ -18,7 +18,8 @@ const styles = StyleSheet.create({
     width: responsiveWidth(100),
     height: responsiveHeight(18),
     paddingLeft: responsiveWidth(5.33),
-    paddingBottom: responsiveHeight(2)
+    paddingBottom: responsiveHeight(2),
+    marginHorizontal: responsiveWidth(-5.33)
   },
   containerLogo: {
     width: responsiveWidth(8),
@@ -111,9 +112,8 @@ const styles = StyleSheet.create({
   title: {
     marginTop: responsiveHeight(2.95),
     marginBottom: responsiveHeight(2),
-    marginLeft: responsiveWidth(5.33),
-    fontSize: 20,
-    fontFamily: "TruenoSBd"
+    fontFamily: "SFProText-Regular",
+    fontSize: responsiveFontSize(2.5)
   },
   upperText: {
     fontFamily: "SFProText-Semibold",
@@ -163,6 +163,10 @@ const styles = StyleSheet.create({
     fontFamily: "SFProText-Semibold",
     fontSize: 15,
     color: "white"
+  },
+  arrowBalance: {
+    height: responsiveWidth(6),
+    width: responsiveWidth(3)
   },
   rotateIcons: {
     transform: [{ rotate: "180deg" }]

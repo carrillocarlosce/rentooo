@@ -28,6 +28,7 @@ export default class ItemRental extends Component {
         >
           <Image style={styles.itemImage} source={{ uri: data.pictures[0] }} />
           <Image
+            resizeMode="contain"
             style={styles.heartIcon}
             source={require("../../assets/images/heart.png")}
           />

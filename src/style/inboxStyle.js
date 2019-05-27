@@ -14,8 +14,8 @@ const styles = StyleSheet.create({
   inboxText: {
     marginLeft: responsiveWidth(5.33),
     marginBottom: responsiveHeight(2),
-    fontFamily: "TruenoSBd",
-    fontSize: responsiveFontSize(3)
+    fontFamily: "SFProText-Regular",
+    fontSize: responsiveFontSize(3.2)
   },
   midContainer: {
     paddingHorizontal: responsiveWidth(5.33),

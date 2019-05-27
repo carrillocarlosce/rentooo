@@ -10,8 +10,8 @@ const styles = StyleSheet.create({
     marginHorizontal: responsiveWidth(5.33)
   },
   walletsText: {
-    fontFamily: "TruenoSBd",
-    fontSize: responsiveFontSize(3),
+    fontFamily: "SFProText-Regular",
+    fontSize: responsiveFontSize(3.2),
     marginBottom: responsiveHeight(3.94)
   },
   walletItemLayout: {
