@@ -27,7 +27,13 @@ export default class Yourbalance extends Component {
     super(props);
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    const { data } = this.props;
+
+    this.props.navigation.setParams({
+      headerStyle: { backgroundColor: data.color }
+    });
+  }
 
   render() {
     const { data, balance } = this.props;
@@ -36,7 +42,13 @@ export default class Yourbalance extends Component {
       <View style={styles.container}>
         <View style={[styles.topContainer, { backgroundColor: data.color }]}>
           <View style={styles.totopLayout}>
-            <Image source={require("../../assets/images/rentoo-1.png")} />
+            <View style={styles.containerLogo}>
+              <Image
+                resizeMode="contain"
+                style={styles.itemLogo}
+                source={data.logo}
+              />
+            </View>
             <Text style={styles.rentooText}>{data.name.toUpperCase()}</Text>
           </View>
           <Text style={styles.rentooCurrentyText}>{balance}</Text>

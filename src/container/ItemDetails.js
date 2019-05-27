@@ -12,50 +12,24 @@ import {
   TextInput,
   TouchableOpacity,
   Image,
-  ScrollView
+  ScrollView,
+  SafeAreaView
 } from "react-native";
 import { Actions } from "react-native-router-flux";
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 import StarView from "react-native-star-view";
-import Slideshow from "../component/Slideshow";
+import firebase from "react-native-firebase";
+import Grid from "react-native-grid-component";
 import {
   responsiveHeight,
   responsiveWidth,
   responsiveFontSize
 } from "react-native-responsive-dimensions";
 
-import styles from "../style/itemdetailsStyle";
+import ItemRental from "../component/ItemRental";
+import Slideshow from "../component/Slideshow";
 
-const itemList = [
-  {
-    name: "Black Canon Film Camera",
-    logo: require("../../assets/images/canon-camera.png"),
-    color: "white",
-    dayRent: "15$/day",
-    startCount: 4
-  },
-  {
-    name: "DJI Phantom 3 Pro",
-    logo: require("../../assets/images/canon-camera.png"),
-    color: "white",
-    dayRent: "20$/day",
-    startCount: 5
-  },
-  {
-    name: "Black Canon Film Camera",
-    logo: require("../../assets/images/canon-camera.png"),
-    color: "white",
-    dayRent: "15$/day",
-    startCount: 4
-  },
-  {
-    name: "Black Canon Film Camera",
-    logo: require("../../assets/images/canon-camera.png"),
-    color: "white",
-    dayRent: "15$/day",
-    startCount: 4
-  }
-];
+import styles from "../style/itemdetailsStyle";
 
 export default class ItemDetails extends Component {
   constructor(props) {
@@ -64,7 +38,9 @@ export default class ItemDetails extends Component {
     this.state = {
       position: 1,
       interval: null,
-      dataSource: []
+      dataSource: [],
+      ownerName: "",
+      rentalsYouMayLike: []
     };
   }
 
@@ -77,10 +53,69 @@ export default class ItemDetails extends Component {
     });
 
     this.setState({ dataSource });
+
+    this.getOwnerData();
   }
+
+  getOwnerData() {
+    const { data } = this.props;
+
+    firebase
+      .database()
+      .ref("users/")
+      .orderByChild("userID")
+      .equalTo(data.owner)
+      .on("value", ownerProfile => {
+        let ownerData = [];
+        let i = 0;
+
+        ownerProfile.forEach(function(childSnapshot) {
+          var item = childSnapshot.val();
+          item.key = i++;
+
+          ownerData.push(item);
+        });
+
+        let ownerName = ownerData[0].firstname + " " + ownerData[0].lastname;
+
+        this.setState({ ownerName });
+      });
+  }
+
+  componentDidMount() {
+    this.getRentalsYouMayLike();
+  }
+
+  getRentalsYouMayLike() {
+    const { data } = this.props;
+
+    firebase
+      .database()
+      .ref("rentals/")
+      .orderByChild("category")
+      .equalTo(data.category)
+      .on("value", rentalsSnapshot => {
+        let rentalsYouMayLike = [];
+        let i = 0;
+
+        rentalsSnapshot.forEach(function(childSnapshot) {
+          var item = childSnapshot.val();
+          item.key = i++;
+
+          rentalsYouMayLike.push(item);
+        });
+
+        this.setState({
+          rentalsYouMayLike: rentalsYouMayLike.reverse().slice(0, 4)
+        });
+      });
+  }
+
+  _renderItem = (data, i) => <ItemRental data={data} />;
 
   render() {
     const { data } = this.props;
+    const { ownerName, rentalsYouMayLike } = this.state;
 
     return (
       <View style={styles.container}>
@@ -115,7 +150,19 @@ export default class ItemDetails extends Component {
               marginBottom: responsiveHeight(10)
             }}
           >
+            <Text style={styles.categoryText}>
+              {data.category.charAt(0).toUpperCase() + data.category.slice(1)}
+            </Text>
             <Text style={styles.title}>{data.title}</Text>
+
+            <View style={styles.descriptionContainer}>
+              <View style={{ marginTop: 10 }}>
+                <Text style={styles.descriptionContent}>{data.summary}</Text>
+              </View>
+            </View>
+
+            <View style={styles.lineSeparator} />
+
             <View style={styles.threeContainer}>
               <View style={styles.starContainer}>
                 <Text style={[styles.itemText, { color: "#FDC058" }]}>4.1</Text>
@@ -130,14 +177,21 @@ export default class ItemDetails extends Component {
                 <Text style={styles.subItemText}>Rentals</Text>
               </View>
             </View>
-            <View style={styles.lineSeperator} />
-            <View style={styles.descriptionContainer}>
-              <Text style={styles.descriptionHeader}>About</Text>
-              <View style={{ marginTop: 16 }}>
-                <Text style={styles.descriptionContent}>{data.summary}</Text>
-                <Text style={styles.categoryText}>{data.category}</Text>
+
+            <View style={styles.lineSeparator} />
+
+            <View style={styles.ownerContainer}>
+              <Image
+                style={styles.ownerImage}
+                source={require("../../assets/images/profile.png")}
+              />
+              <View>
+                <Text style={styles.ownerTextTitle}>Owner</Text>
+                <Text style={styles.ownerText}>{ownerName}</Text>
               </View>
             </View>
+
+            <View style={styles.lineSeparator} />
 
             <View style={styles.mapViewContainer}>
               <Text style={styles.mapViewText}>Location</Text>
@@ -154,200 +208,42 @@ export default class ItemDetails extends Component {
               />
             </View>
 
-            <View style={styles.kudoConainer}>
-              <View style={styles.leftKudoContainer}>
-                <Image source={require("../../assets/images/profile.png")} />
-                <Text style={styles.kudoLeftText}>Sofietje Boksum</Text>
-              </View>
-              <TouchableOpacity style={styles.rightKudoContainer}>
-                <Text style={styles.rightKudoText}>See 6 others</Text>
-              </TouchableOpacity>
-            </View>
+            <View style={styles.lineSeparator} />
 
             <View>
               <Text style={styles.interestText}>It might interest you</Text>
               <View style={styles.interestInsideContainer}>
-                <View style={styles.interestRowContainer}>
-                  <View style={styles.interestImageContainer}>
-                    <TouchableOpacity style={styles.itemIterestBtnContainer}>
-                      <Image
-                        style={styles.itemImage}
-                        source={require("../../assets/images/canon-camera.png")}
-                      />
-                      <Image
-                        style={styles.heartIcon}
-                        source={require("../../assets/images/heart.png")}
-                      />
-                      <Text style={styles.itemText}>
-                        Black Canon Film{"\n"}Camera
-                      </Text>
-                      <View style={styles.currencyWrapper}>
-                        <Text style={styles.currencyText}>15$/day</Text>
-                        <View style={styles.currencyContainer}>
-                          <Image
-                            style={styles.currency}
-                            resizeMode="contain"
-                            source={require("../../assets/images/rentoo.png")}
-                          />
-                          <Image
-                            style={styles.currency}
-                            resizeMode="contain"
-                            source={require("../../assets/images/bitcoin.png")}
-                          />
-                          <Image
-                            style={styles.currency}
-                            resizeMode="contain"
-                            source={require("../../assets/images/waves.png")}
-                          />
-                        </View>
-                      </View>
-                    </TouchableOpacity>
-                    <View style={styles.starLayout}>
-                      <StarView score={4} style={styles.starView} />
-                      <Text style={styles.starText}>13</Text>
-                    </View>
-                  </View>
-                  <View style={styles.interestImageContainer}>
-                    <TouchableOpacity style={styles.itemIterestBtnContainer}>
-                      <Image
-                        source={require("../../assets/images/canon-camera.png")}
-                      />
-                      <Image
-                        style={styles.heartIcon}
-                        source={require("../../assets/images/heart.png")}
-                      />
-                      <Text style={styles.itemText}>
-                        Black Canon Film{"\n"}Camera
-                      </Text>
-                      <View style={styles.currencyWrapper}>
-                        <Text style={styles.currencyText}>15$/day</Text>
-                        <View style={styles.currencyContainer}>
-                          <Image
-                            style={styles.currency}
-                            resizeMode="contain"
-                            source={require("../../assets/images/rentoo.png")}
-                          />
-                          <Image
-                            style={styles.currency}
-                            resizeMode="contain"
-                            source={require("../../assets/images/bitcoin.png")}
-                          />
-                          <Image
-                            style={styles.currency}
-                            resizeMode="contain"
-                            source={require("../../assets/images/waves.png")}
-                          />
-                        </View>
-                      </View>
-                    </TouchableOpacity>
-                    <View style={styles.starLayout}>
-                      <StarView score={4} style={styles.starView} />
-                      <Text style={styles.starText}>13</Text>
-                    </View>
-                  </View>
-                </View>
-                <View
-                  style={[
-                    styles.interestRowContainer,
-                    { marginTop: responsiveHeight(1.48) }
-                  ]}
-                >
-                  <View style={styles.interestImageContainer}>
-                    <TouchableOpacity style={styles.itemIterestBtnContainer}>
-                      <Image
-                        source={require("../../assets/images/canon-camera.png")}
-                      />
-                      <Image
-                        style={styles.heartIcon}
-                        source={require("../../assets/images/heart.png")}
-                      />
-                      <Text style={styles.itemText}>
-                        Black Canon Film{"\n"}Camera
-                      </Text>
-                      <View style={styles.currencyWrapper}>
-                        <Text style={styles.currencyText}>15$/day</Text>
-                        <View style={styles.currencyContainer}>
-                          <Image
-                            style={styles.currency}
-                            resizeMode="contain"
-                            source={require("../../assets/images/rentoo.png")}
-                          />
-                          <Image
-                            style={styles.currency}
-                            resizeMode="contain"
-                            source={require("../../assets/images/bitcoin.png")}
-                          />
-                          <Image
-                            style={styles.currency}
-                            resizeMode="contain"
-                            source={require("../../assets/images/waves.png")}
-                          />
-                        </View>
-                      </View>
-                    </TouchableOpacity>
-                    <View style={styles.starLayout}>
-                      <StarView score={4} style={styles.starView} />
-                      <Text style={styles.starText}>13</Text>
-                    </View>
-                  </View>
-                  <View style={styles.interestImageContainer}>
-                    <TouchableOpacity style={styles.itemIterestBtnContainer}>
-                      <Image
-                        source={require("../../assets/images/canon-camera.png")}
-                      />
-                      <Image
-                        style={styles.heartIcon}
-                        source={require("../../assets/images/heart.png")}
-                      />
-                      <Text style={styles.itemText}>
-                        Black Canon Film{"\n"}Camera
-                      </Text>
-                      <View style={styles.currencyWrapper}>
-                        <Text style={styles.currencyText}>15$/day</Text>
-                        <View style={styles.currencyContainer}>
-                          <Image
-                            style={styles.currency}
-                            resizeMode="contain"
-                            source={require("../../assets/images/rentoo.png")}
-                          />
-                          <Image
-                            style={styles.currency}
-                            resizeMode="contain"
-                            source={require("../../assets/images/bitcoin.png")}
-                          />
-                          <Image
-                            style={styles.currency}
-                            resizeMode="contain"
-                            source={require("../../assets/images/waves.png")}
-                          />
-                        </View>
-                      </View>
-                    </TouchableOpacity>
-                    <View style={styles.starLayout}>
-                      <StarView score={4} style={styles.starView} />
-                      <Text style={styles.starText}>13</Text>
-                    </View>
-                  </View>
-                </View>
+                <Grid
+                  style={{ marginHorizontal: -5 }}
+                  renderItem={this._renderItem}
+                  data={rentalsYouMayLike}
+                  numColumns={2}
+                />
               </View>
             </View>
           </View>
+
+          <View style={{ height: responsiveHeight(5) }} />
         </ScrollView>
 
         <View style={styles.bottomAbContainer}>
           <View>
-            <Text style={styles.rentDayText}>20$/day</Text>
-            <View style={styles.currencyContainer2}>
-              <Image
-                style={styles.currency2}
-                resizeMode="contain"
-                source={require("../../assets/images/rentoo.png")}
-              />
-              <Image
-                style={styles.currency}
-                resizeMode="contain"
-                source={require("../../assets/images/bitcoin.png")}
-              />
+            <Text style={styles.rentDayText}>
+              {data.dailyDollarPrice}$ /day
+            </Text>
+            <View style={styles.currencyContainer}>
+              {data.currencies.map((item, key) => {
+                return (
+                  <View style={styles.itemCurrency}>
+                    <Image
+                      key={key}
+                      style={styles.currency}
+                      resizeMode="contain"
+                      source={require("../../assets/coins/bitcoin.png")}
+                    />
+                  </View>
+                );
+              })}
             </View>
           </View>
           <TouchableOpacity style={styles.rentBtn}>

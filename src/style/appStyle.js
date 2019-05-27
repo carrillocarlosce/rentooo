@@ -12,16 +12,15 @@ const styles = StyleSheet.create({
   },
   plusBtn: {
     marginRight: responsiveWidth(5),
-    width: responsiveWidth(6),
-    height: responsiveWidth(6)
+    width: responsiveWidth(5),
+    height: responsiveWidth(5)
   },
   leftBtn: {
     marginLeft: responsiveWidth(5),
-    width: responsiveWidth(6),
-    height: responsiveWidth(6),
+    width: responsiveWidth(5),
+    height: responsiveWidth(5),
     resizeMode: "contain"
   },
-
   rightSignupBtn: {
     marginRight: 20,
     fontFamily: "SFProText-Regular",

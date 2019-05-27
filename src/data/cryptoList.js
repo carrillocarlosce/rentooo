@@ -28,11 +28,5 @@ export default (cryptoList = [
     logo: require("../../assets/coins/litecoin.png"),
     color: "#638EA9",
     isSelected: false
-  },
-  {
-    name: "binance",
-    logo: require("../../assets/coins/binance.png"),
-    color: "#D79E28",
-    isSelected: false
   }
 ]);

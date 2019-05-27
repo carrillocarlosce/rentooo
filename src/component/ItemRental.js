@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   itemCurrency: {
-    backgroundColor: "blue",
+    backgroundColor: "#0055FF",
     height: responsiveWidth(3),
     width: responsiveWidth(3),
     justifyContent: "center",

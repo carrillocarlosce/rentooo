@@ -316,7 +316,10 @@ export default class App extends Component {
             component={Yourbalance}
             title="Your balance"
             titleStyle={{ color: "white" }}
-            navigationBarStyle={{ backgroundColor: "#0055FF" }}
+            navigationBarStyle={{
+              backgroundColor: "#0055FF",
+              borderBottomWidth: 0
+            }}
             renderLeftButton={
               <TouchableOpacity onPress={() => Actions.pop()}>
                 <Image

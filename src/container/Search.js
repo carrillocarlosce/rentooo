@@ -82,26 +82,28 @@ export default class Search extends Component {
 
     return (
       <ScrollView style={{ flex: 1, backgroundColor: "#ffffff" }}>
-        <SafeAreaView style={styles.container}>
-          <Searchbar
-            style={styles.searchBar}
-            inputStyle={styles.searchBarInput}
-            placeholder="Search"
-            onChangeText={query => {
-              this.setState({ firstQuery: query });
-            }}
-            value={firstQuery}
-            onSubmitEditing={() => Actions.Searchresult()}
-          />
+        <View style={styles.container}>
+          <SafeAreaView>
+            <Searchbar
+              style={styles.searchBar}
+              inputStyle={styles.searchBarInput}
+              placeholder="Search"
+              onChangeText={query => {
+                this.setState({ firstQuery: query });
+              }}
+              value={firstQuery}
+              onSubmitEditing={() => Actions.Searchresult()}
+            />
 
-          <View style={styles.btnContainer}>
-            <TouchableOpacity style={styles.btnFiltersLayout}>
-              <Text style={styles.btnFilterText}>Nearby</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.btnFiltersLayout}>
-              <Text style={styles.btnFilterText}>Dates</Text>
-            </TouchableOpacity>
-          </View>
+            <View style={styles.btnContainer}>
+              <TouchableOpacity style={styles.btnFiltersLayout}>
+                <Text style={styles.btnFilterText}>Nearby</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.btnFiltersLayout}>
+                <Text style={styles.btnFilterText}>Dates</Text>
+              </TouchableOpacity>
+            </View>
+          </SafeAreaView>
 
           <View
             style={[styles.interestHeader, { marginTop: responsiveHeight(4) }]}
@@ -174,7 +176,7 @@ export default class Search extends Component {
               />
             </View>
           </View>
-        </SafeAreaView>
+        </View>
       </ScrollView>
     );
   }

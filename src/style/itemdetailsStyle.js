@@ -26,13 +26,13 @@ const styles = StyleSheet.create({
     height: responsiveHeight(3)
   },
   leftNavBtn: {
-    width: 24,
-    height: 24,
+    width: responsiveWidth(5),
+    height: responsiveWidth(5),
     resizeMode: "contain"
   },
   rightNavBtn: {
-    width: 24,
-    height: 24,
+    width: responsiveWidth(5),
+    height: responsiveWidth(5),
     overflow: "hidden",
     resizeMode: "contain"
   },
@@ -41,14 +41,19 @@ const styles = StyleSheet.create({
     width: "50%",
     marginHorizontal: -80
   },
+  categoryText: {
+    marginTop: responsiveHeight(3),
+    fontFamily: "SFProText-Semibold",
+    fontSize: responsiveFontSize(2.3),
+    color: "#0055FF"
+  },
   title: {
-    fontFamily: "TruenoSBd",
-    fontSize: 26,
-    marginTop: responsiveHeight(3)
+    fontFamily: "SFProText-Regular",
+    fontSize: responsiveFontSize(4.2)
   },
   starText: {
     fontFamily: "SFProText-Semibold",
-    fontSize: 17,
+    fontSize: responsiveFontSize(2.3),
     color: "#FDC058"
   },
   starItem: {
@@ -58,12 +63,12 @@ const styles = StyleSheet.create({
   },
   itemText: {
     fontFamily: "SFProText-Semibold",
-    fontSize: 17
+    fontSize: responsiveFontSize(2)
   },
   subItemText: {
     marginTop: 4,
     fontFamily: "SFProText-Semibold",
-    fontSize: 15,
+    fontSize: responsiveFontSize(2),
     color: "#C0C0C0"
   },
   starContainer: {
@@ -85,39 +90,33 @@ const styles = StyleSheet.create({
   scrollViewContainer: {
     height: responsiveHeight(51.5)
   },
-  lineSeperator: {
+  lineSeparator: {
     marginTop: 24,
     height: 1,
-    backgroundColor: "#CCCCCC"
+    backgroundColor: "rgba(0,0,0,0.05)",
+    marginHorizontal: responsiveWidth(-5.33)
   },
   descriptionContainer: {
     marginTop: 24
   },
-  descriptionHeader: {
-    fontFamily: "TruenoSBd",
-    fontSize: 20
-  },
   descriptionContent: {
     fontFamily: "SFProText-Regular",
-    fontSize: 15
-  },
-  categoryText: {
-    marginTop: responsiveHeight(2),
-    fontFamily: "SFProText-Semibold",
-    fontSize: 15,
-    color: "#0055FF"
+    fontSize: responsiveFontSize(1.8)
   },
   bottomAbContainer: {
     position: "absolute",
     left: 0,
-    top: responsiveHeight(86.2),
+    bottom: 0,
     backgroundColor: "#F5F5FD",
     flexDirection: "row",
     paddingHorizontal: responsiveWidth(5.33),
+    paddingTop: responsiveHeight(2),
     justifyContent: "space-between",
-    alignItems: "center",
-    height: responsiveHeight(13.7),
-    width: responsiveWidth(100)
+    alignItems: "flex-start",
+    height: responsiveHeight(13),
+    width: "100%",
+    borderTopColor: "rgba(0,0,0,0.05)",
+    borderTopWidth: 1
   },
   rentBtn: {
     width: responsiveWidth(37),
@@ -129,52 +128,44 @@ const styles = StyleSheet.create({
   },
   rentText: {
     fontFamily: "SFProText-Semibold",
-    fontSize: 17,
+    fontSize: responsiveFontSize(2.3),
     color: "white"
   },
   rentDayText: {
-    fontFamily: "SFProText-Semibold",
-    fontSize: 17
+    fontFamily: "SFProText-Regular",
+    fontSize: responsiveFontSize(2.5)
   },
   mapViewContainer: {
     marginTop: responsiveHeight(3)
   },
   mapViewText: {
-    fontFamily: "TruenoSBd",
+    fontFamily: "SFProText-Regular",
     fontSize: 20
   },
   mapView: {
     marginTop: 16,
-    height: responsiveHeight(28)
+    height: responsiveHeight(28),
+    marginHorizontal: responsiveWidth(-5.33)
   },
-  kudoConainer: {
+  ownerContainer: {
     flexDirection: "row",
     marginTop: responsiveHeight(4),
-    justifyContent: "space-between",
+    justifyContent: "flex-start",
     alignItems: "center"
   },
-  leftKudoContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    width: responsiveWidth(43.7)
+  ownerImage: {
+    height: responsiveWidth(12),
+    width: responsiveWidth(12),
+    marginRight: responsiveWidth(4)
   },
-  kudoLeftText: {
+  ownerTextTitle: {
+    fontFamily: "SFProText-Regular",
+    fontSize: responsiveFontSize(1.8),
+    color: "rgba(0,0,0,0.6)"
+  },
+  ownerText: {
     fontFamily: "SFProText-Semibold",
-    fontSize: 15
-  },
-  rightKudoContainer: {
-    width: responsiveWidth(28.8),
-    height: responsiveHeight(4),
-    backgroundColor: "#A3A3BD",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 5
-  },
-  rightKudoText: {
-    fontFamily: "SFProText-Semibold",
-    fontSize: 13,
-    color: "white"
+    fontSize: responsiveFontSize(2.2)
   },
   // -----------------------------
   closeBtn: {
@@ -204,7 +195,7 @@ const styles = StyleSheet.create({
     marginTop: 16
   },
   leftText: {
-    fontFamily: "TruenoSBd",
+    fontFamily: "SFProText-Regular",
     fontSize: 20
   },
   rightBtn: {
@@ -216,7 +207,7 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   rightText: {
-    fontFamily: "SFProText-Semibold",
+    fontFamily: "SFProText-Regular",
     fontSize: 13,
     color: "white"
   },
@@ -241,11 +232,11 @@ const styles = StyleSheet.create({
   itemText: {
     marginTop: responsiveHeight(1),
     fontFamily: "SFProText-Semibold",
-    fontSize: 15
+    fontSize: responsiveFontSize(2.4)
   },
   currencyText: {
     marginTop: 5,
-    fontFamily: "SFProText-Semibold",
+    fontFamily: "SFProText-Regular",
     fontSize: 13,
     color: "#767676"
   },
@@ -260,19 +251,19 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center"
   },
+  itemCurrency: {
+    backgroundColor: "#0055FF",
+    height: responsiveWidth(5),
+    width: responsiveWidth(5),
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 120,
+    marginRight: responsiveWidth(1),
+    marginTop: 5
+  },
   currency: {
-    width: responsiveWidth(3),
-    height: responsiveHeight(3)
-  },
-  currencyContainer2: {
-    width: responsiveWidth(10),
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center"
-  },
-  currency2: {
-    width: responsiveWidth(4.5),
-    height: responsiveHeight(4.5)
+    width: "50%",
+    height: "50%"
   },
   starLayout: {
     flexDirection: "row",
@@ -281,7 +272,7 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   starText: {
-    fontFamily: "SFProText-Semibold",
+    fontFamily: "SFProText-Regular",
     fontSize: 13,
     marginLeft: 5,
     color: "#FFC08A"
@@ -301,7 +292,7 @@ const styles = StyleSheet.create({
   },
   interestText: {
     marginTop: 32,
-    fontFamily: "TruenoSBd",
+    fontFamily: "SFProText-Regular",
     fontSize: 20
   },
   interestInsideContainer: {

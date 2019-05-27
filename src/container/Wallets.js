@@ -84,7 +84,11 @@ export default class Wallets extends Component {
               renderItem={this._renderItem}
               renderPlaceholder={i => (
                 <View
-                  style={{ flex: 1, margin: 5, height: responsiveHeight(13.5) }}
+                  style={{
+                    flex: 1,
+                    margin: 15,
+                    height: responsiveHeight(13.5)
+                  }}
                 />
               )}
               data={cryptoList}

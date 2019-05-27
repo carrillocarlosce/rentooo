@@ -20,6 +20,18 @@ const styles = StyleSheet.create({
     paddingLeft: responsiveWidth(5.33),
     paddingBottom: responsiveHeight(2)
   },
+  containerLogo: {
+    width: responsiveWidth(8),
+    height: responsiveWidth(8),
+    backgroundColor: "rgba(0,0,0, 0.2)",
+    borderRadius: 500,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  itemLogo: {
+    height: "50%",
+    width: "50%"
+  },
   rentooText: {
     fontFamily: "SFProText-Semibold",
     fontSize: 13,
