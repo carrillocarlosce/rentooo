@@ -50,14 +50,16 @@ const styles = StyleSheet.create({
   itemGroupImage: {
     position: "absolute",
     top: responsiveWidth(3.2),
-    left: responsiveWidth(3.2)
+    left: responsiveWidth(3.2),
+    height: responsiveWidth(8),
+    width: responsiveWidth(6)
   },
   itemGroupText: {
     position: "absolute",
     bottom: responsiveWidth(3.2),
     left: responsiveWidth(3.2),
     fontFamily: "SFProText-Semibold",
-    fontSize: 15,
+    fontSize: responsiveFontSize(1.8),
     color: "#FFFFFF"
   },
   categoriesContainer: {

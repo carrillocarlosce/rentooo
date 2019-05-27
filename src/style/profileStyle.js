@@ -63,11 +63,7 @@ const styles = StyleSheet.create({
     fontFamily: "TruenoSBd",
     fontSize: responsiveFontSize(3)
   },
-  midContainer: {
-    paddingHorizontal: responsiveWidth(5.33),
-    height: responsiveHeight(47),
-    width: responsiveWidth(96)
-  },
+
   itemLayout: {
     flexDirection: "row",
     justifyContent: "flex-start",
@@ -158,6 +154,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between"
   },
   interestInsideContainer: {
+    paddingHorizontal: responsiveWidth(5.33),
     flexDirection: "column",
     justifyContent: "space-between"
   },
@@ -250,7 +247,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center"
   },
-
   rental: {
     fontFamily: "SFProText-Regular",
     fontSize: responsiveFontSize(2.5),

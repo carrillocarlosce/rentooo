@@ -6,7 +6,12 @@ import com.facebook.react.ReactApplication;
 import com.RNFetchBlob.RNFetchBlobPackage;
 import fr.bamlab.rnimageresizer.ImageResizerPackage;
 import com.imagepicker.ImagePickerPackage;
+
 import io.invertase.firebase.RNFirebasePackage;
+import io.invertase.firebase.database.RNFirebaseDatabasePackage; // <-- Add this line
+import io.invertase.firebase.auth.RNFirebaseAuthPackage; // <-- Add this line
+import io.invertase.firebase.storage.RNFirebaseStoragePackage; // <-- Add this line
+
 import com.airbnb.android.react.maps.MapsPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.swmansion.reanimated.ReanimatedPackage;
@@ -34,7 +39,12 @@ public class MainApplication extends Application implements ReactApplication {
             new RNFetchBlobPackage(),
             new ImageResizerPackage(),
             new ImagePickerPackage(),
+
             new RNFirebasePackage(),
+            new RNFirebaseDatabasePackage(), // <-- Add this line
+            new RNFirebaseAuthPackage(), // <-- Add this line
+            new RNFirebaseStoragePackage(), // <-- Add this line
+
             new MapsPackage(),
             new RNGestureHandlerPackage(),
             new ReanimatedPackage(),

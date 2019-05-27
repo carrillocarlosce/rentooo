@@ -49,6 +49,7 @@ export default class NewOfferTitle extends Component {
         </View>
 
         <TextInput
+          returnKeyType="done"
           placeholder="Title"
           value={title}
           onChangeText={title => this.setState({ title })}
@@ -63,6 +64,7 @@ export default class NewOfferTitle extends Component {
         </View>
 
         <TextInput
+          returnKeyType={"done"}
           placeholder="Summary"
           value={summary}
           onChangeText={summary => this.setState({ summary })}

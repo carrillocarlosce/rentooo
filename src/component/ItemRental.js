@@ -79,15 +79,17 @@ const styles = StyleSheet.create({
     alignItems: "flex-start"
   },
   itemImage: {
-    width: 162,
-    height: 122,
+    width: responsiveWidth(40),
+    height: responsiveWidth(30),
     borderRadius: 5,
     overflow: "hidden"
   },
   heartIcon: {
     position: "absolute",
     right: responsiveHeight(1),
-    top: responsiveHeight(1)
+    top: responsiveHeight(1),
+    height: responsiveWidth(5),
+    width: responsiveWidth(5)
   },
   itemText: {
     marginTop: responsiveHeight(1),

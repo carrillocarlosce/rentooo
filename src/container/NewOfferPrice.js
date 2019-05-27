@@ -50,6 +50,7 @@ export default class NewOfferPrice extends Component {
         </View>
 
         <TextInput
+          returnKeyType="done"
           keyboardType="numeric"
           placeholder="0"
           value={price}

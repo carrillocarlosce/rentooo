@@ -123,6 +123,7 @@ export default class Search extends Component {
                   ]}
                 >
                   <Image
+                    resizeMode="contain"
                     style={styles.itemGroupImage}
                     source={itemCategory.logo}
                   />

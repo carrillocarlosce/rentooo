@@ -102,16 +102,14 @@ export default class Profile extends Component {
 
         <Text style={styles.rental}>My offers</Text>
 
-        <ScrollView style={styles.midContainer}>
-          <View style={styles.interestInsideContainer}>
-            <Grid
-              style={{ marginHorizontal: -10 }}
-              renderItem={this._renderItem}
-              data={userRentals}
-              numColumns={2}
-            />
-          </View>
-        </ScrollView>
+        <View style={styles.interestInsideContainer}>
+          <Grid
+            style={{ marginHorizontal: -10 }}
+            renderItem={this._renderItem}
+            data={userRentals}
+            numColumns={2}
+          />
+        </View>
       </ScrollView>
     );
   }
