@@ -141,27 +141,29 @@ export default class NewOfferPhotos extends Component {
         >
           {imagesList.map((item, index) => {
             return (
-              <View style={styles.addedPhoto}>
+              <View key="index" style={styles.addedPhoto}>
                 <Image
                   key={index}
-                  resizeMode="contain"
+                  resizeMode="cover"
                   source={{ uri: item }}
-                  style={{ width: "100%", height: "100%" }}
+                  style={{ flex: 1 }}
                 />
               </View>
             );
           })}
 
-          <TouchableOpacity
-            onPress={() => this.pickImage()}
-            style={styles.addPicture}
-          >
-            <Image
-              resizeMode="contain"
-              style={styles.addPictureIcon}
-              source={require("../../assets/images/camera2.png")}
-            />
-          </TouchableOpacity>
+          {imagesList.length < 3 && (
+            <TouchableOpacity
+              onPress={() => this.pickImage()}
+              style={styles.addPicture}
+            >
+              <Image
+                resizeMode="contain"
+                style={styles.addPictureIcon}
+                source={require("../../assets/images/camera2.png")}
+              />
+            </TouchableOpacity>
+          )}
         </View>
 
         {imagesList.length > 0 && (

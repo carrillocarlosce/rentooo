@@ -496,6 +496,7 @@ export default class App extends Component {
                 hideNavBar={false}
                 renderRightButton={() => (
                   <Image
+                    resizeMode="contain"
                     style={styles.plusBtn}
                     source={require("./assets/images/box.png")}
                   />

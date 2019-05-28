@@ -1,18 +1,25 @@
-
-import { StyleSheet, Dimensions } from 'react-native';
-import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+import { StyleSheet, Dimensions } from "react-native";
+import {
+  responsiveHeight,
+  responsiveWidth,
+  responsiveFontSize
+} from "react-native-responsive-dimensions";
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 1
   },
   welcomeGridViewImage: {
     width: responsiveWidth(100),
-    height: responsiveHeight(55.78),
+    height: responsiveHeight(55.78)
+  },
+  welcomeImage: {
+    width: "100%",
+    height: "100%"
   },
   ooImage: {
     width: responsiveWidth(100),
-    height: responsiveHeight(100),
+    height: responsiveHeight(100)
   },
   innerContainer: {
     marginHorizontal: responsiveWidth(5.33),
@@ -25,20 +32,21 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   rentText: {
-    fontFamily: "TruenoSBd",
-    fontSize: 32
+    fontFamily: "SFProText-Regular",
+    fontSize: responsiveFontSize(4.3)
   },
   welcomeText: {
-    marginTop: responsiveHeight(3),
+    marginTop: responsiveHeight(1),
     fontFamily: "SFProText-Regular",
-    fontSize: 17
+    fontSize: responsiveFontSize(2),
+    lineHeight: 25
   },
   midLayout: {
     flexDirection: "column",
     width: responsiveWidth(89.34),
     height: responsiveHeight(28.57),
     justifyContent: "space-between",
-    alignItems: "flex-start",
+    alignItems: "flex-start"
   },
   btnSignUpLayout: {
     backgroundColor: "#0055FF",
@@ -46,7 +54,7 @@ const styles = StyleSheet.create({
     height: responsiveHeight(5.6),
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 5,
+    borderRadius: 5
   },
   btnLoginLayout: {
     marginTop: responsiveHeight(1.47),
@@ -55,7 +63,7 @@ const styles = StyleSheet.create({
     height: responsiveHeight(5.6),
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 5,
+    borderRadius: 5
   },
   btnNotNowLayout: {
     marginTop: responsiveHeight(1.47),
@@ -63,23 +71,23 @@ const styles = StyleSheet.create({
     width: responsiveWidth(89.34),
     height: responsiveHeight(5.6),
     justifyContent: "center",
-    alignItems: "center",
+    alignItems: "center"
   },
   btnText: {
     fontFamily: "SFProText-Semibold",
-    fontSize: 17,
+    fontSize: responsiveFontSize(2),
     textAlign: "center",
     color: "white"
   },
   notNowBtnText: {
     fontFamily: "SFProText-Semibold",
-    fontSize: 17,
+    fontSize: responsiveFontSize(2),
     textAlign: "center",
     color: "#0055FF"
   },
   ooIcon: {
     width: 67,
-    height: 44,
+    height: 44
   }
 });
 

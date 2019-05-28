@@ -14,6 +14,7 @@ import {
   responsiveHeight,
   responsiveFontSize
 } from "react-native-responsive-dimensions";
+import moment from "moment";
 
 import styles from "../style/newOfferStyle";
 
@@ -66,13 +67,23 @@ export default class NewOfferAvailability extends Component {
     super(props);
 
     this.state = {
-      title: "",
-      summary: ""
+      range: "",
+      startDate: null,
+      endDate: null
     };
+
+    this.setDatesRange = this.setDatesRange.bind(this);
+  }
+
+  setDatesRange(range) {
+    this.setState({ range: range });
   }
 
   nextStep() {
     const { newRentalItem } = this.props;
+    const { startDate, endDate } = this.state;
+
+    newRentalItem["availabilityRange"] = { startDate, endDate };
 
     Actions.NewOfferPrice({ newRentalItem: newRentalItem });
   }
@@ -88,13 +99,14 @@ export default class NewOfferAvailability extends Component {
         </View>
 
         <Calendar
-          onChange={range => console.log(range)}
-          minDate="2018-04-20"
-          startDate="2018-04-30"
-          endDate="2018-05-05"
+          disableRange={false}
+          onChange={range => {
+            console.log(range);
+            this.setDatesRange(range);
+          }}
           style={{ flex: 1 }}
           numberOfMonths={5}
-          monthHeight={responsiveHeight(43)}
+          monthHeight={responsiveHeight(40)}
           theme={calendarTheme}
         />
 

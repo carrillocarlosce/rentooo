@@ -41,8 +41,8 @@ const styles = StyleSheet.create({
     marginVertical: responsiveHeight(2.5)
   },
   addPicture: {
-    height: responsiveWidth(25),
-    width: responsiveWidth(25),
+    height: responsiveWidth(20),
+    width: responsiveWidth(20),
     backgroundColor: "#F5F5FD",
     justifyContent: "center",
     alignItems: "center",
@@ -53,8 +53,8 @@ const styles = StyleSheet.create({
     width: "40%"
   },
   addedPhoto: {
-    height: responsiveWidth(25),
-    width: responsiveWidth(25),
+    height: responsiveWidth(20),
+    width: responsiveWidth(20),
     marginRight: responsiveWidth(4),
     borderRadius: 5,
     overflow: "hidden"

@@ -84,6 +84,7 @@ export default class Code extends Component {
               <Text style={styles.resendText}>Resend code</Text>
             </TouchableOpacity>
           </View>
+
           <View>
             <TouchableOpacity
               style={styles.btnVerifyLayout}
