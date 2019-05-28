@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     marginLeft: 8
   },
   rentooCurrentyText: {
-    fontFamily: "TruenoSBd",
+    fontFamily: "SFProText-Regular",
     fontSize: 38,
     color: "white"
   },
@@ -61,9 +61,16 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: "white"
   },
-  checkbox: {
+  iconTransactionContainer: {
     width: responsiveWidth(10.1),
-    height: responsiveWidth(10.1)
+    height: responsiveWidth(10.1),
+    borderRadius: 200,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  iconTransaction: {
+    height: "40%",
+    width: "40%"
   },
   itemLayout: {
     flexDirection: "row",

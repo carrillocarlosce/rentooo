@@ -20,23 +20,51 @@ import {
   responsiveWidth,
   responsiveHeight
 } from "react-native-responsive-dimensions";
+import firebase from "react-native-firebase";
+import moment from "moment";
+
 import StarView from "../component/Startview";
 
 export default class Yourbalance extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { dollarPrice: 0 };
+    this.state = { userTransactions: [], dollarPrice: 0 };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     const { data } = this.props;
 
     this.props.navigation.setParams({
       headerStyle: { backgroundColor: data.color }
     });
 
+    this.getRecentTransactions();
     this.getDollarValue();
+  }
+
+  getRecentTransactions() {
+    const userID = window.currentUser["userID"];
+    const { data } = this.props;
+
+    firebase
+      .database()
+      .ref("transactions/")
+      .on("value", transactionsSnapshot => {
+        let userTransactions = [];
+        let i = 0;
+
+        transactionsSnapshot.forEach(function(childSnapshot) {
+          var item = childSnapshot.val();
+          item.key = i++;
+
+          if (item.owner == userID || item.receiver == userID) {
+            if (item.coin == data.name) userTransactions.push(item);
+          }
+        });
+
+        this.setState({ userTransactions: userTransactions.reverse() });
+      });
   }
 
   async getDollarValue() {
@@ -47,9 +75,11 @@ export default class Yourbalance extends Component {
         "https://api.cryptonator.com/api/ticker/" + data.symbol + "-usd"
       );
       let responseJson = await response.json();
-      let valueInDollar = responseJson.ticker.price * balance;
 
-      this.setState({ dollarPrice: valueInDollar });
+      if (responseJson.success) {
+        let valueInDollar = responseJson.ticker.price * balance;
+        this.setState({ dollarPrice: valueInDollar });
+      }
     } catch (error) {
       console.error(error);
     }
@@ -57,7 +87,9 @@ export default class Yourbalance extends Component {
 
   render() {
     const { data, balance } = this.props;
-    const { dollarPrice } = this.state;
+    const { dollarPrice, userTransactions } = this.state;
+
+    console.log(userTransactions);
 
     return (
       <View style={styles.container}>
@@ -79,131 +111,54 @@ export default class Yourbalance extends Component {
 
           <Text style={styles.title}>Recent transactions</Text>
 
-          <View style={styles.itemLayout}>
-            <Image
-              style={styles.checkbox}
-              source={require("../../assets/images/hole.png")}
-            />
-            <View style={styles.itemContainer}>
-              <View style={styles.leftItem}>
-                <Text style={styles.upperText}>Sent</Text>
-                <Text style={styles.inlineText}>21 Apr, 2019</Text>
-              </View>
-              <View style={styles.rightItem}>
-                <Text style={styles.upperText}>-100 000 000.0</Text>
-                <Text style={styles.inlineText}>RENTOO</Text>
-              </View>
-            </View>
-          </View>
-          <View style={styles.bottomline} />
+          {userTransactions.map((item, index) => {
+            const userID = window.currentUser["userID"];
+            const isReceived =
+              item.type == "credit" && item.receiver == userID ? true : false;
 
-          <View style={styles.itemLayout}>
-            <Image
-              style={styles.rotateIcons}
-              source={require("../../assets/images/hole.png")}
-            />
-            <View style={styles.itemContainer}>
-              <View style={styles.leftItem}>
-                <Text style={styles.upperText}>Received</Text>
-                <Text style={styles.inlineText}>21 Apr, 2019</Text>
+            return (
+              <View>
+                <View style={styles.itemLayout} key={index}>
+                  <View
+                    style={[
+                      styles.iconTransactionContainer,
+                      { backgroundColor: isReceived ? "blue" : "grey" }
+                    ]}
+                  >
+                    <Image
+                      resizeMode="contain"
+                      style={[
+                        styles.iconTransaction,
+                        {
+                          transform: [
+                            { rotate: isReceived ? "180deg" : "0deg" }
+                          ]
+                        }
+                      ]}
+                      source={require("../../assets/images/toparrow.png")}
+                    />
+                  </View>
+                  <View style={styles.itemContainer}>
+                    <View style={styles.leftItem}>
+                      <Text style={styles.upperText}>
+                        {isReceived ? "Received" : "Sent"}
+                      </Text>
+                      <Text style={styles.inlineText}>
+                        {moment(item.date).format("MMMM Do YYYY, h:mm a")}
+                      </Text>
+                    </View>
+                    <View style={styles.rightItem}>
+                      <Text style={styles.inlineText}>
+                        {item.coin.toUpperCase()}
+                      </Text>
+                      <Text style={styles.upperText}>{item.amount}</Text>
+                    </View>
+                  </View>
+                </View>
+                <View style={styles.bottomline} />
               </View>
-              <View style={styles.rightItem}>
-                <Text style={styles.upperText}>+88 900 000.0</Text>
-                <Text style={styles.inlineText}>RENTOO</Text>
-              </View>
-            </View>
-          </View>
-          <View style={styles.bottomline} />
-
-          <View style={styles.itemLayout}>
-            <Image
-              style={styles.checkbox}
-              source={require("../../assets/images/hole.png")}
-            />
-            <View style={styles.itemContainer}>
-              <View style={styles.leftItem}>
-                <Text style={styles.upperText}>Sent</Text>
-                <Text style={styles.inlineText}>19 Apr, 2019</Text>
-              </View>
-              <View style={styles.rightItem}>
-                <Text style={styles.upperText}>-5400.5</Text>
-                <Text style={styles.inlineText}>RENTOO</Text>
-              </View>
-            </View>
-          </View>
-          <View style={styles.bottomline} />
-
-          <View style={styles.itemLayout}>
-            <Image
-              style={styles.rotateIcons}
-              source={require("../../assets/images/hole.png")}
-            />
-            <View style={styles.itemContainer}>
-              <View style={styles.leftItem}>
-                <Text style={styles.upperText}>Received</Text>
-                <Text style={styles.inlineText}>5 Apr, 2019</Text>
-              </View>
-              <View style={styles.rightItem}>
-                <Text style={styles.upperText}>+100 000 000.0</Text>
-                <Text style={styles.inlineText}>RENTOO</Text>
-              </View>
-            </View>
-          </View>
-          <View style={styles.bottomline} />
-
-          <View style={styles.itemLayout}>
-            <Image
-              style={styles.checkbox}
-              source={require("../../assets/images/hole.png")}
-            />
-            <View style={styles.itemContainer}>
-              <View style={styles.leftItem}>
-                <Text style={styles.upperText}>Sent</Text>
-                <Text style={styles.inlineText}>2 Apr, 2019</Text>
-              </View>
-              <View style={styles.rightItem}>
-                <Text style={styles.upperText}>-88 900 000.0</Text>
-                <Text style={styles.inlineText}>RENTOO</Text>
-              </View>
-            </View>
-          </View>
-          <View style={styles.bottomline} />
-
-          <View style={styles.itemLayout}>
-            <Image
-              style={styles.rotateIcons}
-              source={require("../../assets/images/hole.png")}
-            />
-            <View style={styles.itemContainer}>
-              <View style={styles.leftItem}>
-                <Text style={styles.upperText}>Sent</Text>
-                <Text style={styles.inlineText}>2 Apr, 2019</Text>
-              </View>
-              <View style={styles.rightItem}>
-                <Text style={styles.upperText}>-100 000 000.0</Text>
-                <Text style={styles.inlineText}>RENTOO</Text>
-              </View>
-            </View>
-          </View>
-          <View style={styles.bottomline} />
-
-          <View style={styles.itemLayout}>
-            <Image
-              style={styles.checkbox}
-              source={require("../../assets/images/hole.png")}
-            />
-            <View style={styles.itemContainer}>
-              <View style={styles.leftItem}>
-                <Text style={styles.upperText}>Sent</Text>
-                <Text style={styles.inlineText}>2 Apr, 2019</Text>
-              </View>
-              <View style={styles.rightItem}>
-                <Text style={styles.upperText}>-100 000 000.0</Text>
-                <Text style={styles.inlineText}>RENTOO</Text>
-              </View>
-            </View>
-          </View>
-          <View style={styles.bottomline} />
+            );
+          })}
         </ScrollView>
         <View style={styles.bottomContainer}>
           <TouchableOpacity
