@@ -27,17 +27,13 @@ export default class Name extends Component {
   }
 
   nextSignupStep() {
-    const { email, password, firstName, lastName } = this.props;
+    const { createdUser } = this.props;
     const { number } = this.state;
 
     if (number.length > 6) {
-      Actions.Code({
-        email: email,
-        password: password,
-        firstName: firstName,
-        lastName: lastName,
-        number: number
-      });
+      createdUser["number"] = number;
+
+      Actions.Code({ createdUser: createdUser });
     } else {
       Alert.alert("Make sure your number is correct");
     }

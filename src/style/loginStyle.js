@@ -1,33 +1,37 @@
-import { StyleSheet, Dimensions } from 'react-native';
-import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+import { StyleSheet, Dimensions } from "react-native";
+import {
+  responsiveHeight,
+  responsiveWidth,
+  responsiveFontSize
+} from "react-native-responsive-dimensions";
 
 const styles = StyleSheet.create({
   container: {
     marginHorizontal: responsiveWidth(5.33)
   },
   welcomeText: {
-    fontFamily: "TruenoSBd",
-    fontSize: 26,
+    fontFamily: "SFProText-Regular",
+    fontSize: responsiveFontSize(3.6)
   },
   formLayout: {
     marginTop: responsiveHeight(5),
-    flexDirection: "column",
+    flexDirection: "column"
   },
   formItem: {
     marginTop: responsiveHeight(1),
-    backgroundColor: "#F2F2F2", 
+    backgroundColor: "#F2F2F2",
     height: responsiveHeight(5.66),
     paddingLeft: 16,
-    borderRadius: 5,
+    borderRadius: 5
   },
   forgotTextBtn: {
     marginTop: responsiveHeight(1),
-    alignItems: "flex-end",
+    alignItems: "flex-end"
   },
-  forgotText:{
+  forgotText: {
     fontFamily: "SFProText-Regular",
     color: "#1865FF",
-    height: responsiveHeight(5.66),
+    height: responsiveHeight(5.66)
   },
   btnLoginLayout: {
     marginTop: responsiveHeight(1),
@@ -36,18 +40,18 @@ const styles = StyleSheet.create({
     height: responsiveHeight(5),
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 5,
+    borderRadius: 5
   },
   textLoginWithLayout: {
     marginTop: responsiveHeight(2.94),
     width: responsiveWidth(89.34),
     height: responsiveHeight(4),
     textAlign: "center",
-    justifyContent: "center", 
+    justifyContent: "center",
     alignItems: "center",
     fontFamily: "SFProText-Regular",
     fontSize: 17,
-    borderRadius: 5,
+    borderRadius: 5
   },
   btnFBLayout: {
     marginTop: responsiveHeight(1.47),
@@ -57,7 +61,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",
-    borderRadius: 5,
+    borderRadius: 5
   },
   btnTwitterLayout: {
     marginTop: responsiveHeight(1.47),
@@ -67,7 +71,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",
-    borderRadius: 5,
+    borderRadius: 5
   },
   btnGoogleLayout: {
     marginTop: responsiveHeight(1.47),
@@ -77,7 +81,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",
-    borderRadius: 5,
+    borderRadius: 5
   },
   btnText: {
     marginLeft: 10,

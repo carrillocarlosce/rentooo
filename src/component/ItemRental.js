@@ -9,6 +9,7 @@ import React, { Component } from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import StarView from "react-native-star-view";
 import { Actions } from "react-native-router-flux";
+import Placeholder, { Line, Media, ImageContent } from "rn-placeholder";
 
 import {
   responsiveHeight,
@@ -17,10 +18,26 @@ import {
 } from "react-native-responsive-dimensions";
 
 export default class ItemRental extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isFullyLoaded: false
+    };
+  }
+
+  componentDidMount() {
+    let self = this;
+    setInterval(function() {
+      self.setState({ isFullyLoaded: true });
+    }, 4000);
+  }
+
   render() {
     const { data } = this.props;
+    const { isFullyLoaded } = this.state;
 
-    return (
+    const ComponentLoaded = () => (
       <View style={styles.interestImageContainer}>
         <TouchableOpacity
           style={styles.itemIterestBtnContainer}
@@ -58,6 +75,18 @@ export default class ItemRental extends Component {
           <Text style={styles.starText}>13</Text>
         </View>
       </View>
+    );
+
+    return (
+      <Placeholder
+        isReady={isFullyLoaded}
+        animation="fade"
+        whenReadyRender={() => <ComponentLoaded />}
+      >
+        <Line height={90} width="90%" />
+        <Line width="50%" />
+        <Line width="70%" style={{ marginBottom: 40 }} />
+      </Placeholder>
     );
   }
 }

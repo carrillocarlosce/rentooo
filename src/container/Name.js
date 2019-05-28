@@ -27,18 +27,16 @@ export default class Name extends Component {
   }
 
   nextSignupStep() {
-    const { email, password } = this.props;
+    const { createdUser } = this.props;
     const { firstName, lastName } = this.state;
 
     if (firstName.length > 0 && lastName.length > 0) {
-      Actions.Number({
-        email: email,
-        password: password,
-        firstName: firstName,
-        lastName: lastName
-      });
+      createdUser["firstname"] = firstName;
+      createdUser["lastname"] = lastName;
+
+      Actions.Number({ createdUser: createdUser });
     } else {
-      Alert.alert("Make sure your name and lastname are long enough.");
+      Alert.alert("Make sure your name and last name are long enough.");
     }
   }
 
