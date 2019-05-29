@@ -62,7 +62,7 @@ const calendarTheme = {
   nonTouchableLastMonthDayTextStyle: {}
 };
 
-export default class NewOfferAvailability extends Component {
+export default class RentItemDates extends Component {
   constructor(props) {
     super(props);
 
@@ -71,38 +71,26 @@ export default class NewOfferAvailability extends Component {
       startDate: null,
       endDate: null
     };
-
-    this.setDatesRange = this.setDatesRange.bind(this);
-  }
-
-  setDatesRange(range) {
-    this.setState({ range: range });
   }
 
   nextStep() {
-    const { newRentalItem } = this.props;
-    const { startDate, endDate } = this.state;
+    const { itemRental } = this.props;
 
-    newRentalItem["availabilityRange"] = { startDate, endDate };
+    rentalReservation = [];
 
-    Actions.NewOfferPrice({ newRentalItem: newRentalItem });
+    Actions.RentItemPaymentMethod({
+      rentalReservation: rentalReservation,
+      itemRental: itemRental
+    });
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.pageHeader}>
-          <Text style={styles.pageTitle}>Availability</Text>
-          <Text style={styles.pageInstructions}>
-            Select dates to block or unblock.
-          </Text>
-        </View>
-
         <Calendar
           disableRange={false}
           onChange={range => {
             console.log(range);
-            this.setDatesRange(range);
           }}
           style={{ flex: 1 }}
           numberOfMonths={5}

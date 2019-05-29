@@ -55,8 +55,14 @@ import Inboxdetails from "./src/container/Inboxdetails";
 import Profiledetails from "./src/container/Profiledetails";
 import Profile from "./src/container/Profile";
 import MapSearch from "./src/container/MapSearch";
+
 import ItemDetails from "./src/container/ItemDetails";
 import ProfileUnlog from "./src/container/ProfileUnlog";
+
+import RentItemDates from "./src/container/RentItemDates";
+import RentItemPaymentMethod from "./src/container/RentItemPaymentMethod";
+import RentItemDetails from "./src/container/RentItemDetails";
+import RentItemCheckout from "./src/container/RentItemCheckout";
 
 import {
   responsiveHeight,
@@ -325,7 +331,61 @@ export default class App extends Component {
           <Scene key="Myoffers" component={Myoffers} />
           <Scene key="Wallets" component={Wallets} />
           <Scene key="MapSearch" component={MapSearch} hideNavBar={true} />
+
           <Scene key="ItemDetails" component={ItemDetails} hideNavBar={true} />
+
+          <Scene
+            renderLeftButton={
+              <TouchableOpacity onPress={() => Actions.pop()}>
+                <Image
+                  style={styles.leftBtn}
+                  source={require("./assets/images/back3x.png")}
+                />
+              </TouchableOpacity>
+            }
+            key="RentItemDates"
+            component={RentItemDates}
+          />
+
+          <Scene
+            renderLeftButton={
+              <TouchableOpacity onPress={() => Actions.pop()}>
+                <Image
+                  style={styles.leftBtn}
+                  source={require("./assets/images/back3x.png")}
+                />
+              </TouchableOpacity>
+            }
+            key="RentItemPaymentMethod"
+            component={RentItemPaymentMethod}
+          />
+
+          <Scene
+            renderLeftButton={
+              <TouchableOpacity onPress={() => Actions.pop()}>
+                <Image
+                  style={styles.leftBtn}
+                  source={require("./assets/images/back3x.png")}
+                />
+              </TouchableOpacity>
+            }
+            key="RentItemDetails"
+            component={RentItemDetails}
+          />
+
+          <Scene
+            renderLeftButton={
+              <TouchableOpacity onPress={() => Actions.pop()}>
+                <Image
+                  style={styles.leftBtn}
+                  source={require("./assets/images/back3x.png")}
+                />
+              </TouchableOpacity>
+            }
+            key="RentItemCheckout"
+            component={RentItemCheckout}
+          />
+
           <Scene
             key="Yourbalance"
             component={Yourbalance}
@@ -510,6 +570,7 @@ export default class App extends Component {
                 hideNavBar={false}
                 renderRightButton={() => (
                   <Image
+                    resizeMode="contain"
                     style={styles.plusBtn}
                     source={require("./assets/images/box.png")}
                   />

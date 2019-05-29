@@ -31,7 +31,9 @@ export default class Signup extends Component {
     const { email, password } = this.state;
 
     if (email.length > 4 && password.length > 4) {
-      Actions.Name({ email: email, password: password });
+      const createdUser = { email: email, password: password };
+
+      Actions.Name({ createdUser: createdUser });
     } else {
       Alert.alert("Please check your mail and/or password.");
     }

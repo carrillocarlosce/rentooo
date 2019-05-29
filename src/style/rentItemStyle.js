@@ -31,45 +31,14 @@ const styles = StyleSheet.create({
   headerInputTitle: {
     color: "rgba(0,0,0,0.6)"
   },
-  priceText: {
-    fontSize: responsiveFontSize(5)
-  },
   separatorLine: {
     width: "100%",
     height: 1,
     backgroundColor: "rgba(0,0,0,0.1)",
     marginVertical: responsiveHeight(2.5)
   },
-  addPicture: {
-    height: responsiveWidth(20),
-    width: responsiveWidth(20),
-    backgroundColor: "#F5F5FD",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 5
-  },
-  addPictureIcon: {
-    height: "40%",
-    width: "40%"
-  },
-  addedPhoto: {
-    height: responsiveWidth(20),
-    width: responsiveWidth(20),
-    marginRight: responsiveWidth(4),
-    borderRadius: 5,
-    overflow: "hidden"
-  },
-  itemCrypto: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    width: "100%"
-  },
-  titleCryptoContainer: {
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "center"
-  },
+
+  // Radio button selector //
   categoryLogoContainer: {
     height: responsiveWidth(8),
     width: responsiveWidth(8),
@@ -93,22 +62,16 @@ const styles = StyleSheet.create({
     backgroundColor: "#F5F5FD",
     marginVertical: responsiveHeight(2)
   },
-  btnCurrentLocation: {
-    flexDirection: "row",
-    width: "100%",
-    height: responsiveHeight(6),
-    borderRadius: 5,
-    backgroundColor: "#A3A3BD",
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: responsiveHeight(3)
+  // End radio button selector //
+
+  // Checkout UI //
+  itemRentalContainer: {},
+  itemRentalPicture: {
+    height: responsiveWidth(20),
+    width: responsiveWidth(35)
   },
-  locationIcon: { height: 23, width: 23, marginRight: 15 },
-  textBtnCurrentLocation: {
-    fontFamily: "SFProText-Semibold",
-    color: "#fff",
-    fontSize: responsiveFontSize(2)
-  },
+  // End checkout UI//
+
   btnNext: {
     position: "absolute",
     bottom: responsiveHeight(5),

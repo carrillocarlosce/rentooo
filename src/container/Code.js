@@ -22,7 +22,7 @@ export default class Code extends Component {
   }
 
   async createAccount() {
-    const { email, password, firstName, lastName, number } = this.props;
+    const { createdUser } = this.props;
 
     const wallet = {};
 
@@ -30,17 +30,14 @@ export default class Code extends Component {
       wallet[item.name] = 250;
     });
 
-    const createdUser = {
-      email: email,
-      firstname: firstName,
-      lastname: lastName,
-      phoneNumber: number,
-      wallet: wallet
-    };
+    createdUser["wallet"] = wallet;
 
     firebase
       .auth()
-      .createUserWithEmailAndPassword(email, password)
+      .createUserWithEmailAndPassword(
+        createdUser["email"],
+        createdUser["password"]
+      )
       .then(function() {
         firebase
           .database()
@@ -84,6 +81,7 @@ export default class Code extends Component {
               <Text style={styles.resendText}>Resend code</Text>
             </TouchableOpacity>
           </View>
+
           <View>
             <TouchableOpacity
               style={styles.btnVerifyLayout}

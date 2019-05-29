@@ -3911,7 +3911,12 @@ locate-path@^3.0.0:
     p-locate "^3.0.0"
     path-exists "^3.0.0"
 
-lodash.isequal@4.5.0:
+lodash.get@^4.4.2:
+  version "4.4.2"
+  resolved "https://registry.yarnpkg.com/lodash.get/-/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"
+  integrity sha1-LRd/ZS+jHpObRDjVNBSZ36OCXpk=
+
+lodash.isequal@4.5.0, lodash.isequal@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
   integrity sha1-QVxEePK8wwEgwizhDtMib30+GOA=
@@ -5210,6 +5215,14 @@ prompts@^2.0.1:
     kleur "^3.0.2"
     sisteransi "^1.0.0"
 
+prop-types@15.6.2:
+  version "15.6.2"
+  resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.2.tgz#05d5ca77b4453e985d60fc7ff8c859094a497102"
+  integrity sha512-3pboPvLiWD7dkI3qf3KbUe6hKFKa52w+AE0VCqECtf+QHAKgOL37tTaNCnuX1nAAQ4ZhyP+kYVKf8rLmJ/feDQ==
+  dependencies:
+    loose-envify "^1.3.1"
+    object-assign "^4.1.1"
+
 prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
@@ -5326,6 +5339,16 @@ react-native-calendario@^0.2.10:
   integrity sha512-pGtvabJNgUCDk0NmrK3tbmEhWy8p/E02a8N2aquzlsNchoVLdhyFmIIOsbFdOTyqXdNuVeqXm7l28bdZmYsPHw==
   dependencies:
     moment "^2.24.0"
+
+react-native-calendars@^1.145.0:
+  version "1.145.0"
+  resolved "https://registry.yarnpkg.com/react-native-calendars/-/react-native-calendars-1.145.0.tgz#11371389ec18ea5cc57ffe04c234ff92878a70d5"
+  integrity sha512-YqGLwSMsVqp7+yFUov8JZDEHPJlNVbg+DM+YTv9faSwqUFpAMPnpXpQAUIvudp+58LdAcT/uBpn146gVeKL2FA==
+  dependencies:
+    lodash.get "^4.4.2"
+    lodash.isequal "^4.5.0"
+    prop-types "^15.5.10"
+    xdate "^0.8.0"
 
 react-native-dismiss-keyboard@1.0.0:
   version "1.0.0"
@@ -5959,6 +5982,13 @@ rimraf@~2.2.6:
   version "2.2.8"
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.2.8.tgz#e439be2aaee327321952730f99a8929e4fc50582"
   integrity sha1-5Dm+Kq7jJzIZUnMPmaiSnk/FBYI=
+
+rn-placeholder@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/rn-placeholder/-/rn-placeholder-2.0.0.tgz#8d72a432e9a6b02f0b3cb7de8ddf22b200b80ffd"
+  integrity sha512-bVy0GYu3LrxR0o/fGo09YN3a4OR13f6/Y1HFZ0s9f/ejUZWU2E1cvmNuPmPvEyjRQATa8NQcwNhB0CvXFJhbSg==
+  dependencies:
+    prop-types "15.6.2"
 
 rsvp@^3.3.3:
   version "3.6.2"
@@ -6941,6 +6971,11 @@ xcode@^2.0.0:
   dependencies:
     simple-plist "^1.0.0"
     uuid "^3.3.2"
+
+xdate@^0.8.0:
+  version "0.8.2"
+  resolved "https://registry.yarnpkg.com/xdate/-/xdate-0.8.2.tgz#d7b033c00485d02695baf0044f4eacda3fc961a3"
+  integrity sha1-17AzwASF0CaVuvAET06s2j/JYaM=
 
 xml-name-validator@^3.0.0:
   version "3.0.0"
