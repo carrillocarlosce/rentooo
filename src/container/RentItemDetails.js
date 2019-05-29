@@ -16,7 +16,7 @@ import {
 } from "react-native-responsive-dimensions";
 import moment from "moment";
 
-import styles from "../style/newOfferStyle";
+import styles from "../style/rentItemStyle";
 
 export default class RentItemDetails extends Component {
   constructor(props) {

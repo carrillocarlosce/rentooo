@@ -14,7 +14,7 @@ import {
   responsiveFontSize
 } from "react-native-responsive-dimensions";
 
-import styles from "../style/newOfferStyle";
+import styles from "../style/rentItemStyle";
 import cryptoList from "../data/cryptoList";
 
 export default class RentItemPaymentMethod extends Component {

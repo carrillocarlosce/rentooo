@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#FFFFFF",
     position: "relative",
-    paddingHorizontal: responsiveWidth(5),
+    paddingHorizontal: responsiveWidth(5.33),
     paddingTop: responsiveHeight(3)
   },
   pageHeader: {
@@ -32,13 +32,25 @@ const styles = StyleSheet.create({
     color: "rgba(0,0,0,0.6)"
   },
   separatorLine: {
-    width: "100%",
+    width: responsiveWidth(100),
     height: 1,
     backgroundColor: "rgba(0,0,0,0.1)",
-    marginVertical: responsiveHeight(2.5)
+    marginVertical: responsiveHeight(2.5),
+    marginHorizontal: responsiveWidth(-5.33)
   },
 
   // Radio button selector //
+  itemCrypto: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: "100%"
+  },
+  titleCryptoContainer: {
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center"
+  },
   categoryLogoContainer: {
     height: responsiveWidth(8),
     width: responsiveWidth(8),
@@ -65,10 +77,54 @@ const styles = StyleSheet.create({
   // End radio button selector //
 
   // Checkout UI //
-  itemRentalContainer: {},
+  itemRentalContainer: { flexDirection: "row", justifyContent: "flex-start" },
   itemRentalPicture: {
     height: responsiveWidth(20),
-    width: responsiveWidth(35)
+    width: responsiveWidth(30),
+    marginRight: responsiveWidth(3),
+    borderRadius: 5
+  },
+  itemRentalContainerText: {
+    flex: 1,
+    height: 60,
+    flexDirection: "column",
+    justifyContent: "space-between"
+  },
+  itemRentalTextTitle: {
+    fontFamily: "SFProText-Semibold",
+    fontSize: responsiveFontSize(2)
+  },
+  itemRentalTextDates: {
+    fontFamily: "SFProText-Semibold",
+    fontSize: responsiveFontSize(1.8),
+    color: "rgba(0,0,0,0.6)"
+  },
+  containerRentalPrice: {
+    flexDirection: "row",
+    justifyContent: "space-between"
+  },
+  itemRentalTextPrice: {
+    fontFamily: "SFProText-Regular",
+    fontSize: responsiveFontSize(1.8),
+    color: "rgba(0,0,0,0.6)"
+  },
+  totalTitle: {
+    fontFamily: "SFProText-Regular",
+    fontSize: responsiveFontSize(2.7),
+    marginBottom: responsiveHeight(2)
+  },
+  totalUSDAmount: {
+    fontFamily: "SFProText-Semibold",
+    fontSize: responsiveFontSize(1.8),
+    color: "rgba(0,0,0,0.6)",
+    marginBottom: responsiveHeight(1)
+  },
+  totalCurrencyAmount: {
+    fontFamily: "SFProText-Semibold",
+    fontSize: responsiveFontSize(1.8)
+  },
+  termsOfService: {
+    color: "rgba(0,0,0,0.6)"
   },
   // End checkout UI//
 
