@@ -22,15 +22,8 @@ export default class ItemRental extends Component {
     super(props);
 
     this.state = {
-      isFullyLoaded: false
+      isFullyLoaded: true
     };
-  }
-
-  componentDidMount() {
-    let self = this;
-    setInterval(function() {
-      self.setState({ isFullyLoaded: true });
-    }, 4000);
   }
 
   render() {
