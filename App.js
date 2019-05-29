@@ -56,6 +56,7 @@ import Profiledetails from "./src/container/Profiledetails";
 import Profile from "./src/container/Profile";
 import MapSearch from "./src/container/MapSearch";
 import ItemDetails from "./src/container/ItemDetails";
+import ProfileUnlog from "./src/container/ProfileUnlog";
 
 import {
   responsiveHeight,
@@ -175,11 +176,25 @@ export default class App extends Component {
       <Router navigationBarStyle={{ borderBottomColor: "transparent" }}>
         <Scene key="root">
           <Scene
+            key="ProfileUnlog"
+            component={ProfileUnlog}
+            hideNavBar={false}
+            
+            renderRightButton={() => (
+              <Image
+                style={styles.plusBtn}
+                source={require("./assets/images/setting.png")}
+              />
+            )}
+            icon={TabbarIcon5}
+            initial
+          />
+          <Scene
             key="Welcome"
             component={Welcome}
             title="Welcome"
             hideNavBar={true}
-            initial
+            
           />
           <Scene
             key="Login"
@@ -360,7 +375,6 @@ export default class App extends Component {
               </TouchableOpacity>
             }
           />
-          <Scene key="Profile" component={Profile} />
 
           <Scene
             renderLeftButton={
@@ -528,6 +542,7 @@ export default class App extends Component {
                 )}
                 icon={TabbarIcon5}
               />
+              
             </Tabs>
           </Scene>
         </Scene>
