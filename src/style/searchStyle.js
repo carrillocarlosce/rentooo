@@ -7,11 +7,12 @@ import {
 
 const styles = StyleSheet.create({
   container: {
-    marginHorizontal: responsiveWidth(5.33)
+    paddingHorizontal: responsiveWidth(5.33)
   },
   searchBar: {
     backgroundColor: "#F2F2F2",
     marginTop: responsiveHeight(1.48),
+    marginHorizontal: responsiveWidth(5.33),
     height: responsiveHeight(6)
   },
   searchBarInput: {
@@ -45,7 +46,8 @@ const styles = StyleSheet.create({
     borderRadius: 5
   },
   btnContainer: {
-    marginTop: responsiveHeight(1.48),
+    marginVertical: responsiveHeight(1.48),
+    marginHorizontal: responsiveWidth(5.33),
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center"

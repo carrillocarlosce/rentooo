@@ -81,32 +81,46 @@ export default class Search extends Component {
     const { firstQuery, rentals } = this.state;
 
     return (
-      <ScrollView style={{ flex: 1, backgroundColor: "#ffffff" }}>
-        <View style={styles.container}>
-          <SafeAreaView>
-            <Searchbar
-              style={styles.searchBar}
-              inputStyle={styles.searchBarInput}
-              placeholder="Search"
-              onChangeText={query => {
-                this.setState({ firstQuery: query });
-              }}
-              value={firstQuery}
-              onSubmitEditing={() => Actions.Searchresult()}
-            />
+      <View style={{ flex: 1, backgroundColor: "#fff" }}>
+        <SafeAreaView
+          style={{
+            flex: 1,
+            zIndex: 100,
+            position: "absolute",
+            top: 0,
+            right: 0,
+            left: 0,
+            paddingHorizontal: responsiveWidth(5.33),
+            backgroundColor: "#fff"
+          }}
+        >
+          <Searchbar
+            style={styles.searchBar}
+            inputStyle={styles.searchBarInput}
+            placeholder="Search"
+            onChangeText={query => {
+              this.setState({ firstQuery: query });
+            }}
+            value={firstQuery}
+            onSubmitEditing={() => Actions.Searchresult()}
+          />
 
-            <View style={styles.btnContainer}>
-              <TouchableOpacity style={styles.btnFiltersLayout}>
-                <Text style={styles.btnFilterText}>Nearby</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.btnFiltersLayout}>
-                <Text style={styles.btnFilterText}>Dates</Text>
-              </TouchableOpacity>
-            </View>
-          </SafeAreaView>
+          <View style={styles.btnContainer}>
+            <TouchableOpacity style={styles.btnFiltersLayout}>
+              <Text style={styles.btnFilterText}>Nearby</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.btnFiltersLayout}>
+              <Text style={styles.btnFilterText}>Dates</Text>
+            </TouchableOpacity>
+          </View>
+        </SafeAreaView>
 
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          style={styles.container}
+        >
           <View
-            style={[styles.interestHeader, { marginTop: responsiveHeight(4) }]}
+            style={[styles.interestHeader, { marginTop: responsiveHeight(25) }]}
           >
             <Text style={styles.text1IterestHeader}>Categories</Text>
           </View>
@@ -176,8 +190,8 @@ export default class Search extends Component {
               />
             </View>
           </View>
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </View>
     );
   }
 }

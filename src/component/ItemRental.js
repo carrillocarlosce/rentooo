@@ -22,8 +22,12 @@ export default class ItemRental extends Component {
     super(props);
 
     this.state = {
-      isFullyLoaded: true
+      isFullyLoaded: false
     };
+  }
+
+  componentDidMount() {
+    this.setState({ isFullyLoaded: true });
   }
 
   render() {
@@ -75,6 +79,7 @@ export default class ItemRental extends Component {
         isReady={isFullyLoaded}
         animation="fade"
         whenReadyRender={() => <ComponentLoaded />}
+        style={{ margin: 5 }}
       >
         <Line height={90} width="90%" />
         <Line width="50%" />

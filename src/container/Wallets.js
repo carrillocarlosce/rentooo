@@ -48,27 +48,37 @@ export default class Wallets extends Component {
       });
   }
 
-  _renderItem = (data, i) => (
-    <TouchableOpacity
-      style={[styles.walletItemLayout, { backgroundColor: data.color }]}
-      onPress={() =>
-        Actions.Yourbalance({
-          data: data,
-          balance: this.state.wallet[data.name]
-        })
-      }
-    >
-      <View style={styles.itemCrypto}>
-        <Image
-          resizeMode="contain"
-          style={{ height: "60%", width: "60%" }}
-          source={data.logo}
-        />
-      </View>
-      <Text style={styles.coinText}>{data.name.toUpperCase()}</Text>
-      <Text style={styles.priceText}>{this.state.wallet[data.name]}</Text>
-    </TouchableOpacity>
-  );
+  round(value, decimals) {
+    return Number(Math.round(value + "e" + decimals) + "e-" + decimals);
+  }
+
+  _renderItem = (data, i) => {
+    let balance = this.state.wallet[data.name];
+
+    console.log(balance);
+
+    return (
+      <TouchableOpacity
+        style={[styles.walletItemLayout, { backgroundColor: data.color }]}
+        onPress={() =>
+          Actions.Yourbalance({
+            data: data,
+            balance: balance
+          })
+        }
+      >
+        <View style={styles.itemCrypto}>
+          <Image
+            resizeMode="contain"
+            style={{ height: "60%", width: "60%" }}
+            source={data.logo}
+          />
+        </View>
+        <Text style={styles.coinText}>{data.name.toUpperCase()}</Text>
+        <Text style={styles.priceText}>{this.round(balance, 2)}</Text>
+      </TouchableOpacity>
+    );
+  };
 
   render() {
     const { wallet } = this.state;

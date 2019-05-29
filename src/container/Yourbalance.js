@@ -23,6 +23,7 @@ import {
 import firebase from "react-native-firebase";
 import moment from "moment";
 
+import * as userActions from "../actions/userActions";
 import StarView from "../component/Startview";
 
 export default class Yourbalance extends Component {
@@ -70,26 +71,14 @@ export default class Yourbalance extends Component {
   async getDollarValue() {
     const { data, balance } = this.props;
 
-    try {
-      let response = await fetch(
-        "https://api.cryptonator.com/api/ticker/" + data.symbol + "-usd"
-      );
-      let responseJson = await response.json();
-
-      if (responseJson.success) {
-        let valueInDollar = responseJson.ticker.price * balance;
-        this.setState({ dollarPrice: valueInDollar });
-      }
-    } catch (error) {
-      console.error(error);
-    }
+    userActions.convertCoinValue(data.name, "usd").then(usdValue => {
+      if (usdValue !== undefined) this.setState({ dollarPrice: usdValue });
+    });
   }
 
   render() {
     const { data, balance } = this.props;
     const { dollarPrice, userTransactions } = this.state;
-
-    console.log(userTransactions);
 
     return (
       <View style={styles.container}>
@@ -106,7 +95,11 @@ export default class Yourbalance extends Component {
               <Text style={styles.rentooText}>{data.name.toUpperCase()}</Text>
             </View>
             <Text style={styles.rentooCurrentyText}>{balance.toFixed(2)}</Text>
-            <Text style={styles.dollarCurrency}>{dollarPrice.toFixed(2)}$</Text>
+            {data.name !== "dollar" && (
+              <Text style={styles.dollarCurrency}>
+                {dollarPrice.toFixed(2)}$
+              </Text>
+            )}
           </View>
 
           <Text style={styles.title}>Recent transactions</Text>
