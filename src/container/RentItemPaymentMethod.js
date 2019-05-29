@@ -40,7 +40,7 @@ export default class RentItemPaymentMethod extends Component {
 
     cryptoList.map(item => {
       if (item.isSelected) {
-        rentalReservation["paymentMethod"] = item.title;
+        rentalReservation["paymentMethod"] = item.name;
       }
     });
 

@@ -27,6 +27,10 @@ export default class RentItemDetails extends Component {
     };
   }
 
+  componentDidMount() {
+    this.rentalDetailsInput.focus();
+  }
+
   nextStep() {
     const { rentalReservation, itemRental } = this.props;
     const { reservationDetails } = this.state;
@@ -54,7 +58,11 @@ export default class RentItemDetails extends Component {
         <View style={styles.separatorLine} />
 
         <TextInput
+          ref={rentalDetails => {
+            this.rentalDetailsInput = rentalDetails;
+          }}
           returnKeyType="done"
+          blurOnSubmit
           placeholder="Write a message..."
           value={reservationDetails}
           onChangeText={reservationDetails =>

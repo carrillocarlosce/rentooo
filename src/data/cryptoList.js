@@ -14,7 +14,7 @@ export default (cryptoList = [
     isSelected: false
   },
   {
-    name: "rentalcoin",
+    name: "rentoo",
     symbol: "RENTOO",
     logo: require("../../assets/coins/rentoo.png"),
     color: "#226BFB",
@@ -35,7 +35,7 @@ export default (cryptoList = [
     isSelected: false
   },
   {
-    name: "binance",
+    name: "binancecoin",
     symbol: "BNB",
     logo: require("../../assets/coins/binance.png"),
     color: "#D79E28",

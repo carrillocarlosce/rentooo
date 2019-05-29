@@ -105,7 +105,7 @@ export default class Yourbalance extends Component {
               </View>
               <Text style={styles.rentooText}>{data.name.toUpperCase()}</Text>
             </View>
-            <Text style={styles.rentooCurrentyText}>{balance}</Text>
+            <Text style={styles.rentooCurrentyText}>{balance.toFixed(2)}</Text>
             <Text style={styles.dollarCurrency}>{dollarPrice.toFixed(2)}$</Text>
           </View>
 
@@ -113,8 +113,7 @@ export default class Yourbalance extends Component {
 
           {userTransactions.map((item, index) => {
             const userID = window.currentUser["userID"];
-            const isReceived =
-              item.type == "credit" && item.receiver == userID ? true : false;
+            const isReceived = item.receiver == userID ? true : false;
 
             return (
               <View>
@@ -151,7 +150,9 @@ export default class Yourbalance extends Component {
                       <Text style={styles.inlineText}>
                         {item.coin.toUpperCase()}
                       </Text>
-                      <Text style={styles.upperText}>{item.amount}</Text>
+                      <Text style={styles.upperText}>
+                        {item.amount.toFixed(4)}
+                      </Text>
                     </View>
                   </View>
                 </View>

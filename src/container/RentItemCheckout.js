@@ -14,6 +14,7 @@ import {
   responsiveFontSize
 } from "react-native-responsive-dimensions";
 import moment from "moment";
+import firebase from "react-native-firebase";
 
 import * as userActions from "../actions/userActions";
 import styles from "../style/rentItemStyle";
@@ -24,6 +25,8 @@ export default class RentItemCheckout extends Component {
 
     this.state = {
       itemRental: this.props.itemRental,
+      chosenCurrency: this.props.rentalReservation["paymentMethod"],
+      numberDaysReservation: 0,
       dollarPriceTotal: 0,
       totalCurrencyAmount: 0
     };
@@ -31,27 +34,98 @@ export default class RentItemCheckout extends Component {
 
   componentWillMount() {
     const { itemRental } = this.props;
+    const { chosenCurrency } = this.state;
 
     let numberDaysReservation = 4;
     let totalUSDAmount = numberDaysReservation * itemRental.dailyDollarPrice;
 
-    userActions.convertCoinValue("rentoo", "usd").then(usdValue => {
+    userActions.convertCoinValue(chosenCurrency, "usd").then(usdValue => {
+      console.log(usdValue);
       this.setState({
         totalCurrencyAmount: totalUSDAmount / usdValue,
-        dollarPriceTotal: totalUSDAmount
+        dollarPriceTotal: totalUSDAmount,
+        numberDaysReservation: numberDaysReservation
       });
     });
   }
 
   onCheckout() {
-    const { rentalReservation } = this.props;
+    const { rentalReservation, itemRental } = this.props;
+    const {
+      chosenCurrency,
+      dollarPriceTotal,
+      totalCurrencyAmount,
+      numberDaysReservation
+    } = this.state;
 
-    Actions.NewOfferPrice({ newRentalItem: newRentalItem });
+    const userData = window.currentUser;
+    const userWalletChosenCurrency = userData["wallet"][chosenCurrency];
+
+    const receiverID = itemRental["owner"];
+
+    if (
+      userWalletChosenCurrency !== undefined &&
+      userWalletChosenCurrency >= totalCurrencyAmount
+    ) {
+      let newTransaction = {
+        amount: totalCurrencyAmount,
+        coin: chosenCurrency,
+        date: moment(new Date()),
+        owner: userData["userID"],
+        receiver: receiverID,
+        type: "debit"
+      };
+
+      firebase
+        .database()
+        .ref("transactions")
+        .push(newTransaction)
+        .then(resultTransaction => {
+          firebase
+            .database()
+            .ref(
+              "users/" +
+                window.currentUser["userID"] +
+                "/wallet/" +
+                chosenCurrency
+            )
+            .transaction(function(amount) {
+              if (amount >= totalCurrencyAmount) {
+                amount = amount - totalCurrencyAmount;
+              }
+              return amount;
+            })
+            .then(result => {
+              firebase
+                .database()
+                .ref("users/" + receiverID + "/wallet/" + chosenCurrency)
+                .transaction(function(amount) {
+                  if (amount) {
+                    amount = amount + totalCurrencyAmount;
+                  }
+                  return amount;
+                })
+                .then(result => {
+                  Actions.reset("dashboardContainerScreen");
+                });
+            });
+        })
+        .catch(err => {
+          console.log("error===", err);
+        });
+    } else {
+      alert("not enough cash");
+    }
   }
 
   render() {
     const { itemRental } = this.props;
-    const { dollarPriceTotal, totalCurrencyAmount } = this.state;
+    const {
+      chosenCurrency,
+      dollarPriceTotal,
+      totalCurrencyAmount,
+      numberDaysReservation
+    } = this.state;
 
     return (
       <View style={styles.container}>
@@ -72,7 +146,7 @@ export default class RentItemCheckout extends Component {
                 {itemRental.dailyDollarPrice} x 4 days
               </Text>
               <Text style={styles.itemRentalTextPrice}>
-                {itemRental.dailyDollarPrice * 4}$
+                {itemRental.dailyDollarPrice * numberDaysReservation}$
               </Text>
             </View>
           </View>
@@ -88,9 +162,11 @@ export default class RentItemCheckout extends Component {
           </Text>
         </View>
         <View style={styles.containerRentalPrice}>
-          <Text style={styles.totalCurrencyAmount}>RENTALCOIN</Text>
           <Text style={styles.totalCurrencyAmount}>
-            {userActions.NumberWithSpaces(totalCurrencyAmount)}
+            {chosenCurrency.toUpperCase()}
+          </Text>
+          <Text style={styles.totalCurrencyAmount}>
+            {totalCurrencyAmount.toFixed(5)}
           </Text>
         </View>
 
@@ -100,12 +176,14 @@ export default class RentItemCheckout extends Component {
           By completing this renting, you agree to our terms of service.
         </Text>
 
-        <TouchableOpacity
-          style={styles.btnNext}
-          onPress={() => this.onCheckout()}
-        >
-          <Text style={styles.textBtnNext}>Checkout</Text>
-        </TouchableOpacity>
+        {totalCurrencyAmount !== 0 && (
+          <TouchableOpacity
+            style={styles.btnNext}
+            onPress={() => this.onCheckout()}
+          >
+            <Text style={styles.textBtnNext}>Checkout</Text>
+          </TouchableOpacity>
+        )}
       </View>
     );
   }

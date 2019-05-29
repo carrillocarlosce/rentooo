@@ -71,6 +71,7 @@ export default class NewOfferTitle extends Component {
           maxLength={400}
           multiline={true}
           numberOfLines={4}
+          blurOnSubmit
         />
 
         <View style={styles.separatorLine} />
