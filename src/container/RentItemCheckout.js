@@ -15,6 +15,7 @@ import {
 } from "react-native-responsive-dimensions";
 import moment from "moment";
 
+import * as userActions from "../actions/userActions";
 import styles from "../style/rentItemStyle";
 
 export default class RentItemCheckout extends Component {
@@ -22,8 +23,24 @@ export default class RentItemCheckout extends Component {
     super(props);
 
     this.state = {
-      itemRental: this.props.itemRental
+      itemRental: this.props.itemRental,
+      dollarPriceTotal: 0,
+      totalCurrencyAmount: 0
     };
+  }
+
+  componentWillMount() {
+    const { itemRental } = this.props;
+
+    let numberDaysReservation = 4;
+    let totalUSDAmount = numberDaysReservation * itemRental.dailyDollarPrice;
+
+    userActions.convertCoinValue("rentoo", "usd").then(usdValue => {
+      this.setState({
+        totalCurrencyAmount: totalUSDAmount / usdValue,
+        dollarPriceTotal: totalUSDAmount
+      });
+    });
   }
 
   onCheckout() {
@@ -34,8 +51,7 @@ export default class RentItemCheckout extends Component {
 
   render() {
     const { itemRental } = this.props;
-
-    console.log(itemRental);
+    const { dollarPriceTotal, totalCurrencyAmount } = this.state;
 
     return (
       <View style={styles.container}>
@@ -68,13 +84,13 @@ export default class RentItemCheckout extends Component {
         <View style={styles.containerRentalPrice}>
           <Text style={styles.totalUSDAmount}>Amount in USD</Text>
           <Text style={styles.totalUSDAmount}>
-            {itemRental.dailyDollarPrice * 4}$
+            {userActions.NumberWithSpaces(dollarPriceTotal)}$
           </Text>
         </View>
         <View style={styles.containerRentalPrice}>
           <Text style={styles.totalCurrencyAmount}>RENTALCOIN</Text>
           <Text style={styles.totalCurrencyAmount}>
-            {itemRental.dailyDollarPrice * 4}$
+            {userActions.NumberWithSpaces(totalCurrencyAmount)}
           </Text>
         </View>
 
