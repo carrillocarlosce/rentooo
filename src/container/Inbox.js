@@ -156,16 +156,17 @@ export default class Inbox extends Component {
   }
 
   openConversation(chatItem) {
+    let contactName = chatItem.user.firstname + " " + chatItem.user.lastname;
+
     Actions.Inboxdetails({
       user: chatItem.user,
-      chatID: chatItem.chatID
+      chatID: chatItem.chatID,
+      title: contactName
     });
   }
 
   render() {
     const { chatList } = this.state;
-
-    console.log(chatList);
 
     return (
       <View style={styles.container}>
@@ -174,8 +175,8 @@ export default class Inbox extends Component {
         <ScrollView style={styles.midContainer}>
           {chatList.map((item, key) => {
             return (
-              <View>
-                <TouchableOpacity
+              <TouchableOpacity onPress={() => this.openConversation(item)}>
+                <View
                   style={styles.itemLayout}
                   onPress={() => this.openConversation(item)}
                 >
@@ -203,9 +204,9 @@ export default class Inbox extends Component {
                       </Text>
                     </View>
                   </View>
-                </TouchableOpacity>
+                </View>
                 <View style={styles.bottomline} />
-              </View>
+              </TouchableOpacity>
             );
           })}
         </ScrollView>

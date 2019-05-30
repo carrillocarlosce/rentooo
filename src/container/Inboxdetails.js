@@ -123,10 +123,13 @@ export default class Inboxdetails extends Component {
   };
 
   renderInputToolbar(props) {
+    const { message } = this.state;
+
     return (
       <SafeAreaView style={styles.textInputContainer}>
         <TextInput
           style={styles.textinput}
+          value={message}
           onChangeText={message => this.setState({ message })}
           placeholder="Write a message"
         />
@@ -149,7 +152,14 @@ export default class Inboxdetails extends Component {
           </View>
 
           <TouchableOpacity onPress={this.onSend}>
-            <Text style={styles.sendBtnText}>Send</Text>
+            <Text
+              style={[
+                styles.sendBtnText,
+                { color: message !== "" ? "#0055FF" : "rgba(0,85,255,0.6)" }
+              ]}
+            >
+              Send
+            </Text>
           </TouchableOpacity>
         </View>
       </SafeAreaView>
@@ -231,6 +241,7 @@ export default class Inboxdetails extends Component {
           renderSystemMessage={this.renderSystemMessage}
           keyboardShouldPersistTaps={"handled"}
           renderInputToolbar={this.renderInputToolbar}
+          minInputToolbarHeight={100}
           parsePatterns={linkStyle => [
             {
               pattern: /#(\w+)/,

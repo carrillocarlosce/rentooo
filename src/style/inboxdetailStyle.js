@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     flexDirection: "column",
     justifyContent: "flex-start",
-    paddingHorizontal: responsiveWidth(4),
+    paddingHorizontal: responsiveWidth(5.33),
     borderTopWidth: 1,
     borderTopColor: "#ECECEC"
   },
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
   },
   sendBtnText: {
     fontFamily: "SFProText-Semibold",
-    fontSize: responsiveFontSize(2.2),
+    fontSize: responsiveFontSize(2),
     color: "#0055FF"
   }
 });

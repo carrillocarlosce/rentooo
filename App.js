@@ -412,7 +412,7 @@ export default class App extends Component {
           <Scene
             key="Inboxdetails"
             component={Inboxdetails}
-            title="Paulina Gayoso"
+            title=""
             renderLeftButton={
               <TouchableOpacity onPress={() => Actions.pop()}>
                 <Image
