@@ -28,8 +28,9 @@ const styles = StyleSheet.create({
     marginTop: responsiveHeight(2),
     marginBottom: responsiveHeight(2)
   },
-  checkbox: {
-    width: responsiveWidth(10)
+  userChatProfilePicture: {
+    width: responsiveWidth(10),
+    height: responsiveWidth(10)
   },
   itemContainer: {
     marginLeft: responsiveWidth(3.2),
