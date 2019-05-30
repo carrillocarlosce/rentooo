@@ -155,6 +155,13 @@ export default class Inbox extends Component {
       });
   }
 
+  openConversation(chatItem) {
+    Actions.Inboxdetails({
+      user: chatItem.user,
+      chatID: chatItem.chatID
+    });
+  }
+
   render() {
     const { chatList } = this.state;
 
@@ -170,7 +177,7 @@ export default class Inbox extends Component {
               <View>
                 <TouchableOpacity
                   style={styles.itemLayout}
-                  onPress={() => Actions.Inboxdetails()}
+                  onPress={() => this.openConversation(item)}
                 >
                   <Image
                     resizeMode="contain"
