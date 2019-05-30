@@ -131,8 +131,8 @@ const styles = StyleSheet.create({
   btnNext: {
     position: "absolute",
     bottom: responsiveHeight(5),
-    right: responsiveWidth(5),
-    left: responsiveWidth(5),
+    right: responsiveWidth(5.33),
+    left: responsiveWidth(5.33),
     height: responsiveHeight(7),
     borderRadius: 5,
     backgroundColor: "#0055FF",

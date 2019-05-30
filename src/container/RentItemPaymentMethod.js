@@ -22,23 +22,41 @@ export default class RentItemPaymentMethod extends Component {
     super(props);
 
     this.state = {
-      cryptoList: cryptoList,
+      rentalItemCurrencies: [],
       hasSelectedOne: false
     };
   }
 
+  componentDidMount() {
+    const { itemRental } = this.props;
+    const { rentalItemCurrencies } = this.state;
+
+    currencies = [];
+
+    cryptoList.map((item, key) => {
+      if (itemRental.currencies.includes(item.name)) currencies.push(item);
+    });
+
+    this.setState({ rentalItemCurrencies: currencies });
+  }
+
   selectPaymentMethod(currency) {
-    cryptoList.map(item => {
+    const { rentalItemCurrencies } = this.state;
+
+    rentalItemCurrencies.map(item => {
       item == currency ? (item.isSelected = true) : (item.isSelected = false);
     });
-    this.setState({ cryptoList: cryptoList, hasSelectedOne: true });
+    this.setState({
+      rentalItemCurrencies: rentalItemCurrencies,
+      hasSelectedOne: true
+    });
   }
 
   nextStep() {
     const { rentalReservation, itemRental } = this.props;
-    const { cryptoList } = this.state;
+    const { rentalItemCurrencies } = this.state;
 
-    cryptoList.map(item => {
+    rentalItemCurrencies.map(item => {
       if (item.isSelected) {
         rentalReservation["paymentMethod"] = item.name;
       }
@@ -51,7 +69,7 @@ export default class RentItemPaymentMethod extends Component {
   }
 
   render() {
-    const { cryptoList, hasSelectedOne } = this.state;
+    const { rentalItemCurrencies, hasSelectedOne } = this.state;
 
     return (
       <View style={styles.container}>
@@ -62,7 +80,7 @@ export default class RentItemPaymentMethod extends Component {
           </Text>
         </View>
 
-        {cryptoList.map((cryptoItem, key) => {
+        {rentalItemCurrencies.map((cryptoItem, key) => {
           return (
             <TouchableOpacity
               key={key}

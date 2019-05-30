@@ -40,7 +40,6 @@ export default class RentItemCheckout extends Component {
     let totalUSDAmount = numberDaysReservation * itemRental.dailyDollarPrice;
 
     userActions.convertCoinValue(chosenCurrency, "usd").then(usdValue => {
-      console.log(usdValue);
       this.setState({
         totalCurrencyAmount: totalUSDAmount / usdValue,
         dollarPriceTotal: totalUSDAmount,
@@ -106,7 +105,7 @@ export default class RentItemCheckout extends Component {
                   return amount;
                 })
                 .then(result => {
-                  Actions.reset("dashboardContainerScreen");
+                  this.startChat();
                 });
             });
         })
@@ -114,7 +113,54 @@ export default class RentItemCheckout extends Component {
           console.log("error===", err);
         });
     } else {
-      alert("not enough cash");
+      alert("You don't have enough cash.");
+    }
+  }
+
+  async startChat() {
+    const { itemRental } = this.props;
+
+    let rentalOwner = itemRental.owner;
+    let currentUser = window.currentUser;
+
+    let IDlist = [rentalOwner, currentUser["userID"]];
+    IDlist.sort();
+    const chatID = IDlist[0] + "*_*" + IDlist[1];
+
+    let isExistContact = false;
+
+    await firebase
+      .database()
+      .ref("chat/" + chatID)
+      .once("value", snapshot => {
+        if (snapshot.val() !== null) isExistContact = true;
+      });
+
+    if (isExistContact) {
+      Actions.Inbox();
+    } else {
+      var message = {
+        _id: userActions.generatorMessageID(),
+        text: "Hello",
+        createdAt: Date.now(),
+        system: false,
+        user: {
+          _id: currentUser["userID"],
+          name: currentUser["firstname"]
+        }
+      };
+
+      await firebase
+        .database()
+        .ref("chat")
+        .child(chatID)
+        .push(message)
+        .then()
+        .catch(err => {
+          console.log("error===", err);
+        });
+
+      Actions.Inbox();
     }
   }
 

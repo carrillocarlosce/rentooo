@@ -55,8 +55,6 @@ export default class Wallets extends Component {
   _renderItem = (data, i) => {
     let balance = this.state.wallet[data.name];
 
-    console.log(balance);
-
     return (
       <TouchableOpacity
         style={[styles.walletItemLayout, { backgroundColor: data.color }]}

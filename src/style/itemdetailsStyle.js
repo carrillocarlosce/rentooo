@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: "SFProText-Regular",
-    fontSize: responsiveFontSize(4.2)
+    fontSize: responsiveFontSize(3.7)
   },
   starText: {
     fontFamily: "SFProText-Semibold",

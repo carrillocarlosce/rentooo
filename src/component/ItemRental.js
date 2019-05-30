@@ -17,6 +17,8 @@ import {
   responsiveFontSize
 } from "react-native-responsive-dimensions";
 
+import cryptoList from "../data/cryptoList";
+
 export default class ItemRental extends Component {
   constructor(props) {
     super(props);
@@ -28,6 +30,15 @@ export default class ItemRental extends Component {
 
   componentDidMount() {
     this.setState({ isFullyLoaded: true });
+  }
+
+  getCorrespondingLogo(crypto) {
+    cryptoList.map((item, key) => {
+      if (crypto == item.name) {
+        console.log(item);
+        return item.logo;
+      }
+    });
   }
 
   render() {

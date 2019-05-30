@@ -96,7 +96,6 @@
 		9465D00FFF87484D97023AE2 /* libRNGestureHandler-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3617E191B92E4E0F8534DC56 /* libRNGestureHandler-tvOS.a */; };
 		962E800AFB8F4AA597459321 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F83F99774B7457E80E52031 /* FontAwesome.ttf */; };
 		9C1D372CB14C44948C07D54E /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4CCAE7E77D44BA69074AA60 /* Ionicons.ttf */; };
-		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		B7CF159026E14A5C8ED3CB9D /* SFProText-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 903AAC40CE0346D89CD9BB81 /* SFProText-Semibold.ttf */; };
 		BA60C3C25BF434DE1AC99369 /* libPods-rentoo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB327D25F0A5011DE7CBF850 /* libPods-rentoo.a */; };
 		C11B3932AF1F4EEF837D8DB8 /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FE93369CFF54E888900D225 /* libRNFirebase.a */; };
@@ -607,7 +606,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */,
-				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				11D1A2F320CAFA9E000508D9 /* libRCTAnimation.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
@@ -1657,7 +1655,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
 		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1967,7 +1965,7 @@
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 				);
 				INFOPLIST_FILE = rentoo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -2002,7 +2000,7 @@
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 				);
 				INFOPLIST_FILE = rentoo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",

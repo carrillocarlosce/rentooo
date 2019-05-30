@@ -46,18 +46,6 @@ export function NumberWithSpaces(x) {
     .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 }
 
-export function getCoinImagePath(filename) {
-  let imageFile = "";
-  if (filename === "art") {
-    imageFile = images.art.uri;
-  } else if (filename === "business") {
-    imageFile = images.business.uri;
-  } else {
-    imageFile = images.icons8business.uri;
-  }
-  return imageFile;
-}
-
 function s4() {
   return Math.floor((1 + Math.random()) * 0x10000)
     .toString(16)

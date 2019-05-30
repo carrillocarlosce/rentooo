@@ -31,7 +31,6 @@ import { Searchbar } from "../component/react-native-paper";
 import ItemRental from "../component/ItemRental";
 
 import categories from "../data/categories";
-import cryptoList from "../data/cryptoList";
 
 export default class Search extends Component {
   constructor(props) {
@@ -64,15 +63,6 @@ export default class Search extends Component {
 
         this.setState({ rentals: rentals.reverse().slice(0, 4) });
       });
-  }
-
-  getCorrespondingLogo(crypto) {
-    cryptoList.map((item, key) => {
-      if (crypto == item.name) {
-        console.log(item.logo);
-        return item.logo;
-      }
-    });
   }
 
   _renderItem = (data, i) => <ItemRental data={data} />;
