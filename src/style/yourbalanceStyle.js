@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
     color: "white"
   },
   containerRecentTransactions: {
+    height: responsiveHeight(100),
     backgroundColor: "#FFF",
     paddingHorizontal: responsiveWidth(5.33)
   },

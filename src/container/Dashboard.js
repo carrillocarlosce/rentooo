@@ -1,52 +1,130 @@
 import * as React from "react";
-import { View, StyleSheet, Dimensions, Text, SafeAreaView } from "react-native";
-import { TabView, SceneMap } from "../component/TabView";
+import {
+  View,
+  ScrollView,
+  StyleSheet,
+  Text,
+  SafeAreaView,
+  TouchableOpacity,
+  Dimensions
+} from "react-native";
+
+import {
+  responsiveHeight,
+  responsiveWidth,
+  responsiveFontSize
+} from "react-native-responsive-dimensions";
+
 import Upcoming from "./Upcoming";
 import Past from "./Past";
 import Watchlist from "./Watchlist";
 import Myoffers from ".//Myoffers";
 import styles from "../style/dashboardStyle";
 
-const FirstRoute = () => (
-  <View style={[styles.scene, { backgroundColor: "#ff4081" }]} />
-);
-const SecondRoute = () => (
-  <View style={[styles.scene, { backgroundColor: "#673ab7" }]} />
-);
-const ThirdRoute = () => (
-  <View style={[styles.scene, { backgroundColor: "#FF00FF" }]} />
-);
-const FourthRoute = () => (
-  <View style={[styles.scene, { backgroundColor: "#FF00FF" }]} />
-);
+const width = Dimensions.get("window").width;
+
+const itemTab = [
+  { title: "Upcoming" },
+  { title: "Past" },
+  { title: "Watchlist" },
+  { title: "My offers" }
+];
 
 export default class Dashboard extends React.Component {
-  state = {
-    index: 0,
-    routes: [
-      { key: "first", title: "Upcoming" },
-      { key: "second", title: "Past" },
-      { key: "third", title: "Watchlist" },
-      { key: "fourth", title: "My offers" }
-    ]
+  constructor(props) {
+    super(props);
+    this.state = {
+      pageIndex: 0
+    };
+  }
+
+  onTabClicked(flag) {
+    const { pageIndex } = this.state;
+    if (flag === 0) this.swiper.scrollTo({ x: 0, y: 0, animated: true });
+    if (flag === 1) this.swiper.scrollTo({ x: width, y: 0, animated: true });
+    if (flag === 2)
+      this.swiper.scrollTo({ x: width * 2, y: 0, animated: true });
+    if (flag === 3)
+      this.swiper.scrollTo({ x: width * 3, y: 0, animated: true });
+
+    this.setState({ pageIndex: flag });
+  }
+
+  ref = el => {
+    this.swiper = el;
+  };
+
+  handlePageChange = e => {
+    var offset = e.nativeEvent.contentOffset;
+    if (offset) {
+      const page = Math.round(offset.x / width);
+      console.log("page===", page);
+      if (this.state.pageIndex != page) {
+        this.setState({ pageIndex: page });
+      }
+    }
   };
 
   render() {
+    const { pageIndex } = this.state;
+
     return (
-      <View style={{ flex: 1, backgroundColor: "#fff" }}>
+      <View style={styles.container}>
         <Text style={styles.nameText}>Rental dashboard</Text>
-        <TabView
-          style={styles.tabContainer}
-          navigationState={this.state}
-          renderScene={SceneMap({
-            first: Upcoming,
-            second: Past,
-            third: Watchlist,
-            fourth: Myoffers
+
+        <View style={styles.segmentContainer}>
+          {itemTab.map((item, index) => {
+            return (
+              <TouchableOpacity
+                key={index}
+                style={{ marginRight: responsiveWidth(5) }}
+                onPress={() => this.onTabClicked(index)}
+              >
+                <View style={styles.segmentItemContainer}>
+                  <Text
+                    style={[
+                      pageIndex === index
+                        ? styles.textTabActive
+                        : styles.textTabUnactive
+                    ]}
+                  >
+                    {item.title}
+                  </Text>
+                  <View
+                    style={
+                      pageIndex === index
+                        ? styles.viewUnderlineActive
+                        : styles.viewUnderlineInactive
+                    }
+                  />
+                </View>
+              </TouchableOpacity>
+            );
           })}
-          onIndexChange={index => this.setState({ index })}
-          initialLayout={{ width: Dimensions.get("window").width }}
-        />
+        </View>
+
+        <ScrollView
+          ref={snapScroll => {
+            this.swiper = snapScroll;
+          }}
+          horizontal
+          pagingEnabled
+          onMomentumScrollEnd={this.handlePageChange}
+          showsHorizontalScrollIndicator={false}
+        >
+          <View style={styles.containerItemTab}>
+            <Upcoming />
+          </View>
+          <View style={styles.containerItemTab}>
+            <Past />
+          </View>
+          <View style={styles.containerItemTab}>
+            <Watchlist />
+          </View>
+          <View style={styles.containerItemTab}>
+            <Myoffers />
+          </View>
+        </ScrollView>
       </View>
     );
   }

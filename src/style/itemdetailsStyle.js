@@ -51,19 +51,29 @@ const styles = StyleSheet.create({
     fontFamily: "SFProText-Regular",
     fontSize: responsiveFontSize(3.7)
   },
-  starText: {
-    fontFamily: "SFProText-Semibold",
-    fontSize: responsiveFontSize(2.3),
-    color: "#FDC058"
+  reviewsContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-around"
+  },
+  starContainer: {
+    justifyContent: "flex-start",
+    alignItems: "center",
+    width: responsiveWidth(21.86)
   },
   starItem: {
     width: 84,
     height: 14,
     marginTop: 4
   },
+  itemContainer: {
+    justifyContent: "flex-start",
+    alignItems: "center",
+    width: responsiveWidth(16.5)
+  },
   itemText: {
     fontFamily: "SFProText-Semibold",
-    fontSize: responsiveFontSize(2)
+    fontSize: responsiveFontSize(1)
   },
   subItemText: {
     marginTop: 4,
@@ -71,27 +81,11 @@ const styles = StyleSheet.create({
     fontSize: responsiveFontSize(2),
     color: "#C0C0C0"
   },
-  starContainer: {
-    justifyContent: "flex-start",
-    alignItems: "center",
-    width: responsiveWidth(21.86)
-  },
-  itemContainer: {
-    justifyContent: "flex-start",
-    alignItems: "center",
-    width: responsiveWidth(16.5)
-  },
-  threeContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-around",
-    marginTop: responsiveHeight(2)
-  },
   scrollViewContainer: {
     height: responsiveHeight(51.5)
   },
   lineSeparator: {
-    marginTop: 24,
+    marginVertical: responsiveHeight(3),
     height: 1,
     backgroundColor: "rgba(0,0,0,0.05)",
     marginHorizontal: responsiveWidth(-5.33)
@@ -149,13 +143,12 @@ const styles = StyleSheet.create({
   },
   ownerContainer: {
     flexDirection: "row",
-    marginTop: responsiveHeight(4),
     justifyContent: "flex-start",
     alignItems: "center"
   },
   ownerImage: {
-    height: responsiveWidth(12),
-    width: responsiveWidth(12),
+    height: responsiveWidth(10),
+    width: responsiveWidth(10),
     marginRight: responsiveWidth(4)
   },
   ownerTextTitle: {

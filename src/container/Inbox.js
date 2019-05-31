@@ -12,7 +12,8 @@ import {
   TextInput,
   TouchableOpacity,
   Image,
-  ScrollView
+  ScrollView,
+  Dimensions
 } from "react-native";
 import { Actions } from "react-native-router-flux";
 import {
@@ -24,11 +25,15 @@ import moment from "moment";
 
 import styles from "../style/inboxStyle";
 
+const width = Dimensions.get("window").width;
+
+const itemTab = [{ title: "Rentals" }, { title: "My offers" }];
+
 export default class Inbox extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { chatList: [] };
+    this.state = { chatList: [], pageIndex: 0 };
     this.getChatList = this.getChatList.bind(this);
     this.datediff = this.datediff.bind(this);
   }
@@ -36,6 +41,29 @@ export default class Inbox extends Component {
   componentWillMount() {
     this.getChatList();
   }
+
+  onTabClicked(flag) {
+    const { pageIndex } = this.state;
+    if (flag === 0) this.swiper.scrollTo({ x: 0, y: 0, animated: true });
+    if (flag === 1) this.swiper.scrollTo({ x: width, y: 0, animated: true });
+
+    this.setState({ pageIndex: flag });
+  }
+
+  ref = el => {
+    this.swiper = el;
+  };
+
+  handlePageChange = e => {
+    var offset = e.nativeEvent.contentOffset;
+    if (offset) {
+      const page = Math.round(offset.x / width);
+      console.log("page===", page);
+      if (this.state.pageIndex != page) {
+        this.setState({ pageIndex: page });
+      }
+    }
+  };
 
   datediff(first, second) {
     return Math.round((second - first) / (1000 * 60 * 60 * 24) - 1);
@@ -166,49 +194,140 @@ export default class Inbox extends Component {
   }
 
   render() {
-    const { chatList } = this.state;
+    const { chatList, pageIndex } = this.state;
 
     return (
       <View style={styles.container}>
         <Text style={styles.inboxText}>Inbox</Text>
 
-        <ScrollView style={styles.midContainer}>
-          {chatList.map((item, key) => {
+        <View style={styles.segmentContainer}>
+          {itemTab.map((item, index) => {
             return (
-              <TouchableOpacity onPress={() => this.openConversation(item)}>
-                <View
-                  style={styles.itemLayout}
-                  onPress={() => this.openConversation(item)}
-                >
-                  <Image
-                    resizeMode="contain"
-                    style={styles.userChatProfilePicture}
-                    source={require("../../assets/images/profile.png")}
+              <TouchableOpacity
+                key={index}
+                style={{ marginRight: responsiveWidth(5) }}
+                onPress={() => this.onTabClicked(index)}
+              >
+                <View style={styles.segmentItemContainer}>
+                  <Text
+                    style={[
+                      pageIndex === index
+                        ? styles.textTabActive
+                        : styles.textTabUnactive
+                    ]}
+                  >
+                    {item.title}
+                  </Text>
+                  <View
+                    style={
+                      pageIndex === index
+                        ? styles.viewUnderlineActive
+                        : styles.viewUnderlineInactive
+                    }
                   />
-                  <View style={styles.itemContainer}>
-                    <View style={styles.upperItem}>
-                      <Text style={styles.upperText}>
-                        {item.user["firstname"] + " " + item.user["lastname"]}
-                      </Text>
-                      <Text style={styles.upperText}>
-                        {item.reservationStatus}
-                      </Text>
-                    </View>
-                    <Text style={styles.inlineBlackText}>
-                      {item.reservationDates}
-                    </Text>
-                    <View style={styles.upperItem}>
-                      <Text style={styles.inlineText}>{item.lastMessage}</Text>
-                      <Text style={styles.inlineText}>
-                        {item.lastMessageTime}
-                      </Text>
-                    </View>
-                  </View>
                 </View>
-                <View style={styles.bottomline} />
               </TouchableOpacity>
             );
           })}
+        </View>
+
+        <ScrollView
+          ref={snapScroll => {
+            this.swiper = snapScroll;
+          }}
+          horizontal
+          pagingEnabled
+          onMomentumScrollEnd={this.handlePageChange}
+          showsHorizontalScrollIndicator={false}
+        >
+          <View style={styles.containerItemTab}>
+            <ScrollView style={styles.midContainer}>
+              {chatList.map((item, key) => {
+                return (
+                  <TouchableOpacity onPress={() => this.openConversation(item)}>
+                    <View
+                      style={styles.itemLayout}
+                      onPress={() => this.openConversation(item)}
+                    >
+                      <Image
+                        resizeMode="contain"
+                        style={styles.userChatProfilePicture}
+                        source={require("../../assets/images/profile.png")}
+                      />
+                      <View style={styles.itemContainer}>
+                        <View style={styles.upperItem}>
+                          <Text style={styles.upperText}>
+                            {item.user["firstname"] +
+                              " " +
+                              item.user["lastname"]}
+                          </Text>
+                          <Text style={styles.upperText}>
+                            {item.reservationStatus}
+                          </Text>
+                        </View>
+                        <Text style={styles.inlineBlackText}>
+                          {item.reservationDates}
+                        </Text>
+                        <View style={styles.upperItem}>
+                          <Text style={styles.inlineText}>
+                            {item.lastMessage}
+                          </Text>
+                          <Text style={styles.inlineText}>
+                            {item.lastMessageTime}
+                          </Text>
+                        </View>
+                      </View>
+                    </View>
+                    <View style={styles.bottomline} />
+                  </TouchableOpacity>
+                );
+              })}
+            </ScrollView>
+          </View>
+          <View style={styles.containerItemTab}>
+            <ScrollView style={styles.midContainer}>
+              {chatList.map((item, key) => {
+                return (
+                  <TouchableOpacity onPress={() => this.openConversation(item)}>
+                    <View
+                      style={styles.itemLayout}
+                      onPress={() => this.openConversation(item)}
+                    >
+                      <Image
+                        resizeMode="contain"
+                        style={styles.userChatProfilePicture}
+                        source={require("../../assets/images/profile.png")}
+                      />
+                      <View style={styles.itemContainer}>
+                        <View style={styles.upperItem}>
+                          <Text style={styles.upperText}>
+                            {item.user["firstname"] +
+                              " " +
+                              item.user["lastname"]}
+                          </Text>
+                          <Text style={styles.upperText}>
+                            {item.reservationStatus}
+                          </Text>
+                        </View>
+                        <Text style={styles.inlineBlackText}>
+                          {item.reservationDates}
+                        </Text>
+                        <View style={styles.upperItem}>
+                          <Text style={styles.inlineText}>
+                            {item.lastMessage}
+                          </Text>
+                          <Text style={styles.inlineText}>
+                            {item.lastMessageTime}
+                          </Text>
+                        </View>
+                      </View>
+                    </View>
+                    <View style={styles.bottomline} />
+                  </TouchableOpacity>
+                );
+              })}
+            </ScrollView>
+          </View>
         </ScrollView>
       </View>
     );

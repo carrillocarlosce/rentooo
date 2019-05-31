@@ -25,6 +25,7 @@ import {
   responsiveWidth,
   responsiveFontSize
 } from "react-native-responsive-dimensions";
+import LinearGradient from "react-native-linear-gradient";
 
 import ItemRental from "../component/ItemRental";
 import Slideshow from "../component/Slideshow";
@@ -117,6 +118,8 @@ export default class ItemDetails extends Component {
     const { data } = this.props;
     const { ownerName, rentalsYouMayLike } = this.state;
 
+    const currentUser = window.currentUser["userID"];
+
     return (
       <View style={styles.container}>
         <View style={styles.navContainer}>
@@ -163,7 +166,7 @@ export default class ItemDetails extends Component {
 
             <View style={styles.lineSeparator} />
 
-            <View style={styles.threeContainer}>
+            <View style={styles.reviewsContainer}>
               <View style={styles.starContainer}>
                 <Text style={[styles.itemText, { color: "#FDC058" }]}>4.1</Text>
                 <StarView score={4} style={styles.starItem} />
@@ -182,6 +185,7 @@ export default class ItemDetails extends Component {
 
             <View style={styles.ownerContainer}>
               <Image
+                resizeMode="contain"
                 style={styles.ownerImage}
                 source={require("../../assets/images/profile.png")}
               />
@@ -195,17 +199,23 @@ export default class ItemDetails extends Component {
 
             <View style={styles.mapViewContainer}>
               <Text style={styles.mapViewText}>Location</Text>
-              <MapView
-                provider={PROVIDER_GOOGLE}
+              <LinearGradient
                 style={styles.mapView}
-                region={{
-                  latitude: 42.882004,
-                  longitude: 74.582748,
-                  latitudeDelta: 0.0922,
-                  longitudeDelta: 0.0421
-                }}
-                showsUserLocation={true}
-              />
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 0 }}
+                colors={["#4c669f", "transparent", "#192f6a"]}
+              >
+                <MapView
+                  provider={PROVIDER_GOOGLE}
+                  region={{
+                    latitude: 42.882004,
+                    longitude: 74.582748,
+                    latitudeDelta: 0.0922,
+                    longitudeDelta: 0.0421
+                  }}
+                  showsUserLocation={true}
+                />
+              </LinearGradient>
             </View>
 
             <View style={styles.lineSeparator} />
@@ -246,12 +256,15 @@ export default class ItemDetails extends Component {
               })}
             </View>
           </View>
-          <TouchableOpacity
-            onPress={() => Actions.RentItemDates({ itemRental: data })}
-            style={styles.rentBtn}
-          >
-            <Text style={styles.rentText}>Rent now</Text>
-          </TouchableOpacity>
+
+          {data.owner !== currentUser && (
+            <TouchableOpacity
+              onPress={() => Actions.RentItemDates({ itemRental: data })}
+              style={styles.rentBtn}
+            >
+              <Text style={styles.rentText}>Rent now</Text>
+            </TouchableOpacity>
+          )}
         </View>
       </View>
     );

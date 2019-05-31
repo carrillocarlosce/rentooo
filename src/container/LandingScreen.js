@@ -54,13 +54,13 @@ export default class LandingScreen extends Component {
                             window.currentUser = currentUser;
                             Actions.reset("dashboardContainerScreen");
                           } else {
-                            Actions.Welcome();
+                            Actions.reset("Welcome");
                           }
                         });
                     })
                     .catch(error => {
                       console.log(error);
-                      Actions.Welcome();
+                      Actions.reset("Welcome");
                     });
                 } else {
                   firebase
@@ -75,21 +75,21 @@ export default class LandingScreen extends Component {
                         window.currentUser = currentUser;
                         Actions.reset("dashboardContainerScreen");
                       } else {
-                        Actions.Welcome();
+                        Actions.reset("Welcome");
                       }
                     });
                 }
               })
               .catch(error => {
                 console.log(error);
-                Actions.Welcome();
+                Actions.reset("Welcome");
               });
           } else {
-            Actions.Welcome();
+            Actions.reset("Welcome");
           }
         })
         .catch(error => {
-          Actions.Welcome();
+          Actions.reset("Welcome");
         });
     }, 2000);
   }
