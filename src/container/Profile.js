@@ -71,7 +71,11 @@ export default class Profile extends Component {
     return (
       <ScrollView style={styles.container}>
         <View style={styles.upperContainer}>
-          <Image source={require("../../assets/images/Oval.png")} />
+          <Image
+            style={styles.profilePicture}
+            resizeMode="contain"
+            source={require("../../assets/images/Oval.png")}
+          />
           <Text style={styles.name}>{userName}</Text>
 
           <View style={styles.location}>

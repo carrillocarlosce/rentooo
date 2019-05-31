@@ -17,6 +17,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     height: responsiveHeight(30)
   },
+  profilePicture: {
+    height: responsiveHeight(10),
+    width: responsiveHeight(10)
+  },
   name: {
     fontFamily: "SFProText-Regular",
     fontSize: responsiveFontSize(2.5)
@@ -28,8 +32,15 @@ const styles = StyleSheet.create({
   },
   locationText: {
     marginLeft: 5,
-    fontSize: 15,
+    fontSize: responsiveFontSize(1.8),
     fontFamily: "SFProText-Regular"
+  },
+  profileContent: {
+    fontFamily: "SFProText-Regular",
+    fontSize: responsiveFontSize(1.8),
+    width: "100%",
+    marginTop: responsiveHeight(2.95),
+    paddingHorizontal: responsiveWidth(5.33)
   },
   btnPostOffer: {
     flexDirection: "row",
@@ -51,11 +62,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: responsiveFontSize(2)
   },
-  profileContent: {
-    fontFamily: "SFProText-Regular",
-    fontSize: 15,
-    marginTop: responsiveHeight(2.95)
-  },
+
   inboxText: {
     marginLeft: responsiveWidth(4),
     marginTop: responsiveHeight(2),
@@ -88,7 +95,7 @@ const styles = StyleSheet.create({
   },
   upperText: {
     color: "black",
-    fontSize: 15
+    fontSize: responsiveFontSize(1.8)
   },
   inlineText: {
     color: "#676767",
@@ -142,11 +149,6 @@ const styles = StyleSheet.create({
     width: responsiveWidth(15),
     justifyContent: "space-between",
     alignItems: "center"
-  },
-  sendBtnText: {
-    fontFamily: "SFProText-Semibold",
-    fontSize: 15,
-    color: "#0055FF"
   },
   interestContainer: {
     marginTop: responsiveHeight(2),
@@ -202,7 +204,7 @@ const styles = StyleSheet.create({
   itemText: {
     marginTop: responsiveHeight(1),
     fontFamily: "SFProText-Semibold",
-    fontSize: 15
+    fontSize: responsiveFontSize(1.8)
   },
   currencyText: {
     marginTop: 5,
