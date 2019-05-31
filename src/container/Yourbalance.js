@@ -81,7 +81,7 @@ export default class Yourbalance extends Component {
     const { dollarPrice, userTransactions } = this.state;
 
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, { backgroundColor: data.color }]}>
         <ScrollView style={styles.midContainer}>
           <View style={[styles.topContainer, { backgroundColor: data.color }]}>
             <View style={styles.totopLayout}>
@@ -92,9 +92,9 @@ export default class Yourbalance extends Component {
                   source={data.logo}
                 />
               </View>
-              <Text style={styles.rentooText}>{data.name.toUpperCase()}</Text>
+              <Text style={styles.currencyName}>{data.name.toUpperCase()}</Text>
             </View>
-            <Text style={styles.rentooCurrentyText}>{balance.toFixed(2)}</Text>
+            <Text style={styles.currencyBalance}>{balance.toFixed(2)}</Text>
             {data.name !== "dollar" && (
               <Text style={styles.dollarCurrency}>
                 {dollarPrice.toFixed(2)}$
@@ -102,57 +102,59 @@ export default class Yourbalance extends Component {
             )}
           </View>
 
-          <Text style={styles.title}>Recent transactions</Text>
+          <View style={styles.containerRecentTransactions}>
+            <Text style={styles.title}>Recent transactions</Text>
 
-          {userTransactions.map((item, index) => {
-            const userID = window.currentUser["userID"];
-            const isReceived = item.receiver == userID ? true : false;
+            {userTransactions.map((item, index) => {
+              const userID = window.currentUser["userID"];
+              const isReceived = item.receiver == userID ? true : false;
 
-            return (
-              <View>
-                <View style={styles.itemLayout} key={index}>
-                  <View
-                    style={[
-                      styles.iconTransactionContainer,
-                      { backgroundColor: isReceived ? "blue" : "grey" }
-                    ]}
-                  >
-                    <Image
-                      resizeMode="contain"
+              return (
+                <View>
+                  <View style={styles.itemLayout} key={index}>
+                    <View
                       style={[
-                        styles.iconTransaction,
-                        {
-                          transform: [
-                            { rotate: isReceived ? "180deg" : "0deg" }
-                          ]
-                        }
+                        styles.iconTransactionContainer,
+                        { backgroundColor: isReceived ? "blue" : "grey" }
                       ]}
-                      source={require("../../assets/images/toparrow.png")}
-                    />
-                  </View>
-                  <View style={styles.itemContainer}>
-                    <View style={styles.leftItem}>
-                      <Text style={styles.upperText}>
-                        {isReceived ? "Received" : "Sent"}
-                      </Text>
-                      <Text style={styles.inlineText}>
-                        {moment(item.date).format("MMMM Do YYYY, h:mm a")}
-                      </Text>
+                    >
+                      <Image
+                        resizeMode="contain"
+                        style={[
+                          styles.iconTransaction,
+                          {
+                            transform: [
+                              { rotate: isReceived ? "180deg" : "0deg" }
+                            ]
+                          }
+                        ]}
+                        source={require("../../assets/images/toparrow.png")}
+                      />
                     </View>
-                    <View style={styles.rightItem}>
-                      <Text style={styles.inlineText}>
-                        {item.coin.toUpperCase()}
-                      </Text>
-                      <Text style={styles.upperText}>
-                        {item.amount.toFixed(4)}
-                      </Text>
+                    <View style={styles.itemContainer}>
+                      <View style={styles.leftItem}>
+                        <Text style={styles.upperText}>
+                          {isReceived ? "Received" : "Sent"}
+                        </Text>
+                        <Text style={styles.inlineText}>
+                          {moment(item.date).format("MMMM Do YYYY, h:mm a")}
+                        </Text>
+                      </View>
+                      <View style={styles.rightItem}>
+                        <Text style={styles.inlineText}>
+                          {item.coin.toUpperCase()}
+                        </Text>
+                        <Text style={styles.upperText}>
+                          {item.amount.toFixed(4)}
+                        </Text>
+                      </View>
                     </View>
                   </View>
+                  <View style={styles.bottomline} />
                 </View>
-                <View style={styles.bottomline} />
-              </View>
-            );
-          })}
+              );
+            })}
+          </View>
         </ScrollView>
         <View style={styles.bottomContainer}>
           <TouchableOpacity

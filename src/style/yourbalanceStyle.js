@@ -7,9 +7,7 @@ import {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#FFFFFF",
-    position: "relative"
+    flex: 1
   },
   topContainer: {
     flexDirection: "column",
@@ -17,9 +15,8 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     width: responsiveWidth(100),
     height: responsiveHeight(18),
-    paddingLeft: responsiveWidth(5.33),
-    paddingBottom: responsiveHeight(2),
-    marginHorizontal: responsiveWidth(-5.33)
+    paddingHorizontal: responsiveWidth(5.33),
+    paddingBottom: responsiveHeight(2)
   },
   containerLogo: {
     width: responsiveWidth(8),
@@ -33,18 +30,17 @@ const styles = StyleSheet.create({
     height: "50%",
     width: "50%"
   },
-  rentooText: {
+  currencyName: {
     fontFamily: "SFProText-Semibold",
-    fontSize: 13,
+    fontSize: responsiveFontSize(1.5),
     marginLeft: 8
   },
-  rentooCurrentyText: {
+  currencyBalance: {
     fontFamily: "SFProText-Regular",
     fontSize: 38,
     color: "white"
   },
   midContainer: {
-    paddingHorizontal: responsiveWidth(5.33),
     height: responsiveHeight(47)
   },
   totopLayout: {
@@ -52,14 +48,14 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center"
   },
-  rentooCurrency: {
-    fontSize: 20,
-    color: "white"
-  },
   dollarCurrency: {
     fontFamily: "SFProText-Regular",
-    fontSize: 15,
+    fontSize: responsiveFontSize(1.8),
     color: "white"
+  },
+  containerRecentTransactions: {
+    backgroundColor: "#FFF",
+    paddingHorizontal: responsiveWidth(5.33)
   },
   iconTransactionContainer: {
     width: responsiveWidth(10.1),
@@ -125,12 +121,12 @@ const styles = StyleSheet.create({
   upperText: {
     fontFamily: "SFProText-Semibold",
     color: "black",
-    fontSize: 15
+    fontSize: responsiveFontSize(1.8)
   },
   inlineText: {
     fontFamily: "SFProText-Regular",
     color: "#676767",
-    fontSize: 13
+    fontSize: responsiveFontSize(1.5)
   },
   bottomline: {
     height: 1,
@@ -168,7 +164,7 @@ const styles = StyleSheet.create({
     marginLeft: 12,
     textAlign: "center",
     fontFamily: "SFProText-Semibold",
-    fontSize: 15,
+    fontSize: responsiveFontSize(1.8),
     color: "white"
   },
   arrowBalance: {

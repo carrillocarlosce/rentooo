@@ -15,8 +15,8 @@ import {
   TouchableOpacity
 } from "react-native";
 import { Actions } from "react-native-router-flux";
+
 import styles from "../style/welcomeStyle";
-import { responsiveWidth } from "react-native-responsive-dimensions";
 
 export default class Welcome extends Component {
   render() {

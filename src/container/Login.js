@@ -10,6 +10,7 @@ import { Text, View, TextInput, TouchableOpacity, Image } from "react-native";
 import { Actions } from "react-native-router-flux";
 import firebase from "react-native-firebase";
 
+import * as userActions from "../actions/userActions";
 import styles from "../style/loginStyle";
 
 export default class Login extends Component {
@@ -38,6 +39,15 @@ export default class Login extends Component {
               let currentUser = userData.val();
               currentUser["userID"] = userData.key;
               window.currentUser = currentUser;
+
+              let userInfo = {
+                username: email,
+                userpwd: password,
+                loginMethod: "email",
+                userID: userData.key
+              };
+              userActions._storeData("logged", true);
+              userActions._storeData("userInfo", userInfo);
 
               Actions.reset("dashboardContainerScreen");
             }

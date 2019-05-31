@@ -22,6 +22,8 @@ import {
   Tabs
 } from "react-native-router-flux";
 
+import LandingScreen from "./src/container/LandingScreen";
+
 import Welcome from "./src/container/Welcome";
 import Login from "./src/container/Login";
 import Forgot from "./src/container/Forgot";
@@ -33,6 +35,8 @@ import Code from "./src/container/Code";
 
 import Search from "./src/container/Search";
 import Searchresult from "./src/container/Searchresult";
+
+import CategoryPage from "./src/container/CategoryPage";
 
 import NewOfferTitle from "./src/container/NewOfferTitle";
 import NewOfferPhotos from "./src/container/NewOfferPhotos";
@@ -184,6 +188,13 @@ export default class App extends Component {
       <Router navigationBarStyle={{ borderBottomColor: "transparent" }}>
         <Scene key="root">
           <Scene
+            initial={true}
+            key="LandingScreen"
+            component={LandingScreen}
+            title="LandingScreen"
+            hideNavBar={true}
+          />
+          <Scene
             key="Welcome"
             component={Welcome}
             title="Welcome"
@@ -311,6 +322,20 @@ export default class App extends Component {
               </TouchableOpacity>
             )}
           />
+
+          <Scene
+            key="CategoryPage"
+            component={CategoryPage}
+            renderLeftButton={
+              <TouchableOpacity onPress={() => Actions.pop()}>
+                <Image
+                  style={styles.leftBtn}
+                  source={require("./assets/images/back3x.png")}
+                />
+              </TouchableOpacity>
+            }
+          />
+
           <Scene key="Dashboard" component={Dashboard} />
           <Scene key="Upcoming" component={Upcoming} />
           <Scene key="Past" component={Past} />
@@ -380,7 +405,9 @@ export default class App extends Component {
             titleStyle={{ color: "white" }}
             navigationBarStyle={{
               backgroundColor: "#0055FF",
-              borderBottomWidth: 0
+              borderBottomWidth: 0,
+              borderBottomColor: "transparent",
+              elevation: 0
             }}
             renderLeftButton={
               <TouchableOpacity onPress={() => Actions.pop()}>

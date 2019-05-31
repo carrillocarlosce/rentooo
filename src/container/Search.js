@@ -124,6 +124,9 @@ export default class Search extends Component {
               return (
                 <TouchableOpacity
                   key={key}
+                  onPress={() =>
+                    Actions.CategoryPage({ category: itemCategory.title })
+                  }
                   style={[
                     styles.btnGroupLayout,
                     { backgroundColor: itemCategory.color }

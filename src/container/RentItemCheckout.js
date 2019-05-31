@@ -160,7 +160,7 @@ export default class RentItemCheckout extends Component {
           console.log("error===", err);
         });
 
-      Actions.Inbox();
+      Actions.reset("dashboardContainerScreen");
     }
   }
 
