@@ -49,7 +49,11 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: "SFProText-Regular",
-    fontSize: responsiveFontSize(3.7)
+    fontSize: responsiveFontSize(3.5)
+  },
+  sectionTitle: {
+    fontFamily: "SFProText-Regular",
+    fontSize: responsiveFontSize(2.8)
   },
   reviewsContainer: {
     flexDirection: "row",
@@ -59,7 +63,7 @@ const styles = StyleSheet.create({
   starContainer: {
     justifyContent: "flex-start",
     alignItems: "center",
-    width: responsiveWidth(21.86)
+    width: responsiveWidth(33.33)
   },
   starItem: {
     width: 84,
@@ -69,11 +73,11 @@ const styles = StyleSheet.create({
   itemContainer: {
     justifyContent: "flex-start",
     alignItems: "center",
-    width: responsiveWidth(16.5)
+    width: responsiveWidth(33.33)
   },
   itemText: {
     fontFamily: "SFProText-Semibold",
-    fontSize: responsiveFontSize(1)
+    fontSize: responsiveFontSize(1.5)
   },
   subItemText: {
     marginTop: 4,
@@ -129,17 +133,27 @@ const styles = StyleSheet.create({
     fontFamily: "SFProText-Regular",
     fontSize: responsiveFontSize(2.5)
   },
-  mapViewContainer: {
-    marginTop: responsiveHeight(3)
-  },
-  mapViewText: {
-    fontFamily: "SFProText-Regular",
-    fontSize: 20
-  },
+  mapViewContainer: {},
   mapView: {
-    marginTop: 16,
     height: responsiveHeight(28),
     marginHorizontal: responsiveWidth(-5.33)
+  },
+  gradientOverMap: {
+    position: "absolute",
+    height: responsiveHeight(28),
+    width: responsiveWidth(100),
+    marginHorizontal: responsiveWidth(-5.33),
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  rentalPosition: {
+    height: responsiveWidth(15),
+    width: responsiveWidth(15)
+  },
+  exactPositionLegal: {
+    fontFamily: "SFProText-Regular",
+    fontSize: responsiveFontSize(1.8),
+    color: "rgba(0,0,0,0.6)"
   },
   ownerContainer: {
     flexDirection: "row",
@@ -189,7 +203,7 @@ const styles = StyleSheet.create({
   },
   leftText: {
     fontFamily: "SFProText-Regular",
-    fontSize: 20
+    fontSize: responsiveFontSize(2.2)
   },
   rightBtn: {
     width: 64,
@@ -203,14 +217,6 @@ const styles = StyleSheet.create({
     fontFamily: "SFProText-Regular",
     fontSize: 13,
     color: "white"
-  },
-
-  interestImageContainer: {
-    flexDirection: "column",
-    justifyContent: "flex-start",
-    alignItems: "flex-start",
-    width: responsiveWidth(43.2)
-    // height: responsiveHeight(30),
   },
   itemIterestBtnContainer: {
     flexDirection: "column",
@@ -282,11 +288,6 @@ const styles = StyleSheet.create({
   itemImage: {
     width: 162,
     height: 122
-  },
-  interestText: {
-    marginTop: 32,
-    fontFamily: "SFProText-Regular",
-    fontSize: 20
   },
   interestInsideContainer: {
     marginTop: 24

@@ -33,10 +33,19 @@ export default class RentItemCheckout extends Component {
   }
 
   componentWillMount() {
-    const { itemRental } = this.props;
+    const { itemRental, rentalReservation } = this.props;
     const { chosenCurrency } = this.state;
 
-    let numberDaysReservation = 4;
+    console.log(rentalReservation);
+
+    let startDate = moment(rentalReservation["reservationDates"]["startDate"]);
+    let endDate =
+      rentalReservation["reservationDates"]["endDate"] !== null
+        ? moment(rentalReservation["reservationDates"]["endDate"])
+        : startDate;
+
+    let numberDaysReservation = endDate.diff(startDate, "days") + 1;
+
     let totalUSDAmount = numberDaysReservation * itemRental.dailyDollarPrice;
 
     userActions.convertCoinValue(chosenCurrency, "usd").then(usdValue => {
@@ -110,7 +119,7 @@ export default class RentItemCheckout extends Component {
             });
         })
         .catch(err => {
-          console.log("error===", err);
+          console.log("error:", err);
         });
     } else {
       alert("You don't have enough cash.");
@@ -137,13 +146,13 @@ export default class RentItemCheckout extends Component {
       });
 
     if (isExistContact) {
-      Actions.Inbox();
+      Actions.reset("dashboardContainerScreen");
     } else {
       var message = {
         _id: userActions.generatorMessageID(),
         text: "Hello",
         createdAt: Date.now(),
-        system: false,
+        system: true,
         user: {
           _id: currentUser["userID"],
           name: currentUser["firstname"]
@@ -165,13 +174,23 @@ export default class RentItemCheckout extends Component {
   }
 
   render() {
-    const { itemRental } = this.props;
+    const { itemRental, rentalReservation } = this.props;
     const {
       chosenCurrency,
       dollarPriceTotal,
       totalCurrencyAmount,
       numberDaysReservation
     } = this.state;
+
+    let startDate = moment(
+      rentalReservation["reservationDates"]["startDate"]
+    ).format("MMM. D");
+    let endDate =
+      rentalReservation["reservationDates"]["endDate"] !== null
+        ? moment(rentalReservation["reservationDates"]["endDate"]).format(
+            "MMM. D"
+          )
+        : null;
 
     return (
       <View style={styles.container}>
@@ -186,10 +205,13 @@ export default class RentItemCheckout extends Component {
           />
           <View style={styles.itemRentalContainerText}>
             <Text style={styles.itemRentalTextTitle}>{itemRental.title}</Text>
-            <Text style={styles.itemRentalTextDates}>24 april to 27 april</Text>
+            <Text style={styles.itemRentalTextDates}>
+              {startDate} {endDate !== null && "to " + endDate}
+            </Text>
             <View style={styles.containerRentalPrice}>
               <Text style={styles.itemRentalTextPrice}>
-                {itemRental.dailyDollarPrice} x 4 days
+                {itemRental.dailyDollarPrice}$ x {numberDaysReservation} day
+                {endDate !== null && "s"}
               </Text>
               <Text style={styles.itemRentalTextPrice}>
                 {itemRental.dailyDollarPrice * numberDaysReservation}$

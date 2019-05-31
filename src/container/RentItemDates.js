@@ -17,66 +17,36 @@ import {
 import moment from "moment";
 
 import styles from "../style/rentItemStyle";
-
-const calendarTheme = {
-  activeDayColor: {},
-  monthTitleTextStyle: {
-    textAlign: "left",
-    fontFamily: "SFProText-Regular",
-    fontSize: responsiveFontSize(2.5)
-  },
-  emptyMonthContainerStyle: {},
-  emptyMonthTextStyle: {
-    fontWeight: "200"
-  },
-  weekColumnsContainerStyle: {},
-  weekColumnStyle: {
-    paddingVertical: 10
-  },
-  weekColumnTextStyle: {
-    color: "rgba(0,0,0,0.3)",
-    fontSize: 13
-  },
-  nonTouchableDayContainerStyle: {},
-  nonTouchableDayTextStyle: {},
-  startDateContainerStyle: {},
-  endDateContainerStyle: {},
-  dayContainerStyle: {},
-  dayTextStyle: {
-    fontFamily: "SFProText-Regular",
-    color: "#A3A3BD",
-    fontSize: 15
-  },
-  dayOutOfRangeContainerStyle: {},
-  dayOutOfRangeTextStyle: {},
-  todayContainerStyle: {},
-  todayTextStyle: {
-    color: "#6d95da"
-  },
-  activeDayContainerStyle: {
-    backgroundColor: "#0055FF"
-  },
-  activeDayTextStyle: {
-    color: "white"
-  },
-  nonTouchableLastMonthDayTextStyle: {}
-};
+import calendarTheme from "../style/calendarStyle";
 
 export default class RentItemDates extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      range: "",
       startDate: null,
       endDate: null
     };
+
+    this.onDatePick = this.onDatePick.bind(this);
   }
+
+  onDatePick = ({ startDate, endDate }) => {
+    this.setState(
+      {
+        startDate: moment(startDate).format("YYYY-MM-DD"),
+        endDate: endDate ? moment(endDate).format("YYYY-MM-DD") : null
+      },
+      () => console.log(this.state)
+    );
+  };
 
   nextStep() {
     const { itemRental } = this.props;
+    const { startDate, endDate } = this.state;
 
-    rentalReservation = [];
+    const rentalReservation = [];
+    rentalReservation["reservationDates"] = { startDate, endDate };
 
     Actions.RentItemPaymentMethod({
       rentalReservation: rentalReservation,
@@ -85,25 +55,29 @@ export default class RentItemDates extends Component {
   }
 
   render() {
+    const { startDate, endDate } = this.state;
+
     return (
       <View style={styles.container}>
         <Calendar
+          startDate={startDate}
+          endDate={endDate}
           disableRange={false}
-          onChange={range => {
-            console.log(range);
-          }}
+          onChange={this.onDatePick}
           style={{ flex: 1 }}
           numberOfMonths={5}
           monthHeight={responsiveHeight(40)}
           theme={calendarTheme}
         />
 
-        <TouchableOpacity
-          style={styles.btnNext}
-          onPress={() => this.nextStep()}
-        >
-          <Text style={styles.textBtnNext}>Next</Text>
-        </TouchableOpacity>
+        {startDate !== null && (
+          <TouchableOpacity
+            style={styles.btnNext}
+            onPress={() => this.nextStep()}
+          >
+            <Text style={styles.textBtnNext}>Next</Text>
+          </TouchableOpacity>
+        )}
       </View>
     );
   }

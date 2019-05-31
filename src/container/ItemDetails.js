@@ -122,6 +122,16 @@ export default class ItemDetails extends Component {
 
     return (
       <View style={styles.container}>
+        <LinearGradient
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            height: 100
+          }}
+          colors={["rgba(0,0,0,0.6)", "transparent"]}
+        />
         <View style={styles.navContainer}>
           <TouchableOpacity onPress={() => Actions.pop()}>
             <Image
@@ -197,39 +207,45 @@ export default class ItemDetails extends Component {
 
             <View style={styles.lineSeparator} />
 
+            <Text style={styles.sectionTitle}>Location</Text>
+
             <View style={styles.mapViewContainer}>
-              <Text style={styles.mapViewText}>Location</Text>
-              <LinearGradient
+              <MapView
                 style={styles.mapView}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 0 }}
-                colors={["#4c669f", "transparent", "#192f6a"]}
+                provider={PROVIDER_GOOGLE}
+                region={{
+                  latitude: 42.882004,
+                  longitude: 74.582748,
+                  latitudeDelta: 0.0922,
+                  longitudeDelta: 0.0421
+                }}
+                showsUserLocation={true}
+              />
+              <LinearGradient
+                style={styles.gradientOverMap}
+                colors={["#fff", "rgba(255,255,255,0)", "#fff"]}
               >
-                <MapView
-                  provider={PROVIDER_GOOGLE}
-                  region={{
-                    latitude: 42.882004,
-                    longitude: 74.582748,
-                    latitudeDelta: 0.0922,
-                    longitudeDelta: 0.0421
-                  }}
-                  showsUserLocation={true}
+                <Image
+                  resizeMode="contain"
+                  style={styles.rentalPosition}
+                  source={require("../../assets/images/rentalPosition.png")}
                 />
               </LinearGradient>
+              <Text style={styles.exactPositionLegal}>
+                Exact position given after renting.
+              </Text>
             </View>
 
             <View style={styles.lineSeparator} />
 
-            <View>
-              <Text style={styles.interestText}>It might interest you</Text>
-              <View style={styles.interestInsideContainer}>
-                <Grid
-                  style={{ marginHorizontal: -5 }}
-                  renderItem={this._renderItem}
-                  data={rentalsYouMayLike}
-                  numColumns={2}
-                />
-              </View>
+            <Text style={styles.sectionTitle}>It might interest you</Text>
+            <View style={styles.interestInsideContainer}>
+              <Grid
+                style={{ marginHorizontal: -5 }}
+                renderItem={this._renderItem}
+                data={rentalsYouMayLike}
+                numColumns={2}
+              />
             </View>
           </View>
 

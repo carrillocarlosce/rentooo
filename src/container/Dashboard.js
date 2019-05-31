@@ -58,7 +58,7 @@ export default class Dashboard extends React.Component {
     var offset = e.nativeEvent.contentOffset;
     if (offset) {
       const page = Math.round(offset.x / width);
-      console.log("page===", page);
+
       if (this.state.pageIndex != page) {
         this.setState({ pageIndex: page });
       }
