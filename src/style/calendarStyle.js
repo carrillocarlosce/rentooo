@@ -24,14 +24,16 @@ export default (calendarTheme = {
     fontSize: responsiveFontSize(1.5)
   },
   nonTouchableDayContainerStyle: {},
-  nonTouchableDayTextStyle: {},
+  nonTouchableDayTextStyle: {
+    color: "rgba(0,0,0,0.1)"
+  },
   startDateContainerStyle: {},
   endDateContainerStyle: {},
   dayContainerStyle: {},
   dayTextStyle: {
     fontFamily: "SFProText-Regular",
-    color: "#A3A3BD",
-    fontSize: 15
+    color: "#000",
+    fontSize: responsiveFontSize(1.8)
   },
   dayOutOfRangeContainerStyle: {},
   dayOutOfRangeTextStyle: {},

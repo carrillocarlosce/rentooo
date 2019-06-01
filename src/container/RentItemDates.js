@@ -55,18 +55,23 @@ export default class RentItemDates extends Component {
   }
 
   render() {
+    const { itemRental } = this.props;
     const { startDate, endDate } = this.state;
+
+    const availabilityRange = itemRental["availabilityRange"];
 
     return (
       <View style={styles.container}>
         <Calendar
+          minDate={availabilityRange["startDate"]}
+          maxDate={availabilityRange["endDate"]}
           startDate={startDate}
           endDate={endDate}
           disableRange={false}
           onChange={this.onDatePick}
           style={{ flex: 1 }}
-          numberOfMonths={5}
-          monthHeight={responsiveHeight(40)}
+          monthHeight={responsiveHeight(45)}
+          numberOfMonths={1}
           theme={calendarTheme}
         />
 
