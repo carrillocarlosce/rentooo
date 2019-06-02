@@ -86,11 +86,10 @@ export default class RentItemCheckout extends Component {
 
       let newReservation = {
         reservationDates: rentalReservation["reservationDates"],
-        productOwner: receiverID,
         rentalMaker: window.currentUser["userID"],
-        rentalID: itemRental.key,
-        rentalPrice: totalCurrencyAmount,
-        currency: chosenCurrency
+        rentalTotalAmount: totalCurrencyAmount,
+        currency: chosenCurrency,
+        status: "Pending"
       };
 
       firebase
@@ -104,7 +103,7 @@ export default class RentItemCheckout extends Component {
 
       firebase
         .database()
-        .ref("reservations")
+        .ref("rentals/" + itemRental.key + "/reservations")
         .push(newReservation)
         .then(resultReservation => {
           console.log(resultReservation);

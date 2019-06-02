@@ -16,6 +16,7 @@ import {
 } from "react-native-responsive-dimensions";
 import firebase from "react-native-firebase";
 import Grid from "react-native-grid-component";
+import moment from "moment";
 
 import ItemRental from "../component/ItemRental";
 
@@ -35,6 +36,8 @@ export default class Dashboard extends React.Component {
     super(props);
     this.state = {
       pageIndex: 0,
+      rentalsUpcoming: [],
+      rentalsPast: [],
       rentalsWatchlist: [],
       rentalsMyOffers: []
     };
@@ -45,15 +48,18 @@ export default class Dashboard extends React.Component {
   }
 
   getRentals() {
-    const userWatchlist = Object.values(window.currentUser["watchlist"]);
-
-    console.log(userWatchlist);
+    const userWatchlist =
+      window.currentUser["watchlist"] !== undefined
+        ? Object.values(window.currentUser["watchlist"])
+        : [];
 
     firebase
       .database()
       .ref("rentals/")
       .on("value", rentalsSnapshot => {
         let rentals = [];
+        let rentalsUpcoming = [];
+        let rentalsPast = [];
         let rentalsWatchlist = [];
         let rentalsMyOffers = [];
 
@@ -72,9 +78,31 @@ export default class Dashboard extends React.Component {
           if (item.owner == window.currentUser["userID"]) {
             rentalsMyOffers.push(item);
           }
+
+          if (item["reservations"] !== undefined) {
+            let reservations = Object.values(item["reservations"]);
+
+            reservations.forEach(function(itemReservation) {
+              if (itemReservation.rentalMaker == window.currentUser["userID"]) {
+                let startDate = moment(
+                  itemReservation.reservationDates.startDate
+                );
+                let now = moment(new Date());
+                let upcoming = startDate.diff(now, "days") > 0 ? true : false;
+
+                if (upcoming) {
+                  rentalsUpcoming.push(item);
+                } else {
+                  rentalsPast.push(item);
+                }
+              }
+            });
+          }
         });
 
         this.setState({
+          rentalsUpcoming: rentalsUpcoming.reverse(),
+          rentalsPast: rentalsPast.reverse(),
           rentalsWatchlist: rentalsWatchlist.reverse(),
           rentalsMyOffers: rentalsMyOffers.reverse()
         });
@@ -111,7 +139,13 @@ export default class Dashboard extends React.Component {
   _renderItem = (data, i) => <ItemRental data={data} />;
 
   render() {
-    const { pageIndex, rentalsWatchlist, rentalsMyOffers } = this.state;
+    const {
+      pageIndex,
+      rentalsUpcoming,
+      rentalsPast,
+      rentalsWatchlist,
+      rentalsMyOffers
+    } = this.state;
 
     return (
       <View style={styles.container}>
@@ -161,7 +195,7 @@ export default class Dashboard extends React.Component {
             <Grid
               style={{ marginHorizontal: -5 }}
               renderItem={this._renderItem}
-              data={rentalsWatchlist}
+              data={rentalsUpcoming}
               numColumns={2}
             />
           </View>
@@ -169,7 +203,7 @@ export default class Dashboard extends React.Component {
             <Grid
               style={{ marginHorizontal: -5 }}
               renderItem={this._renderItem}
-              data={rentalsWatchlist}
+              data={rentalsPast}
               numColumns={2}
             />
           </View>

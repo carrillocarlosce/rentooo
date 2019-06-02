@@ -12,6 +12,7 @@ import firebase from "react-native-firebase";
 
 import styles from "../style/codeStyle";
 import cryptoList from "../data/cryptoList";
+import * as userActions from "../actions/userActions";
 
 export default class Code extends Component {
   constructor(props) {
@@ -44,6 +45,15 @@ export default class Code extends Component {
           .ref("users")
           .push(createdUser)
           .then(userData => {
+            userActions.updateCapitalHistory(capital, userData.key);
+            let userInfo = {
+              username: createdUser.Email,
+              userpwd: userPwd,
+              ID: userData.key
+            };
+            userActions._storeData("userInfo", userInfo);
+            userActions._storeData("logged", true);
+
             window.currentUser = createdUser;
             window.currentUser["userID"] = userData.key;
             firebase

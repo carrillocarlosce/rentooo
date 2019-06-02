@@ -59,7 +59,10 @@ export default class ItemRental extends Component {
     const { data } = this.props;
     const { isFullyLoaded } = this.state;
 
-    const userWatchlist = Object.values(window.currentUser["watchlist"]);
+    const userWatchlist =
+      window.currentUser["watchlist"] !== undefined
+        ? Object.values(window.currentUser["watchlist"])
+        : [];
 
     const ComponentLoaded = () => (
       <View style={styles.interestImageContainer}>
