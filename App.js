@@ -47,17 +47,12 @@ import NewOfferCurrency from "./src/container/NewOfferCurrency";
 import NewOfferMeeting from "./src/container/NewOfferMeeting";
 
 import Dashboard from "./src/container/Dashboard";
-import Upcoming from "./src/container/Upcoming";
-import Past from "./src/container/Past";
-import Watchlist from "./src/container/Watchlist";
-import Myoffers from "./src/container/Myoffers";
 import Wallets from "./src/container/Wallets";
 import AddWallet from "./src/container/AddWallet";
 import Yourbalance from "./src/container/Yourbalance";
 import Inbox from "./src/container/Inbox";
 import Inboxdetails from "./src/container/Inboxdetails";
 
-import ProfileUnlog from "./src/container/ProfileUnlog";
 import Profiledetails from "./src/container/Profiledetails";
 import Profile from "./src/container/Profile";
 
@@ -337,11 +332,9 @@ export default class App extends Component {
           />
 
           <Scene key="Dashboard" component={Dashboard} />
-          <Scene key="Upcoming" component={Upcoming} />
-          <Scene key="Past" component={Past} />
-          <Scene key="Watchlist" component={Watchlist} />
-          <Scene key="Myoffers" component={Myoffers} />
+
           <Scene key="Wallets" component={Wallets} />
+
           <Scene key="MapSearch" component={MapSearch} hideNavBar={true} />
 
           <Scene key="ItemDetails" component={ItemDetails} hideNavBar={true} />

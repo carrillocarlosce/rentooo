@@ -45,11 +45,10 @@ export default class Profile extends Component {
       .equalTo(window.currentUser["userID"])
       .on("value", rentalsSnapshot => {
         let userRentals = [];
-        let i = 0;
 
         rentalsSnapshot.forEach(function(childSnapshot) {
           var item = childSnapshot.val();
-          item.key = i++;
+          item.key = childSnapshot.key;
 
           userRentals.push(item);
         });

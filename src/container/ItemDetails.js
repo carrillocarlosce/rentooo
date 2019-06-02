@@ -273,12 +273,14 @@ export default class ItemDetails extends Component {
             </View>
           </View>
 
-          <TouchableOpacity
-            onPress={() => Actions.RentItemDates({ itemRental: data })}
-            style={styles.rentBtn}
-          >
-            <Text style={styles.rentText}>Rent now</Text>
-          </TouchableOpacity>
+          {data.owner !== window.currentUser["userID"] && (
+            <TouchableOpacity
+              onPress={() => Actions.RentItemDates({ itemRental: data })}
+              style={styles.rentBtn}
+            >
+              <Text style={styles.rentText}>Rent now</Text>
+            </TouchableOpacity>
+          )}
         </View>
       </View>
     );

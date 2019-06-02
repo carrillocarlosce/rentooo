@@ -15,11 +15,10 @@ import {
   responsiveFontSize
 } from "react-native-responsive-dimensions";
 import firebase from "react-native-firebase";
+import Grid from "react-native-grid-component";
 
-import Upcoming from "./Upcoming";
-import Past from "./Past";
-import Watchlist from "./Watchlist";
-import Myoffers from ".//Myoffers";
+import ItemRental from "../component/ItemRental";
+
 import styles from "../style/dashboardStyle";
 
 const width = Dimensions.get("window").width;
@@ -36,7 +35,8 @@ export default class Dashboard extends React.Component {
     super(props);
     this.state = {
       pageIndex: 0,
-      rentalsWatchlist: []
+      rentalsWatchlist: [],
+      rentalsMyOffers: []
     };
   }
 
@@ -55,6 +55,7 @@ export default class Dashboard extends React.Component {
       .on("value", rentalsSnapshot => {
         let rentals = [];
         let rentalsWatchlist = [];
+        let rentalsMyOffers = [];
 
         rentalsSnapshot.forEach(function(childSnapshot) {
           var item = childSnapshot.val();
@@ -67,10 +68,15 @@ export default class Dashboard extends React.Component {
           if (userWatchlist.includes(item.key)) {
             rentalsWatchlist.push(item);
           }
+
+          if (item.owner == window.currentUser["userID"]) {
+            rentalsMyOffers.push(item);
+          }
         });
 
         this.setState({
-          rentalsWatchlist: rentalsWatchlist.reverse()
+          rentalsWatchlist: rentalsWatchlist.reverse(),
+          rentalsMyOffers: rentalsMyOffers.reverse()
         });
       });
   }
@@ -102,8 +108,10 @@ export default class Dashboard extends React.Component {
     }
   };
 
+  _renderItem = (data, i) => <ItemRental data={data} />;
+
   render() {
-    const { pageIndex, rentalsWatchlist } = this.state;
+    const { pageIndex, rentalsWatchlist, rentalsMyOffers } = this.state;
 
     return (
       <View style={styles.container}>
@@ -150,16 +158,36 @@ export default class Dashboard extends React.Component {
           showsHorizontalScrollIndicator={false}
         >
           <View style={styles.containerItemTab}>
-            <Upcoming />
+            <Grid
+              style={{ marginHorizontal: -5 }}
+              renderItem={this._renderItem}
+              data={rentalsWatchlist}
+              numColumns={2}
+            />
           </View>
           <View style={styles.containerItemTab}>
-            <Past />
+            <Grid
+              style={{ marginHorizontal: -5 }}
+              renderItem={this._renderItem}
+              data={rentalsWatchlist}
+              numColumns={2}
+            />
           </View>
           <View style={styles.containerItemTab}>
-            <Watchlist data={rentalsWatchlist} />
+            <Grid
+              style={{ marginHorizontal: -5 }}
+              renderItem={this._renderItem}
+              data={rentalsWatchlist}
+              numColumns={2}
+            />
           </View>
           <View style={styles.containerItemTab}>
-            <Myoffers />
+            <Grid
+              style={{ marginHorizontal: -5 }}
+              renderItem={this._renderItem}
+              data={rentalsMyOffers}
+              numColumns={2}
+            />
           </View>
         </ScrollView>
       </View>
