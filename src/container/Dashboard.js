@@ -14,6 +14,7 @@ import {
   responsiveWidth,
   responsiveFontSize
 } from "react-native-responsive-dimensions";
+import firebase from "react-native-firebase";
 
 import Upcoming from "./Upcoming";
 import Past from "./Past";
@@ -34,8 +35,44 @@ export default class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      pageIndex: 0
+      pageIndex: 0,
+      rentalsWatchlist: []
     };
+  }
+
+  componentWillMount() {
+    this.getRentals();
+  }
+
+  getRentals() {
+    const userWatchlist = Object.values(window.currentUser["watchlist"]);
+
+    console.log(userWatchlist);
+
+    firebase
+      .database()
+      .ref("rentals/")
+      .on("value", rentalsSnapshot => {
+        let rentals = [];
+        let rentalsWatchlist = [];
+
+        rentalsSnapshot.forEach(function(childSnapshot) {
+          var item = childSnapshot.val();
+          item.key = childSnapshot.key;
+
+          rentals.push(item);
+        });
+
+        rentals.map((item, index) => {
+          if (userWatchlist.includes(item.key)) {
+            rentalsWatchlist.push(item);
+          }
+        });
+
+        this.setState({
+          rentalsWatchlist: rentalsWatchlist.reverse()
+        });
+      });
   }
 
   onTabClicked(flag) {
@@ -66,7 +103,7 @@ export default class Dashboard extends React.Component {
   };
 
   render() {
-    const { pageIndex } = this.state;
+    const { pageIndex, rentalsWatchlist } = this.state;
 
     return (
       <View style={styles.container}>
@@ -119,7 +156,7 @@ export default class Dashboard extends React.Component {
             <Past />
           </View>
           <View style={styles.containerItemTab}>
-            <Watchlist />
+            <Watchlist data={rentalsWatchlist} />
           </View>
           <View style={styles.containerItemTab}>
             <Myoffers />

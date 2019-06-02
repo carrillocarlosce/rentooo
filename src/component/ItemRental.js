@@ -10,6 +10,7 @@ import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import StarView from "react-native-star-view";
 import { Actions } from "react-native-router-flux";
 import Placeholder, { Line, Media, ImageContent } from "rn-placeholder";
+import firebase from "react-native-firebase";
 
 import {
   responsiveHeight,
@@ -41,9 +42,24 @@ export default class ItemRental extends Component {
     });
   }
 
+  addToWatchlist(key) {
+    firebase
+      .database()
+      .ref("users/" + window.currentUser["userID"] + "/watchlist")
+      .push(key)
+      .then(success => {
+        console.log(success);
+      })
+      .catch(err => {
+        console.log("error===", err);
+      });
+  }
+
   render() {
     const { data } = this.props;
     const { isFullyLoaded } = this.state;
+
+    const userWatchlist = Object.values(window.currentUser["watchlist"]);
 
     const ComponentLoaded = () => (
       <View style={styles.interestImageContainer}>
@@ -52,11 +68,20 @@ export default class ItemRental extends Component {
           onPress={() => Actions.ItemDetails({ data: data })}
         >
           <Image style={styles.itemImage} source={{ uri: data.pictures[0] }} />
-          <Image
-            resizeMode="contain"
-            style={styles.heartIcon}
-            source={require("../../assets/images/heart.png")}
-          />
+          <TouchableOpacity
+            style={styles.likeContainer}
+            onPress={() => this.addToWatchlist(data.key)}
+          >
+            <Image
+              style={{ height: "100%", width: "100%" }}
+              resizeMode="contain"
+              source={
+                userWatchlist.includes(data.key)
+                  ? require("../../assets/images/redHeart.png")
+                  : require("../../assets/images/heart.png")
+              }
+            />
+          </TouchableOpacity>
           <Text style={styles.itemText}>{data.title}</Text>
           <View style={styles.currencyWrapper}>
             <Text style={styles.currencyText}>
@@ -119,7 +144,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     overflow: "hidden"
   },
-  heartIcon: {
+  likeContainer: {
     position: "absolute",
     right: responsiveHeight(1),
     top: responsiveHeight(1),

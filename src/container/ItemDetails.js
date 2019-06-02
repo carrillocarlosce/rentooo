@@ -144,7 +144,7 @@ export default class ItemDetails extends Component {
             <Image
               style={styles.rightNavBtn}
               resizeMode={"contain"}
-              source={require("../../assets/images/redheart3x.png")}
+              source={require("../../assets/images/redHeart.png")}
             />
           </TouchableOpacity>
         </View>
