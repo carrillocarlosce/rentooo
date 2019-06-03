@@ -68,7 +68,7 @@ export default class Profile extends Component {
     const { userRentals } = this.state;
 
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <View style={styles.upperContainer}>
           <Image
             style={styles.profilePicture}
@@ -113,7 +113,7 @@ export default class Profile extends Component {
             numColumns={2}
           />
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }

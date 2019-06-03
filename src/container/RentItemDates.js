@@ -46,7 +46,11 @@ export default class RentItemDates extends Component {
     const { startDate, endDate } = this.state;
 
     const rentalReservation = [];
-    rentalReservation["reservationDates"] = { startDate, endDate };
+
+    rentalReservation["reservationDates"] = {
+      startDate: startDate,
+      endDate: endDate ? endDate : startDate
+    };
 
     Actions.RentItemPaymentMethod({
       rentalReservation: rentalReservation,

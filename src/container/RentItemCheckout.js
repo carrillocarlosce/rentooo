@@ -223,7 +223,7 @@ export default class RentItemCheckout extends Component {
           <View style={styles.itemRentalContainerText}>
             <Text style={styles.itemRentalTextTitle}>{itemRental.title}</Text>
             <Text style={styles.itemRentalTextDates}>
-              {startDate} {endDate !== null && "to " + endDate}
+              {startDate + " to " + endDate}
             </Text>
             <View style={styles.containerRentalPrice}>
               <Text style={styles.itemRentalTextPrice}>

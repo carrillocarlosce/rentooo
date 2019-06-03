@@ -11,6 +11,7 @@ import StarView from "react-native-star-view";
 import { Actions } from "react-native-router-flux";
 import Placeholder, { Line, Media, ImageContent } from "rn-placeholder";
 import firebase from "react-native-firebase";
+import moment from "moment";
 
 import {
   responsiveHeight,
@@ -25,21 +26,39 @@ export default class ItemRental extends Component {
     super(props);
 
     this.state = {
-      isFullyLoaded: false
+      isFullyLoaded: false,
+      hasCurrentUserReservedItem: false,
+      reservationStatus: []
     };
+  }
+
+  componentWillMount() {
+    this.getReservationStatus();
   }
 
   componentDidMount() {
     this.setState({ isFullyLoaded: true });
   }
 
-  getCorrespondingLogo(crypto) {
-    cryptoList.map((item, key) => {
-      if (crypto == item.name) {
-        console.log(item);
-        return item.logo;
-      }
-    });
+  getReservationStatus() {
+    const { data } = this.props;
+    const currentUser = window.currentUser["userID"];
+
+    const THIS = this;
+
+    if (data.reservations !== undefined) {
+      let reservations = Object.values(data.reservations);
+
+      reservations.forEach(function(itemReservation) {
+        console.log(itemReservation);
+        if (itemReservation.rentalMaker == currentUser) {
+          THIS.setState({
+            hasCurrentUserReservedItem: true,
+            reservationStatus: itemReservation
+          });
+        }
+      });
+    }
   }
 
   addToWatchlist(key) {
@@ -57,7 +76,11 @@ export default class ItemRental extends Component {
 
   render() {
     const { data } = this.props;
-    const { isFullyLoaded } = this.state;
+    const {
+      isFullyLoaded,
+      hasCurrentUserReservedItem,
+      reservationStatus
+    } = this.state;
 
     const userWatchlist =
       window.currentUser["watchlist"] !== undefined
@@ -85,31 +108,48 @@ export default class ItemRental extends Component {
               }
             />
           </TouchableOpacity>
-          <Text style={styles.itemText}>{data.title}</Text>
-          <View style={styles.currencyWrapper}>
-            <Text style={styles.currencyText}>
-              {data.dailyDollarPrice}$/day
-            </Text>
-            <View style={styles.currencyContainer}>
-              {data["currencies"].map((item, index) => {
-                return (
-                  <View style={styles.itemCurrency}>
-                    <Image
-                      key={index}
-                      style={styles.currency}
-                      resizeMode="contain"
-                      source={require("../../assets/coins/bitcoin.png")}
-                    />
-                  </View>
-                );
-              })}
+        </TouchableOpacity>
+
+        <Text style={styles.itemText}>{data.title}</Text>
+
+        {hasCurrentUserReservedItem ? (
+          <Text style={styles.currencyText}>
+            {moment(reservationStatus.reservationDates.startDate).format(
+              "MMM. D"
+            ) +
+              " to " +
+              moment(reservationStatus.reservationDates.endDate).format(
+                "MMM. D"
+              )}
+          </Text>
+        ) : (
+          <View>
+            <View style={styles.currencyWrapper}>
+              <Text style={styles.currencyText}>
+                {data.dailyDollarPrice}$/day
+              </Text>
+              <View style={styles.currencyContainer}>
+                {data["currencies"].map((item, index) => {
+                  return (
+                    <View style={styles.itemCurrency}>
+                      <Image
+                        key={index}
+                        style={styles.currency}
+                        resizeMode="contain"
+                        source={require("../../assets/coins/bitcoin.png")}
+                      />
+                    </View>
+                  );
+                })}
+              </View>
+            </View>
+
+            <View style={styles.starLayout}>
+              <StarView score={4} style={styles.starView} />
+              <Text style={styles.starText}>13</Text>
             </View>
           </View>
-        </TouchableOpacity>
-        <View style={styles.starLayout}>
-          <StarView score={4} style={styles.starView} />
-          <Text style={styles.starText}>13</Text>
-        </View>
+        )}
       </View>
     );
 

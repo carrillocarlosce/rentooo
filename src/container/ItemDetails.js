@@ -332,14 +332,12 @@ export default class ItemDetails extends Component {
             ) : (
               <View>
                 <Text style={styles.sectionTitle}>It might interest you</Text>
-                <View style={styles.interestInsideContainer}>
-                  <Grid
-                    style={{ marginHorizontal: -5 }}
-                    renderItem={this._renderItem}
-                    data={rentalsYouMayLike}
-                    numColumns={2}
-                  />
-                </View>
+                <Grid
+                  style={{ marginHorizontal: -5 }}
+                  renderItem={this._renderItem}
+                  data={rentalsYouMayLike}
+                  numColumns={2}
+                />
               </View>
             )}
           </View>

@@ -48,7 +48,7 @@ export function NumberWithSpaces(x) {
 
 export function numberOfDaysReservation(start, end) {
   let startDate = moment(start);
-  let endDate = end !== null ? moment(end) : startDate;
+  let endDate = moment(end);
 
   let numberDaysReservation = endDate.diff(startDate, "days") + 1;
   return numberDaysReservation;
