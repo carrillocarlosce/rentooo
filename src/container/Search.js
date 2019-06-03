@@ -52,11 +52,10 @@ export default class Search extends Component {
       .ref("rentals/")
       .on("value", rentalsSnapshot => {
         let rentals = [];
-        let i = 0;
 
         rentalsSnapshot.forEach(function(childSnapshot) {
           var item = childSnapshot.val();
-          item.key = i++;
+          item.key = childSnapshot.key;
 
           rentals.push(item);
         });

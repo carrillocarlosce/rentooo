@@ -120,6 +120,18 @@ export default class ItemDetails extends Component {
 
     const currentUser = window.currentUser["userID"];
 
+    const hasCurrentUserReservedItem = false;
+
+    if (data.reservations !== undefined) {
+      let reservations = Object.values(data.reservations);
+
+      reservations.forEach(function(itemReservation) {
+        if (itemReservation.rentalMaker == currentUser) {
+          hasCurrentUserReservedItem = true;
+        }
+      });
+    }
+
     return (
       <View style={styles.container}>
         <LinearGradient
@@ -144,7 +156,7 @@ export default class ItemDetails extends Component {
             <Image
               style={styles.rightNavBtn}
               resizeMode={"contain"}
-              source={require("../../assets/images/redheart3x.png")}
+              source={require("../../assets/images/redHeart.png")}
             />
           </TouchableOpacity>
         </View>
@@ -252,34 +264,38 @@ export default class ItemDetails extends Component {
           <View style={{ height: responsiveHeight(5) }} />
         </ScrollView>
 
-        <View style={styles.bottomAbContainer}>
-          <View>
-            <Text style={styles.rentDayText}>
-              {data.dailyDollarPrice}$ /day
-            </Text>
-            <View style={styles.currencyContainer}>
-              {data.currencies.map((item, key) => {
-                return (
-                  <View style={styles.itemCurrency}>
-                    <Image
-                      key={key}
-                      style={styles.currency}
-                      resizeMode="contain"
-                      source={require("../../assets/coins/bitcoin.png")}
-                    />
-                  </View>
-                );
-              })}
+        {hasCurrentUserReservedItem && (
+          <View style={styles.bottomAbContainer}>
+            <View>
+              <Text style={styles.rentDayText}>
+                {data.dailyDollarPrice}$ /day
+              </Text>
+              <View style={styles.currencyContainer}>
+                {data.currencies.map((item, key) => {
+                  return (
+                    <View style={styles.itemCurrency}>
+                      <Image
+                        key={key}
+                        style={styles.currency}
+                        resizeMode="contain"
+                        source={require("../../assets/coins/bitcoin.png")}
+                      />
+                    </View>
+                  );
+                })}
+              </View>
             </View>
-          </View>
 
-          <TouchableOpacity
-            onPress={() => Actions.RentItemDates({ itemRental: data })}
-            style={styles.rentBtn}
-          >
-            <Text style={styles.rentText}>Rent now</Text>
-          </TouchableOpacity>
-        </View>
+            {data.owner !== currentUser && (
+              <TouchableOpacity
+                onPress={() => Actions.RentItemDates({ itemRental: data })}
+                style={styles.rentBtn}
+              >
+                <Text style={styles.rentText}>Rent now</Text>
+              </TouchableOpacity>
+            )}
+          </View>
+        )}
       </View>
     );
   }

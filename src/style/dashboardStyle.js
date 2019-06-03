@@ -32,7 +32,8 @@ const styles = StyleSheet.create({
   containerItemTab: {
     width: responsiveWidth(100),
     height: "100%",
-    paddingHorizontal: responsiveWidth(5.33)
+    paddingHorizontal: responsiveWidth(5.33),
+    marginTop: responsiveHeight(2)
   },
   textTabActive: {
     fontFamily: "SFProText-Regular",

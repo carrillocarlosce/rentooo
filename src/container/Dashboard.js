@@ -14,11 +14,12 @@ import {
   responsiveWidth,
   responsiveFontSize
 } from "react-native-responsive-dimensions";
+import firebase from "react-native-firebase";
+import Grid from "react-native-grid-component";
+import moment from "moment";
 
-import Upcoming from "./Upcoming";
-import Past from "./Past";
-import Watchlist from "./Watchlist";
-import Myoffers from ".//Myoffers";
+import ItemRental from "../component/ItemRental";
+
 import styles from "../style/dashboardStyle";
 
 const width = Dimensions.get("window").width;
@@ -34,8 +35,78 @@ export default class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      pageIndex: 0
+      pageIndex: 0,
+      rentalsUpcoming: [],
+      rentalsPast: [],
+      rentalsWatchlist: [],
+      rentalsMyOffers: []
     };
+  }
+
+  componentWillMount() {
+    this.getRentals();
+  }
+
+  getRentals() {
+    const userWatchlist =
+      window.currentUser["watchlist"] !== undefined
+        ? Object.values(window.currentUser["watchlist"])
+        : [];
+
+    firebase
+      .database()
+      .ref("rentals/")
+      .on("value", rentalsSnapshot => {
+        let rentals = [];
+        let rentalsUpcoming = [];
+        let rentalsPast = [];
+        let rentalsWatchlist = [];
+        let rentalsMyOffers = [];
+
+        rentalsSnapshot.forEach(function(childSnapshot) {
+          var item = childSnapshot.val();
+          item.key = childSnapshot.key;
+
+          rentals.push(item);
+        });
+
+        rentals.map((item, index) => {
+          if (userWatchlist.includes(item.key)) {
+            rentalsWatchlist.push(item);
+          }
+
+          if (item.owner == window.currentUser["userID"]) {
+            rentalsMyOffers.push(item);
+          }
+
+          if (item["reservations"] !== undefined) {
+            let reservations = Object.values(item["reservations"]);
+
+            reservations.forEach(function(itemReservation) {
+              if (itemReservation.rentalMaker == window.currentUser["userID"]) {
+                let startDate = moment(
+                  itemReservation.reservationDates.startDate
+                );
+                let now = moment(new Date());
+                let upcoming = startDate.diff(now, "days") > 0 ? true : false;
+
+                if (upcoming) {
+                  rentalsUpcoming.push(item);
+                } else {
+                  rentalsPast.push(item);
+                }
+              }
+            });
+          }
+        });
+
+        this.setState({
+          rentalsUpcoming: rentalsUpcoming.reverse(),
+          rentalsPast: rentalsPast.reverse(),
+          rentalsWatchlist: rentalsWatchlist.reverse(),
+          rentalsMyOffers: rentalsMyOffers.reverse()
+        });
+      });
   }
 
   onTabClicked(flag) {
@@ -65,8 +136,16 @@ export default class Dashboard extends React.Component {
     }
   };
 
+  _renderItem = (data, i) => <ItemRental data={data} />;
+
   render() {
-    const { pageIndex } = this.state;
+    const {
+      pageIndex,
+      rentalsUpcoming,
+      rentalsPast,
+      rentalsWatchlist,
+      rentalsMyOffers
+    } = this.state;
 
     return (
       <View style={styles.container}>
@@ -113,16 +192,36 @@ export default class Dashboard extends React.Component {
           showsHorizontalScrollIndicator={false}
         >
           <View style={styles.containerItemTab}>
-            <Upcoming />
+            <Grid
+              style={{ marginHorizontal: -5 }}
+              renderItem={this._renderItem}
+              data={rentalsUpcoming}
+              numColumns={2}
+            />
           </View>
           <View style={styles.containerItemTab}>
-            <Past />
+            <Grid
+              style={{ marginHorizontal: -5 }}
+              renderItem={this._renderItem}
+              data={rentalsPast}
+              numColumns={2}
+            />
           </View>
           <View style={styles.containerItemTab}>
-            <Watchlist />
+            <Grid
+              style={{ marginHorizontal: -5 }}
+              renderItem={this._renderItem}
+              data={rentalsWatchlist}
+              numColumns={2}
+            />
           </View>
           <View style={styles.containerItemTab}>
-            <Myoffers />
+            <Grid
+              style={{ marginHorizontal: -5 }}
+              renderItem={this._renderItem}
+              data={rentalsMyOffers}
+              numColumns={2}
+            />
           </View>
         </ScrollView>
       </View>

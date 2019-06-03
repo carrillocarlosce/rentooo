@@ -84,42 +84,58 @@ export default class RentItemCheckout extends Component {
         type: "debit"
       };
 
+      let newReservation = {
+        reservationDates: rentalReservation["reservationDates"],
+        rentalMaker: window.currentUser["userID"],
+        rentalTotalAmount: totalCurrencyAmount,
+        currency: chosenCurrency,
+        status: "Pending"
+      };
+
       firebase
         .database()
         .ref("transactions")
         .push(newTransaction)
-        .then(resultTransaction => {
-          firebase
-            .database()
-            .ref(
-              "users/" +
-                window.currentUser["userID"] +
-                "/wallet/" +
-                chosenCurrency
-            )
-            .transaction(function(amount) {
-              if (amount >= totalCurrencyAmount) {
-                amount = amount - totalCurrencyAmount;
-              }
-              return amount;
-            })
-            .then(result => {
-              firebase
-                .database()
-                .ref("users/" + receiverID + "/wallet/" + chosenCurrency)
-                .transaction(function(amount) {
-                  if (amount) {
-                    amount = amount + totalCurrencyAmount;
-                  }
-                  return amount;
-                })
-                .then(result => {
-                  this.startChat();
-                });
-            });
+        .then(resultTransaction => {})
+        .catch(err => {
+          console.log("error:", err);
+        });
+
+      firebase
+        .database()
+        .ref("rentals/" + itemRental.key + "/reservations")
+        .push(newReservation)
+        .then(resultReservation => {
+          console.log(resultReservation);
         })
         .catch(err => {
           console.log("error:", err);
+        });
+
+      firebase
+        .database()
+        .ref(
+          "users/" + window.currentUser["userID"] + "/wallet/" + chosenCurrency
+        )
+        .transaction(function(amount) {
+          if (amount >= totalCurrencyAmount) {
+            amount = amount - totalCurrencyAmount;
+          }
+          return amount;
+        })
+        .then(result => {});
+
+      firebase
+        .database()
+        .ref("users/" + receiverID + "/wallet/" + chosenCurrency)
+        .transaction(function(amount) {
+          if (amount) {
+            amount = amount + totalCurrencyAmount;
+          }
+          return amount;
+        })
+        .then(result => {
+          this.startChat();
         });
     } else {
       alert("You don't have enough cash.");
