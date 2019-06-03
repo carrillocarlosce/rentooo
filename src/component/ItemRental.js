@@ -62,10 +62,23 @@ export default class ItemRental extends Component {
   }
 
   addToWatchlist(key) {
+    const watchlist =
+      window.currentUser["watchlist"] !== undefined
+        ? Object.values(window.currentUser["watchlist"])
+        : [];
+
+    if (watchlist.includes(key)) {
+      watchlist.splice(watchlist.indexOf(key), 1);
+    } else {
+      watchlist.push(key);
+    }
+
+    window.currentUser["watchlist"] = watchlist;
+
     firebase
       .database()
-      .ref("users/" + window.currentUser["userID"] + "/watchlist")
-      .push(key)
+      .ref("users/" + window.currentUser["userID"])
+      .update(window.currentUser)
       .then(success => {
         console.log(success);
       })

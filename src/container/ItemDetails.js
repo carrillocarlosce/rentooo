@@ -152,13 +152,7 @@ export default class ItemDetails extends Component {
     return (
       <View style={styles.container}>
         <LinearGradient
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            height: 100
-          }}
+          style={styles.headerGradient}
           colors={["rgba(0,0,0,0.6)", "transparent"]}
         />
         <View style={styles.navContainer}>

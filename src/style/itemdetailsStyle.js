@@ -11,6 +11,14 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffffff",
     position: "relative"
   },
+  headerGradient: {
+    zIndex: 300,
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 100
+  },
   navContainer: {
     zIndex: 300,
     position: "absolute",

@@ -99,7 +99,11 @@ export default class Inboxdetails extends Component {
   }
 
   renderSystemMessage(props) {
-    return <View />;
+    return (
+      <View>
+        <Text>You have a new rental.</Text>
+      </View>
+    );
   }
 
   renderSend = props => {
@@ -180,7 +184,7 @@ export default class Inboxdetails extends Component {
         }}
         wrapperStyle={{
           left: {
-            backgroundColor: "#c6c6c6"
+            backgroundColor: "#F5F5FD"
           },
           right: {
             backgroundColor: "#0055FF"
@@ -250,6 +254,24 @@ export default class Inboxdetails extends Component {
             }
           ]}
         />
+        <View
+          style={{
+            position: "absolute",
+            left: 0,
+            right: 0,
+            height: 50,
+            backgroundColor: "white",
+            flexDirection: "row",
+            paddingHorizontal: responsiveWidth(5.33),
+            justifyContent: "space-between",
+            alignItems: "center",
+            borderBottomColor: "rgba(0,0,0,0.15)",
+            borderBottomWidth: 1
+          }}
+        >
+          <Text>Pending</Text>
+          <Text>Details</Text>
+        </View>
       </View>
     );
   }
