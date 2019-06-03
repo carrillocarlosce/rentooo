@@ -68,7 +68,7 @@ export default class Profile extends Component {
     const { userRentals } = this.state;
 
     return (
-      <ScrollView style={styles.container}>
+      <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         <View style={styles.upperContainer}>
           <Image
             style={styles.profilePicture}

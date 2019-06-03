@@ -88,7 +88,7 @@ export default class Dashboard extends React.Component {
                   itemReservation.reservationDates.startDate
                 );
                 let now = moment(new Date());
-                let upcoming = startDate.diff(now, "days") > 0 ? true : false;
+                let upcoming = startDate.diff(now, "days") >= 0 ? true : false;
 
                 if (upcoming) {
                   rentalsUpcoming.push(item);
