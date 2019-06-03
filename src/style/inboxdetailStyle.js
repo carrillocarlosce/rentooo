@@ -11,10 +11,26 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     position: "relative"
   },
+  headerInboxDetail: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    height: responsiveHeight(7),
+    backgroundColor: "white",
+    flexDirection: "row",
+    paddingHorizontal: responsiveWidth(5.33),
+    justifyContent: "space-between",
+    alignItems: "center",
+    borderBottomColor: "rgba(0,0,0,0.15)",
+    borderBottomWidth: 1
+  },
+  textHeader: {
+    fontFamily: "SFProText-Semibold",
+    fontSize: responsiveFontSize(2)
+  },
   textInputContainer: {
     width: "100%",
     height: responsiveHeight(16.2),
-    marginBottom: 50,
     backgroundColor: "#FFFFFF",
     flexDirection: "column",
     justifyContent: "flex-start",

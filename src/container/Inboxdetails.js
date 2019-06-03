@@ -254,23 +254,9 @@ export default class Inboxdetails extends Component {
             }
           ]}
         />
-        <View
-          style={{
-            position: "absolute",
-            left: 0,
-            right: 0,
-            height: 50,
-            backgroundColor: "white",
-            flexDirection: "row",
-            paddingHorizontal: responsiveWidth(5.33),
-            justifyContent: "space-between",
-            alignItems: "center",
-            borderBottomColor: "rgba(0,0,0,0.15)",
-            borderBottomWidth: 1
-          }}
-        >
-          <Text>Pending</Text>
-          <Text>Details</Text>
+        <View style={styles.headerInboxDetail}>
+          <Text style={[styles.textHeader, { color: "#FDC058" }]}>Pending</Text>
+          <Text style={[styles.textHeader, { color: "#0055FF" }]}>Details</Text>
         </View>
       </View>
     );
