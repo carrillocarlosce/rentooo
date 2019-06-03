@@ -46,6 +46,14 @@ export function NumberWithSpaces(x) {
     .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 }
 
+export function numberOfDaysReservation(start, end) {
+  let startDate = moment(start);
+  let endDate = end !== null ? moment(end) : startDate;
+
+  let numberDaysReservation = endDate.diff(startDate, "days") + 1;
+  return numberDaysReservation;
+}
+
 function s4() {
   return Math.floor((1 + Math.random()) * 0x10000)
     .toString(16)

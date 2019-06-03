@@ -26,10 +26,12 @@ import {
   responsiveFontSize
 } from "react-native-responsive-dimensions";
 import LinearGradient from "react-native-linear-gradient";
+import moment from "moment";
 
 import ItemRental from "../component/ItemRental";
 import Slideshow from "../component/Slideshow";
 
+import * as userActions from "../actions/userActions";
 import styles from "../style/itemdetailsStyle";
 
 export default class ItemDetails extends Component {
@@ -41,6 +43,8 @@ export default class ItemDetails extends Component {
       interval: null,
       dataSource: [],
       ownerName: "",
+      hasCurrentUserReservedItem: false,
+      reservationStatus: [],
       rentalsYouMayLike: []
     };
   }
@@ -56,6 +60,7 @@ export default class ItemDetails extends Component {
     this.setState({ dataSource });
 
     this.getOwnerData();
+    this.getReservationStatus();
   }
 
   getOwnerData() {
@@ -81,6 +86,27 @@ export default class ItemDetails extends Component {
 
         this.setState({ ownerName });
       });
+  }
+
+  getReservationStatus() {
+    const { data } = this.props;
+    const currentUser = window.currentUser["userID"];
+
+    const THIS = this;
+
+    if (data.reservations !== undefined) {
+      let reservations = Object.values(data.reservations);
+
+      reservations.forEach(function(itemReservation) {
+        console.log(itemReservation);
+        if (itemReservation.rentalMaker == currentUser) {
+          THIS.setState({
+            hasCurrentUserReservedItem: true,
+            reservationStatus: itemReservation
+          });
+        }
+      });
+    }
   }
 
   componentDidMount() {
@@ -116,21 +142,12 @@ export default class ItemDetails extends Component {
 
   render() {
     const { data } = this.props;
-    const { ownerName, rentalsYouMayLike } = this.state;
-
-    const currentUser = window.currentUser["userID"];
-
-    const hasCurrentUserReservedItem = false;
-
-    if (data.reservations !== undefined) {
-      let reservations = Object.values(data.reservations);
-
-      reservations.forEach(function(itemReservation) {
-        if (itemReservation.rentalMaker == currentUser) {
-          hasCurrentUserReservedItem = true;
-        }
-      });
-    }
+    const {
+      ownerName,
+      rentalsYouMayLike,
+      hasCurrentUserReservedItem,
+      reservationStatus
+    } = this.state;
 
     return (
       <View style={styles.container}>
@@ -161,7 +178,10 @@ export default class ItemDetails extends Component {
           </TouchableOpacity>
         </View>
 
-        <ScrollView style={styles.scrollViewContainer}>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          style={styles.scrollViewContainer}
+        >
           <Slideshow
             style={styles.slideshow}
             dataSource={this.state.dataSource}
@@ -181,29 +201,68 @@ export default class ItemDetails extends Component {
             <Text style={styles.title}>{data.title}</Text>
 
             <View style={styles.descriptionContainer}>
-              <View style={{ marginTop: 10 }}>
+              {hasCurrentUserReservedItem ? (
+                <TouchableOpacity
+                  style={styles.btnCancelRental}
+                  onPress={() => console.log("cancel rental")}
+                >
+                  <Text style={styles.textBtnCancelRental}>Cancel renting</Text>
+                </TouchableOpacity>
+              ) : (
                 <Text style={styles.descriptionContent}>{data.summary}</Text>
-              </View>
+              )}
             </View>
 
             <View style={styles.lineSeparator} />
 
-            <View style={styles.reviewsContainer}>
-              <View style={styles.starContainer}>
-                <Text style={[styles.itemText, { color: "#FDC058" }]}>4.1</Text>
-                <StarView score={4} style={styles.starItem} />
-              </View>
-              <View style={styles.itemContainer}>
-                <Text style={styles.itemText}>92</Text>
-                <Text style={styles.subItemText}>Reviews</Text>
-              </View>
-              <View style={styles.itemContainer}>
-                <Text style={styles.itemText}>23</Text>
-                <Text style={styles.subItemText}>Rentals</Text>
-              </View>
-            </View>
+            {hasCurrentUserReservedItem ? (
+              <View>
+                <Text style={styles.sectionTitle}>Date</Text>
 
-            <View style={styles.lineSeparator} />
+                <View style={styles.reservationDatesContainer}>
+                  <View style={styles.itemDate}>
+                    <Text style={styles.itemTextSubTitle}>Start</Text>
+                    <Text style={styles.itemTextSub}>
+                      {moment(
+                        reservationStatus.reservationDates.startDate
+                      ).format("dddd, MMM. D")}
+                    </Text>
+                  </View>
+
+                  <View style={styles.itemDate}>
+                    <Text style={styles.itemTextSubTitle}>End</Text>
+                    <Text style={styles.itemTextSub}>
+                      {moment(
+                        reservationStatus.reservationDates.endDate
+                      ).format("dddd, MMM. D")}
+                    </Text>
+                  </View>
+                </View>
+
+                <View style={styles.lineSeparator} />
+              </View>
+            ) : (
+              <View>
+                <View style={styles.reviewsContainer}>
+                  <View style={styles.starContainer}>
+                    <Text style={[styles.itemText, { color: "#FDC058" }]}>
+                      4.1
+                    </Text>
+                    <StarView score={4} style={styles.starItem} />
+                  </View>
+                  <View style={styles.itemContainer}>
+                    <Text style={styles.itemText}>92</Text>
+                    <Text style={styles.subItemText}>Reviews</Text>
+                  </View>
+                  <View style={styles.itemContainer}>
+                    <Text style={styles.itemText}>23</Text>
+                    <Text style={styles.subItemText}>Rentals</Text>
+                  </View>
+                </View>
+
+                <View style={styles.lineSeparator} />
+              </View>
+            )}
 
             <View style={styles.ownerContainer}>
               <Image
@@ -212,8 +271,8 @@ export default class ItemDetails extends Component {
                 source={require("../../assets/images/profile.png")}
               />
               <View>
-                <Text style={styles.ownerTextTitle}>Owner</Text>
-                <Text style={styles.ownerText}>{ownerName}</Text>
+                <Text style={styles.itemTextSubTitle}>Owner</Text>
+                <Text style={styles.itemTextSub}>{ownerName}</Text>
               </View>
             </View>
 
@@ -250,21 +309,45 @@ export default class ItemDetails extends Component {
 
             <View style={styles.lineSeparator} />
 
-            <Text style={styles.sectionTitle}>It might interest you</Text>
-            <View style={styles.interestInsideContainer}>
-              <Grid
-                style={{ marginHorizontal: -5 }}
-                renderItem={this._renderItem}
-                data={rentalsYouMayLike}
-                numColumns={2}
-              />
-            </View>
+            {hasCurrentUserReservedItem ? (
+              <View>
+                <Text style={styles.sectionTitle}>Total cost</Text>
+                <View style={styles.containerRentalPrice}>
+                  <Text style={styles.totalUSDAmount}>Amount in USD</Text>
+                  <Text style={styles.totalUSDAmount}>
+                    {reservationStatus.numberDaysReservation *
+                      data.dailyDollarPrice}
+                    $
+                  </Text>
+                </View>
+                <View style={styles.containerRentalPrice}>
+                  <Text style={styles.totalCurrencyAmount}>
+                    {reservationStatus.currency.toUpperCase()}
+                  </Text>
+                  <Text style={styles.totalCurrencyAmount}>
+                    {reservationStatus.rentalTotalAmount.toFixed(5)}
+                  </Text>
+                </View>
+              </View>
+            ) : (
+              <View>
+                <Text style={styles.sectionTitle}>It might interest you</Text>
+                <View style={styles.interestInsideContainer}>
+                  <Grid
+                    style={{ marginHorizontal: -5 }}
+                    renderItem={this._renderItem}
+                    data={rentalsYouMayLike}
+                    numColumns={2}
+                  />
+                </View>
+              </View>
+            )}
           </View>
 
           <View style={{ height: responsiveHeight(5) }} />
         </ScrollView>
 
-        {hasCurrentUserReservedItem && (
+        {!hasCurrentUserReservedItem && (
           <View style={styles.bottomAbContainer}>
             <View>
               <Text style={styles.rentDayText}>

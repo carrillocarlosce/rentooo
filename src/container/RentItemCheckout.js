@@ -38,13 +38,13 @@ export default class RentItemCheckout extends Component {
 
     console.log(rentalReservation);
 
-    let startDate = moment(rentalReservation["reservationDates"]["startDate"]);
-    let endDate =
-      rentalReservation["reservationDates"]["endDate"] !== null
-        ? moment(rentalReservation["reservationDates"]["endDate"])
-        : startDate;
+    let startDate = rentalReservation["reservationDates"]["startDate"];
+    let endDate = rentalReservation["reservationDates"]["endDate"];
 
-    let numberDaysReservation = endDate.diff(startDate, "days") + 1;
+    let numberDaysReservation = userActions.numberOfDaysReservation(
+      startDate,
+      endDate
+    );
 
     let totalUSDAmount = numberDaysReservation * itemRental.dailyDollarPrice;
 
@@ -86,6 +86,7 @@ export default class RentItemCheckout extends Component {
 
       let newReservation = {
         reservationDates: rentalReservation["reservationDates"],
+        numberDaysReservation: numberDaysReservation,
         rentalMaker: window.currentUser["userID"],
         rentalTotalAmount: totalCurrencyAmount,
         currency: chosenCurrency,

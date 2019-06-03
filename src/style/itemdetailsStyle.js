@@ -53,7 +53,8 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontFamily: "SFProText-Regular",
-    fontSize: responsiveFontSize(2.8)
+    fontSize: responsiveFontSize(2.8),
+    marginBottom: responsiveHeight(2)
   },
   reviewsContainer: {
     flexDirection: "row",
@@ -77,12 +78,12 @@ const styles = StyleSheet.create({
   },
   itemText: {
     fontFamily: "SFProText-Semibold",
-    fontSize: responsiveFontSize(1.5)
+    fontSize: responsiveFontSize(1.7)
   },
   subItemText: {
     marginTop: 4,
     fontFamily: "SFProText-Semibold",
-    fontSize: responsiveFontSize(2),
+    fontSize: responsiveFontSize(1.9),
     color: "#C0C0C0"
   },
   scrollViewContainer: {
@@ -95,43 +96,31 @@ const styles = StyleSheet.create({
     marginHorizontal: responsiveWidth(-5.33)
   },
   descriptionContainer: {
-    marginTop: 24
+    marginTop: responsiveHeight(3)
+  },
+  btnCancelRental: {
+    flexDirection: "row",
+    height: responsiveHeight(6),
+    borderRadius: 5,
+    backgroundColor: "#A3A3BD",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  textBtnCancelRental: {
+    fontFamily: "SFProText-Semibold",
+    color: "#fff",
+    fontSize: responsiveFontSize(2)
   },
   descriptionContent: {
     fontFamily: "SFProText-Regular",
     fontSize: responsiveFontSize(1.8)
   },
-  bottomAbContainer: {
-    position: "absolute",
-    left: 0,
-    bottom: 0,
-    backgroundColor: "#F5F5FD",
+  reservationDatesContainer: {
     flexDirection: "row",
-    paddingHorizontal: responsiveWidth(5.33),
-    paddingTop: responsiveHeight(2),
-    justifyContent: "space-between",
-    alignItems: "flex-start",
-    height: responsiveHeight(13),
-    width: "100%",
-    borderTopColor: "rgba(0,0,0,0.05)",
-    borderTopWidth: 1
+    justifyContent: "flex-start"
   },
-  rentBtn: {
-    width: responsiveWidth(37),
-    height: responsiveHeight(5.66),
-    backgroundColor: "#0055FF",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 5
-  },
-  rentText: {
-    fontFamily: "SFProText-Semibold",
-    fontSize: responsiveFontSize(2.3),
-    color: "white"
-  },
-  rentDayText: {
-    fontFamily: "SFProText-Regular",
-    fontSize: responsiveFontSize(2.5)
+  itemDate: {
+    marginRight: responsiveWidth(10)
   },
   mapViewContainer: {},
   mapView: {
@@ -165,84 +154,47 @@ const styles = StyleSheet.create({
     width: responsiveWidth(10),
     marginRight: responsiveWidth(4)
   },
-  ownerTextTitle: {
+  itemTextSubTitle: {
     fontFamily: "SFProText-Regular",
     fontSize: responsiveFontSize(1.8),
     color: "rgba(0,0,0,0.6)"
   },
-  ownerText: {
+  itemTextSub: {
     fontFamily: "SFProText-Semibold",
-    fontSize: responsiveFontSize(2.2)
+    fontSize: responsiveFontSize(2)
   },
   // -----------------------------
-  closeBtn: {
-    position: "absolute",
-    left: 20,
-    top: 52,
-    zIndex: 999
-  },
-  closeImage: {
-    resizeMode: "contain",
-    width: 48,
-    height: 48
-  },
-  bottomContainer: {
-    position: "absolute",
-    width: "100%",
-    height: "39.16%",
-    backgroundColor: "white",
-    left: 0,
-    top: "60.84%"
-  },
-  titleContainer: {
+  containerRentalPrice: {
     flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingHorizontal: "5.33%",
-    marginTop: 16
+    justifyContent: "space-between"
   },
-  leftText: {
-    fontFamily: "SFProText-Regular",
-    fontSize: responsiveFontSize(2.2)
-  },
-  rightBtn: {
-    width: 64,
-    height: 32,
-    backgroundColor: "#A3A3BD",
-    borderRadius: 5,
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  rightText: {
-    fontFamily: "SFProText-Regular",
-    fontSize: 13,
-    color: "white"
-  },
-  itemIterestBtnContainer: {
-    flexDirection: "column",
-    justifyContent: "flex-start",
-    alignItems: "flex-start"
-  },
-  heartIcon: {
-    position: "absolute",
-    right: responsiveHeight(1),
-    top: responsiveHeight(1)
-  },
-  itemText: {
-    marginTop: responsiveHeight(1),
+  totalUSDAmount: {
     fontFamily: "SFProText-Semibold",
-    fontSize: responsiveFontSize(2.4)
+    fontSize: responsiveFontSize(1.8),
+    color: "rgba(0,0,0,0.6)",
+    marginBottom: responsiveHeight(1)
   },
-  currencyText: {
-    marginTop: 5,
-    fontFamily: "SFProText-Regular",
-    fontSize: 13,
-    color: "#767676"
+  totalCurrencyAmount: {
+    fontFamily: "SFProText-Semibold",
+    fontSize: responsiveFontSize(1.8)
   },
-  currencyWrapper: {
+  interestInsideContainer: {
+    marginTop: 24
+  },
+  bottomAbContainer: {
+    position: "absolute",
+    left: 0,
+    bottom: 0,
+    backgroundColor: "#F5F5FD",
     flexDirection: "row",
+    paddingHorizontal: responsiveWidth(5.33),
+    paddingTop: responsiveHeight(2),
     justifyContent: "space-between",
-    alignSelf: "stretch"
+    alignItems: "flex-start",
+    height: responsiveHeight(13),
+    width: "100%",
+    borderTopColor: "rgba(0,0,0,0.05)",
+    borderTopWidth: 1
   },
   currencyContainer: {
     width: responsiveWidth(10),
@@ -264,33 +216,22 @@ const styles = StyleSheet.create({
     width: "50%",
     height: "50%"
   },
-  starLayout: {
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignSelf: "flex-start",
-    alignItems: "center"
+  rentBtn: {
+    width: responsiveWidth(37),
+    height: responsiveHeight(5.66),
+    backgroundColor: "#0055FF",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 5
   },
-  starText: {
+  rentText: {
+    fontFamily: "SFProText-Semibold",
+    fontSize: responsiveFontSize(2.3),
+    color: "white"
+  },
+  rentDayText: {
     fontFamily: "SFProText-Regular",
-    fontSize: 13,
-    marginLeft: 5,
-    color: "#FFC08A"
-  },
-  starView: {
-    width: 50,
-    height: 10
-  },
-  interestRowContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center"
-  },
-  itemImage: {
-    width: 162,
-    height: 122
-  },
-  interestInsideContainer: {
-    marginTop: 24
+    fontSize: responsiveFontSize(2.5)
   }
 });
 
