@@ -107,6 +107,7 @@
 		CBED5C10D9714A91BFAD48D6 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1D29CCB9227C4BF98AB22A6F /* Octicons.ttf */; };
 		D2681BF5F64642CF8EA450A2 /* TruenoSBd.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7CB57CA36B084E718C1727AA /* TruenoSBd.otf */; };
 		DA12FD2416A14FB59B210889 /* TruenoExBd.otf in Resources */ = {isa = PBXBuildFile; fileRef = FA9E786240F0401C956159A5 /* TruenoExBd.otf */; };
+		E47DF5CB22A67C8900DD934C /* libRNGeocoder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E47DF5C522A67C5400DD934C /* libRNGeocoder.a */; };
 		E4BCD84722A19887008F921A /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4BCD84422A1986A008F921A /* libBVLinearGradient.a */; };
 		E4E2841722981132008CD95B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4E283EB22981131008CD95B /* GoogleService-Info.plist */; };
 		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
@@ -433,6 +434,13 @@
 			remoteGlobalIDString = 358F4ED71D1E81A9004DF814;
 			remoteInfo = RCTBlob;
 		};
+		E47DF5C422A67C5400DD934C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E47DF59722A67C5400DD934C /* RNGeocoder.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BF8FCF941BFFB184000FCD37;
+			remoteInfo = RNGeocoder;
+		};
 		E4BCD84322A1986A008F921A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E4BCD83E22A19869008F921A /* BVLinearGradient.xcodeproj */;
@@ -592,6 +600,7 @@
 		D97B007201564F158B8F0A28 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/native-base/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		DB327D25F0A5011DE7CBF850 /* libPods-rentoo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-rentoo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEFF601E7B61464E8CC88AAF /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
+		E47DF59722A67C5400DD934C /* RNGeocoder.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNGeocoder.xcodeproj; path = "../node_modules/react-native-geocoder/ios/RNGeocoder.xcodeproj"; sourceTree = "<group>"; };
 		E4BCD83E22A19869008F921A /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BVLinearGradient.xcodeproj; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; };
 		E4CCAE7E77D44BA69074AA60 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/native-base/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		E4E283EB22981131008CD95B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -621,6 +630,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E47DF5CB22A67C8900DD934C /* libRNGeocoder.a in Frameworks */,
 				E4BCD84722A19887008F921A /* libBVLinearGradient.a in Frameworks */,
 				ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */,
 				11D1A2F320CAFA9E000508D9 /* libRCTAnimation.a in Frameworks */,
@@ -848,6 +858,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				E47DF59722A67C5400DD934C /* RNGeocoder.xcodeproj */,
 				E4BCD83E22A19869008F921A /* BVLinearGradient.xcodeproj */,
 				84736D412291BC06005DA782 /* AirMaps.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
@@ -1067,6 +1078,14 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		E47DF59822A67C5400DD934C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E47DF5C522A67C5400DD934C /* libRNGeocoder.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		E4BCD83F22A19869008F921A /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1263,6 +1282,10 @@
 				{
 					ProductGroup = E4E2845322981184008CD95B /* Products */;
 					ProjectRef = 9046EA41EBB04EBE882AACF3 /* RNFirebase.xcodeproj */;
+				},
+				{
+					ProductGroup = E47DF59822A67C5400DD934C /* Products */;
+					ProjectRef = E47DF59722A67C5400DD934C /* RNGeocoder.xcodeproj */;
 				},
 				{
 					ProductGroup = 84736CE12291B366005DA782 /* Products */;
@@ -1587,6 +1610,13 @@
 			fileType = archive.ar;
 			path = libRCTBlob.a;
 			remoteRef = ADBDB9261DFEBF0700ED6528 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E47DF5C522A67C5400DD934C /* libRNGeocoder.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNGeocoder.a;
+			remoteRef = E47DF5C422A67C5400DD934C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		E4BCD84422A1986A008F921A /* libBVLinearGradient.a */ = {
