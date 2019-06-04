@@ -130,6 +130,9 @@ export default class Inbox extends Component {
                   let chatUserID =
                     currentKey === userIDArr[0] ? userIDArr[1] : userIDArr[0];
 
+                  let rentalItemID = userIDArr[2];
+                  let reservationID = userIDArr[3];
+
                   let userData = "";
 
                   await firebase
@@ -152,6 +155,8 @@ export default class Inbox extends Component {
                       createdAt: childData.createdAt,
                       reservationStatus: "Pending",
                       reservationDates: "9 Apr. to 14 Apr.",
+                      rentalItemID: rentalItemID,
+                      reservationID: reservationID,
                       user: userData
                     };
 
@@ -189,6 +194,8 @@ export default class Inbox extends Component {
     Actions.Inboxdetails({
       user: chatItem.user,
       chatID: chatItem.chatID,
+      rentalItemID: chatItem.rentalItemID,
+      reservationID: chatItem.reservationID,
       title: contactName
     });
   }

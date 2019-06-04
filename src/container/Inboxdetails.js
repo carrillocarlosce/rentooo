@@ -48,7 +48,8 @@ export default class Inboxdetails extends Component {
       userName: window.currentUser["firstname"],
       //userAvatar: window.currentUser["avatar"],
       chatUser: this.props.user,
-      chatID: this.props.chatID
+      chatID: this.props.chatID,
+      reservationData: []
     };
 
     this.renderBubble = this.renderBubble.bind(this);
@@ -74,19 +75,25 @@ export default class Inboxdetails extends Component {
     );
 
     this.getMessageList();
+    this.getRentalInformations();
   }
 
-  snapshotToArray = snapshot => {
-    let returnArr = [];
-    const userAvatar = this.state.chatUser["avatar"];
-    snapshot.forEach(childSnapshot => {
-      let item = childSnapshot.val();
-      //item.user["avatar"] = userAvatar;
-      returnArr.push(item);
-    });
+  getRentalInformations() {
+    const { rentalItemID, reservationID } = this.props;
+    const { chatUser, userID } = this.state;
 
-    this.setState({ messages: returnArr.reverse() });
-  };
+    firebase
+      .database()
+      .ref("rentals/" + rentalItemID)
+      .child("reservations/" + reservationID)
+      .on("value", snapshot => {
+        let reservationData = snapshot.val();
+
+        console.log(reservationData);
+
+        this.setState({ reservationData });
+      });
+  }
 
   getMessageList() {
     firebase
@@ -94,14 +101,30 @@ export default class Inboxdetails extends Component {
       .ref("chat")
       .child(this.state.chatID)
       .on("value", snapshot => {
-        this.snapshotToArray(snapshot);
+        let messageList = this.snapshotToArray(snapshot);
+        this.setState({ messages: messageList });
       });
   }
+
+  snapshotToArray = snapshot => {
+    let returnArr = [];
+
+    //const userAvatar = this.state.chatUser["avatar"];
+    snapshot.forEach(childSnapshot => {
+      let item = childSnapshot.val();
+      //item.user["avatar"] = userAvatar;
+      returnArr.push(item);
+    });
+
+    return returnArr.reverse();
+  };
 
   renderSystemMessage(props) {
     return (
       <View>
-        <Text>You have a new rental.</Text>
+        <TouchableOpacity onPress={() => console.log(props)}>
+          <Text>You have a new rental.</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -228,6 +251,8 @@ export default class Inboxdetails extends Component {
   }
 
   render() {
+    const { reservationData } = this.state;
+
     return (
       <View style={styles.container}>
         <GiftedChat
@@ -255,7 +280,9 @@ export default class Inboxdetails extends Component {
           ]}
         />
         <View style={styles.headerInboxDetail}>
-          <Text style={[styles.textHeader, { color: "#FDC058" }]}>Pending</Text>
+          <Text style={[styles.textHeader, { color: "#FDC058" }]}>
+            {reservationData.status}
+          </Text>
           <Text style={[styles.textHeader, { color: "#0055FF" }]}>Details</Text>
         </View>
       </View>

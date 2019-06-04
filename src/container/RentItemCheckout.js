@@ -104,17 +104,6 @@ export default class RentItemCheckout extends Component {
 
       firebase
         .database()
-        .ref("rentals/" + itemRental.key + "/reservations")
-        .push(newReservation)
-        .then(resultReservation => {
-          console.log(resultReservation);
-        })
-        .catch(err => {
-          console.log("error:", err);
-        });
-
-      firebase
-        .database()
         .ref(
           "users/" + window.currentUser["userID"] + "/wallet/" + chosenCurrency
         )
@@ -135,23 +124,38 @@ export default class RentItemCheckout extends Component {
           }
           return amount;
         })
-        .then(result => {
-          this.startChat();
+        .then(result => {});
+
+      firebase
+        .database()
+        .ref("rentals/" + itemRental.key + "/reservations")
+        .push(newReservation)
+        .then(resultReservation => {
+          this.startChat(resultReservation.key);
+        })
+        .catch(err => {
+          console.log("error:", err);
         });
     } else {
       alert("You don't have enough cash.");
     }
   }
 
-  async startChat() {
+  async startChat(reservationKey) {
     const { itemRental } = this.props;
 
     let rentalOwner = itemRental.owner;
     let currentUser = window.currentUser;
 
-    let IDlist = [rentalOwner, currentUser["userID"]];
+    let IDlist = [
+      rentalOwner,
+      currentUser["userID"],
+      itemRental.key,
+      reservationKey
+    ];
     IDlist.sort();
-    const chatID = IDlist[0] + "*_*" + IDlist[1];
+    const chatID =
+      IDlist[0] + "*_*" + IDlist[1] + "*_*" + IDlist[2] + "*_*" + IDlist[3];
 
     let isExistContact = false;
 
