@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    height: 100
+    height: responsiveHeight(13)
   },
   navContainer: {
     zIndex: 300,
@@ -130,6 +130,10 @@ const styles = StyleSheet.create({
   itemDate: {
     marginRight: responsiveWidth(10)
   },
+  fullAddressText: {
+    fontFamily: "SFProText-Semibold",
+    fontSize: responsiveFontSize(1.6)
+  },
   mapViewContainer: {},
   mapView: {
     height: responsiveHeight(28),
@@ -169,7 +173,7 @@ const styles = StyleSheet.create({
   },
   itemTextSub: {
     fontFamily: "SFProText-Semibold",
-    fontSize: responsiveFontSize(2)
+    fontSize: responsiveFontSize(1.8)
   },
   // -----------------------------
   containerRentalPrice: {

@@ -274,13 +274,23 @@ export default class ItemDetails extends Component {
 
             <Text style={styles.sectionTitle}>Location</Text>
 
+            {hasCurrentUserReservedItem && (
+              <Text style={styles.fullAddressText}>
+                {data.meetingPlace.address +
+                  ", " +
+                  data.meetingPlace.city +
+                  ", " +
+                  data.meetingPlace.country}
+              </Text>
+            )}
+
             <View style={styles.mapViewContainer}>
               <MapView
                 style={styles.mapView}
                 provider={PROVIDER_GOOGLE}
                 region={{
-                  latitude: 42.882004,
-                  longitude: 74.582748,
+                  latitude: data.meetingPlace.meetingCoordinates.lat,
+                  longitude: data.meetingPlace.meetingCoordinates.lng,
                   latitudeDelta: 0.0922,
                   longitudeDelta: 0.0421
                 }}
@@ -296,9 +306,11 @@ export default class ItemDetails extends Component {
                   source={require("../../assets/images/rentalPosition.png")}
                 />
               </LinearGradient>
-              <Text style={styles.exactPositionLegal}>
-                Exact position given after renting.
-              </Text>
+              {!hasCurrentUserReservedItem && (
+                <Text style={styles.exactPositionLegal}>
+                  Exact position given after renting.
+                </Text>
+              )}
             </View>
 
             <View style={styles.lineSeparator} />

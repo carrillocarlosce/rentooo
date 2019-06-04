@@ -32,7 +32,8 @@ export default class NewOfferMeeting extends Component {
       country: "",
       address: "",
       zip: "",
-      city: ""
+      city: "",
+      coordinates: []
     };
   }
 
@@ -41,11 +42,11 @@ export default class NewOfferMeeting extends Component {
       ({ coords }) => {
         const { latitude, longitude } = coords;
 
-        var position = {
+        var coordinates = {
           lat: latitude,
           lng: longitude
         };
-        Geocoder.geocodePosition(position)
+        Geocoder.geocodePosition(coordinates)
           .then(address => {
             console.log(address);
             this.setState({
@@ -67,32 +68,41 @@ export default class NewOfferMeeting extends Component {
 
   onDoneNewRentalItem() {
     const { newRentalItem } = this.props;
-    const { country, address, zip, city } = this.state;
+    const { country, address, zip, city, coordinates } = this.state;
 
-    let meetingPlace = { country, address, zip, city };
+    Geocoder.geocodeAddress(country + address + zip + city)
+      .then(coords => {
+        meetingCoordinates = {
+          lat: coords[0].position.lat,
+          lng: coords[0].position.lng
+        };
 
-    newRentalItem["meetingPlace"] = meetingPlace;
-    newRentalItem["owner"] = window.currentUser["userID"];
+        let meetingPlace = { country, address, zip, city, meetingCoordinates };
 
-    firebase
-      .database()
-      .ref("rentals")
-      .push(newRentalItem)
-      .then(newRentalData => {
+        newRentalItem["meetingPlace"] = meetingPlace;
+        newRentalItem["owner"] = window.currentUser["userID"];
+
         firebase
           .database()
-          .ref("users/" + window.currentUser["userID"] + "/userRentals")
-          .push(newRentalData.key)
-          .then(result => {
-            Actions.reset("dashboardContainerScreen");
+          .ref("rentals")
+          .push(newRentalItem)
+          .then(newRentalData => {
+            firebase
+              .database()
+              .ref("users/" + window.currentUser["userID"] + "/userRentals")
+              .push(newRentalData.key)
+              .then(result => {
+                Actions.reset("dashboardContainerScreen");
+              })
+              .catch(err => {
+                console.log("error===", err);
+              });
           })
           .catch(err => {
             console.log("error===", err);
           });
       })
-      .catch(err => {
-        console.log("error===", err);
-      });
+      .catch(err => console.log(err));
   }
 
   render() {
@@ -180,12 +190,14 @@ export default class NewOfferMeeting extends Component {
           <View style={styles.separatorLine} />
         </KeyboardAvoidingView>
 
-        <TouchableOpacity
-          style={styles.btnNext}
-          onPress={() => this.onDoneNewRentalItem()}
-        >
-          <Text style={styles.textBtnNext}>Done</Text>
-        </TouchableOpacity>
+        {country !== "" && address !== "" && zip !== "" && city !== "" && (
+          <TouchableOpacity
+            style={styles.btnNext}
+            onPress={() => this.onDoneNewRentalItem()}
+          >
+            <Text style={styles.textBtnNext}>Done</Text>
+          </TouchableOpacity>
+        )}
       </View>
     );
   }
