@@ -72,7 +72,8 @@ export default class Yourbalance extends Component {
     const { data, balance } = this.props;
 
     userActions.convertCoinValue(data.name, "usd").then(usdValue => {
-      if (usdValue !== undefined) this.setState({ dollarPrice: usdValue });
+      if (usdValue !== undefined)
+        this.setState({ dollarPrice: usdValue * balance });
     });
   }
 

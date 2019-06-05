@@ -33,7 +33,7 @@ export default class Inbox extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { chatList: [], pageIndex: 0 };
+    this.state = { chatListRentals: [], chatListMyOffers: [], pageIndex: 0 };
     this.getChatList = this.getChatList.bind(this);
     this.datediff = this.datediff.bind(this);
   }
@@ -79,6 +79,8 @@ export default class Inbox extends Component {
       .on("value", snapshot => {
         let keylist = [];
         let chatlist = [];
+        let chatListRentals = [];
+        let chatListMyOffers = [];
 
         snapshot.forEach(data => {
           const chatID = data.key;
@@ -127,9 +129,8 @@ export default class Inbox extends Component {
                   }
 
                   const userIDArr = chatid.split("*_*");
-                  let chatUserID =
-                    currentKey === userIDArr[0] ? userIDArr[1] : userIDArr[0];
 
+                  let chatUserID = userIDArr[0];
                   let rentalItemID = userIDArr[2];
                   let reservationID = userIDArr[3];
 
@@ -147,14 +148,36 @@ export default class Inbox extends Component {
                       }
                     });
 
+                  let reservationData = "";
+
+                  await firebase
+                    .database()
+                    .ref("rentals/" + rentalItemID)
+                    .child("reservations/" + reservationID)
+                    .once("value", snapshot => {
+                      if (snapshot.val() !== null) {
+                        reservationData = snapshot.val();
+                        reservationData["key"] = snapshot.key;
+
+                        console.log(reservationData);
+                      }
+                    });
+
                   if (userData !== "") {
                     let object = {
                       chatID: chatid,
                       lastMessage: childData.text,
                       lastMessageTime: lastTime_msg,
                       createdAt: childData.createdAt,
-                      reservationStatus: "Pending",
-                      reservationDates: "9 Apr. to 14 Apr.",
+                      reservationStatus: reservationData.status,
+                      reservationDates:
+                        moment(
+                          reservationData.reservationDates.startDate
+                        ).format("MMM. D") +
+                        " to " +
+                        moment(reservationData.reservationDates.endDate).format(
+                          "MMM. D"
+                        ),
                       rentalItemID: rentalItemID,
                       reservationID: reservationID,
                       user: userData
@@ -176,14 +199,29 @@ export default class Inbox extends Component {
                       chatlist.push(object);
                     }
 
-                    console.log("chatObj====", chatlist);
-                    THIS.setState({ chatList: chatlist });
+                    console.log(chatlist);
+
+                    chatlist.map((item, index) => {
+                      if (item.user["userID"] == window.currentUser["userID"]) {
+                        chatListMyOffers.push(item);
+                      } else {
+                        chatListRentals.push(item);
+                      }
+                    });
+
+                    THIS.setState({
+                      chatListRentals: chatListRentals,
+                      chatListMyOffers: chatListMyOffers
+                    });
                   }
                 }
               });
           });
         } else {
-          THIS.setState({ chatList: chatlist });
+          THIS.setState({
+            chatListRentals: chatListRentals,
+            chatListMyOffers: chatListMyOffers
+          });
         }
       });
   }
@@ -201,9 +239,13 @@ export default class Inbox extends Component {
   }
 
   render() {
-    const { chatList, pageIndex } = this.state;
+    const { chatListRentals, chatListMyOffers, pageIndex } = this.state;
 
-    const chatListSortedDates = chatList.sort((a, b) =>
+    const chatListRentalsSortedDates = chatListRentals.sort((a, b) =>
+      a.createdAt < b.createdAt ? 1 : b.createdAt < a.createdAt ? -1 : 0
+    );
+
+    const chatListMyOffersSortedDates = chatListMyOffers.sort((a, b) =>
       a.createdAt < b.createdAt ? 1 : b.createdAt < a.createdAt ? -1 : 0
     );
 
@@ -253,7 +295,7 @@ export default class Inbox extends Component {
         >
           <View style={styles.containerItemTab}>
             <ScrollView style={styles.midContainer}>
-              {chatListSortedDates.map((item, key) => {
+              {chatListRentalsSortedDates.map((item, key) => {
                 return (
                   <ItemChatRow
                     item={item}
@@ -265,7 +307,7 @@ export default class Inbox extends Component {
           </View>
           <View style={styles.containerItemTab}>
             <ScrollView style={styles.midContainer}>
-              {chatListSortedDates.map((item, key) => {
+              {chatListMyOffersSortedDates.map((item, key) => {
                 return (
                   <ItemChatRow
                     item={item}

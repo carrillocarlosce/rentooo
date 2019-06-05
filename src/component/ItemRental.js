@@ -219,9 +219,9 @@ const styles = StyleSheet.create({
     color: "#767676"
   },
   currencyWrapper: {
+    width: "100%",
     flexDirection: "row",
-    justifyContent: "space-between",
-    alignSelf: "stretch"
+    justifyContent: "space-between"
   },
   currencyContainer: {
     width: "50%",
