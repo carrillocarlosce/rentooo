@@ -210,12 +210,28 @@ export default class ItemDetails extends Component {
 
             <View style={styles.descriptionContainer}>
               {hasCurrentUserReservedItem ? (
-                <TouchableOpacity
-                  style={styles.btnCancelRental}
-                  onPress={() => console.log("cancel rental")}
+                <View
+                  style={{ flexDirection: "row", alignItems: "space-between" }}
                 >
-                  <Text style={styles.textBtnCancelRental}>Cancel renting</Text>
-                </TouchableOpacity>
+                  <TouchableOpacity
+                    style={[styles.btnActionRental, { marginRight: 5 }]}
+                    onPress={() => console.log("cancel rental")}
+                  >
+                    <Text style={styles.textBtnRental}>Cancel renting</Text>
+                  </TouchableOpacity>
+
+                  {reservationStatus.status == "Confirmed" && (
+                    <TouchableOpacity
+                      style={[
+                        styles.btnActionRental,
+                        { marginLeft: 5, backgroundColor: "#0055FF" }
+                      ]}
+                      onPress={() => Actions.Authentication()}
+                    >
+                      <Text style={styles.textBtnRental}>Authentication</Text>
+                    </TouchableOpacity>
+                  )}
+                </View>
               ) : (
                 <Text style={styles.descriptionContent}>{data.summary}</Text>
               )}

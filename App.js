@@ -59,6 +59,7 @@ import Profile from "./src/container/Profile";
 import MapSearch from "./src/container/MapSearch";
 
 import ItemDetails from "./src/container/ItemDetails";
+import Authentication from "./src/container/Authentication";
 
 import RentItemDates from "./src/container/RentItemDates";
 import RentItemPaymentMethod from "./src/container/RentItemPaymentMethod";
@@ -338,6 +339,19 @@ export default class App extends Component {
           <Scene key="MapSearch" component={MapSearch} hideNavBar={true} />
 
           <Scene key="ItemDetails" component={ItemDetails} hideNavBar={true} />
+
+          <Scene
+            key="Authentication"
+            component={Authentication}
+            renderLeftButton={
+              <TouchableOpacity onPress={() => Actions.pop()}>
+                <Image
+                  style={styles.leftBtn}
+                  source={require("./assets/images/back3x.png")}
+                />
+              </TouchableOpacity>
+            }
+          />
 
           <Scene
             renderLeftButton={

@@ -106,7 +106,8 @@ const styles = StyleSheet.create({
   descriptionContainer: {
     marginTop: responsiveHeight(3)
   },
-  btnCancelRental: {
+  btnActionRental: {
+    flex: 1,
     flexDirection: "row",
     height: responsiveHeight(6),
     borderRadius: 5,
@@ -114,7 +115,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center"
   },
-  textBtnCancelRental: {
+  textBtnRental: {
     fontFamily: "SFProText-Semibold",
     color: "#fff",
     fontSize: responsiveFontSize(2)
