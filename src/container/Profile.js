@@ -12,7 +12,8 @@ import {
   TextInput,
   TouchableOpacity,
   Image,
-  ScrollView
+  ScrollView,
+  YellowBox
 } from "react-native";
 import { Actions } from "react-native-router-flux";
 import StarView from "react-native-star-view";
@@ -21,6 +22,8 @@ import firebase from "react-native-firebase";
 
 import styles from "../style/profileStyle";
 import ItemRental from "../component/ItemRental";
+
+YellowBox.ignoreWarnings(['Warning: ReactNative.createElement']);
 
 export default class Profile extends Component {
   constructor(props) {
@@ -66,6 +69,8 @@ export default class Profile extends Component {
       window.currentUser["firstname"] + " " + window.currentUser["lastname"];
 
     const { userRentals } = this.state;
+
+    console.disableYellowBox = true; 
 
     return (
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
