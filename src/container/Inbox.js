@@ -35,6 +35,7 @@ export default class Inbox extends Component {
 
     this.state = { chatListRentals: [], chatListMyOffers: [], pageIndex: 0 };
     this.getChatList = this.getChatList.bind(this);
+    this.sortConversations = this.sortConversations.bind(this);
     this.datediff = this.datediff.bind(this);
   }
 
@@ -130,7 +131,8 @@ export default class Inbox extends Component {
 
                   const userIDArr = chatid.split("*_*");
 
-                  let chatUserID = userIDArr[0];
+                  let chatUserID =
+                    currentKey === userIDArr[0] ? userIDArr[1] : userIDArr[0];
                   let rentalItemID = userIDArr[2];
                   let reservationID = userIDArr[3];
 
@@ -158,8 +160,6 @@ export default class Inbox extends Component {
                       if (snapshot.val() !== null) {
                         reservationData = snapshot.val();
                         reservationData["key"] = snapshot.key;
-
-                        console.log(reservationData);
                       }
                     });
 
@@ -183,35 +183,26 @@ export default class Inbox extends Component {
                       user: userData
                     };
 
-                    if (chatlist.length > 0) {
-                      let replace_index = -1;
-                      chatlist.map((item, index) => {
-                        if (item.chatID == object.chatID) {
-                          replace_index = index;
-                        }
-                      });
-                      if (replace_index > -1) {
-                        chatlist[replace_index] = object;
-                      } else {
-                        chatlist.push(object);
-                      }
-                    } else {
-                      chatlist.push(object);
-                    }
+                    chatlist.push(object);
 
-                    console.log(chatlist);
+                    let userRentals =
+                      window.currentUser["userRentals"] !== undefined
+                        ? Object.values(window.currentUser["userRentals"])
+                        : [];
 
                     chatlist.map((item, index) => {
-                      if (item.user["userID"] == window.currentUser["userID"]) {
+                      if (userRentals.includes(item.rentalItemID)) {
                         chatListMyOffers.push(item);
                       } else {
                         chatListRentals.push(item);
                       }
                     });
 
+                    console.log(THIS.sortConversations(chatListRentals));
+
                     THIS.setState({
-                      chatListRentals: chatListRentals,
-                      chatListMyOffers: chatListMyOffers
+                      chatListRentals: THIS.sortConversations(chatListRentals),
+                      chatListMyOffers: THIS.sortConversations(chatListMyOffers)
                     });
                   }
                 }
@@ -219,11 +210,19 @@ export default class Inbox extends Component {
           });
         } else {
           THIS.setState({
-            chatListRentals: chatListRentals,
-            chatListMyOffers: chatListMyOffers
+            chatListRentals: THIS.sortConversations(chatListRentals),
+            chatListMyOffers: THIS.sortConversations(chatListMyOffers)
           });
         }
       });
+  }
+
+  sortConversations(conversations) {
+    let sortedConversations = conversations.sort((a, b) =>
+      a.createdAt < b.createdAt ? 1 : b.createdAt < a.createdAt ? -1 : 0
+    );
+
+    return sortedConversations;
   }
 
   openConversation(chatItem) {
@@ -240,14 +239,6 @@ export default class Inbox extends Component {
 
   render() {
     const { chatListRentals, chatListMyOffers, pageIndex } = this.state;
-
-    const chatListRentalsSortedDates = chatListRentals.sort((a, b) =>
-      a.createdAt < b.createdAt ? 1 : b.createdAt < a.createdAt ? -1 : 0
-    );
-
-    const chatListMyOffersSortedDates = chatListMyOffers.sort((a, b) =>
-      a.createdAt < b.createdAt ? 1 : b.createdAt < a.createdAt ? -1 : 0
-    );
 
     return (
       <View style={styles.container}>
@@ -295,7 +286,7 @@ export default class Inbox extends Component {
         >
           <View style={styles.containerItemTab}>
             <ScrollView style={styles.midContainer}>
-              {chatListRentalsSortedDates.map((item, key) => {
+              {chatListRentals.map((item, key) => {
                 return (
                   <ItemChatRow
                     item={item}
@@ -307,7 +298,7 @@ export default class Inbox extends Component {
           </View>
           <View style={styles.containerItemTab}>
             <ScrollView style={styles.midContainer}>
-              {chatListMyOffersSortedDates.map((item, key) => {
+              {chatListMyOffers.map((item, key) => {
                 return (
                   <ItemChatRow
                     item={item}

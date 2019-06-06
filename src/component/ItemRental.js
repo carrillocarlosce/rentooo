@@ -219,7 +219,7 @@ const styles = StyleSheet.create({
     color: "#767676"
   },
   currencyWrapper: {
-    width: "100%",
+    width: responsiveWidth(43),
     flexDirection: "row",
     justifyContent: "space-between"
   },

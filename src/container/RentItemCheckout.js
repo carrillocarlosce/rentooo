@@ -149,7 +149,7 @@ export default class RentItemCheckout extends Component {
 
     let IDlist = [
       rentalOwner,
-      currentUser["userID"],
+      window.currentUser["userID"],
       itemRental.key,
       reservationKey
     ];

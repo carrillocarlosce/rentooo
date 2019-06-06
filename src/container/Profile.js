@@ -75,7 +75,10 @@ export default class Profile extends Component {
             resizeMode="contain"
             source={require("../../assets/images/Oval.png")}
           />
-          <Text style={styles.name}>{userName}</Text>
+
+          <TouchableOpacity onPress={() => Actions.reset("Login")}>
+            <Text style={styles.name}>{userName}</Text>
+          </TouchableOpacity>
 
           <View style={styles.location}>
             <Image source={require("../../assets/images/location.png")} />
