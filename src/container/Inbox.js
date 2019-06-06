@@ -23,6 +23,7 @@ import {
 import firebase from "react-native-firebase";
 import moment from "moment";
 
+import * as userActions from "../actions/userActions";
 import styles from "../style/inboxStyle";
 
 const width = Dimensions.get("window").width;
@@ -316,17 +317,6 @@ class ItemChatRow extends Component {
   render() {
     const { item } = this.props;
 
-    let colorStatus =
-      item.reservationStatus == "Pending"
-        ? "#FDC058"
-        : item.reservationStatus == "Confirmed"
-        ? "#17A370"
-        : item.reservationStatus == "Canceled"
-        ? "#FC2A53"
-        : item.reservationStatus == "Completed"
-        ? "#A3A3BD"
-        : null;
-
     return (
       <TouchableOpacity onPress={() => this.props.onPress()}>
         <View style={styles.itemLayout}>
@@ -340,7 +330,12 @@ class ItemChatRow extends Component {
               <Text style={styles.upperText}>
                 {item.user["firstname"] + " " + item.user["lastname"]}
               </Text>
-              <Text style={[styles.upperText, { color: colorStatus }]}>
+              <Text
+                style={[
+                  styles.upperText,
+                  { color: userActions.getStatusColor(item.reservationStatus) }
+                ]}
+              >
                 {item.reservationStatus}
               </Text>
             </View>

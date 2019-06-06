@@ -83,3 +83,18 @@ export async function convertCoinValue(from, to) {
     console.error(error);
   }
 }
+
+export function getStatusColor(status) {
+  let color =
+    status == "Pending"
+      ? "#FDC058"
+      : status == "Confirmed"
+      ? "#17A370"
+      : status == "Canceled"
+      ? "#FC2A53"
+      : status == "Completed"
+      ? "#A3A3BD"
+      : null;
+
+  return color;
+}

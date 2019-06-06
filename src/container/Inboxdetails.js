@@ -280,7 +280,12 @@ export default class Inboxdetails extends Component {
           ]}
         />
         <View style={styles.headerInboxDetail}>
-          <Text style={[styles.textHeader, { color: "#FDC058" }]}>
+          <Text
+            style={[
+              styles.textHeader,
+              { color: userActions.getStatusColor(reservationData.status) }
+            ]}
+          >
             {reservationData.status}
           </Text>
           <Text style={[styles.textHeader, { color: "#0055FF" }]}>Details</Text>

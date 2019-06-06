@@ -189,9 +189,23 @@ export default class ItemDetails extends Component {
               marginBottom: responsiveHeight(10)
             }}
           >
-            <Text style={styles.categoryText}>
-              {data.category.charAt(0).toUpperCase() + data.category.slice(1)}
-            </Text>
+            {!hasCurrentUserReservedItem ? (
+              <Text style={styles.categoryText}>
+                {data.category.charAt(0).toUpperCase() + data.category.slice(1)}
+              </Text>
+            ) : (
+              <Text
+                style={[
+                  styles.categoryText,
+                  {
+                    color: userActions.getStatusColor(reservationStatus.status)
+                  }
+                ]}
+              >
+                {reservationStatus.status}
+              </Text>
+            )}
+
             <Text style={styles.title}>{data.title}</Text>
 
             <View style={styles.descriptionContainer}>

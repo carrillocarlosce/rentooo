@@ -56,7 +56,7 @@ export default class Dashboard extends React.Component {
     firebase
       .database()
       .ref("rentals/")
-      .on("value", rentalsSnapshot => {
+      .once("value", rentalsSnapshot => {
         let rentals = [];
         let rentalsUpcoming = [];
         let rentalsPast = [];
