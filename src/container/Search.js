@@ -13,7 +13,8 @@ import {
   TouchableOpacity,
   Image,
   ScrollView,
-  SafeAreaView
+  SafeAreaView,
+  YellowBox
 } from "react-native";
 import { Actions } from "react-native-router-flux";
 import { SearchBar } from "react-native-elements";
@@ -68,6 +69,7 @@ export default class Search extends Component {
 
   render() {
     const { firstQuery, rentals } = this.state;
+    console.disableYellowBox = true; 
 
     return (
       <View style={{ flex: 1, backgroundColor: "#fff" }}>
