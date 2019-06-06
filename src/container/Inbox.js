@@ -190,6 +190,8 @@ export default class Inbox extends Component {
                         ? Object.values(window.currentUser["userRentals"])
                         : [];
 
+                    console.log(chatlist);
+
                     chatlist.map((item, index) => {
                       if (userRentals.includes(item.rentalItemID)) {
                         chatListMyOffers.push(item);
@@ -198,7 +200,7 @@ export default class Inbox extends Component {
                       }
                     });
 
-                    console.log(THIS.sortConversations(chatListRentals));
+                    console.log(chatListMyOffers);
 
                     THIS.setState({
                       chatListRentals: THIS.sortConversations(chatListRentals),
