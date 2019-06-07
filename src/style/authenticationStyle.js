@@ -58,54 +58,56 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 0
   },
-  midContainer: {
-    paddingHorizontal: responsiveWidth(5.33),
-    height: responsiveHeight(47)
+  containerAuthentication: {
+    width: "100%",
+    paddingHorizontal: responsiveWidth(5.33)
   },
-  itemLayout: {
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "center",
-    marginTop: responsiveHeight(2),
+  itemAuthentication: { marginBottom: responsiveHeight(3) },
+  titleAuthentication: {
+    fontFamily: "SFProText-Regular",
+    fontSize: responsiveFontSize(2.5),
     marginBottom: responsiveHeight(2)
   },
-  userChatProfilePicture: {
-    width: responsiveWidth(10),
-    height: responsiveWidth(10)
+  textAuthentication: {
+    fontFamily: "SFProText-Regular",
+    fontSize: responsiveFontSize(1.6),
+    lineHeight: responsiveHeight(2.4)
   },
-  itemContainer: {
-    marginLeft: responsiveWidth(3.2),
-    width: responsiveWidth(76.14),
-    flexDirection: "column",
-    justifyContent: "space-between",
-    alignSelf: "flex-start"
-  },
-  upperItem: {
+  doneContainer: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "flex-start",
     alignItems: "center"
   },
-  upperText: {
-    fontFamily: "SFProText-Semibold",
-    color: "black",
-    fontSize: 15
+  containerPictoDone: {
+    height: responsiveWidth(6),
+    width: responsiveWidth(6),
+    backgroundColor: "#17A370",
+    borderRadius: 100,
+    justifyContent: "center",
+    alignItems: "center",
+    marginRight: responsiveWidth(2)
   },
-  inlineText: {
+  donePicto: { height: "50%", width: "50%" },
+  doneText: {
+    fontSize: responsiveFontSize(2),
     fontFamily: "SFProText-Regular",
-    color: "#676767",
-    fontSize: 13
+    fontWeight: "900",
+    color: "#17A370"
   },
-  inlineBlackText: {
+  doneBtn: {
+    borderRadius: 5,
+    height: responsiveWidth(13),
+    width: responsiveWidth(35),
+    backgroundColor: "#0055FF",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: responsiveHeight(2)
+  },
+  textDoneBtn: {
+    fontSize: responsiveFontSize(2.2),
     fontFamily: "SFProText-Regular",
-    color: "black",
-    fontSize: 13
-  },
-  bottomline: {
-    height: 1,
-    width: responsiveWidth(80),
-    justifyContent: "flex-end",
-    alignSelf: "flex-end",
-    backgroundColor: "#ECECEC"
+    fontWeight: "900",
+    color: "#fff"
   }
 });
 
