@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   categoryText: {
     marginTop: responsiveHeight(3),
     fontFamily: "SFProText-Semibold",
-    fontSize: responsiveFontSize(2.3),
+    fontSize: responsiveFontSize(2),
     color: "#0055FF"
   },
   title: {
@@ -103,9 +103,6 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0,0,0,0.05)",
     marginHorizontal: responsiveWidth(-5.33)
   },
-  descriptionContainer: {
-    marginTop: responsiveHeight(3)
-  },
   btnActionRental: {
     flex: 1,
     flexDirection: "row",
@@ -113,7 +110,8 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     backgroundColor: "#A3A3BD",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    marginTop: responsiveHeight(3)
   },
   textBtnRental: {
     fontFamily: "SFProText-Semibold",
@@ -122,7 +120,8 @@ const styles = StyleSheet.create({
   },
   descriptionContent: {
     fontFamily: "SFProText-Regular",
-    fontSize: responsiveFontSize(1.8)
+    fontSize: responsiveFontSize(1.8),
+    marginTop: responsiveHeight(3)
   },
   reservationDatesContainer: {
     flexDirection: "row",

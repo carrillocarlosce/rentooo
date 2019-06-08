@@ -180,7 +180,7 @@ export default class Inbox extends Component {
                           "MMM. D"
                         ),
                       rentalItemID: rentalItemID,
-                      reservationID: reservationID,
+                      reservationData: reservationData,
                       user: userData
                     };
 
@@ -231,7 +231,7 @@ export default class Inbox extends Component {
       user: chatItem.user,
       chatID: chatItem.chatID,
       rentalItemID: chatItem.rentalItemID,
-      reservationID: chatItem.reservationID,
+      reservationData: chatItem.reservationData,
       title: contactName
     });
   }

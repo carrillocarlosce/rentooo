@@ -45,6 +45,7 @@ export default class ItemDetails extends Component {
       ownerName: "",
       hasCurrentUserReservedItem: false,
       reservationStatus: [],
+      reservationKey: null,
       rentalsYouMayLike: []
     };
   }
@@ -72,15 +73,7 @@ export default class ItemDetails extends Component {
       .orderByChild("userID")
       .equalTo(data.owner)
       .on("value", ownerProfile => {
-        let ownerData = [];
-        let i = 0;
-
-        ownerProfile.forEach(function(childSnapshot) {
-          var item = childSnapshot.val();
-          item.key = i++;
-
-          ownerData.push(item);
-        });
+        let ownerData = userActions.snapshotToArray(ownerProfile);
 
         let ownerName = ownerData[0].firstname + " " + ownerData[0].lastname;
 
@@ -94,15 +87,17 @@ export default class ItemDetails extends Component {
 
     const THIS = this;
 
-    if (data.reservations !== undefined) {
-      let reservations = Object.values(data.reservations);
+    console.log(data);
 
-      reservations.forEach(function(itemReservation) {
-        console.log(itemReservation);
-        if (itemReservation.rentalMaker == currentUser) {
+    if (data.reservations !== undefined) {
+      let reservations = Object.entries(data.reservations);
+
+      reservations.map((item, index) => {
+        if (item[1].rentalMaker == currentUser) {
           THIS.setState({
             hasCurrentUserReservedItem: true,
-            reservationStatus: itemReservation
+            reservationStatus: item[1],
+            reservationKey: item[0]
           });
         }
       });
@@ -122,20 +117,25 @@ export default class ItemDetails extends Component {
       .orderByChild("category")
       .equalTo(data.category)
       .on("value", rentalsSnapshot => {
-        let rentalsYouMayLike = [];
-        let i = 0;
-
-        rentalsSnapshot.forEach(function(childSnapshot) {
-          var item = childSnapshot.val();
-          item.key = i++;
-
-          rentalsYouMayLike.push(item);
-        });
+        let rentalsYouMayLike = userActions.snapshotToArray(rentalsSnapshot);
 
         this.setState({
           rentalsYouMayLike: rentalsYouMayLike.reverse().slice(0, 4)
         });
       });
+  }
+
+  cancelRental() {
+    const { data } = this.props;
+    const { reservationKey, reservationStatus } = this.state;
+
+    let updatedReservation = reservationStatus;
+    updatedReservation["status"] = "Canceled";
+
+    firebase
+      .database()
+      .ref("rentals/" + data.key + "/reservations/" + reservationKey)
+      .update(updatedReservation);
   }
 
   _renderItem = (data, i) => <ItemRental data={data} />;
@@ -208,34 +208,40 @@ export default class ItemDetails extends Component {
 
             <Text style={styles.title}>{data.title}</Text>
 
-            <View style={styles.descriptionContainer}>
-              {hasCurrentUserReservedItem ? (
-                <View
-                  style={{ flexDirection: "row", alignItems: "space-between" }}
-                >
+            {hasCurrentUserReservedItem ? (
+              <View
+                style={{ flexDirection: "row", alignItems: "space-between" }}
+              >
+                {reservationStatus.status !== "Canceled" && (
                   <TouchableOpacity
-                    style={[styles.btnActionRental, { marginRight: 5 }]}
-                    onPress={() => console.log("cancel rental")}
+                    style={[
+                      styles.btnActionRental,
+                      {
+                        marginRight:
+                          reservationStatus.status == "Confirmed" ? 5 : 0
+                      }
+                    ]}
+                    onPress={() => this.cancelRental()}
                   >
                     <Text style={styles.textBtnRental}>Cancel renting</Text>
                   </TouchableOpacity>
+                )}
 
-                  {reservationStatus.status == "Confirmed" && (
-                    <TouchableOpacity
-                      style={[
-                        styles.btnActionRental,
-                        { marginLeft: 5, backgroundColor: "#0055FF" }
-                      ]}
-                      onPress={() => Actions.Authentication()}
-                    >
-                      <Text style={styles.textBtnRental}>Authentication</Text>
-                    </TouchableOpacity>
-                  )}
-                </View>
-              ) : (
-                <Text style={styles.descriptionContent}>{data.summary}</Text>
-              )}
-            </View>
+                {reservationStatus.status == "Confirmed" && (
+                  <TouchableOpacity
+                    style={[
+                      styles.btnActionRental,
+                      { marginLeft: 5, backgroundColor: "#0055FF" }
+                    ]}
+                    onPress={() => Actions.Authentication()}
+                  >
+                    <Text style={styles.textBtnRental}>Authentication</Text>
+                  </TouchableOpacity>
+                )}
+              </View>
+            ) : (
+              <Text style={styles.descriptionContent}>{data.summary}</Text>
+            )}
 
             <View style={styles.lineSeparator} />
 
@@ -324,7 +330,7 @@ export default class ItemDetails extends Component {
                   latitudeDelta: 0.0922,
                   longitudeDelta: 0.0421
                 }}
-                showsUserLocation={true}
+                showsUserLocation={false}
               />
               <LinearGradient
                 style={styles.gradientOverMap}
@@ -403,7 +409,7 @@ export default class ItemDetails extends Component {
               </View>
             </View>
 
-            {data.owner !== currentUser && (
+            {data.owner !== window.currentUser["userID"] && (
               <TouchableOpacity
                 onPress={() => Actions.RentItemDates({ itemRental: data })}
                 style={styles.rentBtn}
