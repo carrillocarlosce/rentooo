@@ -69,7 +69,7 @@ export default class Search extends Component {
 
   render() {
     const { firstQuery, rentals } = this.state;
-    console.disableYellowBox = true; 
+    console.disableYellowBox = true;
 
     return (
       <View style={{ flex: 1, backgroundColor: "#fff" }}>
@@ -81,8 +81,8 @@ export default class Search extends Component {
             top: 0,
             right: 0,
             left: 0,
-            paddingHorizontal: responsiveWidth(5.33),
-            backgroundColor: "#fff"
+            backgroundColor: "rgba(255,255,255,0.95)",
+            paddingHorizontal: responsiveWidth(5.33)
           }}
         >
           <Searchbar
@@ -95,7 +95,6 @@ export default class Search extends Component {
             value={firstQuery}
             onSubmitEditing={() => Actions.Searchresult()}
           />
-
           <View style={styles.btnContainer}>
             <TouchableOpacity style={styles.btnFiltersLayout}>
               <Text style={styles.btnFilterText}>Nearby</Text>

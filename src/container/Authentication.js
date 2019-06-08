@@ -150,11 +150,7 @@ export default class Authentication extends Component {
                       </Text>
 
                       <TouchableOpacity
-                        onPress={() =>
-                          this.setState({
-                            currentStartStep: currentStartStep + 1
-                          })
-                        }
+                        onPress={() => this.doneStepAuthentication()}
                         style={styles.doneBtn}
                       >
                         <Text style={styles.textDoneBtn}>Done</Text>
@@ -178,11 +174,7 @@ export default class Authentication extends Component {
                       </Text>
 
                       <TouchableOpacity
-                        onPress={() =>
-                          this.setState({
-                            currentStartStep: currentStartStep + 1
-                          })
-                        }
+                        onPress={() => this.doneStepAuthentication()}
                         style={styles.doneBtn}
                       >
                         <Text style={styles.textDoneBtn}>Done</Text>
@@ -205,11 +197,7 @@ export default class Authentication extends Component {
                       </Text>
 
                       <TouchableOpacity
-                        onPress={() =>
-                          this.setState({
-                            currentStartStep: currentStartStep + 1
-                          })
-                        }
+                        onPress={() => this.doneStepAuthentication()}
                         style={styles.doneBtn}
                       >
                         <Text style={styles.textDoneBtn}>Done</Text>
@@ -234,11 +222,7 @@ export default class Authentication extends Component {
                       </Text>
 
                       <TouchableOpacity
-                        onPress={() =>
-                          this.setState({
-                            currentStartStep: currentStartStep + 1
-                          })
-                        }
+                        onPress={() => this.doneStepAuthentication()}
                         style={styles.doneBtn}
                       >
                         <Text style={styles.textDoneBtn}>Done</Text>
@@ -261,11 +245,7 @@ export default class Authentication extends Component {
                       </Text>
 
                       <TouchableOpacity
-                        onPress={() =>
-                          this.setState({
-                            currentStartStep: currentStartStep + 1
-                          })
-                        }
+                        onPress={() => this.doneStepAuthentication()}
                         style={styles.doneBtn}
                       >
                         <Text style={styles.textDoneBtn}>Done</Text>
