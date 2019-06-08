@@ -73,6 +73,47 @@ const styles = StyleSheet.create({
     fontSize: responsiveFontSize(1.6),
     lineHeight: responsiveHeight(2.4)
   },
+  // Beginning add picture
+  containerPropertyPhotos: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "flex-start"
+  },
+  addPicture: {
+    height: responsiveWidth(20),
+    width: responsiveWidth(20),
+    backgroundColor: "#F5F5FD",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 5
+  },
+  addPictureIcon: {
+    height: "40%",
+    width: "40%"
+  },
+  addedPhoto: {
+    height: responsiveWidth(20),
+    width: responsiveWidth(20),
+    marginRight: responsiveWidth(4),
+    borderRadius: 5,
+    overflow: "hidden"
+  },
+  // Beginning notes UI
+  headerInputNotes: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: responsiveHeight(3),
+    marginBottom: responsiveHeight(2)
+  },
+  headerInputNotesTitle: {
+    color: "rgba(0,0,0,0.6)"
+  },
+  separatorLine: {
+    width: "100%",
+    height: 1,
+    backgroundColor: "rgba(0,0,0,0.1)",
+    marginVertical: responsiveHeight(2.5)
+  },
   doneContainer: {
     flexDirection: "row",
     justifyContent: "flex-start",
@@ -96,8 +137,8 @@ const styles = StyleSheet.create({
   },
   doneBtn: {
     borderRadius: 5,
-    height: responsiveWidth(13),
-    width: responsiveWidth(35),
+    paddingHorizontal: responsiveHeight(4),
+    paddingVertical: responsiveHeight(2),
     backgroundColor: "#0055FF",
     justifyContent: "center",
     alignItems: "center",
