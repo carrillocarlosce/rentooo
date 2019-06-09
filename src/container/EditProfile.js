@@ -15,61 +15,100 @@ import {
   ScrollView
 } from "react-native";
 import { Actions } from "react-native-router-flux";
-import StarView from "react-native-star-view";
-import Grid from "react-native-grid-component";
 import firebase from "react-native-firebase";
 
-import styles from "../style/profileStyle";
-import ItemRental from "../component/ItemRental";
+import styles from "../style/editProfileStyle";
 
-export default class Profile extends Component {
+export default class EditProfile extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      userRentals: []
+      firstname: "",
+      lastname: "",
+      location: "",
+      bio: ""
     };
   }
 
-  componentDidMount() {
-    this.getUserRentals();
-  }
-
-  getUserRentals() {
-    let userRentals = window.currentUser["userRentals"];
-
-    firebase
-      .database()
-      .ref("rentals/")
-      .orderByChild("owner")
-      .equalTo(window.currentUser["userID"])
-      .on("value", rentalsSnapshot => {
-        let userRentals = [];
-
-        rentalsSnapshot.forEach(function(childSnapshot) {
-          var item = childSnapshot.val();
-          item.key = childSnapshot.key;
-
-          userRentals.push(item);
-        });
-
-        this.setState({ userRentals: userRentals.reverse() });
-      });
-  }
-
-  getUserRentals;
-
-  _renderItem = (data, i) => <ItemRental data={data} />;
-
   render() {
-    const userName =
-      window.currentUser["firstname"] + " " + window.currentUser["lastname"];
-
-    const { userRentals } = this.state;
+    const { firstname, lastname, location, bio } = this.state;
 
     return (
       <View style={styles.container} showsVerticalScrollIndicator={false}>
-        
+        <View style={styles.headerInput}>
+          <Text style={styles.headerInputTitle}>First name</Text>
+        </View>
+
+        <TextInput
+          ref={userFirstname => {
+            this.userFirstnameInput = userFirstname;
+          }}
+          returnKeyType={"next"}
+          placeholder="Firstname"
+          value={firstname}
+          onChangeText={firstname => this.setState({ firstname })}
+          onSubmitEditing={() => this.userLastnameInput.focus()}
+          maxLength={40}
+        />
+
+        <View style={styles.separatorLine} />
+
+        <View style={styles.headerInput}>
+          <Text style={styles.headerInputTitle}>Last name</Text>
+        </View>
+
+        <TextInput
+          ref={userLastname => {
+            this.userLastnameInput = userLastname;
+          }}
+          returnKeyType={"next"}
+          placeholder="Lastname"
+          value={lastname}
+          onChangeText={lastname => this.setState({ lastname })}
+          onSubmitEditing={() => this.userLocationInput.focus()}
+          maxLength={40}
+        />
+
+        <View style={styles.separatorLine} />
+
+        <View style={styles.headerInput}>
+          <Text style={styles.headerInputTitle}>Location</Text>
+        </View>
+
+        <TextInput
+          ref={userLocation => {
+            this.userLocationInput = userLocation;
+          }}
+          returnKeyType={"next"}
+          placeholder="Location"
+          value={location}
+          onChangeText={location => this.setState({ location })}
+          onSubmitEditing={() => this.userBioInput.focus()}
+          maxLength={40}
+        />
+
+        <View style={styles.separatorLine} />
+
+        <View style={styles.headerInput}>
+          <Text style={styles.headerInputTitle}>Bio</Text>
+          <Text>{400 - bio.length}</Text>
+        </View>
+
+        <TextInput
+          ref={userBio => {
+            this.userBioInput = userBio;
+          }}
+          returnKeyType={"done"}
+          placeholder="Bio"
+          value={bio}
+          onChangeText={bio => this.setState({ bio })}
+          onSubmitEditing={() => bio.length > 10 && this.nextStep()}
+          maxLength={400}
+          multiline={true}
+          numberOfLines={4}
+          blurOnSubmit
+        />
       </View>
     );
   }

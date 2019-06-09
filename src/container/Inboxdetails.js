@@ -49,7 +49,8 @@ export default class Inboxdetails extends Component {
       //userAvatar: window.currentUser["avatar"],
       chatUser: this.props.user,
       chatID: this.props.chatID,
-      reservationData: this.props.reservationData
+      reservationData: this.props.reservationData,
+      rentalData: []
     };
 
     this.renderBubble = this.renderBubble.bind(this);
@@ -85,6 +86,22 @@ export default class Inboxdetails extends Component {
       .on("value", snapshot => {
         let messageList = this.snapshotToArray(snapshot);
         this.setState({ messages: messageList });
+      });
+  }
+
+  componentDidMount() {
+    this.getRentalItemData();
+  }
+
+  getRentalItemData() {
+    const { rentalItemID } = this.props;
+
+    firebase
+      .database()
+      .ref("rentals/")
+      .child(rentalItemID)
+      .on("value", snapshot => {
+        this.setState({ rentalData: snapshot.val() });
       });
   }
 
@@ -233,7 +250,7 @@ export default class Inboxdetails extends Component {
   }
 
   render() {
-    const { reservationData } = this.state;
+    const { reservationData, rentalData } = this.state;
 
     return (
       <View style={styles.container}>
@@ -271,7 +288,7 @@ export default class Inboxdetails extends Component {
             {reservationData.status}
           </Text>
           <TouchableOpacity
-            onPress={() => Actions.ItemDetails({ data: reservationData })}
+            onPress={() => Actions.ItemDetails({ data: rentalData })}
           >
             <Text style={[styles.textHeader, { color: "#0055FF" }]}>
               Details

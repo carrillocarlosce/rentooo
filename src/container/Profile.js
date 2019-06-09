@@ -23,7 +23,7 @@ import firebase from "react-native-firebase";
 import styles from "../style/profileStyle";
 import ItemRental from "../component/ItemRental";
 
-YellowBox.ignoreWarnings(['Warning: ReactNative.createElement']);
+YellowBox.ignoreWarnings(["Warning: ReactNative.createElement"]);
 
 export default class Profile extends Component {
   constructor(props) {
@@ -70,7 +70,7 @@ export default class Profile extends Component {
 
     const { userRentals } = this.state;
 
-    console.disableYellowBox = true; 
+    console.disableYellowBox = true;
 
     return (
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
@@ -86,7 +86,11 @@ export default class Profile extends Component {
           </TouchableOpacity>
 
           <View style={styles.location}>
-            <Image source={require("../../assets/images/location.png")} />
+            <Image
+              resizeMode="contain"
+              style={styles.locationPicto}
+              source={require("../../assets/images/location.png")}
+            />
             <Text style={styles.locationText}>Paris, France</Text>
           </View>
 

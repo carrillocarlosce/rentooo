@@ -330,7 +330,7 @@ export default class ItemDetails extends Component {
                   latitudeDelta: 0.0922,
                   longitudeDelta: 0.0421
                 }}
-                showsUserLocation={false}
+                showsUserLocation={true}
               />
               <LinearGradient
                 style={styles.gradientOverMap}

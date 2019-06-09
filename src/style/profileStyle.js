@@ -30,8 +30,10 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center"
   },
+  locationPicto: {
+    height: responsiveHeight(2)
+  },
   locationText: {
-    marginLeft: 5,
     fontSize: responsiveFontSize(1.8),
     fontFamily: "SFProText-Regular"
   },
