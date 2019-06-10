@@ -36,7 +36,7 @@ export default class RentItemDates extends Component {
   }
 
   componentDidMount() {
-    this.getAlreadyRentedDates();
+    //this.getAlreadyRentedDates();
   }
 
   getAlreadyRentedDates() {

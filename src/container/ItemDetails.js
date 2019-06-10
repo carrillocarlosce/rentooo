@@ -43,10 +43,11 @@ export default class ItemDetails extends Component {
       interval: null,
       dataSource: [],
       ownerName: "",
-      hasCurrentUserReservedItem: false,
-      reservationStatus: [],
-      reservationKey: null,
-      rentalsYouMayLike: []
+      rentalsYouMayLike: [],
+      reservationStatus:
+        this.props.reservationData !== undefined
+          ? this.props.reservationData
+          : false
     };
   }
 
@@ -61,7 +62,6 @@ export default class ItemDetails extends Component {
     this.setState({ dataSource });
 
     this.getOwnerData();
-    this.getReservationStatus();
   }
 
   getOwnerData() {
@@ -81,29 +81,6 @@ export default class ItemDetails extends Component {
       });
   }
 
-  getReservationStatus() {
-    const { data } = this.props;
-    const currentUser = window.currentUser["userID"];
-
-    const THIS = this;
-
-    console.log(data);
-
-    if (data.reservations !== undefined) {
-      let reservations = Object.entries(data.reservations);
-
-      reservations.map((item, index) => {
-        if (item[1].rentalMaker == currentUser) {
-          THIS.setState({
-            hasCurrentUserReservedItem: true,
-            reservationStatus: item[1],
-            reservationKey: item[0]
-          });
-        }
-      });
-    }
-  }
-
   componentDidMount() {
     this.getRentalsYouMayLike();
   }
@@ -117,7 +94,17 @@ export default class ItemDetails extends Component {
       .orderByChild("category")
       .equalTo(data.category)
       .on("value", rentalsSnapshot => {
-        let rentalsYouMayLike = userActions.snapshotToArray(rentalsSnapshot);
+        let rentalsYouMayLike = [];
+        let i = 0;
+
+        rentalsSnapshot.forEach(function(childSnapshot) {
+          var item = childSnapshot.val();
+          item.key = i++;
+
+          rentalsYouMayLike.push(item);
+        });
+
+        console.log(rentalsYouMayLike);
 
         this.setState({
           rentalsYouMayLike: rentalsYouMayLike.reverse().slice(0, 4)
@@ -125,29 +112,26 @@ export default class ItemDetails extends Component {
       });
   }
 
-  cancelRental() {
+  _renderItem = (data, i) => <ItemRental data={data} />;
+
+  updateRentalStatus(status) {
     const { data } = this.props;
-    const { reservationKey, reservationStatus } = this.state;
+    const { reservationStatus } = this.state;
 
     let updatedReservation = reservationStatus;
-    updatedReservation["status"] = "Canceled";
+    updatedReservation["status"] = status;
 
     firebase
       .database()
-      .ref("rentals/" + data.key + "/reservations/" + reservationKey)
+      .ref("rentals/" + data.key + "/reservations/" + reservationStatus.key)
       .update(updatedReservation);
   }
 
-  _renderItem = (data, i) => <ItemRental data={data} />;
-
   render() {
     const { data } = this.props;
-    const {
-      ownerName,
-      rentalsYouMayLike,
-      hasCurrentUserReservedItem,
-      reservationStatus
-    } = this.state;
+    const { ownerName, rentalsYouMayLike, reservationStatus } = this.state;
+
+    console.log(data);
 
     return (
       <View style={styles.container}>
@@ -155,6 +139,7 @@ export default class ItemDetails extends Component {
           style={styles.headerGradient}
           colors={["rgba(0,0,0,0.6)", "transparent"]}
         />
+
         <View style={styles.navContainer}>
           <TouchableOpacity onPress={() => Actions.pop()}>
             <Image
@@ -189,7 +174,7 @@ export default class ItemDetails extends Component {
               marginBottom: responsiveHeight(10)
             }}
           >
-            {!hasCurrentUserReservedItem ? (
+            {!reservationStatus ? (
               <Text style={styles.categoryText}>
                 {data.category.charAt(0).toUpperCase() + data.category.slice(1)}
               </Text>
@@ -208,20 +193,14 @@ export default class ItemDetails extends Component {
 
             <Text style={styles.title}>{data.title}</Text>
 
-            {hasCurrentUserReservedItem ? (
+            {reservationStatus ? (
               <View
                 style={{ flexDirection: "row", alignItems: "space-between" }}
               >
                 {reservationStatus.status !== "Canceled" && (
                   <TouchableOpacity
-                    style={[
-                      styles.btnActionRental,
-                      {
-                        marginRight:
-                          reservationStatus.status == "Confirmed" ? 5 : 0
-                      }
-                    ]}
-                    onPress={() => this.cancelRental()}
+                    style={[styles.btnActionRental]}
+                    onPress={() => this.updateRentalStatus("Canceled")}
                   >
                     <Text style={styles.textBtnRental}>Cancel renting</Text>
                   </TouchableOpacity>
@@ -231,13 +210,26 @@ export default class ItemDetails extends Component {
                   <TouchableOpacity
                     style={[
                       styles.btnActionRental,
-                      { marginLeft: 5, backgroundColor: "#0055FF" }
+                      { marginLeft: 10, backgroundColor: "#0055FF" }
                     ]}
                     onPress={() => Actions.Authentication()}
                   >
                     <Text style={styles.textBtnRental}>Authentication</Text>
                   </TouchableOpacity>
                 )}
+
+                {reservationStatus.status == "Pending" &&
+                  data.owner == window.currentUser["userID"] && (
+                    <TouchableOpacity
+                      style={[
+                        styles.btnActionRental,
+                        { marginLeft: 10, backgroundColor: "#0055FF" }
+                      ]}
+                      onPress={() => this.updateRentalStatus("Confirmed")}
+                    >
+                      <Text style={styles.textBtnRental}>Accept renting</Text>
+                    </TouchableOpacity>
+                  )}
               </View>
             ) : (
               <Text style={styles.descriptionContent}>{data.summary}</Text>
@@ -245,7 +237,7 @@ export default class ItemDetails extends Component {
 
             <View style={styles.lineSeparator} />
 
-            {hasCurrentUserReservedItem ? (
+            {reservationStatus ? (
               <View>
                 <Text style={styles.sectionTitle}>Date</Text>
 
@@ -310,7 +302,7 @@ export default class ItemDetails extends Component {
 
             <Text style={styles.sectionTitle}>Location</Text>
 
-            {hasCurrentUserReservedItem && (
+            {reservationStatus && (
               <Text style={styles.fullAddressText}>
                 {data.meetingPlace.address +
                   ", " +
@@ -342,7 +334,7 @@ export default class ItemDetails extends Component {
                   source={require("../../assets/images/rentalPosition.png")}
                 />
               </LinearGradient>
-              {!hasCurrentUserReservedItem && (
+              {!reservationStatus && (
                 <Text style={styles.exactPositionLegal}>
                   Exact position given after renting.
                 </Text>
@@ -351,7 +343,7 @@ export default class ItemDetails extends Component {
 
             <View style={styles.lineSeparator} />
 
-            {hasCurrentUserReservedItem ? (
+            {reservationStatus ? (
               <View>
                 <Text style={styles.sectionTitle}>Total cost</Text>
                 <View style={styles.containerRentalPrice}>
@@ -387,7 +379,7 @@ export default class ItemDetails extends Component {
           <View style={{ height: responsiveHeight(5) }} />
         </ScrollView>
 
-        {!hasCurrentUserReservedItem && (
+        {!reservationStatus && (
           <View style={styles.bottomAbContainer}>
             <View>
               <Text style={styles.rentDayText}>
@@ -396,7 +388,7 @@ export default class ItemDetails extends Component {
               <View style={styles.currencyContainer}>
                 {data.currencies.map((item, key) => {
                   return (
-                    <View style={styles.itemCurrency}>
+                    <View key={key} style={styles.itemCurrency}>
                       <Image
                         key={key}
                         style={styles.currency}

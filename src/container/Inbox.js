@@ -190,6 +190,7 @@ export default class Inbox extends Component {
                         moment(reservationData.reservationDates.endDate).format(
                           "MMM. D"
                         ),
+                      rentalItemID: rentalItemID,
                       rentalItemData: rentalItemData,
                       reservationData: reservationData,
                       user: userData

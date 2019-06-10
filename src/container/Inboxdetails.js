@@ -272,7 +272,12 @@ export default class Inboxdetails extends Component {
             {reservationData.status}
           </Text>
           <TouchableOpacity
-            onPress={() => Actions.ItemDetails({ data: rentalData })}
+            onPress={() =>
+              Actions.ItemDetails({
+                data: rentalData,
+                reservationData: reservationData
+              })
+            }
           >
             <Text style={[styles.textHeader, { color: "#0055FF" }]}>
               Details

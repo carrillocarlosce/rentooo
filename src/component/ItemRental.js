@@ -104,7 +104,11 @@ export default class ItemRental extends Component {
       <View style={styles.interestImageContainer}>
         <TouchableOpacity
           style={styles.itemIterestBtnContainer}
-          onPress={() => Actions.ItemDetails({ data: data })}
+          onPress={() =>
+            Actions.ItemDetails({
+              data: data
+            })
+          }
         >
           <Image style={styles.itemImage} source={{ uri: data.pictures[0] }} />
           <TouchableOpacity
@@ -144,7 +148,7 @@ export default class ItemRental extends Component {
               <View style={styles.currencyContainer}>
                 {data["currencies"].map((item, index) => {
                   return (
-                    <View style={styles.itemCurrency}>
+                    <View key={index} style={styles.itemCurrency}>
                       <Image
                         key={index}
                         style={styles.currency}
