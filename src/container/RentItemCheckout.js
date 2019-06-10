@@ -142,7 +142,7 @@ export default class RentItemCheckout extends Component {
   }
 
   async startChat(reservationKey) {
-    const { itemRental } = this.props;
+    const { itemRental, rentalReservation } = this.props;
 
     let rentalOwner = itemRental.owner;
     let currentUser = window.currentUser;
@@ -171,9 +171,9 @@ export default class RentItemCheckout extends Component {
     } else {
       var message = {
         _id: userActions.generatorMessageID(),
-        text: "Hello",
+        text: rentalReservation["reservationDetails"],
         createdAt: Date.now(),
-        system: true,
+        system: false,
         user: {
           _id: currentUser["userID"],
           name: currentUser["firstname"]

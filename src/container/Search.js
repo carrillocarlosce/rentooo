@@ -168,7 +168,7 @@ export default class Search extends Component {
 
           <View style={styles.interestContainer}>
             <View style={styles.interestHeader}>
-              <Text style={styles.text1IterestHeader}>Popular on Rentoo</Text>
+              <Text style={styles.text1IterestHeader}>Popular on RentApp</Text>
               <TouchableOpacity>
                 <Text style={styles.text2IterestHeader}>Show all</Text>
               </TouchableOpacity>

@@ -151,6 +151,18 @@ export default class Inbox extends Component {
                       }
                     });
 
+                  let rentalItemData = "";
+
+                  await firebase
+                    .database()
+                    .ref("rentals/" + rentalItemID)
+                    .once("value", snapshot => {
+                      if (snapshot.val() !== null) {
+                        rentalItemData = snapshot.val();
+                        rentalItemData["key"] = snapshot.key;
+                      }
+                    });
+
                   let reservationData = "";
 
                   await firebase
@@ -167,7 +179,6 @@ export default class Inbox extends Component {
                   if (userData !== "") {
                     let object = {
                       chatID: chatid,
-                      lastMessage: childData.text,
                       lastMessageTime: lastTime_msg,
                       createdAt: childData.createdAt,
                       reservationStatus: reservationData.status,
@@ -179,7 +190,7 @@ export default class Inbox extends Component {
                         moment(reservationData.reservationDates.endDate).format(
                           "MMM. D"
                         ),
-                      rentalItemID: rentalItemID,
+                      rentalItemData: rentalItemData,
                       reservationData: reservationData,
                       user: userData
                     };
@@ -230,7 +241,7 @@ export default class Inbox extends Component {
     Actions.Inboxdetails({
       user: chatItem.user,
       chatID: chatItem.chatID,
-      rentalItemID: chatItem.rentalItemID,
+      rentalItemData: chatItem.rentalItemData,
       reservationData: chatItem.reservationData,
       title: contactName
     });
@@ -341,7 +352,7 @@ class ItemChatRow extends Component {
             </View>
             <Text style={styles.inlineBlackText}>{item.reservationDates}</Text>
             <View style={styles.upperItem}>
-              <Text style={styles.inlineText}>{item.lastMessage}</Text>
+              <Text style={styles.inlineText}>{item.rentalItemData.title}</Text>
               <Text style={styles.inlineText}>{item.lastMessageTime}</Text>
             </View>
           </View>

@@ -50,7 +50,7 @@ export default class Inboxdetails extends Component {
       chatUser: this.props.user,
       chatID: this.props.chatID,
       reservationData: this.props.reservationData,
-      rentalData: []
+      rentalData: this.props.rentalItemData
     };
 
     this.renderBubble = this.renderBubble.bind(this);
@@ -86,22 +86,6 @@ export default class Inboxdetails extends Component {
       .on("value", snapshot => {
         let messageList = this.snapshotToArray(snapshot);
         this.setState({ messages: messageList });
-      });
-  }
-
-  componentDidMount() {
-    this.getRentalItemData();
-  }
-
-  getRentalItemData() {
-    const { rentalItemID } = this.props;
-
-    firebase
-      .database()
-      .ref("rentals/")
-      .child(rentalItemID)
-      .on("value", snapshot => {
-        this.setState({ rentalData: snapshot.val() });
       });
   }
 

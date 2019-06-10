@@ -66,6 +66,7 @@ export default class NewOfferAvailability extends Component {
         </View>
 
         <Calendar
+          minDate={moment(new Date())}
           startDate={startDate}
           endDate={endDate}
           disableRange={false}
