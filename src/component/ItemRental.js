@@ -201,7 +201,7 @@ const styles = StyleSheet.create({
   itemImage: {
     width: responsiveWidth(43),
     height: responsiveWidth(30),
-    borderRadius: 5,
+    borderRadius: 8,
     overflow: "hidden"
   },
   likeContainer: {

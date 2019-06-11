@@ -24,6 +24,18 @@ export default (categories = [
     isSelected: false
   },
   {
+    title: "DIY",
+    logo: require("../../assets/categories/DIY.png"),
+    color: "#032464",
+    isSelected: false
+  },
+  {
+    title: "childcare",
+    logo: require("../../assets/categories/childcare.png"),
+    color: "#032464",
+    isSelected: false
+  },
+  {
     title: "others",
     logo: require("../../assets/categories/others.png"),
     color: "#011232",

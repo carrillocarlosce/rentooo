@@ -134,7 +134,7 @@ export default class Search extends Component {
                 >
                   <Image
                     resizeMode="contain"
-                    style={styles.itemGroupImage}
+                    style={styles.categoryItem}
                     source={itemCategory.logo}
                   />
                   <Text style={styles.itemGroupText}>
@@ -149,7 +149,7 @@ export default class Search extends Component {
           <View style={styles.interestContainer}>
             <View style={styles.interestHeader}>
               <Text style={styles.text1IterestHeader}>
-                It might interest you
+                Trending
               </Text>
               <TouchableOpacity>
                 <Text style={styles.text2IterestHeader}>Show all</Text>
@@ -168,7 +168,7 @@ export default class Search extends Component {
 
           <View style={styles.interestContainer}>
             <View style={styles.interestHeader}>
-              <Text style={styles.text1IterestHeader}>Popular on RentApp</Text>
+              <Text style={styles.text1IterestHeader}>It might interest you</Text>
               <TouchableOpacity>
                 <Text style={styles.text2IterestHeader}>Show all</Text>
               </TouchableOpacity>

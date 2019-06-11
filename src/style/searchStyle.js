@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     marginRight: responsiveWidth(2.7),
     width: responsiveWidth(25.6),
     height: responsiveHeight(13.8),
-    borderRadius: 5
+    borderRadius: 8
   },
   btnContainer: {
     marginVertical: responsiveHeight(1.48),
@@ -52,12 +52,16 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center"
   },
-  itemGroupImage: {
+  categoryItem: {
     position: "absolute",
     top: responsiveWidth(3.2),
     left: responsiveWidth(3.2),
     height: responsiveWidth(8),
-    width: responsiveWidth(6)
+    width: responsiveWidth(8),
+    maxHeight: '80%',
+    minHeight: '50%',
+    maxWidth: '80%',
+    minWidth: '50%'
   },
   itemGroupText: {
     position: "absolute",

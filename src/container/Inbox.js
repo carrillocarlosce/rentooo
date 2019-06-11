@@ -169,53 +169,57 @@ export default class Inbox extends Component {
                     .database()
                     .ref("rentals/" + rentalItemID)
                     .child("reservations/" + reservationID)
-                    .once("value", snapshot => {
+                    .on("value", snapshot => {
                       if (snapshot.val() !== null) {
                         reservationData = snapshot.val();
                         reservationData["key"] = snapshot.key;
                       }
+
+                      if (userData !== "") {
+                        let object = {
+                          chatID: chatid,
+                          lastMessageTime: lastTime_msg,
+                          createdAt: childData.createdAt,
+                          reservationStatus: reservationData.status,
+                          reservationDates:
+                            moment(
+                              reservationData.reservationDates.startDate
+                            ).format("MMM. D") +
+                            " to " +
+                            moment(
+                              reservationData.reservationDates.endDate
+                            ).format("MMM. D"),
+                          rentalItemID: rentalItemID,
+                          rentalItemData: rentalItemData,
+                          reservationData: reservationData,
+                          user: userData
+                        };
+
+                        chatlist.push(object);
+
+                        let userRentals =
+                          window.currentUser["userRentals"] !== undefined
+                            ? Object.values(window.currentUser["userRentals"])
+                            : [];
+
+                        chatListMyOffers = chatlist.filter(item =>
+                          userRentals.includes(item.rentalItemID)
+                        );
+
+                        chatListRentals = chatlist.filter(
+                          item => !chatListMyOffers.includes(item)
+                        );
+
+                        THIS.setState({
+                          chatListRentals: THIS.sortConversations(
+                            chatListRentals
+                          ),
+                          chatListMyOffers: THIS.sortConversations(
+                            chatListMyOffers
+                          )
+                        });
+                      }
                     });
-
-                  if (userData !== "") {
-                    let object = {
-                      chatID: chatid,
-                      lastMessageTime: lastTime_msg,
-                      createdAt: childData.createdAt,
-                      reservationStatus: reservationData.status,
-                      reservationDates:
-                        moment(
-                          reservationData.reservationDates.startDate
-                        ).format("MMM. D") +
-                        " to " +
-                        moment(reservationData.reservationDates.endDate).format(
-                          "MMM. D"
-                        ),
-                      rentalItemID: rentalItemID,
-                      rentalItemData: rentalItemData,
-                      reservationData: reservationData,
-                      user: userData
-                    };
-
-                    chatlist.push(object);
-
-                    let userRentals =
-                      window.currentUser["userRentals"] !== undefined
-                        ? Object.values(window.currentUser["userRentals"])
-                        : [];
-
-                    chatListMyOffers = chatlist.filter(item =>
-                      userRentals.includes(item.rentalItemID)
-                    );
-
-                    chatListRentals = chatlist.filter(
-                      item => !chatListMyOffers.includes(item)
-                    );
-
-                    THIS.setState({
-                      chatListRentals: THIS.sortConversations(chatListRentals),
-                      chatListMyOffers: THIS.sortConversations(chatListMyOffers)
-                    });
-                  }
                 }
               });
           });

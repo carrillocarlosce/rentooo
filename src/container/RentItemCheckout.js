@@ -28,6 +28,7 @@ export default class RentItemCheckout extends Component {
       chosenCurrency: this.props.rentalReservation["paymentMethod"],
       numberDaysReservation: 0,
       dollarPriceTotal: 0,
+      rentalFee: 0,
       totalCurrencyAmount: 0
     };
   }
@@ -47,11 +48,13 @@ export default class RentItemCheckout extends Component {
     );
 
     let totalUSDAmount = numberDaysReservation * itemRental.dailyDollarPrice;
+    let rentalFee = totalUSDAmount * 0.1;
 
     userActions.convertCoinValue(chosenCurrency, "usd").then(usdValue => {
       this.setState({
-        totalCurrencyAmount: totalUSDAmount / usdValue,
-        dollarPriceTotal: totalUSDAmount,
+        rentalFee: rentalFee,
+        totalCurrencyAmount: (totalUSDAmount + rentalFee) / usdValue,
+        dollarPriceTotal: totalUSDAmount + rentalFee,
         numberDaysReservation: numberDaysReservation
       });
     });
@@ -197,6 +200,7 @@ export default class RentItemCheckout extends Component {
   render() {
     const { itemRental, rentalReservation } = this.props;
     const {
+      rentalFee,
       chosenCurrency,
       dollarPriceTotal,
       totalCurrencyAmount,
@@ -238,6 +242,14 @@ export default class RentItemCheckout extends Component {
                 {itemRental.dailyDollarPrice * numberDaysReservation}$
               </Text>
             </View>
+            <View style={styles.containerRentalPrice}>
+              <Text style={styles.itemRentalTextPrice}>
+                Rental fee
+              </Text>
+              <Text style={styles.itemRentalTextPrice}>
+                {rentalFee.toFixed(2)}$
+              </Text>
+            </View>
           </View>
         </View>
 
@@ -247,7 +259,7 @@ export default class RentItemCheckout extends Component {
         <View style={styles.containerRentalPrice}>
           <Text style={styles.totalUSDAmount}>Amount in USD</Text>
           <Text style={styles.totalUSDAmount}>
-            {userActions.NumberWithSpaces(dollarPriceTotal)}$
+            {dollarPriceTotal}$
           </Text>
         </View>
         <View style={styles.containerRentalPrice}>
