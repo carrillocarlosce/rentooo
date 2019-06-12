@@ -55,6 +55,7 @@ import Inboxdetails from "./src/container/Inboxdetails";
 
 import Profiledetails from "./src/container/Profiledetails";
 import Profile from "./src/container/Profile";
+import EditProfile from "./src/container/EditProfile";
 
 import MapSearch from "./src/container/MapSearch";
 
@@ -351,6 +352,19 @@ export default class App extends Component {
             key="RentItemDates"
             component={RentItemDates}
           />
+          
+          <Scene
+            renderLeftButton={
+              <TouchableOpacity onPress={() => Actions.pop()}>
+                <Image
+                  style={styles.leftBtn}
+                  source={require("./assets/images/back3x.png")}
+                />
+              </TouchableOpacity>
+            }
+            key="EditProfile"
+            component={EditProfile}
+          />
 
           <Scene
             renderLeftButton={
@@ -589,7 +603,7 @@ export default class App extends Component {
                 component={Profile}
                 hideNavBar={false}
                 renderLeftButton={
-                  <TouchableOpacity>
+                  <TouchableOpacity onPress={()=> Actions.EditProfile()}>
                     <Text
                       style={{
                         marginLeft: 20,
