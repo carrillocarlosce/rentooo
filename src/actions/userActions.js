@@ -46,6 +46,14 @@ export function NumberWithSpaces(x) {
     .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 }
 
+export function numberOfDaysReservation(start, end) {
+  let startDate = moment(start);
+  let endDate = moment(end);
+
+  let numberDaysReservation = endDate.diff(startDate, "days") + 1;
+  return numberDaysReservation;
+}
+
 function s4() {
   return Math.floor((1 + Math.random()) * 0x10000)
     .toString(16)
@@ -74,4 +82,31 @@ export async function convertCoinValue(from, to) {
   } catch (error) {
     console.error(error);
   }
+}
+
+export function getStatusColor(status) {
+  let color =
+    status == "Pending"
+      ? "#FDC058"
+      : status == "Confirmed"
+      ? "#17A370"
+      : status == "Canceled"
+      ? "#FC2A53"
+      : status == "Completed"
+      ? "#A3A3BD"
+      : null;
+
+  return color;
+}
+
+export function snapshotToArray(snapshot) {
+  let returnArr = [];
+
+  snapshot.forEach(childSnapshot => {
+    let item = childSnapshot.val();
+    item["key"] = childSnapshot.key;
+    returnArr.push(item);
+  });
+
+  return returnArr.reverse();
 }

@@ -26,10 +26,12 @@ import {
   responsiveFontSize
 } from "react-native-responsive-dimensions";
 import LinearGradient from "react-native-linear-gradient";
+import moment from "moment";
 
 import ItemRental from "../component/ItemRental";
 import Slideshow from "../component/Slideshow";
 
+import * as userActions from "../actions/userActions";
 import styles from "../style/itemdetailsStyle";
 
 export default class ItemDetails extends Component {
@@ -41,7 +43,11 @@ export default class ItemDetails extends Component {
       interval: null,
       dataSource: [],
       ownerName: "",
-      rentalsYouMayLike: []
+      rentalsYouMayLike: [],
+      reservationStatus:
+        this.props.reservationData !== undefined
+          ? this.props.reservationData
+          : false
     };
   }
 
@@ -67,15 +73,7 @@ export default class ItemDetails extends Component {
       .orderByChild("userID")
       .equalTo(data.owner)
       .on("value", ownerProfile => {
-        let ownerData = [];
-        let i = 0;
-
-        ownerProfile.forEach(function(childSnapshot) {
-          var item = childSnapshot.val();
-          item.key = i++;
-
-          ownerData.push(item);
-        });
+        let ownerData = userActions.snapshotToArray(ownerProfile);
 
         let ownerName = ownerData[0].firstname + " " + ownerData[0].lastname;
 
@@ -106,6 +104,8 @@ export default class ItemDetails extends Component {
           rentalsYouMayLike.push(item);
         });
 
+        console.log(rentalsYouMayLike);
+
         this.setState({
           rentalsYouMayLike: rentalsYouMayLike.reverse().slice(0, 4)
         });
@@ -114,36 +114,32 @@ export default class ItemDetails extends Component {
 
   _renderItem = (data, i) => <ItemRental data={data} />;
 
+  updateRentalStatus(status) {
+    const { data } = this.props;
+    const { reservationStatus } = this.state;
+
+    let updatedReservation = reservationStatus;
+    updatedReservation["status"] = status;
+
+    firebase
+      .database()
+      .ref("rentals/" + data.key + "/reservations/" + reservationStatus.key)
+      .update(updatedReservation);
+  }
+
   render() {
     const { data } = this.props;
-    const { ownerName, rentalsYouMayLike } = this.state;
+    const { ownerName, rentalsYouMayLike, reservationStatus } = this.state;
 
-    const currentUser = window.currentUser["userID"];
-
-    const hasCurrentUserReservedItem = false;
-
-    if (data.reservations !== undefined) {
-      let reservations = Object.values(data.reservations);
-
-      reservations.forEach(function(itemReservation) {
-        if (itemReservation.rentalMaker == currentUser) {
-          hasCurrentUserReservedItem = true;
-        }
-      });
-    }
+    console.log(data);
 
     return (
       <View style={styles.container}>
         <LinearGradient
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            height: 100
-          }}
+          style={styles.headerGradient}
           colors={["rgba(0,0,0,0.6)", "transparent"]}
         />
+
         <View style={styles.navContainer}>
           <TouchableOpacity onPress={() => Actions.pop()}>
             <Image
@@ -161,7 +157,10 @@ export default class ItemDetails extends Component {
           </TouchableOpacity>
         </View>
 
-        <ScrollView style={styles.scrollViewContainer}>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          style={styles.scrollViewContainer}
+        >
           <Slideshow
             style={styles.slideshow}
             dataSource={this.state.dataSource}
@@ -175,35 +174,117 @@ export default class ItemDetails extends Component {
               marginBottom: responsiveHeight(10)
             }}
           >
-            <Text style={styles.categoryText}>
-              {data.category.charAt(0).toUpperCase() + data.category.slice(1)}
-            </Text>
+            {!reservationStatus ? (
+              <Text style={styles.categoryText}>
+                {data.category.charAt(0).toUpperCase() + data.category.slice(1)}
+              </Text>
+            ) : (
+              <Text
+                style={[
+                  styles.categoryText,
+                  {
+                    color: userActions.getStatusColor(reservationStatus.status)
+                  }
+                ]}
+              >
+                {reservationStatus.status}
+              </Text>
+            )}
+
             <Text style={styles.title}>{data.title}</Text>
 
-            <View style={styles.descriptionContainer}>
-              <View style={{ marginTop: 10 }}>
-                <Text style={styles.descriptionContent}>{data.summary}</Text>
+            {reservationStatus ? (
+              <View
+                style={{ flexDirection: "row", alignItems: "space-between" }}
+              >
+                {reservationStatus.status !== "Canceled" && (
+                  <TouchableOpacity
+                    style={[styles.btnActionRental]}
+                    onPress={() => this.updateRentalStatus("Canceled")}
+                  >
+                    <Text style={styles.textBtnRental}>Cancel renting</Text>
+                  </TouchableOpacity>
+                )}
+
+                {reservationStatus.status == "Confirmed" && (
+                  <TouchableOpacity
+                    style={[
+                      styles.btnActionRental,
+                      { marginLeft: 10, backgroundColor: "#0055FF" }
+                    ]}
+                    onPress={() => Actions.Authentication()}
+                  >
+                    <Text style={styles.textBtnRental}>Authentication</Text>
+                  </TouchableOpacity>
+                )}
+
+                {reservationStatus.status == "Pending" &&
+                  data.owner == window.currentUser["userID"] && (
+                    <TouchableOpacity
+                      style={[
+                        styles.btnActionRental,
+                        { marginLeft: 10, backgroundColor: "#0055FF" }
+                      ]}
+                      onPress={() => this.updateRentalStatus("Confirmed")}
+                    >
+                      <Text style={styles.textBtnRental}>Accept renting</Text>
+                    </TouchableOpacity>
+                  )}
               </View>
-            </View>
+            ) : (
+              <Text style={styles.descriptionContent}>{data.summary}</Text>
+            )}
 
             <View style={styles.lineSeparator} />
 
-            <View style={styles.reviewsContainer}>
-              <View style={styles.starContainer}>
-                <Text style={[styles.itemText, { color: "#FDC058" }]}>4.1</Text>
-                <StarView score={4} style={styles.starItem} />
-              </View>
-              <View style={styles.itemContainer}>
-                <Text style={styles.itemText}>92</Text>
-                <Text style={styles.subItemText}>Reviews</Text>
-              </View>
-              <View style={styles.itemContainer}>
-                <Text style={styles.itemText}>23</Text>
-                <Text style={styles.subItemText}>Rentals</Text>
-              </View>
-            </View>
+            {reservationStatus ? (
+              <View>
+                <Text style={styles.sectionTitle}>Date</Text>
 
-            <View style={styles.lineSeparator} />
+                <View style={styles.reservationDatesContainer}>
+                  <View style={styles.itemDate}>
+                    <Text style={styles.itemTextSubTitle}>Start</Text>
+                    <Text style={styles.itemTextSub}>
+                      {moment(
+                        reservationStatus.reservationDates.startDate
+                      ).format("dddd, MMM. D")}
+                    </Text>
+                  </View>
+
+                  <View style={styles.itemDate}>
+                    <Text style={styles.itemTextSubTitle}>End</Text>
+                    <Text style={styles.itemTextSub}>
+                      {moment(
+                        reservationStatus.reservationDates.endDate
+                      ).format("dddd, MMM. D")}
+                    </Text>
+                  </View>
+                </View>
+
+                <View style={styles.lineSeparator} />
+              </View>
+            ) : (
+              <View>
+                <View style={styles.reviewsContainer}>
+                  <View style={styles.starContainer}>
+                    <Text style={[styles.itemText, { color: "#FDC058" }]}>
+                      4.1
+                    </Text>
+                    <StarView score={4} style={styles.starItem} />
+                  </View>
+                  <View style={styles.itemContainer}>
+                    <Text style={styles.itemText}>92</Text>
+                    <Text style={styles.subItemText}>Reviews</Text>
+                  </View>
+                  <View style={styles.itemContainer}>
+                    <Text style={styles.itemText}>23</Text>
+                    <Text style={styles.subItemText}>Rentals</Text>
+                  </View>
+                </View>
+
+                <View style={styles.lineSeparator} />
+              </View>
+            )}
 
             <View style={styles.ownerContainer}>
               <Image
@@ -212,8 +293,8 @@ export default class ItemDetails extends Component {
                 source={require("../../assets/images/profile.png")}
               />
               <View>
-                <Text style={styles.ownerTextTitle}>Owner</Text>
-                <Text style={styles.ownerText}>{ownerName}</Text>
+                <Text style={styles.itemTextSubTitle}>Owner</Text>
+                <Text style={styles.itemTextSub}>{ownerName}</Text>
               </View>
             </View>
 
@@ -221,13 +302,23 @@ export default class ItemDetails extends Component {
 
             <Text style={styles.sectionTitle}>Location</Text>
 
+            {reservationStatus && (
+              <Text style={styles.fullAddressText}>
+                {data.meetingPlace.address +
+                  ", " +
+                  data.meetingPlace.city +
+                  ", " +
+                  data.meetingPlace.country}
+              </Text>
+            )}
+
             <View style={styles.mapViewContainer}>
               <MapView
                 style={styles.mapView}
                 provider={PROVIDER_GOOGLE}
                 region={{
-                  latitude: 42.882004,
-                  longitude: 74.582748,
+                  latitude: data.meetingPlace.meetingCoordinates.lat,
+                  longitude: data.meetingPlace.meetingCoordinates.lng,
                   latitudeDelta: 0.0922,
                   longitudeDelta: 0.0421
                 }}
@@ -243,28 +334,52 @@ export default class ItemDetails extends Component {
                   source={require("../../assets/images/rentalPosition.png")}
                 />
               </LinearGradient>
-              <Text style={styles.exactPositionLegal}>
-                Exact position given after renting.
-              </Text>
+              {!reservationStatus && (
+                <Text style={styles.exactPositionLegal}>
+                  Exact position given after renting.
+                </Text>
+              )}
             </View>
 
             <View style={styles.lineSeparator} />
 
-            <Text style={styles.sectionTitle}>It might interest you</Text>
-            <View style={styles.interestInsideContainer}>
-              <Grid
-                style={{ marginHorizontal: -5 }}
-                renderItem={this._renderItem}
-                data={rentalsYouMayLike}
-                numColumns={2}
-              />
-            </View>
+            {reservationStatus ? (
+              <View>
+                <Text style={styles.sectionTitle}>Total cost</Text>
+                <View style={styles.containerRentalPrice}>
+                  <Text style={styles.totalUSDAmount}>Amount in USD</Text>
+                  <Text style={styles.totalUSDAmount}>
+                    {reservationStatus.numberDaysReservation *
+                      data.dailyDollarPrice}
+                    $
+                  </Text>
+                </View>
+                <View style={styles.containerRentalPrice}>
+                  <Text style={styles.totalCurrencyAmount}>
+                    {reservationStatus.currency.toUpperCase()}
+                  </Text>
+                  <Text style={styles.totalCurrencyAmount}>
+                    {reservationStatus.rentalTotalAmount.toFixed(5)}
+                  </Text>
+                </View>
+              </View>
+            ) : (
+              <View>
+                <Text style={styles.sectionTitle}>It might interest you</Text>
+                <Grid
+                  style={{ marginHorizontal: -5 }}
+                  renderItem={this._renderItem}
+                  data={rentalsYouMayLike}
+                  numColumns={2}
+                />
+              </View>
+            )}
           </View>
 
           <View style={{ height: responsiveHeight(5) }} />
         </ScrollView>
 
-        {hasCurrentUserReservedItem && (
+        {!reservationStatus && (
           <View style={styles.bottomAbContainer}>
             <View>
               <Text style={styles.rentDayText}>
@@ -273,7 +388,7 @@ export default class ItemDetails extends Component {
               <View style={styles.currencyContainer}>
                 {data.currencies.map((item, key) => {
                   return (
-                    <View style={styles.itemCurrency}>
+                    <View key={key} style={styles.itemCurrency}>
                       <Image
                         key={key}
                         style={styles.currency}
@@ -286,7 +401,7 @@ export default class ItemDetails extends Component {
               </View>
             </View>
 
-            {data.owner !== currentUser && (
+            {data.owner !== window.currentUser["userID"] && (
               <TouchableOpacity
                 onPress={() => Actions.RentItemDates({ itemRental: data })}
                 style={styles.rentBtn}

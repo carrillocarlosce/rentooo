@@ -45,7 +45,10 @@ export default class NewOfferAvailability extends Component {
     const { newRentalItem } = this.props;
     const { startDate, endDate } = this.state;
 
-    newRentalItem["availabilityRange"] = { startDate, endDate };
+    newRentalItem["availabilityRange"] = {
+      startDate: startDate,
+      endDate: endDate ? endDate : startDate
+    };
 
     Actions.NewOfferPrice({ newRentalItem: newRentalItem });
   }
@@ -63,6 +66,7 @@ export default class NewOfferAvailability extends Component {
         </View>
 
         <Calendar
+          minDate={moment(new Date())}
           startDate={startDate}
           endDate={endDate}
           disableRange={false}

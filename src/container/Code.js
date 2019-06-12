@@ -45,10 +45,9 @@ export default class Code extends Component {
           .ref("users")
           .push(createdUser)
           .then(userData => {
-            userActions.updateCapitalHistory(capital, userData.key);
             let userInfo = {
-              username: createdUser.Email,
-              userpwd: userPwd,
+              username: createdUser["email"],
+              userpwd: createdUser["password"],
               ID: userData.key
             };
             userActions._storeData("userInfo", userInfo);

@@ -23,6 +23,7 @@ import {
 import firebase from "react-native-firebase";
 import moment from "moment";
 
+import * as userActions from "../actions/userActions";
 import styles from "../style/inboxStyle";
 
 const width = Dimensions.get("window").width;
@@ -33,8 +34,9 @@ export default class Inbox extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { chatList: [], pageIndex: 0 };
+    this.state = { chatListRentals: [], chatListMyOffers: [], pageIndex: 0 };
     this.getChatList = this.getChatList.bind(this);
+    this.sortConversations = this.sortConversations.bind(this);
     this.datediff = this.datediff.bind(this);
   }
 
@@ -79,6 +81,8 @@ export default class Inbox extends Component {
       .on("value", snapshot => {
         let keylist = [];
         let chatlist = [];
+        let chatListRentals = [];
+        let chatListMyOffers = [];
 
         snapshot.forEach(data => {
           const chatID = data.key;
@@ -127,8 +131,11 @@ export default class Inbox extends Component {
                   }
 
                   const userIDArr = chatid.split("*_*");
+
                   let chatUserID =
                     currentKey === userIDArr[0] ? userIDArr[1] : userIDArr[0];
+                  let rentalItemID = userIDArr[2];
+                  let reservationID = userIDArr[3];
 
                   let userData = "";
 
@@ -144,43 +151,93 @@ export default class Inbox extends Component {
                       }
                     });
 
-                  if (userData !== "") {
-                    let object = {
-                      chatID: chatid,
-                      lastMessage: childData.text,
-                      lastMessageTime: lastTime_msg,
-                      createdAt: childData.createdAt,
-                      reservationStatus: "Pending",
-                      reservationDates: "9 Apr. to 14 Apr.",
-                      user: userData
-                    };
+                  let rentalItemData = "";
 
-                    if (chatlist.length > 0) {
-                      let replace_index = -1;
-                      chatlist.map((item, index) => {
-                        if (item.chatID == object.chatID) {
-                          replace_index = index;
-                        }
-                      });
-                      if (replace_index > -1) {
-                        chatlist[replace_index] = object;
-                      } else {
-                        chatlist.push(object);
+                  await firebase
+                    .database()
+                    .ref("rentals/" + rentalItemID)
+                    .once("value", snapshot => {
+                      if (snapshot.val() !== null) {
+                        rentalItemData = snapshot.val();
+                        rentalItemData["key"] = snapshot.key;
                       }
-                    } else {
-                      chatlist.push(object);
-                    }
+                    });
 
-                    console.log("chatObj====", chatlist);
-                    THIS.setState({ chatList: chatlist });
-                  }
+                  let reservationData = "";
+
+                  await firebase
+                    .database()
+                    .ref("rentals/" + rentalItemID)
+                    .child("reservations/" + reservationID)
+                    .on("value", snapshot => {
+                      if (snapshot.val() !== null) {
+                        reservationData = snapshot.val();
+                        reservationData["key"] = snapshot.key;
+                      }
+
+                      if (userData !== "") {
+                        let object = {
+                          chatID: chatid,
+                          lastMessageTime: lastTime_msg,
+                          createdAt: childData.createdAt,
+                          reservationStatus: reservationData.status,
+                          reservationDates:
+                            moment(
+                              reservationData.reservationDates.startDate
+                            ).format("MMM. D") +
+                            " to " +
+                            moment(
+                              reservationData.reservationDates.endDate
+                            ).format("MMM. D"),
+                          rentalItemID: rentalItemID,
+                          rentalItemData: rentalItemData,
+                          reservationData: reservationData,
+                          user: userData
+                        };
+
+                        chatlist.push(object);
+
+                        let userRentals =
+                          window.currentUser["userRentals"] !== undefined
+                            ? Object.values(window.currentUser["userRentals"])
+                            : [];
+
+                        chatListMyOffers = chatlist.filter(item =>
+                          userRentals.includes(item.rentalItemID)
+                        );
+
+                        chatListRentals = chatlist.filter(
+                          item => !chatListMyOffers.includes(item)
+                        );
+
+                        THIS.setState({
+                          chatListRentals: THIS.sortConversations(
+                            chatListRentals
+                          ),
+                          chatListMyOffers: THIS.sortConversations(
+                            chatListMyOffers
+                          )
+                        });
+                      }
+                    });
                 }
               });
           });
         } else {
-          THIS.setState({ chatList: chatlist });
+          THIS.setState({
+            chatListRentals: THIS.sortConversations(chatListRentals),
+            chatListMyOffers: THIS.sortConversations(chatListMyOffers)
+          });
         }
       });
+  }
+
+  sortConversations(conversations) {
+    let sortedConversations = conversations.sort((a, b) =>
+      a.createdAt < b.createdAt ? 1 : b.createdAt < a.createdAt ? -1 : 0
+    );
+
+    return sortedConversations;
   }
 
   openConversation(chatItem) {
@@ -189,16 +246,14 @@ export default class Inbox extends Component {
     Actions.Inboxdetails({
       user: chatItem.user,
       chatID: chatItem.chatID,
+      rentalItemData: chatItem.rentalItemData,
+      reservationData: chatItem.reservationData,
       title: contactName
     });
   }
 
   render() {
-    const { chatList, pageIndex } = this.state;
-
-    const chatListSortedDates = chatList.sort((a, b) =>
-      a.createdAt < b.createdAt ? 1 : b.createdAt < a.createdAt ? -1 : 0
-    );
+    const { chatListRentals, chatListMyOffers, pageIndex } = this.state;
 
     return (
       <View style={styles.container}>
@@ -246,7 +301,7 @@ export default class Inbox extends Component {
         >
           <View style={styles.containerItemTab}>
             <ScrollView style={styles.midContainer}>
-              {chatListSortedDates.map((item, key) => {
+              {chatListRentals.map((item, key) => {
                 return (
                   <ItemChatRow
                     item={item}
@@ -258,7 +313,7 @@ export default class Inbox extends Component {
           </View>
           <View style={styles.containerItemTab}>
             <ScrollView style={styles.midContainer}>
-              {chatListSortedDates.map((item, key) => {
+              {chatListMyOffers.map((item, key) => {
                 return (
                   <ItemChatRow
                     item={item}
@@ -278,17 +333,6 @@ class ItemChatRow extends Component {
   render() {
     const { item } = this.props;
 
-    let colorStatus =
-      item.reservationStatus == "Pending"
-        ? "#FDC058"
-        : item.reservationStatus == "Confirmed"
-        ? "#17A370"
-        : item.reservationStatus == "Canceled"
-        ? "#FC2A53"
-        : item.reservationStatus == "Completed"
-        ? "#A3A3BD"
-        : null;
-
     return (
       <TouchableOpacity onPress={() => this.props.onPress()}>
         <View style={styles.itemLayout}>
@@ -302,13 +346,18 @@ class ItemChatRow extends Component {
               <Text style={styles.upperText}>
                 {item.user["firstname"] + " " + item.user["lastname"]}
               </Text>
-              <Text style={[styles.upperText, { color: colorStatus }]}>
+              <Text
+                style={[
+                  styles.upperText,
+                  { color: userActions.getStatusColor(item.reservationStatus) }
+                ]}
+              >
                 {item.reservationStatus}
               </Text>
             </View>
             <Text style={styles.inlineBlackText}>{item.reservationDates}</Text>
             <View style={styles.upperItem}>
-              <Text style={styles.inlineText}>{item.lastMessage}</Text>
+              <Text style={styles.inlineText}>{item.rentalItemData.title}</Text>
               <Text style={styles.inlineText}>{item.lastMessageTime}</Text>
             </View>
           </View>

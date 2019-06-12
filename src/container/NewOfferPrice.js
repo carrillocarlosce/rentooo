@@ -33,6 +33,10 @@ export default class NewOfferPrice extends Component {
     Actions.NewOfferCurrency({ newRentalItem: newRentalItem });
   }
 
+  componentDidMount() {
+    this.rentalPriceInput.focus();
+  }
+
   render() {
     const { price } = this.state;
 
@@ -50,6 +54,9 @@ export default class NewOfferPrice extends Component {
         </View>
 
         <TextInput
+          ref={rentalPrice => {
+            this.rentalPriceInput = rentalPrice;
+          }}
           returnKeyType="done"
           keyboardType="numeric"
           placeholder="0"

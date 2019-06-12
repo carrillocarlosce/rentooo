@@ -34,6 +34,7 @@ export default class RentItemPaymentMethod extends Component {
     currencies = [];
 
     cryptoList.map((item, key) => {
+      item.isSelected = false;
       if (itemRental.currencies.includes(item.name)) currencies.push(item);
     });
 

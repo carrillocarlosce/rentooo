@@ -102,6 +102,8 @@ PODS:
   - React/fishhook (0.59.8)
   - React/RCTBlob (0.59.8):
     - React/Core
+  - React/RCTGeolocation (0.59.8):
+    - React/Core
   - React/RCTImage (0.59.8):
     - React/Core
     - React/RCTNetwork
@@ -113,6 +115,8 @@ PODS:
     - React/Core
     - React/fishhook
     - React/RCTBlob
+  - RNSVG (9.5.1):
+    - React
   - yoga (0.59.8.React)
 
 DEPENDENCIES:
@@ -129,10 +133,12 @@ DEPENDENCIES:
   - react-native-image-resizer (from `../node_modules/react-native-image-resizer`)
   - React/Core (from `../node_modules/react-native`)
   - React/DevSupport (from `../node_modules/react-native`)
+  - React/RCTGeolocation (from `../node_modules/react-native`)
   - React/RCTImage (from `../node_modules/react-native`)
   - React/RCTNetwork (from `../node_modules/react-native`)
   - React/RCTText (from `../node_modules/react-native`)
   - React/RCTWebSocket (from `../node_modules/react-native`)
+  - RNSVG (from `../node_modules/react-native-svg`)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -168,6 +174,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-image-picker"
   react-native-image-resizer:
     :path: "../node_modules/react-native-image-resizer"
+  RNSVG:
+    :path: "../node_modules/react-native-svg"
   yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -194,8 +202,9 @@ SPEC CHECKSUMS:
   React: 76e6aa2b87d05eb6cccb6926d72685c9a07df152
   react-native-image-picker: fd93361c666f397bdf72f9c6c23f13d2685b9173
   react-native-image-resizer: 48eb06a18a6d0a632ffa162a51ca61a68fb5322f
+  RNSVG: 0eb087cfb5d7937be93c45b163b26352a647e681
   yoga: 92b2102c3d373d1a790db4ab761d2b0ffc634f64
 
-PODFILE CHECKSUM: 3a42faa0415fddb48781757cc3f351be780e2b47
+PODFILE CHECKSUM: 915d089cdbbed7bd29d461bff9bc82f2cf6f822f
 
-COCOAPODS: 1.6.2
+COCOAPODS: 1.7.1

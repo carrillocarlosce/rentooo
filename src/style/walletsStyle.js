@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     height: responsiveHeight(13.5),
     padding: responsiveWidth(3),
-    borderRadius: 5
+    borderRadius: 8
   },
   itemCrypto: {
     width: 30,

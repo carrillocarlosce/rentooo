@@ -47,9 +47,13 @@ import NewOfferCurrency from "./src/container/NewOfferCurrency";
 import NewOfferMeeting from "./src/container/NewOfferMeeting";
 
 import Dashboard from "./src/container/Dashboard";
+
 import Wallets from "./src/container/Wallets";
 import AddWallet from "./src/container/AddWallet";
 import Yourbalance from "./src/container/Yourbalance";
+import Receive from "./src/container/Receive";
+import Send from "./src/container/Send";
+
 import Inbox from "./src/container/Inbox";
 import Inboxdetails from "./src/container/Inboxdetails";
 
@@ -60,6 +64,7 @@ import EditProfile from "./src/container/EditProfile";
 import MapSearch from "./src/container/MapSearch";
 
 import ItemDetails from "./src/container/ItemDetails";
+import Authentication from "./src/container/Authentication";
 
 import RentItemDates from "./src/container/RentItemDates";
 import RentItemPaymentMethod from "./src/container/RentItemPaymentMethod";
@@ -202,7 +207,7 @@ export default class App extends Component {
               <TouchableOpacity onPress={() => Actions.pop()}>
                 <Image
                   style={styles.leftBtn}
-                  source={require("./assets/images/back3x.png")}
+                  source={require("./assets/images/back.png")}
                 />
               </TouchableOpacity>
             }
@@ -217,7 +222,7 @@ export default class App extends Component {
               <TouchableOpacity onPress={() => Actions.pop()}>
                 <Image
                   style={styles.leftBtn}
-                  source={require("./assets/images/back3x.png")}
+                  source={require("./assets/images/back.png")}
                 />
               </TouchableOpacity>
             }
@@ -230,7 +235,7 @@ export default class App extends Component {
               <TouchableOpacity onPress={() => Actions.pop()}>
                 <Image
                   style={styles.leftBtn}
-                  source={require("./assets/images/back3x.png")}
+                  source={require("./assets/images/back.png")}
                 />
               </TouchableOpacity>
             }
@@ -246,7 +251,7 @@ export default class App extends Component {
               <TouchableOpacity onPress={() => Actions.pop()}>
                 <Image
                   style={styles.leftBtn}
-                  source={require("./assets/images/back3x.png")}
+                  source={require("./assets/images/back.png")}
                 />
               </TouchableOpacity>
             }
@@ -261,7 +266,7 @@ export default class App extends Component {
               <TouchableOpacity onPress={() => Actions.pop()}>
                 <Image
                   style={styles.leftBtn}
-                  source={require("./assets/images/back3x.png")}
+                  source={require("./assets/images/back.png")}
                 />
               </TouchableOpacity>
             }
@@ -276,7 +281,7 @@ export default class App extends Component {
               <TouchableOpacity onPress={() => Actions.pop()}>
                 <Image
                   style={styles.leftBtn}
-                  source={require("./assets/images/back3x.png")}
+                  source={require("./assets/images/back.png")}
                 />
               </TouchableOpacity>
             }
@@ -292,7 +297,7 @@ export default class App extends Component {
               <TouchableOpacity onPress={() => Actions.pop()}>
                 <Image
                   style={styles.leftBtn}
-                  source={require("./assets/images/back3x.png")}
+                  source={require("./assets/images/back.png")}
                 />
               </TouchableOpacity>
             }
@@ -305,7 +310,7 @@ export default class App extends Component {
               <TouchableOpacity onPress={() => Actions.pop()}>
                 <Image
                   style={styles.leftBtn}
-                  source={require("./assets/images/back3x.png")}
+                  source={require("./assets/images/back.png")}
                 />
               </TouchableOpacity>
             }
@@ -326,7 +331,7 @@ export default class App extends Component {
               <TouchableOpacity onPress={() => Actions.pop()}>
                 <Image
                   style={styles.leftBtn}
-                  source={require("./assets/images/back3x.png")}
+                  source={require("./assets/images/back.png")}
                 />
               </TouchableOpacity>
             }
@@ -336,16 +341,56 @@ export default class App extends Component {
 
           <Scene key="Wallets" component={Wallets} />
 
+          <Scene
+            key="EditProfile"
+            component={EditProfile}
+            renderLeftButton={
+              <TouchableOpacity onPress={() => Actions.pop()}>
+                <Image
+                  style={styles.leftBtn}
+                  source={require("./assets/images/back.png")}
+                />
+              </TouchableOpacity>
+            }
+            renderRightButton={
+              <TouchableOpacity onPress={() => Actions.EditProfile()}>
+                <Text
+                  style={{
+                    marginRight: responsiveWidth(5.33),
+                    color: "#0055FF",
+                    fontSize: responsiveFontSize(2.3),
+                    fontFamily: "SFProText-Semibold"
+                  }}
+                >
+                  Save
+                </Text>
+              </TouchableOpacity>
+            }
+          />
+
           <Scene key="MapSearch" component={MapSearch} hideNavBar={true} />
 
           <Scene key="ItemDetails" component={ItemDetails} hideNavBar={true} />
+
+          <Scene
+            key="Authentication"
+            component={Authentication}
+            renderLeftButton={
+              <TouchableOpacity onPress={() => Actions.pop()}>
+                <Image
+                  style={styles.leftBtn}
+                  source={require("./assets/images/back.png")}
+                />
+              </TouchableOpacity>
+            }
+          />
 
           <Scene
             renderLeftButton={
               <TouchableOpacity onPress={() => Actions.pop()}>
                 <Image
                   style={styles.leftBtn}
-                  source={require("./assets/images/back3x.png")}
+                  source={require("./assets/images/back.png")}
                 />
               </TouchableOpacity>
             }
@@ -358,7 +403,7 @@ export default class App extends Component {
               <TouchableOpacity onPress={() => Actions.pop()}>
                 <Image
                   style={styles.leftBtn}
-                  source={require("./assets/images/back3x.png")}
+                  source={require("./assets/images/back.png")}
                 />
               </TouchableOpacity>
             }
@@ -371,7 +416,7 @@ export default class App extends Component {
               <TouchableOpacity onPress={() => Actions.pop()}>
                 <Image
                   style={styles.leftBtn}
-                  source={require("./assets/images/back3x.png")}
+                  source={require("./assets/images/back.png")}
                 />
               </TouchableOpacity>
             }
@@ -384,7 +429,7 @@ export default class App extends Component {
               <TouchableOpacity onPress={() => Actions.pop()}>
                 <Image
                   style={styles.leftBtn}
-                  source={require("./assets/images/back3x.png")}
+                  source={require("./assets/images/back.png")}
                 />
               </TouchableOpacity>
             }
@@ -397,7 +442,7 @@ export default class App extends Component {
               <TouchableOpacity onPress={() => Actions.pop()}>
                 <Image
                   style={styles.leftBtn}
-                  source={require("./assets/images/back3x.png")}
+                  source={require("./assets/images/back.png")}
                 />
               </TouchableOpacity>
             }
@@ -425,6 +470,43 @@ export default class App extends Component {
               </TouchableOpacity>
             }
           />
+
+          <Scene
+            key="Receive"
+            component={Receive}
+            title="Receive"
+            navigationBarStyle={{
+              borderBottomWidth: 1,
+              borderBottomColor: "#F5F5FD"
+            }}
+            renderLeftButton={
+              <TouchableOpacity onPress={() => Actions.pop()}>
+                <Image
+                  style={styles.leftBtn}
+                  source={require("./assets/images/back.png")}
+                />
+              </TouchableOpacity>
+            }
+          />
+
+          <Scene
+            key="Send"
+            component={Send}
+            title="Send"
+            navigationBarStyle={{
+              borderBottomWidth: 1,
+              borderBottomColor: "#F5F5FD"
+            }}
+            renderLeftButton={
+              <TouchableOpacity onPress={() => Actions.pop()}>
+                <Image
+                  style={styles.leftBtn}
+                  source={require("./assets/images/back.png")}
+                />
+              </TouchableOpacity>
+            }
+          />
+
           <Scene
             key="AddWallet"
             component={AddWallet}
@@ -437,11 +519,12 @@ export default class App extends Component {
               <TouchableOpacity onPress={() => Actions.pop()}>
                 <Image
                   style={styles.leftBtn}
-                  source={require("./assets/images/back3x.png")}
+                  source={require("./assets/images/back.png")}
                 />
               </TouchableOpacity>
             }
           />
+
           <Scene key="Inbox" component={Inbox} />
           <Scene
             key="Inboxdetails"
@@ -451,7 +534,7 @@ export default class App extends Component {
               <TouchableOpacity onPress={() => Actions.pop()}>
                 <Image
                   style={styles.leftBtn}
-                  source={require("./assets/images/back3x.png")}
+                  source={require("./assets/images/back.png")}
                 />
               </TouchableOpacity>
             }
@@ -462,7 +545,7 @@ export default class App extends Component {
               <TouchableOpacity onPress={() => Actions.pop()}>
                 <Image
                   style={styles.leftBtn}
-                  source={require("./assets/images/back3x.png")}
+                  source={require("./assets/images/back.png")}
                 />
               </TouchableOpacity>
             }
@@ -474,7 +557,7 @@ export default class App extends Component {
               <TouchableOpacity onPress={() => Actions.pop()}>
                 <Image
                   style={styles.leftBtn}
-                  source={require("./assets/images/back3x.png")}
+                  source={require("./assets/images/back.png")}
                 />
               </TouchableOpacity>
             }
@@ -486,7 +569,7 @@ export default class App extends Component {
               <TouchableOpacity onPress={() => Actions.pop()}>
                 <Image
                   style={styles.leftBtn}
-                  source={require("./assets/images/back3x.png")}
+                  source={require("./assets/images/back.png")}
                 />
               </TouchableOpacity>
             }
@@ -498,7 +581,7 @@ export default class App extends Component {
               <TouchableOpacity onPress={() => Actions.pop()}>
                 <Image
                   style={styles.leftBtn}
-                  source={require("./assets/images/back3x.png")}
+                  source={require("./assets/images/back.png")}
                 />
               </TouchableOpacity>
             }
@@ -510,7 +593,7 @@ export default class App extends Component {
               <TouchableOpacity onPress={() => Actions.pop()}>
                 <Image
                   style={styles.leftBtn}
-                  source={require("./assets/images/back3x.png")}
+                  source={require("./assets/images/back.png")}
                 />
               </TouchableOpacity>
             }
@@ -522,7 +605,7 @@ export default class App extends Component {
               <TouchableOpacity onPress={() => Actions.pop()}>
                 <Image
                   style={styles.leftBtn}
-                  source={require("./assets/images/back3x.png")}
+                  source={require("./assets/images/back.png")}
                 />
               </TouchableOpacity>
             }
@@ -534,7 +617,7 @@ export default class App extends Component {
               <TouchableOpacity onPress={() => Actions.pop()}>
                 <Image
                   style={styles.leftBtn}
-                  source={require("./assets/images/back3x.png")}
+                  source={require("./assets/images/back.png")}
                 />
               </TouchableOpacity>
             }
@@ -603,12 +686,12 @@ export default class App extends Component {
                 component={Profile}
                 hideNavBar={false}
                 renderLeftButton={
-                  <TouchableOpacity onPress={()=> Actions.EditProfile()}>
+                  <TouchableOpacity onPress={() => Actions.EditProfile()}>
                     <Text
                       style={{
-                        marginLeft: 20,
+                        marginLeft: responsiveWidth(5.33),
                         color: "#0055FF",
-                        fontSize: 17,
+                        fontSize: responsiveFontSize(2.3),
                         fontFamily: "SFProText-Semibold"
                       }}
                     >

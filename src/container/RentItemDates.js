@@ -14,10 +14,13 @@ import {
   responsiveHeight,
   responsiveFontSize
 } from "react-native-responsive-dimensions";
-import moment from "moment";
+import Moment from "moment";
+import { extendMoment } from "moment-range";
 
 import styles from "../style/rentItemStyle";
 import calendarTheme from "../style/calendarStyle";
+
+const moment = extendMoment(Moment);
 
 export default class RentItemDates extends Component {
   constructor(props) {
@@ -25,10 +28,28 @@ export default class RentItemDates extends Component {
 
     this.state = {
       startDate: null,
-      endDate: null
+      endDate: null,
+      disableRange: []
     };
 
     this.onDatePick = this.onDatePick.bind(this);
+  }
+
+  componentDidMount() {
+    //this.getAlreadyRentedDates();
+  }
+
+  getAlreadyRentedDates() {
+    const { itemRental } = this.props;
+
+    let rentedDates = [];
+
+    Object.values(itemRental.reservations).map((item, index) => {
+      rentedDates.push(item.reservationDates.startDate);
+      rentedDates.push(item.reservationDates.endDate);
+    });
+
+    this.setState({ disabledRange: moment.range(rentedDates) });
   }
 
   onDatePick = ({ startDate, endDate }) => {
@@ -46,7 +67,11 @@ export default class RentItemDates extends Component {
     const { startDate, endDate } = this.state;
 
     const rentalReservation = [];
-    rentalReservation["reservationDates"] = { startDate, endDate };
+
+    rentalReservation["reservationDates"] = {
+      startDate: startDate,
+      endDate: endDate ? endDate : startDate
+    };
 
     Actions.RentItemPaymentMethod({
       rentalReservation: rentalReservation,
@@ -71,7 +96,6 @@ export default class RentItemDates extends Component {
           onChange={this.onDatePick}
           style={{ flex: 1 }}
           monthHeight={responsiveHeight(45)}
-          numberOfMonths={1}
           theme={calendarTheme}
         />
 

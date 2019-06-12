@@ -25,6 +25,10 @@ export default class NewOfferTitle extends Component {
     };
   }
 
+  componentDidMount() {
+    this.rentalTitleInput.focus();
+  }
+
   nextStep() {
     const { title, summary } = this.state;
     const newRentalItem = { title: title, summary: summary };
@@ -49,10 +53,14 @@ export default class NewOfferTitle extends Component {
         </View>
 
         <TextInput
-          returnKeyType="done"
+          ref={rentalTitle => {
+            this.rentalTitleInput = rentalTitle;
+          }}
+          returnKeyType={"next"}
           placeholder="Title"
           value={title}
           onChangeText={title => this.setState({ title })}
+          onSubmitEditing={() => this.rentalSummaryInput.focus()}
           maxLength={40}
         />
 
@@ -64,10 +72,14 @@ export default class NewOfferTitle extends Component {
         </View>
 
         <TextInput
+          ref={rentalSummary => {
+            this.rentalSummaryInput = rentalSummary;
+          }}
           returnKeyType={"done"}
           placeholder="Summary"
           value={summary}
           onChangeText={summary => this.setState({ summary })}
+          onSubmitEditing={() => summary.length > 10 && this.nextStep()}
           maxLength={400}
           multiline={true}
           numberOfLines={4}

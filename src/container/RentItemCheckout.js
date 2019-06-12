@@ -28,6 +28,7 @@ export default class RentItemCheckout extends Component {
       chosenCurrency: this.props.rentalReservation["paymentMethod"],
       numberDaysReservation: 0,
       dollarPriceTotal: 0,
+      rentalFee: 0,
       totalCurrencyAmount: 0
     };
   }
@@ -38,20 +39,22 @@ export default class RentItemCheckout extends Component {
 
     console.log(rentalReservation);
 
-    let startDate = moment(rentalReservation["reservationDates"]["startDate"]);
-    let endDate =
-      rentalReservation["reservationDates"]["endDate"] !== null
-        ? moment(rentalReservation["reservationDates"]["endDate"])
-        : startDate;
+    let startDate = rentalReservation["reservationDates"]["startDate"];
+    let endDate = rentalReservation["reservationDates"]["endDate"];
 
-    let numberDaysReservation = endDate.diff(startDate, "days") + 1;
+    let numberDaysReservation = userActions.numberOfDaysReservation(
+      startDate,
+      endDate
+    );
 
     let totalUSDAmount = numberDaysReservation * itemRental.dailyDollarPrice;
+    let rentalFee = totalUSDAmount * 0.1;
 
     userActions.convertCoinValue(chosenCurrency, "usd").then(usdValue => {
       this.setState({
-        totalCurrencyAmount: totalUSDAmount / usdValue,
-        dollarPriceTotal: totalUSDAmount,
+        rentalFee: rentalFee,
+        totalCurrencyAmount: (totalUSDAmount + rentalFee) / usdValue,
+        dollarPriceTotal: totalUSDAmount + rentalFee,
         numberDaysReservation: numberDaysReservation
       });
     });
@@ -86,6 +89,7 @@ export default class RentItemCheckout extends Component {
 
       let newReservation = {
         reservationDates: rentalReservation["reservationDates"],
+        numberDaysReservation: numberDaysReservation,
         rentalMaker: window.currentUser["userID"],
         rentalTotalAmount: totalCurrencyAmount,
         currency: chosenCurrency,
@@ -97,17 +101,6 @@ export default class RentItemCheckout extends Component {
         .ref("transactions")
         .push(newTransaction)
         .then(resultTransaction => {})
-        .catch(err => {
-          console.log("error:", err);
-        });
-
-      firebase
-        .database()
-        .ref("rentals/" + itemRental.key + "/reservations")
-        .push(newReservation)
-        .then(resultReservation => {
-          console.log(resultReservation);
-        })
         .catch(err => {
           console.log("error:", err);
         });
@@ -134,23 +127,38 @@ export default class RentItemCheckout extends Component {
           }
           return amount;
         })
-        .then(result => {
-          this.startChat();
+        .then(result => {});
+
+      firebase
+        .database()
+        .ref("rentals/" + itemRental.key + "/reservations")
+        .push(newReservation)
+        .then(resultReservation => {
+          this.startChat(resultReservation.key);
+        })
+        .catch(err => {
+          console.log("error:", err);
         });
     } else {
       alert("You don't have enough cash.");
     }
   }
 
-  async startChat() {
-    const { itemRental } = this.props;
+  async startChat(reservationKey) {
+    const { itemRental, rentalReservation } = this.props;
 
     let rentalOwner = itemRental.owner;
     let currentUser = window.currentUser;
 
-    let IDlist = [rentalOwner, currentUser["userID"]];
+    let IDlist = [
+      rentalOwner,
+      window.currentUser["userID"],
+      itemRental.key,
+      reservationKey
+    ];
     IDlist.sort();
-    const chatID = IDlist[0] + "*_*" + IDlist[1];
+    const chatID =
+      IDlist[0] + "*_*" + IDlist[1] + "*_*" + IDlist[2] + "*_*" + IDlist[3];
 
     let isExistContact = false;
 
@@ -166,9 +174,9 @@ export default class RentItemCheckout extends Component {
     } else {
       var message = {
         _id: userActions.generatorMessageID(),
-        text: "Hello",
+        text: rentalReservation["reservationDetails"],
         createdAt: Date.now(),
-        system: true,
+        system: false,
         user: {
           _id: currentUser["userID"],
           name: currentUser["firstname"]
@@ -192,6 +200,7 @@ export default class RentItemCheckout extends Component {
   render() {
     const { itemRental, rentalReservation } = this.props;
     const {
+      rentalFee,
       chosenCurrency,
       dollarPriceTotal,
       totalCurrencyAmount,
@@ -222,7 +231,7 @@ export default class RentItemCheckout extends Component {
           <View style={styles.itemRentalContainerText}>
             <Text style={styles.itemRentalTextTitle}>{itemRental.title}</Text>
             <Text style={styles.itemRentalTextDates}>
-              {startDate} {endDate !== null && "to " + endDate}
+              {startDate + " to " + endDate}
             </Text>
             <View style={styles.containerRentalPrice}>
               <Text style={styles.itemRentalTextPrice}>
@@ -231,6 +240,14 @@ export default class RentItemCheckout extends Component {
               </Text>
               <Text style={styles.itemRentalTextPrice}>
                 {itemRental.dailyDollarPrice * numberDaysReservation}$
+              </Text>
+            </View>
+            <View style={styles.containerRentalPrice}>
+              <Text style={styles.itemRentalTextPrice}>
+                Rental fee
+              </Text>
+              <Text style={styles.itemRentalTextPrice}>
+                {rentalFee.toFixed(2)}$
               </Text>
             </View>
           </View>
@@ -242,7 +259,7 @@ export default class RentItemCheckout extends Component {
         <View style={styles.containerRentalPrice}>
           <Text style={styles.totalUSDAmount}>Amount in USD</Text>
           <Text style={styles.totalUSDAmount}>
-            {userActions.NumberWithSpaces(dollarPriceTotal)}$
+            {dollarPriceTotal}$
           </Text>
         </View>
         <View style={styles.containerRentalPrice}>

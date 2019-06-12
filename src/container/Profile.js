@@ -12,7 +12,8 @@ import {
   TextInput,
   TouchableOpacity,
   Image,
-  ScrollView
+  ScrollView,
+  YellowBox
 } from "react-native";
 import { Actions } from "react-native-router-flux";
 import StarView from "react-native-star-view";
@@ -21,6 +22,8 @@ import firebase from "react-native-firebase";
 
 import styles from "../style/profileStyle";
 import ItemRental from "../component/ItemRental";
+
+//YellowBox.ignoreWarnings(["Warning: ReactNative.createElement"]);
 
 export default class Profile extends Component {
   constructor(props) {
@@ -67,18 +70,27 @@ export default class Profile extends Component {
 
     const { userRentals } = this.state;
 
+    console.disableYellowBox = true;
+
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         <View style={styles.upperContainer}>
           <Image
             style={styles.profilePicture}
             resizeMode="contain"
             source={require("../../assets/images/Oval.png")}
           />
-          <Text style={styles.name}>{userName}</Text>
+
+          <TouchableOpacity onPress={() => Actions.reset("Login")}>
+            <Text style={styles.name}>{userName}</Text>
+          </TouchableOpacity>
 
           <View style={styles.location}>
-            <Image source={require("../../assets/images/location.png")} />
+            <Image
+              resizeMode="contain"
+              style={styles.locationPicto}
+              source={require("../../assets/images/location.png")}
+            />
             <Text style={styles.locationText}>Paris, France</Text>
           </View>
 
@@ -113,7 +125,7 @@ export default class Profile extends Component {
             numColumns={2}
           />
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }

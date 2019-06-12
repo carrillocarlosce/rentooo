@@ -13,7 +13,8 @@ import {
   TouchableOpacity,
   Image,
   ScrollView,
-  SafeAreaView
+  SafeAreaView,
+  YellowBox
 } from "react-native";
 import { Actions } from "react-native-router-flux";
 import { SearchBar } from "react-native-elements";
@@ -68,6 +69,7 @@ export default class Search extends Component {
 
   render() {
     const { firstQuery, rentals } = this.state;
+    console.disableYellowBox = true;
 
     return (
       <View style={{ flex: 1, backgroundColor: "#fff" }}>
@@ -79,8 +81,8 @@ export default class Search extends Component {
             top: 0,
             right: 0,
             left: 0,
-            paddingHorizontal: responsiveWidth(5.33),
-            backgroundColor: "#fff"
+            backgroundColor: "rgba(255,255,255,0.95)",
+            paddingHorizontal: responsiveWidth(5.33)
           }}
         >
           <Searchbar
@@ -93,7 +95,6 @@ export default class Search extends Component {
             value={firstQuery}
             onSubmitEditing={() => Actions.Searchresult()}
           />
-
           <View style={styles.btnContainer}>
             <TouchableOpacity style={styles.btnFiltersLayout}>
               <Text style={styles.btnFilterText}>Nearby</Text>
@@ -133,7 +134,7 @@ export default class Search extends Component {
                 >
                   <Image
                     resizeMode="contain"
-                    style={styles.itemGroupImage}
+                    style={styles.categoryItem}
                     source={itemCategory.logo}
                   />
                   <Text style={styles.itemGroupText}>
@@ -148,7 +149,7 @@ export default class Search extends Component {
           <View style={styles.interestContainer}>
             <View style={styles.interestHeader}>
               <Text style={styles.text1IterestHeader}>
-                It might interest you
+                Trending
               </Text>
               <TouchableOpacity>
                 <Text style={styles.text2IterestHeader}>Show all</Text>
@@ -167,7 +168,7 @@ export default class Search extends Component {
 
           <View style={styles.interestContainer}>
             <View style={styles.interestHeader}>
-              <Text style={styles.text1IterestHeader}>Popular on Rentoo</Text>
+              <Text style={styles.text1IterestHeader}>It might interest you</Text>
               <TouchableOpacity>
                 <Text style={styles.text2IterestHeader}>Show all</Text>
               </TouchableOpacity>

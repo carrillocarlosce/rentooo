@@ -48,7 +48,9 @@ export default class Inboxdetails extends Component {
       userName: window.currentUser["firstname"],
       //userAvatar: window.currentUser["avatar"],
       chatUser: this.props.user,
-      chatID: this.props.chatID
+      chatID: this.props.chatID,
+      reservationData: this.props.reservationData,
+      rentalData: this.props.rentalItemData
     };
 
     this.renderBubble = this.renderBubble.bind(this);
@@ -76,30 +78,38 @@ export default class Inboxdetails extends Component {
     this.getMessageList();
   }
 
-  snapshotToArray = snapshot => {
-    let returnArr = [];
-    const userAvatar = this.state.chatUser["avatar"];
-    snapshot.forEach(childSnapshot => {
-      let item = childSnapshot.val();
-      //item.user["avatar"] = userAvatar;
-      returnArr.push(item);
-    });
-
-    this.setState({ messages: returnArr.reverse() });
-  };
-
   getMessageList() {
     firebase
       .database()
       .ref("chat")
       .child(this.state.chatID)
       .on("value", snapshot => {
-        this.snapshotToArray(snapshot);
+        let messageList = this.snapshotToArray(snapshot);
+        this.setState({ messages: messageList });
       });
   }
 
+  snapshotToArray = snapshot => {
+    let returnArr = [];
+
+    //const userAvatar = this.state.chatUser["avatar"];
+    snapshot.forEach(childSnapshot => {
+      let item = childSnapshot.val();
+      //item.user["avatar"] = userAvatar;
+      returnArr.push(item);
+    });
+
+    return returnArr.reverse();
+  };
+
   renderSystemMessage(props) {
-    return <View />;
+    return (
+      <View>
+        <TouchableOpacity onPress={() => console.log(props)}>
+          <Text>You have a new rental.</Text>
+        </TouchableOpacity>
+      </View>
+    );
   }
 
   renderSend = props => {
@@ -180,7 +190,7 @@ export default class Inboxdetails extends Component {
         }}
         wrapperStyle={{
           left: {
-            backgroundColor: "#c6c6c6"
+            backgroundColor: "#F5F5FD"
           },
           right: {
             backgroundColor: "#0055FF"
@@ -224,6 +234,8 @@ export default class Inboxdetails extends Component {
   }
 
   render() {
+    const { reservationData, rentalData } = this.state;
+
     return (
       <View style={styles.container}>
         <GiftedChat
@@ -250,6 +262,28 @@ export default class Inboxdetails extends Component {
             }
           ]}
         />
+        <View style={styles.headerInboxDetail}>
+          <Text
+            style={[
+              styles.textHeader,
+              { color: userActions.getStatusColor(reservationData.status) }
+            ]}
+          >
+            {reservationData.status}
+          </Text>
+          <TouchableOpacity
+            onPress={() =>
+              Actions.ItemDetails({
+                data: rentalData,
+                reservationData: reservationData
+              })
+            }
+          >
+            <Text style={[styles.textHeader, { color: "#0055FF" }]}>
+              Details
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
