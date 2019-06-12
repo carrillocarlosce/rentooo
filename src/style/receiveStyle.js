@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   },
   btnShareAddress: {
     position: "absolute",
-    bottom: 30,
+    bottom: responsiveHeight(5),
     right: responsiveWidth(5.33),
     left: responsiveWidth(5.33),
     flexDirection: "row",

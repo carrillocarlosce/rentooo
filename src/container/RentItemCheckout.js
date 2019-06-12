@@ -27,17 +27,20 @@ export default class RentItemCheckout extends Component {
       itemRental: this.props.itemRental,
       chosenCurrency: this.props.rentalReservation["paymentMethod"],
       numberDaysReservation: 0,
-      dollarPriceTotal: 0,
-      rentalFee: 0,
-      totalCurrencyAmount: 0
+      totalUSDAmount: 0,
+      totalCurrencyAmount: 0,
+      rentalFeeUSD: 0,
+      rentalRef: ""
     };
   }
 
   componentWillMount() {
+    this.getReservationCheckoutDetails();
+  }
+
+  getReservationCheckoutDetails() {
     const { itemRental, rentalReservation } = this.props;
     const { chosenCurrency } = this.state;
-
-    console.log(rentalReservation);
 
     let startDate = rentalReservation["reservationDates"]["startDate"];
     let endDate = rentalReservation["reservationDates"]["endDate"];
@@ -48,13 +51,17 @@ export default class RentItemCheckout extends Component {
     );
 
     let totalUSDAmount = numberDaysReservation * itemRental.dailyDollarPrice;
-    let rentalFee = totalUSDAmount * 0.1;
+    let rentalFeeUSD = totalUSDAmount * 0.1;
 
     userActions.convertCoinValue(chosenCurrency, "usd").then(usdValue => {
       this.setState({
-        rentalFee: rentalFee,
-        totalCurrencyAmount: (totalUSDAmount + rentalFee) / usdValue,
-        dollarPriceTotal: totalUSDAmount + rentalFee,
+        rentalRef: Math.random()
+          .toString(36)
+          .substr(2, 9)
+          .toUpperCase(),
+        totalUSDAmount: totalUSDAmount,
+        rentalFeeUSD: rentalFeeUSD,
+        totalCurrencyAmount: (totalUSDAmount + rentalFeeUSD) / usdValue,
         numberDaysReservation: numberDaysReservation
       });
     });
@@ -64,9 +71,10 @@ export default class RentItemCheckout extends Component {
     const { rentalReservation, itemRental } = this.props;
     const {
       chosenCurrency,
-      dollarPriceTotal,
+      totalUSDAmount,
       totalCurrencyAmount,
-      numberDaysReservation
+      numberDaysReservation,
+      rentalRef
     } = this.state;
 
     const userData = window.currentUser;
@@ -92,6 +100,7 @@ export default class RentItemCheckout extends Component {
         numberDaysReservation: numberDaysReservation,
         rentalMaker: window.currentUser["userID"],
         rentalTotalAmount: totalCurrencyAmount,
+        rentalRef: rentalRef,
         currency: chosenCurrency,
         status: "Pending"
       };
@@ -200,9 +209,10 @@ export default class RentItemCheckout extends Component {
   render() {
     const { itemRental, rentalReservation } = this.props;
     const {
-      rentalFee,
+      rentalFeeUSD,
+      rentalRef,
       chosenCurrency,
-      dollarPriceTotal,
+      totalUSDAmount,
       totalCurrencyAmount,
       numberDaysReservation
     } = this.state;
@@ -243,11 +253,9 @@ export default class RentItemCheckout extends Component {
               </Text>
             </View>
             <View style={styles.containerRentalPrice}>
+              <Text style={styles.itemRentalTextPrice}>Rental fee</Text>
               <Text style={styles.itemRentalTextPrice}>
-                Rental fee
-              </Text>
-              <Text style={styles.itemRentalTextPrice}>
-                {rentalFee.toFixed(2)}$
+                {rentalFeeUSD.toFixed(2)}$
               </Text>
             </View>
           </View>
@@ -256,12 +264,14 @@ export default class RentItemCheckout extends Component {
         <View style={styles.separatorLine} />
 
         <Text style={styles.totalTitle}>Total</Text>
+
         <View style={styles.containerRentalPrice}>
           <Text style={styles.totalUSDAmount}>Amount in USD</Text>
           <Text style={styles.totalUSDAmount}>
-            {dollarPriceTotal}$
+            {totalUSDAmount + rentalFeeUSD}$
           </Text>
         </View>
+
         <View style={styles.containerRentalPrice}>
           <Text style={styles.totalCurrencyAmount}>
             {chosenCurrency.toUpperCase()}
@@ -269,6 +279,13 @@ export default class RentItemCheckout extends Component {
           <Text style={styles.totalCurrencyAmount}>
             {totalCurrencyAmount.toFixed(5)}
           </Text>
+        </View>
+
+        <View style={styles.separatorLine} />
+
+        <View style={styles.containerRentalPrice}>
+          <Text style={styles.rentalRef}>Rental ref.</Text>
+          <Text style={styles.rentalRef}>{rentalRef}</Text>
         </View>
 
         <View style={styles.separatorLine} />

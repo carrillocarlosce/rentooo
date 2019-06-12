@@ -357,7 +357,12 @@ class ItemChatRow extends Component {
             </View>
             <Text style={styles.inlineBlackText}>{item.reservationDates}</Text>
             <View style={styles.upperItem}>
-              <Text style={styles.inlineText}>{item.rentalItemData.title}</Text>
+              <Text style={styles.inlineText}>
+                {item.rentalItemData.title +
+                  " (" +
+                  item.reservationData.rentalRef +
+                  ")"}
+              </Text>
               <Text style={styles.inlineText}>{item.lastMessageTime}</Text>
             </View>
           </View>

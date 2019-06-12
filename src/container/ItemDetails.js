@@ -346,6 +346,7 @@ export default class ItemDetails extends Component {
             {reservationStatus ? (
               <View>
                 <Text style={styles.sectionTitle}>Total cost</Text>
+
                 <View style={styles.containerRentalPrice}>
                   <Text style={styles.totalUSDAmount}>Amount in USD</Text>
                   <Text style={styles.totalUSDAmount}>
@@ -354,12 +355,22 @@ export default class ItemDetails extends Component {
                     $
                   </Text>
                 </View>
+
                 <View style={styles.containerRentalPrice}>
                   <Text style={styles.totalCurrencyAmount}>
                     {reservationStatus.currency.toUpperCase()}
                   </Text>
                   <Text style={styles.totalCurrencyAmount}>
                     {reservationStatus.rentalTotalAmount.toFixed(5)}
+                  </Text>
+                </View>
+
+                <View style={styles.lineSeparator} />
+
+                <View style={styles.containerRentalPrice}>
+                  <Text style={styles.totalCurrencyAmount}>Rental ref.</Text>
+                  <Text style={styles.totalCurrencyAmount}>
+                    {reservationStatus.rentalRef}
                   </Text>
                 </View>
               </View>

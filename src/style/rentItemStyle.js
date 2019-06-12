@@ -123,6 +123,11 @@ const styles = StyleSheet.create({
     fontFamily: "SFProText-Semibold",
     fontSize: responsiveFontSize(1.8)
   },
+  rentalRef: {
+    fontFamily: "SFProText-Semibold",
+    fontSize: responsiveFontSize(1.8),
+    color: "rgba(0,0,0,0.6)"
+  },
   termsOfService: {
     color: "rgba(0,0,0,0.6)"
   },
