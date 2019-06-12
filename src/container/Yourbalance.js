@@ -14,7 +14,7 @@ import {
   Image,
   ScrollView
 } from "react-native";
-import { Action } from "react-native-router-flux";
+import { Actions } from "react-native-router-flux";
 import styles from "../style/yourbalanceStyle";
 import {
   responsiveWidth,
@@ -159,6 +159,7 @@ export default class Yourbalance extends Component {
         </ScrollView>
         <View style={styles.bottomContainer}>
           <TouchableOpacity
+            onPress={() => Actions.Send()}
             style={[styles.bottomButton, { backgroundColor: "#A3A3BD" }]}
           >
             <Image
@@ -169,6 +170,14 @@ export default class Yourbalance extends Component {
             <Text style={styles.buttonText}>Send</Text>
           </TouchableOpacity>
           <TouchableOpacity
+            onPress={() =>
+              Actions.Receive({
+                title:
+                  "Receive " +
+                  data.name.charAt(0).toUpperCase() +
+                  data.name.slice(1)
+              })
+            }
             style={[styles.bottomButton, { backgroundColor: "#0055FF" }]}
           >
             <Image

@@ -23,7 +23,7 @@ import firebase from "react-native-firebase";
 import styles from "../style/profileStyle";
 import ItemRental from "../component/ItemRental";
 
-YellowBox.ignoreWarnings(["Warning: ReactNative.createElement"]);
+//YellowBox.ignoreWarnings(["Warning: ReactNative.createElement"]);
 
 export default class Profile extends Component {
   constructor(props) {

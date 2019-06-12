@@ -47,9 +47,13 @@ import NewOfferCurrency from "./src/container/NewOfferCurrency";
 import NewOfferMeeting from "./src/container/NewOfferMeeting";
 
 import Dashboard from "./src/container/Dashboard";
+
 import Wallets from "./src/container/Wallets";
 import AddWallet from "./src/container/AddWallet";
 import Yourbalance from "./src/container/Yourbalance";
+import Receive from "./src/container/Receive";
+import Send from "./src/container/Send";
+
 import Inbox from "./src/container/Inbox";
 import Inboxdetails from "./src/container/Inboxdetails";
 
@@ -453,6 +457,43 @@ export default class App extends Component {
               </TouchableOpacity>
             }
           />
+
+          <Scene
+            key="Receive"
+            component={Receive}
+            title="Receive"
+            navigationBarStyle={{
+              borderBottomWidth: 1,
+              borderBottomColor: "#F5F5FD"
+            }}
+            renderLeftButton={
+              <TouchableOpacity onPress={() => Actions.pop()}>
+                <Image
+                  style={styles.leftBtn}
+                  source={require("./assets/images/back.png")}
+                />
+              </TouchableOpacity>
+            }
+          />
+
+          <Scene
+            key="Send"
+            component={Send}
+            title="Send"
+            navigationBarStyle={{
+              borderBottomWidth: 1,
+              borderBottomColor: "#F5F5FD"
+            }}
+            renderLeftButton={
+              <TouchableOpacity onPress={() => Actions.pop()}>
+                <Image
+                  style={styles.leftBtn}
+                  source={require("./assets/images/back.png")}
+                />
+              </TouchableOpacity>
+            }
+          />
+
           <Scene
             key="AddWallet"
             component={AddWallet}
@@ -470,6 +511,7 @@ export default class App extends Component {
               </TouchableOpacity>
             }
           />
+
           <Scene key="Inbox" component={Inbox} />
           <Scene
             key="Inboxdetails"
