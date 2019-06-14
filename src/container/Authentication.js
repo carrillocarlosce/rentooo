@@ -216,6 +216,8 @@ export default class Authentication extends Component {
   }
 
   render() {
+    const { isOwner } = this.props;
+
     const {
       pageIndex,
       currentStartStep,
@@ -530,12 +532,21 @@ export default class Authentication extends Component {
                         Fusce vestibulum dapibus dolor sit amet.
                       </Text>
 
-                      <TouchableOpacity
-                        onPress={() => Actions.DisplayQRCode()}
-                        style={styles.doneBtn}
-                      >
-                        <Text style={styles.textDoneBtn}>Show QR code</Text>
-                      </TouchableOpacity>
+                      {!isOwner ? (
+                        <TouchableOpacity
+                          onPress={() => Actions.DisplayQRCode()}
+                          style={styles.doneBtn}
+                        >
+                          <Text style={styles.textDoneBtn}>Show QR code</Text>
+                        </TouchableOpacity>
+                      ) : (
+                        <TouchableOpacity
+                          onPress={() => Actions.ScanQR()}
+                          style={styles.doneBtn}
+                        >
+                          <Text style={styles.textDoneBtn}>Scan QR code</Text>
+                        </TouchableOpacity>
+                      )}
                     </View>
                   )}
                 </View>
