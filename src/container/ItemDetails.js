@@ -212,7 +212,16 @@ export default class ItemDetails extends Component {
                       styles.btnActionRental,
                       { marginLeft: 10, backgroundColor: "#0055FF" }
                     ]}
-                    onPress={() => Actions.Authentication()}
+                    onPress={() =>
+                      Actions.Authentication({
+                        isOwner:
+                          data.owner == window.currentUser["userID"]
+                            ? true
+                            : false,
+                        rentalKey: data.key,
+                        reservationKey: reservationStatus.key
+                      })
+                    }
                   >
                     <Text style={styles.textBtnRental}>Authentication</Text>
                   </TouchableOpacity>

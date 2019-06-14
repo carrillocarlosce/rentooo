@@ -8,37 +8,37 @@ export default (categories = [
   {
     title: "tech",
     logo: require("../../assets/categories/tech.png"),
-    color: "#0B49C8",
+    color: "#0044CC",
     isSelected: false
   },
   {
     title: "vehicle",
     logo: require("../../assets/categories/vehicle.png"),
-    color: "#063696",
+    color: "#003399",
     isSelected: false
   },
   {
     title: "storage",
     logo: require("../../assets/categories/storage.png"),
-    color: "#032464",
+    color: "#002266",
     isSelected: false
   },
   {
     title: "DIY",
     logo: require("../../assets/categories/DIY.png"),
-    color: "#032464",
+    color: "#00194C",
     isSelected: false
   },
   {
     title: "childcare",
     logo: require("../../assets/categories/childcare.png"),
-    color: "#032464",
+    color: "#001133",
     isSelected: false
   },
   {
     title: "others",
     logo: require("../../assets/categories/others.png"),
-    color: "#011232",
+    color: "#000819",
     isSelected: false
   }
 ]);

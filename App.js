@@ -65,6 +65,7 @@ import MapSearch from "./src/container/MapSearch";
 
 import ItemDetails from "./src/container/ItemDetails";
 import Authentication from "./src/container/Authentication";
+import DisplayQRCode from "./src/container/DisplayQRCode";
 
 import RentItemDates from "./src/container/RentItemDates";
 import RentItemPaymentMethod from "./src/container/RentItemPaymentMethod";
@@ -386,6 +387,19 @@ export default class App extends Component {
           />
 
           <Scene
+            key="DisplayQRCode"
+            component={DisplayQRCode}
+            renderLeftButton={
+              <TouchableOpacity onPress={() => Actions.pop()}>
+                <Image
+                  style={styles.leftBtn}
+                  source={require("./assets/images/back.png")}
+                />
+              </TouchableOpacity>
+            }
+          />
+
+          <Scene
             renderLeftButton={
               <TouchableOpacity onPress={() => Actions.pop()}>
                 <Image
@@ -397,7 +411,7 @@ export default class App extends Component {
             key="RentItemDates"
             component={RentItemDates}
           />
-          
+
           <Scene
             renderLeftButton={
               <TouchableOpacity onPress={() => Actions.pop()}>

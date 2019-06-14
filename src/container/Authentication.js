@@ -21,7 +21,6 @@ import {
   responsiveHeight
 } from "react-native-responsive-dimensions";
 import firebase from "react-native-firebase";
-import moment from "moment";
 import ImagePicker from "react-native-image-picker";
 import ImageResizer from "react-native-image-resizer";
 import uuid from "uuid/v4"; // Import UUID to generate UUID
@@ -59,7 +58,7 @@ export default class Authentication extends Component {
       uploading: false,
       progress: 0,
       propertyPhotos: [],
-      usersSelfie: []
+      usersSelfie: null
     };
   }
 
@@ -86,7 +85,7 @@ export default class Authentication extends Component {
     }
   };
 
-  pickImage = () => {
+  uploadImage = isSelfie => {
     ImagePicker.showImagePicker(options, response => {
       if (!response.didCancel) {
         const source = { uri: response.uri };
@@ -99,57 +98,121 @@ export default class Authentication extends Component {
               imgSource: source,
               imageUri: uri
             });
-            this.uploadImage();
+
+            const ext = "jpg"; // Extract image extension
+            const filename = `${uuid()}.${ext}`; // Generate unique name
+            this.setState({ uploading: true });
+
+            firebase
+              .storage()
+              .ref("authenticationPhotos/" + filename)
+              .putFile(this.state.imageUri)
+              .on(
+                firebase.storage.TaskEvent.STATE_CHANGED,
+                snapshot => {
+                  let state = {};
+                  state = {
+                    ...state,
+                    progress:
+                      (snapshot.bytesTransferred / snapshot.totalBytes) * 100 // Calculate progress percentage
+                  };
+
+                  if (snapshot.state === firebase.storage.TaskState.SUCCESS) {
+                    const allImages = this.state.propertyPhotos;
+                    !isSelfie && allImages.push(snapshot.downloadURL);
+                    console.log(snapshot.downloadURL);
+
+                    state = {
+                      ...state,
+                      uploading: false,
+                      imgSource: "",
+                      imageUri: "",
+                      progress: 0,
+                      propertyPhotos: allImages,
+                      usersSelfie: isSelfie
+                        ? snapshot.downloadURL
+                        : this.state.usersSelfie
+                    };
+                  }
+
+                  this.setState(state);
+                },
+                error => {
+                  unsubscribe();
+                  alert("Sorry, Try again.");
+                }
+              );
           })
           .catch(err => {
             console.log("error=", err);
           });
+      } else {
+        console.log("user canceled");
       }
     });
   };
 
-  uploadImage = () => {
-    const ext = "jpg"; // Extract image extension
-    const filename = `${uuid()}.${ext}`; // Generate unique name
-    this.setState({ uploading: true });
+  componentWillMount() {
+    this.getAuthenticationData();
+  }
+
+  getAuthenticationData() {
+    const { isOwner, rentalKey, reservationKey } = this.props;
+
+    let isUserOwner = isOwner ? "owner/" : "renter/";
+
     firebase
-      .storage()
-      .ref("authenticationPhotos/" + filename)
-      .putFile(this.state.imageUri)
-      .on(
-        firebase.storage.TaskEvent.STATE_CHANGED,
-        snapshot => {
-          let state = {};
-          state = {
-            ...state,
-            progress: (snapshot.bytesTransferred / snapshot.totalBytes) * 100 // Calculate progress percentage
-          };
-          if (snapshot.state === firebase.storage.TaskState.SUCCESS) {
-            const allImages = this.state.propertyPhotos;
-            allImages.push(snapshot.downloadURL);
-            console.log(snapshot.downloadURL);
-            state = {
-              ...state,
-              uploading: false,
-              imgSource: "",
-              imageUri: "",
-              progress: 0,
-              propertyPhotos: allImages
-            };
-          }
-          this.setState(state);
-        },
-        error => {
-          unsubscribe();
-          alert("Sorry, Try again.");
-        }
-      );
-  };
+      .database()
+      .ref(
+        "rentals/" +
+          rentalKey +
+          "/reservations/" +
+          reservationKey +
+          "/authentication/" +
+          isUserOwner
+      )
+      .on("value", authenticationSnapshot => {
+        let authenticationState = authenticationSnapshot.val();
+
+        this.setState(authenticationState);
+      });
+  }
 
   doneStepAuthentication() {
-    const { currentStartStep } = this.state;
+    const { isOwner, rentalKey, reservationKey } = this.props;
+    const {
+      pageIndex,
+      currentStartStep,
+      currentEndStep,
+      propertyPhotos,
+      notes,
+      usersSelfie
+    } = this.state;
 
     this.setState({ currentStartStep: currentStartStep + 1 });
+
+    let authentication = {
+      pageIndex,
+      currentStartStep,
+      currentEndStep,
+      propertyPhotos,
+      notes,
+      usersSelfie
+    };
+
+    let isUserOwner = isOwner ? "owner/" : "renter/";
+
+    firebase
+      .database()
+      .ref(
+        "rentals/" +
+          rentalKey +
+          "/reservations/" +
+          reservationKey +
+          "/authentication/" +
+          isUserOwner
+      )
+      .update(authentication);
   }
 
   render() {
@@ -222,11 +285,7 @@ export default class Authentication extends Component {
                     </Text>
 
                     <TouchableOpacity
-                      onPress={() =>
-                        this.setState({
-                          currentStartStep: currentStartStep + 1
-                        })
-                      }
+                      onPress={() => this.doneStepAuthentication()}
                       style={styles.doneBtn}
                     >
                       <Text style={styles.textDoneBtn}>Done</Text>
@@ -234,6 +293,7 @@ export default class Authentication extends Component {
                   </View>
                 )}
               </View>
+
               {currentStartStep > 0 && (
                 <View style={styles.itemAuthentication}>
                   <Text style={styles.titleAuthentication}>
@@ -291,7 +351,7 @@ export default class Authentication extends Component {
 
                         {propertyPhotos.length < 3 && (
                           <TouchableOpacity
-                            onPress={() => this.pickImage()}
+                            onPress={() => this.uploadImage(false)}
                             style={styles.addPicture}
                           >
                             <Image
@@ -303,7 +363,7 @@ export default class Authentication extends Component {
                         )}
                       </View>
 
-                      {propertyPhotos.length == 3 && (
+                      {propertyPhotos.length > 2 && (
                         <TouchableOpacity
                           onPress={() => this.doneStepAuthentication()}
                           style={styles.doneBtn}
@@ -315,6 +375,7 @@ export default class Authentication extends Component {
                   )}
                 </View>
               )}
+
               {currentStartStep > 1 && (
                 <View style={styles.itemAuthentication}>
                   <Text style={styles.titleAuthentication}>
@@ -414,12 +475,44 @@ export default class Authentication extends Component {
                         Fusce vestibulum dapibus dolor sit amet.
                       </Text>
 
-                      <TouchableOpacity
-                        onPress={() => this.doneStepAuthentication()}
-                        style={styles.doneBtn}
+                      <View
+                        style={[
+                          styles.containerPropertyPhotos,
+                          { marginTop: responsiveHeight(2) }
+                        ]}
                       >
-                        <Text style={styles.textDoneBtn}>Done</Text>
-                      </TouchableOpacity>
+                        {usersSelfie !== null && (
+                          <View style={styles.addedPhoto}>
+                            <Image
+                              resizeMode="cover"
+                              source={{ uri: usersSelfie }}
+                              style={{ flex: 1 }}
+                            />
+                          </View>
+                        )}
+
+                        {usersSelfie == null && (
+                          <TouchableOpacity
+                            onPress={() => this.uploadImage(true)}
+                            style={styles.addPicture}
+                          >
+                            <Image
+                              resizeMode="contain"
+                              style={styles.addPictureIcon}
+                              source={require("../../assets/images/camera2.png")}
+                            />
+                          </TouchableOpacity>
+                        )}
+                      </View>
+
+                      {usersSelfie !== null && (
+                        <TouchableOpacity
+                          onPress={() => this.doneStepAuthentication()}
+                          style={styles.doneBtn}
+                        >
+                          <Text style={styles.textDoneBtn}>Done</Text>
+                        </TouchableOpacity>
+                      )}
                     </View>
                   )}
                 </View>
@@ -438,7 +531,7 @@ export default class Authentication extends Component {
                       </Text>
 
                       <TouchableOpacity
-                        onPress={() => this.doneStepAuthentication()}
+                        onPress={() => Actions.DisplayQRCode()}
                         style={styles.doneBtn}
                       >
                         <Text style={styles.textDoneBtn}>Show QR code</Text>
