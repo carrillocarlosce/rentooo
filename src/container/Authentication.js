@@ -53,11 +53,13 @@ export default class Authentication extends Component {
       currentStartStep: 0,
       currentEndStep: 0,
       notes: "",
+      notesEnd: "",
       imgSource: "",
       imageUri: "",
       uploading: false,
       progress: 0,
       propertyPhotos: [],
+      propertyPhotosEnd: [],
       usersSelfie: null
     };
   }
@@ -178,7 +180,7 @@ export default class Authentication extends Component {
       });
   }
 
-  doneStepAuthentication() {
+  doneStepAuthentication(index) {
     const { isOwner, rentalKey, reservationKey } = this.props;
     const {
       pageIndex,
@@ -189,16 +191,11 @@ export default class Authentication extends Component {
       usersSelfie
     } = this.state;
 
-    this.setState({ currentStartStep: currentStartStep + 1 });
+    console.log(this.state);
 
-    let authentication = {
-      pageIndex,
-      currentStartStep,
-      currentEndStep,
-      propertyPhotos,
-      notes,
-      usersSelfie
-    };
+    index == 0
+      ? this.setState({ currentStartStep: currentStartStep + 1 })
+      : this.setState({ currentEndStep: currentStartStep + 1 });
 
     let isUserOwner = isOwner ? "owner/" : "renter/";
 
@@ -212,7 +209,7 @@ export default class Authentication extends Component {
           "/authentication/" +
           isUserOwner
       )
-      .update(authentication);
+      .update(this.state);
   }
 
   render() {
@@ -223,7 +220,9 @@ export default class Authentication extends Component {
       currentStartStep,
       currentEndStep,
       propertyPhotos,
+      propertyPhotosEnd,
       notes,
+      notesEnd,
       usersSelfie
     } = this.state;
 
@@ -287,7 +286,7 @@ export default class Authentication extends Component {
                     </Text>
 
                     <TouchableOpacity
-                      onPress={() => this.doneStepAuthentication()}
+                      onPress={() => this.doneStepAuthentication(0)}
                       style={styles.doneBtn}
                     >
                       <Text style={styles.textDoneBtn}>Done</Text>
@@ -367,7 +366,7 @@ export default class Authentication extends Component {
 
                       {propertyPhotos.length > 2 && (
                         <TouchableOpacity
-                          onPress={() => this.doneStepAuthentication()}
+                          onPress={() => this.doneStepAuthentication(0)}
                           style={styles.doneBtn}
                         >
                           <Text style={styles.textDoneBtn}>Done</Text>
@@ -393,7 +392,7 @@ export default class Authentication extends Component {
                       </Text>
 
                       <TouchableOpacity
-                        onPress={() => this.doneStepAuthentication()}
+                        onPress={() => this.doneStepAuthentication(0)}
                         style={styles.doneBtn}
                       >
                         <Text style={styles.textDoneBtn}>Done</Text>
@@ -452,7 +451,7 @@ export default class Authentication extends Component {
 
                       {notes.length > 10 && (
                         <TouchableOpacity
-                          onPress={() => this.doneStepAuthentication()}
+                          onPress={() => this.doneStepAuthentication(0)}
                           style={styles.doneBtn}
                         >
                           <Text style={styles.textDoneBtn}>Done</Text>
@@ -509,7 +508,7 @@ export default class Authentication extends Component {
 
                       {usersSelfie !== null && (
                         <TouchableOpacity
-                          onPress={() => this.doneStepAuthentication()}
+                          onPress={() => this.doneStepAuthentication(0)}
                           style={styles.doneBtn}
                         >
                           <Text style={styles.textDoneBtn}>Done</Text>
@@ -557,7 +556,211 @@ export default class Authentication extends Component {
               )}
             </View>
           </ScrollView>
-          <View style={styles.containerItemTab} />
+
+          <ScrollView style={styles.containerItemTab}>
+            <View style={styles.containerAuthentication}>
+              <View style={styles.itemAuthentication}>
+                <Text style={styles.titleAuthentication}>
+                  1. State of the property
+                </Text>
+                {currentEndStep > 0 ? (
+                  <Done />
+                ) : (
+                  <View>
+                    <Text style={styles.textAuthentication}>
+                      Lorem ipsum dolor sit amet, consectetur adipis elit. Fusce
+                      vestibulum dapibus dolor sit amet.
+                    </Text>
+
+                    <TouchableOpacity
+                      onPress={() => this.doneStepAuthentication(1)}
+                      style={styles.doneBtn}
+                    >
+                      <Text style={styles.textDoneBtn}>Done</Text>
+                    </TouchableOpacity>
+                  </View>
+                )}
+              </View>
+
+              {currentEndStep > 0 && (
+                <View style={styles.itemAuthentication}>
+                  <Text style={styles.titleAuthentication}>
+                    2. Take 3 photos of the property
+                  </Text>
+                  {currentEndStep > 1 ? (
+                    <View>
+                      <View
+                        style={[
+                          styles.containerPropertyPhotos,
+                          { marginBottom: responsiveHeight(2) }
+                        ]}
+                      >
+                        {propertyPhotosEnd.map((item, index) => {
+                          return (
+                            <View key="index" style={styles.addedPhoto}>
+                              <Image
+                                key={index}
+                                resizeMode="cover"
+                                source={{ uri: item }}
+                                style={{ flex: 1 }}
+                              />
+                            </View>
+                          );
+                        })}
+                      </View>
+
+                      <Done />
+                    </View>
+                  ) : (
+                    <View>
+                      <Text style={styles.textAuthentication}>
+                        Lorem ipsum dolor sit amet, consectetur adipis elit.
+                        Fusce vestibulum dapibus dolor sit amet.
+                      </Text>
+
+                      <View
+                        style={[
+                          styles.containerPropertyPhotos,
+                          { marginTop: responsiveHeight(2) }
+                        ]}
+                      >
+                        {propertyPhotosEnd.map((item, index) => {
+                          return (
+                            <View key="index" style={styles.addedPhoto}>
+                              <Image
+                                key={index}
+                                resizeMode="cover"
+                                source={{ uri: item }}
+                                style={{ flex: 1 }}
+                              />
+                            </View>
+                          );
+                        })}
+
+                        {propertyPhotosEnd.length < 3 && (
+                          <TouchableOpacity
+                            onPress={() => this.uploadImage(false)}
+                            style={styles.addPicture}
+                          >
+                            <Image
+                              resizeMode="contain"
+                              style={styles.addPictureIcon}
+                              source={require("../../assets/images/camera2.png")}
+                            />
+                          </TouchableOpacity>
+                        )}
+                      </View>
+
+                      {propertyPhotosEnd.length > 2 && (
+                        <TouchableOpacity
+                          onPress={() => this.doneStepAuthentication(1)}
+                          style={styles.doneBtn}
+                        >
+                          <Text style={styles.textDoneBtn}>Done</Text>
+                        </TouchableOpacity>
+                      )}
+                    </View>
+                  )}
+                </View>
+              )}
+
+              {currentEndStep > 2 && (
+                <View style={styles.itemAuthentication}>
+                  <Text style={styles.titleAuthentication}>3. Notes</Text>
+                  {currentEndStep > 3 ? (
+                    <View>
+                      <Text
+                        style={[
+                          styles.textAuthentication,
+                          { marginBottom: responsiveHeight(2) }
+                        ]}
+                      >
+                        "{notes}"
+                      </Text>
+
+                      <Done />
+                    </View>
+                  ) : (
+                    <View>
+                      <Text style={styles.textAuthentication}>
+                        Lorem ipsum dolor sit amet, consectetur adipis elit.
+                        Fusce vestibulum dapibus dolor sit amet.
+                      </Text>
+
+                      <View style={styles.headerInputNotes}>
+                        <Text style={styles.headerInputNotesTitle}>Notes</Text>
+                        <Text>{200 - notes.length}</Text>
+                      </View>
+
+                      <TextInput
+                        ref={rentalNotes => {
+                          this.rentalNotesInput = rentalNotes;
+                        }}
+                        returnKeyType={"done"}
+                        placeholder="Input some notes you want to save about the rental."
+                        value={notesEnd}
+                        onChangeText={notesEnd => this.setState({ notesEnd })}
+                        onSubmitEditing={() =>
+                          notesEnd.length > 10 && this.nextStep()
+                        }
+                        maxLength={200}
+                        multiline={true}
+                        numberOfLines={4}
+                        blurOnSubmit
+                      />
+
+                      <View style={styles.separatorLine} />
+
+                      {notesEnd.length > 10 && (
+                        <TouchableOpacity
+                          onPress={() => this.doneStepAuthentication(1)}
+                          style={styles.doneBtn}
+                        >
+                          <Text style={styles.textDoneBtn}>Done</Text>
+                        </TouchableOpacity>
+                      )}
+                    </View>
+                  )}
+                </View>
+              )}
+
+              {currentEndStep > 4 && (
+                <View style={styles.itemAuthentication}>
+                  <Text style={styles.titleAuthentication}>4. QR code</Text>
+                  {currentEndStep > 5 ? (
+                    <Done />
+                  ) : (
+                    <View>
+                      <Text style={styles.textAuthentication}>
+                        Lorem ipsum dolor sit amet, consectetur adipis elit.
+                        Fusce vestibulum dapibus dolor sit amet.
+                      </Text>
+
+                      {!isOwner ? (
+                        <TouchableOpacity
+                          onPress={() =>
+                            Actions.DisplayQRCode({ key: reservationKey })
+                          }
+                          style={styles.doneBtn}
+                        >
+                          <Text style={styles.textDoneBtn}>Show QR code</Text>
+                        </TouchableOpacity>
+                      ) : (
+                        <TouchableOpacity
+                          onPress={() =>
+                            Actions.ScanQR({ key: reservationKey })
+                          }
+                          style={styles.doneBtn}
+                        >
+                          <Text style={styles.textDoneBtn}>Scan QR code</Text>
+                        </TouchableOpacity>
+                      )}
+                    </View>
+                  )}
+                </View>
+              )}
+            </View>
+          </ScrollView>
         </ScrollView>
       </View>
     );

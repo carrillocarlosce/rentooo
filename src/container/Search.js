@@ -51,6 +51,8 @@ export default class Search extends Component {
     firebase
       .database()
       .ref("rentals/")
+      .limitToLast(4)
+
       .on("value", rentalsSnapshot => {
         let rentals = [];
 
@@ -61,7 +63,7 @@ export default class Search extends Component {
           rentals.push(item);
         });
 
-        this.setState({ rentals: rentals.reverse().slice(0, 4) });
+        this.setState({ rentals: rentals });
       });
   }
 
@@ -148,9 +150,7 @@ export default class Search extends Component {
 
           <View style={styles.interestContainer}>
             <View style={styles.interestHeader}>
-              <Text style={styles.text1IterestHeader}>
-                Trending
-              </Text>
+              <Text style={styles.text1IterestHeader}>Trending</Text>
               <TouchableOpacity>
                 <Text style={styles.text2IterestHeader}>Show all</Text>
               </TouchableOpacity>
@@ -168,7 +168,9 @@ export default class Search extends Component {
 
           <View style={styles.interestContainer}>
             <View style={styles.interestHeader}>
-              <Text style={styles.text1IterestHeader}>It might interest you</Text>
+              <Text style={styles.text1IterestHeader}>
+                It might interest you
+              </Text>
               <TouchableOpacity>
                 <Text style={styles.text2IterestHeader}>Show all</Text>
               </TouchableOpacity>

@@ -50,7 +50,6 @@ export default class ItemRental extends Component {
       let reservations = Object.values(data.reservations);
 
       reservations.forEach(function(itemReservation) {
-        console.log(itemReservation);
         if (itemReservation.rentalMaker == currentUser) {
           THIS.setState({
             hasCurrentUserReservedItem: true,

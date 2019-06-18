@@ -13,7 +13,8 @@ import {
   TouchableOpacity,
   Image,
   ScrollView,
-  Share
+  Share,
+  Alert
 } from "react-native";
 import { Action } from "react-native-router-flux";
 import { RNCamera } from "react-native-camera";
@@ -30,8 +31,8 @@ export default class ScanQR extends Component {
     super(props);
   }
 
-  QRanalysis = ({ barcodes }) => {
-    barcodes.forEach(barcode => alert(barcode.data));
+  onBarCodeRead = e => {
+    Alert.alert("Barcode value is" + e.data, "Barcode type is" + e.type);
   };
 
   render() {
@@ -45,7 +46,7 @@ export default class ScanQR extends Component {
             flex: 1,
             width: "100%"
           }}
-          onBarCodeRead={this.QRanalysis}
+          onBarCodeRead={this.onBarCodeRead}
         />
 
         <View

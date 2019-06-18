@@ -59,6 +59,7 @@ const styles = StyleSheet.create({
     bottom: 0
   },
   containerAuthentication: {
+    flex: 1,
     width: "100%",
     paddingHorizontal: responsiveWidth(5.33)
   },
