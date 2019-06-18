@@ -16,8 +16,7 @@ import {
   Share
 } from "react-native";
 import { Action } from "react-native-router-flux";
-import { CodeScanner } from "react-native-pure-code-view";
-
+import { RNCamera } from "react-native-camera";
 import {
   responsiveWidth,
   responsiveHeight
@@ -31,23 +30,40 @@ export default class ScanQR extends Component {
     super(props);
   }
 
-  handleScanSuccess = e => {
-    console.log(e);
+  QRanalysis = ({ barcodes }) => {
+    barcodes.forEach(barcode => alert(barcode.data));
   };
 
   render() {
     return (
       <View style={styles.container}>
-        <QRCodeView
-          title="test"
-          onScanSuccess={this.handleScanSuccess}
-          onPermissionsNotGranted={this.handlePermissionsNotGranted}
-          onPermissionsGranted={this.handlePermissionsGranted}
-          onPermissionsDenied={this.handlePermissionsDenied}
-          style={styles.codeScanner}
+        <RNCamera
+          ref={ref => {
+            this.camera = ref;
+          }}
+          style={{
+            flex: 1,
+            width: "100%"
+          }}
+          onBarCodeRead={this.QRanalysis}
         />
 
-        <Text style={styles.qrInstructions}>Show this code to the owner</Text>
+        <View
+          style={{
+            position: "absolute",
+            alignSelf: "center",
+            top: "30%",
+            width: responsiveWidth(50),
+            height: responsiveWidth(50),
+            borderWidth: 1,
+            borderColor: "white",
+            backgroundColor: "transparent"
+          }}
+        />
+
+        <Text style={styles.qrInstructions}>
+          Position the QR code in this frame
+        </Text>
       </View>
     );
   }

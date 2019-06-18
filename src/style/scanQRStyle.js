@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     width: "100%",
     textAlign: "center",
     fontFamily: "SFProText-Regular",
-    color: "rgba(0,0,0,0.6)",
+    color: "white",
     fontSize: responsiveFontSize(2)
   }
 });
