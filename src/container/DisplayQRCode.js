@@ -30,7 +30,7 @@ export default class DisplayQRCode extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { address: "38Y3kntfHJoTPFWnmU2K4gxo2oTi5rjXRT" };
+    this.state = { key: this.props.key };
   }
 
   render() {

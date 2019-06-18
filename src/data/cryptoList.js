@@ -2,13 +2,13 @@ export default (cryptoList = [
   {
     name: "euro",
     logo: require("../../assets/coins/euro.png"),
-    color: "#30A4E8",
+    color: "#17A370",
     isSelected: false
   },
   {
-    name: "dollar",
-    logo: require("../../assets/coins/dollar.png"),
-    color: "#17A370",
+    name: "paypal",
+    logo: require("../../assets/coins/paypal.png"),
+    color: "#009de2",
     isSelected: false
   },
   {

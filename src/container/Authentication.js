@@ -171,7 +171,7 @@ export default class Authentication extends Component {
           "/authentication/" +
           isUserOwner
       )
-      .on("value", authenticationSnapshot => {
+      .once("value", authenticationSnapshot => {
         let authenticationState = authenticationSnapshot.val();
 
         this.setState(authenticationState);
@@ -216,7 +216,7 @@ export default class Authentication extends Component {
   }
 
   render() {
-    const { isOwner } = this.props;
+    const { isOwner, reservationKey } = this.props;
 
     const {
       pageIndex,
@@ -534,14 +534,18 @@ export default class Authentication extends Component {
 
                       {!isOwner ? (
                         <TouchableOpacity
-                          onPress={() => Actions.DisplayQRCode()}
+                          onPress={() =>
+                            Actions.DisplayQRCode({ key: reservationKey })
+                          }
                           style={styles.doneBtn}
                         >
                           <Text style={styles.textDoneBtn}>Show QR code</Text>
                         </TouchableOpacity>
                       ) : (
                         <TouchableOpacity
-                          onPress={() => Actions.ScanQR()}
+                          onPress={() =>
+                            Actions.ScanQR({ key: reservationKey })
+                          }
                           style={styles.doneBtn}
                         >
                           <Text style={styles.textDoneBtn}>Scan QR code</Text>
