@@ -12,6 +12,7 @@ import {
   TextInput,
   TouchableOpacity,
   Image,
+  Modal,
   ScrollView,
   Dimensions
 } from "react-native";
@@ -23,7 +24,9 @@ import {
 import firebase from "react-native-firebase";
 import ImagePicker from "react-native-image-picker";
 import ImageResizer from "react-native-image-resizer";
-import uuid from "uuid/v4"; // Import UUID to generate UUID
+import uuid from "uuid/v4";
+import QRCode from "react-native-qrcode-svg";
+import { RNCamera } from "react-native-camera";
 
 import * as userActions from "../actions/userActions";
 import styles from "../style/authenticationStyle";
@@ -60,7 +63,9 @@ export default class Authentication extends Component {
       progress: 0,
       propertyPhotos: [],
       propertyPhotosEnd: [],
-      usersSelfie: null
+      usersSelfie: null,
+      isDisplayQrVisible: false,
+      isScanQrVisible: false
     };
   }
 
@@ -161,10 +166,10 @@ export default class Authentication extends Component {
   };
 
   componentWillMount() {
-    this.getAuthenticationData();
+    this.getAuthenticationState();
   }
 
-  getAuthenticationData() {
+  getAuthenticationState() {
     const { isOwner, rentalKey, reservationKey } = this.props;
 
     let isUserOwner = isOwner ? "owner/" : "renter/";
@@ -218,6 +223,17 @@ export default class Authentication extends Component {
       .update(this.state);
   }
 
+  onBarCodeRead = e => {
+    const { key } = this.props;
+
+    if (e.data == key) {
+      this.setState({ isScanQrVisible: false });
+      this.doneStepAuthentication(0);
+    } else {
+      Alert.alert(e.data);
+    }
+  };
+
   render() {
     const { isOwner, reservationKey } = this.props;
 
@@ -229,7 +245,9 @@ export default class Authentication extends Component {
       propertyPhotosEnd,
       notes,
       notesEnd,
-      usersSelfie
+      usersSelfie,
+      isDisplayQrVisible,
+      isScanQrVisible
     } = this.state;
 
     return (
@@ -540,7 +558,7 @@ export default class Authentication extends Component {
                       {!isOwner ? (
                         <TouchableOpacity
                           onPress={() =>
-                            Actions.DisplayQRCode({ key: reservationKey })
+                            this.setState({ isDisplayQrVisible: true })
                           }
                           style={styles.doneBtn}
                         >
@@ -549,7 +567,7 @@ export default class Authentication extends Component {
                       ) : (
                         <TouchableOpacity
                           onPress={() =>
-                            Actions.ScanQR({ key: reservationKey })
+                            this.setState({ isScanQrVisible: true })
                           }
                           style={styles.doneBtn}
                         >
@@ -745,7 +763,7 @@ export default class Authentication extends Component {
                       {!isOwner ? (
                         <TouchableOpacity
                           onPress={() =>
-                            Actions.DisplayQRCode({ key: reservationKey })
+                            this.setState({ isDisplayQrVisible: true })
                           }
                           style={styles.doneBtn}
                         >
@@ -754,7 +772,7 @@ export default class Authentication extends Component {
                       ) : (
                         <TouchableOpacity
                           onPress={() =>
-                            Actions.ScanQR({ key: reservationKey })
+                            this.setState({ isScanQrVisible: true })
                           }
                           style={styles.doneBtn}
                         >
@@ -768,6 +786,72 @@ export default class Authentication extends Component {
             </View>
           </ScrollView>
         </ScrollView>
+
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={isDisplayQrVisible}
+          onRequestClose={() => {
+            this.setState({ isDisplayQrVisible: false });
+          }}
+        >
+          <View style={styles.container}>
+            <View style={styles.QRcontainer}>
+              <QRCode value={reservationKey} size={responsiveWidth(50)} />
+            </View>
+
+            <Text style={styles.qrInstructions}>
+              Show this code to the owner
+            </Text>
+
+            <TouchableOpacity
+              style={styles.closeModal}
+              onPress={() => this.setState({ isDisplayQrVisible: false })}
+            >
+              <Image
+                resizeMode="contain"
+                style={{ width: "100%", height: "100%" }}
+                source={require("../../assets/UI/close.png")}
+              />
+            </TouchableOpacity>
+          </View>
+        </Modal>
+
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={isScanQrVisible}
+          onRequestClose={() => {
+            this.setState({ isScanQrVisible: false });
+          }}
+        >
+          <View style={styles.container}>
+            <RNCamera
+              ref={ref => {
+                this.camera = ref;
+              }}
+              style={styles.scanCamera}
+              onBarCodeRead={this.onBarCodeRead}
+            />
+
+            <View style={styles.squareQr} />
+
+            <Text style={[styles.qrInstructions, { color: "white" }]}>
+              Position the QR code in this frame
+            </Text>
+
+            <TouchableOpacity
+              style={styles.closeModal}
+              onPress={() => this.setState({ isScanQrVisible: false })}
+            >
+              <Image
+                resizeMode="contain"
+                style={{ width: "100%", height: "100%" }}
+                source={require("../../assets/UI/close.png")}
+              />
+            </TouchableOpacity>
+          </View>
+        </Modal>
       </View>
     );
   }

@@ -8,8 +8,7 @@ import {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FFFFFF",
-    position: "relative"
+    backgroundColor: "#FFFFFF"
   },
   inboxText: {
     marginLeft: responsiveWidth(5.33),
@@ -150,6 +149,44 @@ const styles = StyleSheet.create({
     fontFamily: "SFProText-Regular",
     fontWeight: "900",
     color: "#fff"
+  },
+  // Modal DisplayQRCode
+  closeModal: {
+    position: "absolute",
+    top: responsiveWidth(15),
+    right: responsiveWidth(5.33),
+    width: responsiveWidth(5),
+    height: responsiveHeight(5)
+  },
+  QRcontainer: {
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  qrInstructions: {
+    position: "absolute",
+    bottom: responsiveHeight(5),
+    width: "100%",
+    textAlign: "center",
+    fontFamily: "SFProText-Regular",
+    color: "rgba(0,0,0,0.6)",
+    fontSize: responsiveFontSize(2)
+  },
+  // Modal ScanQR
+  squareQr: {
+    position: "absolute",
+    alignSelf: "center",
+    top: "30%",
+    width: responsiveWidth(50),
+    height: responsiveWidth(50),
+    borderWidth: 1,
+    borderColor: "white",
+    backgroundColor: "transparent"
+  },
+  scanCamera: {
+    flex: 1,
+    width: "100%"
   }
 });
 
