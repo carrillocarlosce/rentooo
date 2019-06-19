@@ -87,12 +87,10 @@ export default class Authentication extends Component {
     }
   };
 
-  uploadImage = isSelfie => {
+  uploadImage = (isSelfie, isEnd) => {
     ImagePicker.showImagePicker(options, response => {
       if (!response.didCancel) {
         const source = { uri: response.uri };
-
-        console.log(response);
 
         ImageResizer.createResizedImage(response.uri, 400, 300, "JPEG", 80)
           .then(({ uri }) => {
@@ -120,9 +118,16 @@ export default class Authentication extends Component {
                   };
 
                   if (snapshot.state === firebase.storage.TaskState.SUCCESS) {
-                    const allImages = this.state.propertyPhotos;
-                    !isSelfie && allImages.push(snapshot.downloadURL);
-                    console.log(snapshot.downloadURL);
+                    const propertyPhotos = this.state.propertyPhotos;
+                    const propertyPhotosEnd = this.state.propertyPhotosEnd;
+
+                    !isSelfie &&
+                      !isEnd &&
+                      propertyPhotos.push(snapshot.downloadURL);
+
+                    !isSelfie &&
+                      isEnd &&
+                      propertyPhotosEnd.push(snapshot.downloadURL);
 
                     state = {
                       ...state,
@@ -130,7 +135,8 @@ export default class Authentication extends Component {
                       imgSource: "",
                       imageUri: "",
                       progress: 0,
-                      propertyPhotos: allImages,
+                      propertyPhotos: propertyPhotos,
+                      propertyPhotosEnd: propertyPhotosEnd,
                       usersSelfie: isSelfie
                         ? snapshot.downloadURL
                         : this.state.usersSelfie
@@ -187,15 +193,15 @@ export default class Authentication extends Component {
       currentStartStep,
       currentEndStep,
       propertyPhotos,
+      propertyPhotosEnd,
       notes,
+      notesEnd,
       usersSelfie
     } = this.state;
 
-    console.log(this.state);
-
     index == 0
       ? this.setState({ currentStartStep: currentStartStep + 1 })
-      : this.setState({ currentEndStep: currentStartStep + 1 });
+      : this.setState({ currentEndStep: currentEndStep + 1 });
 
     let isUserOwner = isOwner ? "owner/" : "renter/";
 
@@ -352,7 +358,7 @@ export default class Authentication extends Component {
 
                         {propertyPhotos.length < 3 && (
                           <TouchableOpacity
-                            onPress={() => this.uploadImage(false)}
+                            onPress={() => this.uploadImage(false, false)}
                             style={styles.addPicture}
                           >
                             <Image
@@ -494,7 +500,7 @@ export default class Authentication extends Component {
 
                         {usersSelfie == null && (
                           <TouchableOpacity
-                            onPress={() => this.uploadImage(true)}
+                            onPress={() => this.uploadImage(true, false)}
                             style={styles.addPicture}
                           >
                             <Image
@@ -639,7 +645,7 @@ export default class Authentication extends Component {
 
                         {propertyPhotosEnd.length < 3 && (
                           <TouchableOpacity
-                            onPress={() => this.uploadImage(false)}
+                            onPress={() => this.uploadImage(false, true)}
                             style={styles.addPicture}
                           >
                             <Image
@@ -664,10 +670,10 @@ export default class Authentication extends Component {
                 </View>
               )}
 
-              {currentEndStep > 2 && (
+              {currentEndStep > 1 && (
                 <View style={styles.itemAuthentication}>
                   <Text style={styles.titleAuthentication}>3. Notes</Text>
-                  {currentEndStep > 3 ? (
+                  {currentEndStep > 2 ? (
                     <View>
                       <Text
                         style={[
@@ -675,7 +681,7 @@ export default class Authentication extends Component {
                           { marginBottom: responsiveHeight(2) }
                         ]}
                       >
-                        "{notes}"
+                        "{notesEnd}"
                       </Text>
 
                       <Done />
@@ -724,7 +730,7 @@ export default class Authentication extends Component {
                 </View>
               )}
 
-              {currentEndStep > 4 && (
+              {currentEndStep > 2 && (
                 <View style={styles.itemAuthentication}>
                   <Text style={styles.titleAuthentication}>4. QR code</Text>
                   {currentEndStep > 5 ? (

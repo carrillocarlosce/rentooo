@@ -29,17 +29,15 @@ import styles from "../style/displayQRCodeStyle";
 export default class DisplayQRCode extends Component {
   constructor(props) {
     super(props);
-
-    this.state = { key: this.props.key };
   }
 
   render() {
-    const { address } = this.state;
+    const { key } = this.props;
 
     return (
       <View style={styles.container}>
         <View style={styles.QRcontainer}>
-          <QRCode value={address} size={responsiveWidth(50)} />
+          <QRCode value={key} size={responsiveWidth(50)} />
         </View>
 
         <Text style={styles.qrInstructions}>Show this code to the owner</Text>

@@ -16,7 +16,7 @@ import {
   Share,
   Alert
 } from "react-native";
-import { Action } from "react-native-router-flux";
+import { Actions } from "react-native-router-flux";
 import { RNCamera } from "react-native-camera";
 import {
   responsiveWidth,
@@ -32,7 +32,11 @@ export default class ScanQR extends Component {
   }
 
   onBarCodeRead = e => {
-    Alert.alert("Barcode value is" + e.data, "Barcode type is" + e.type);
+    const { key } = this.props;
+
+    if (e.data == key) {
+      Actions.pop();
+    }
   };
 
   render() {
