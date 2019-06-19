@@ -15,6 +15,7 @@ import {
 } from "react-native-responsive-dimensions";
 import moment from "moment";
 import firebase from "react-native-firebase";
+import { requestOneTimePayment } from "react-native-paypal";
 
 import * as userActions from "../actions/userActions";
 import styles from "../style/rentItemStyle";
@@ -52,22 +53,66 @@ export default class RentItemCheckout extends Component {
 
     let totalUSDAmount = numberDaysReservation * itemRental.dailyDollarPrice;
     let rentalFeeUSD = totalUSDAmount * 0.1;
+    let rentalRef = Math.random()
+      .toString(36)
+      .substr(2, 9)
+      .toUpperCase();
 
-    userActions.convertCoinValue(chosenCurrency, "usd").then(usdValue => {
+    if (chosenCurrency !== "paypal" && chosenCurrency !== "creditCard") {
+      userActions.convertCoinValue(chosenCurrency, "usd").then(usdValue => {
+        this.setState({
+          rentalRef: rentalRef,
+          totalUSDAmount: totalUSDAmount,
+          rentalFeeUSD: rentalFeeUSD,
+          totalCurrencyAmount: (totalUSDAmount + rentalFeeUSD) / usdValue,
+          numberDaysReservation: numberDaysReservation
+        });
+      });
+    } else {
       this.setState({
-        rentalRef: Math.random()
-          .toString(36)
-          .substr(2, 9)
-          .toUpperCase(),
+        rentalRef: rentalRef,
         totalUSDAmount: totalUSDAmount,
         rentalFeeUSD: rentalFeeUSD,
-        totalCurrencyAmount: (totalUSDAmount + rentalFeeUSD) / usdValue,
+        totalCurrencyAmount: totalUSDAmount + rentalFeeUSD,
         numberDaysReservation: numberDaysReservation
       });
-    });
+    }
   }
 
-  onCheckout() {
+  async onCheckout() {
+    const {
+      chosenCurrency,
+      totalUSDAmount,
+      totalCurrencyAmount,
+      numberDaysReservation,
+      rentalRef
+    } = this.state;
+
+    if (chosenCurrency == "paypal") {
+      token =
+        "eyJ2ZXJzaW9uIjoyLCJhdXRob3JpemF0aW9uRmluZ2VycHJpbnQiOiJleUowZVhBaU9pSktWMVFpTENKaGJHY2lPaUpGVXpJMU5pSXNJbXRwWkNJNklqSXdNVGd3TkRJMk1UWXRjMkZ1WkdKdmVDSjkuZXlKbGVIQWlPakUxTmpFd05qSTFNRFlzSW1wMGFTSTZJbUk0T0dGaU0ySm1MVGhtWmpZdE5EbGxOaTFoTkdObUxXSTRObU5sTTJNM1kyWXdZaUlzSW5OMVlpSTZJak0wT0hCck9XTm5aak5pWjNsM01tSWlMQ0pwYzNNaU9pSkJkWFJvZVNJc0ltMWxjbU5vWVc1MElqcDdJbkIxWW14cFkxOXBaQ0k2SWpNME9IQnJPV05uWmpOaVozbDNNbUlpTENKMlpYSnBabmxmWTJGeVpGOWllVjlrWldaaGRXeDBJanBtWVd4elpYMHNJbkpwWjJoMGN5STZXeUp0WVc1aFoyVmZkbUYxYkhRaVhTd2liM0IwYVc5dWN5STZlMzE5LjNHelUtWVhmcFRSdWRzQ1ljeDN4REk5YVZFcUtQQVRSMHg3MnAwUGYxUmVidkJmUkJsNGU4U1Jyeml4aTlVM2ExSXA5Y2FlS0NPSlNUVy1YYWN4bGlnIiwiY29uZmlnVXJsIjoiaHR0cHM6Ly9hcGkuc2FuZGJveC5icmFpbnRyZWVnYXRld2F5LmNvbTo0NDMvbWVyY2hhbnRzLzM0OHBrOWNnZjNiZ3l3MmIvY2xpZW50X2FwaS92MS9jb25maWd1cmF0aW9uIiwiZ3JhcGhRTCI6eyJ1cmwiOiJodHRwczovL3BheW1lbnRzLnNhbmRib3guYnJhaW50cmVlLWFwaS5jb20vZ3JhcGhxbCIsImRhdGUiOiIyMDE4LTA1LTA4In0sImNoYWxsZW5nZXMiOltdLCJlbnZpcm9ubWVudCI6InNhbmRib3giLCJjbGllbnRBcGlVcmwiOiJodHRwczovL2FwaS5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tOjQ0My9tZXJjaGFudHMvMzQ4cGs5Y2dmM2JneXcyYi9jbGllbnRfYXBpIiwiYXNzZXRzVXJsIjoiaHR0cHM6Ly9hc3NldHMuYnJhaW50cmVlZ2F0ZXdheS5jb20iLCJhdXRoVXJsIjoiaHR0cHM6Ly9hdXRoLnZlbm1vLnNhbmRib3guYnJhaW50cmVlZ2F0ZXdheS5jb20iLCJhbmFseXRpY3MiOnsidXJsIjoiaHR0cHM6Ly9vcmlnaW4tYW5hbHl0aWNzLXNhbmQuc2FuZGJveC5icmFpbnRyZWUtYXBpLmNvbS8zNDhwazljZ2YzYmd5dzJiIn0sInRocmVlRFNlY3VyZUVuYWJsZWQiOnRydWUsInBheXBhbEVuYWJsZWQiOnRydWUsInBheXBhbCI6eyJkaXNwbGF5TmFtZSI6IkFjbWUgV2lkZ2V0cywgTHRkLiAoU2FuZGJveCkiLCJjbGllbnRJZCI6bnVsbCwicHJpdmFjeVVybCI6Imh0dHA6Ly9leGFtcGxlLmNvbS9wcCIsInVzZXJBZ3JlZW1lbnRVcmwiOiJodHRwOi8vZXhhbXBsZS5jb20vdG9zIiwiYmFzZVVybCI6Imh0dHBzOi8vYXNzZXRzLmJyYWludHJlZWdhdGV3YXkuY29tIiwiYXNzZXRzVXJsIjoiaHR0cHM6Ly9jaGVja291dC5wYXlwYWwuY29tIiwiZGlyZWN0QmFzZVVybCI6bnVsbCwiYWxsb3dIdHRwIjp0cnVlLCJlbnZpcm9ubWVudE5vTmV0d29yayI6dHJ1ZSwiZW52aXJvbm1lbnQiOiJvZmZsaW5lIiwidW52ZXR0ZWRNZXJjaGFudCI6ZmFsc2UsImJyYWludHJlZUNsaWVudElkIjoibWFzdGVyY2xpZW50MyIsImJpbGxpbmdBZ3JlZW1lbnRzRW5hYmxlZCI6dHJ1ZSwibWVyY2hhbnRBY2NvdW50SWQiOiJhY21ld2lkZ2V0c2x0ZHNhbmRib3giLCJjdXJyZW5jeUlzb0NvZGUiOiJVU0QifSwibWVyY2hhbnRJZCI6IjM0OHBrOWNnZjNiZ3l3MmIiLCJ2ZW5tbyI6Im9mZiJ9";
+
+      const {
+        nonce,
+        payerId,
+        email,
+        firstName,
+        lastName,
+        phone
+      } = await requestOneTimePayment(token, {
+        amount: totalCurrencyAmount,
+        currency: "GBP",
+        localeCode: "en_GB",
+        shippingAddressRequired: false,
+        userAction: "commit",
+        intent: "authorize"
+      }).then(result => console.log(result));
+    } else {
+      this.handleReservationTransactions();
+    }
+  }
+
+  handleReservationTransactions() {
     const { rentalReservation, itemRental } = this.props;
     const {
       chosenCurrency,
@@ -155,6 +200,7 @@ export default class RentItemCheckout extends Component {
 
   async startChat(reservationKey) {
     const { itemRental, rentalReservation } = this.props;
+    const { chosenCurrency } = this.state;
 
     let rentalOwner = itemRental.owner;
     let currentUser = window.currentUser;

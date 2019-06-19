@@ -40,6 +40,8 @@ target 'rentoo' do
 
   pod 'react-native-camera', :path => '../node_modules/react-native-camera'
 
+  pod 'Braintree'
+
   target 'rentooTests' do
     inherit! :search_paths
     # Pods for testing

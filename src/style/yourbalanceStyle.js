@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
     paddingTop: responsiveHeight(2)
   },
   bottomButton: {
-    width: responsiveWidth(43.2),
+    flex: 1,
     height: responsiveHeight(5.66),
     borderRadius: 5,
     flexDirection: "row",

@@ -93,7 +93,8 @@ export default class ItemDetails extends Component {
       .ref("rentals/")
       .orderByChild("category")
       .equalTo(data.category)
-      .on("value", rentalsSnapshot => {
+      .limitToLast(4)
+      .once("value", rentalsSnapshot => {
         let rentalsYouMayLike = [];
         let i = 0;
 
@@ -104,10 +105,8 @@ export default class ItemDetails extends Component {
           rentalsYouMayLike.push(item);
         });
 
-        console.log(rentalsYouMayLike);
-
         this.setState({
-          rentalsYouMayLike: rentalsYouMayLike.reverse().slice(0, 4)
+          rentalsYouMayLike: rentalsYouMayLike
         });
       });
   }

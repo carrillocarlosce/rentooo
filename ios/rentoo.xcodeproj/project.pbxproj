@@ -89,6 +89,7 @@
 		84736D482291BC43005DA782 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84736CD92291B366005DA782 /* libRNVectorIcons.a */; };
 		84736D492291BC4E005DA782 /* libRNReanimated.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84736CD32291B365005DA782 /* libRNReanimated.a */; };
 		84736D4A2291BC5A005DA782 /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84736CE62291B366005DA782 /* libRNGestureHandler.a */; };
+		86C71ADD5EC24948A8E1EA0E /* libRNPaypal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 51C60078025F498CA817D202 /* libRNPaypal.a */; };
 		89467529D8FC4A249AAB4249 /* TruenoBd.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5E30AA99868C40048BEBB953 /* TruenoBd.otf */; };
 		89B2B63C987E4ABB9F8B5FC9 /* TruenoBlk.otf in Resources */ = {isa = PBXBuildFile; fileRef = A59AEA01F7F043A086BBF024 /* TruenoBlk.otf */; };
 		8E0C36C5BFBC4262AF75DABF /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D97B007201564F158B8F0A28 /* SimpleLineIcons.ttf */; };
@@ -440,6 +441,13 @@
 			remoteGlobalIDString = BF8FCF941BFFB184000FCD37;
 			remoteInfo = RNGeocoder;
 		};
+		E4A82EA722BAC21B00B34B32 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F43F5FC662F54BEA9031BE51 /* RNPaypal.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNPaypal;
+		};
 		E4BCD84322A1986A008F921A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E4BCD83E22A19869008F921A /* BVLinearGradient.xcodeproj */;
@@ -512,6 +520,7 @@
 		4A7024A84837487EBC9B6513 /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
 		4F4F9E039051462992642FDD /* Roboto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto.ttf; path = "../node_modules/native-base/Fonts/Roboto.ttf"; sourceTree = "<group>"; };
 		516BEA5898D840A3B474C36E /* TruenoBlkOl.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = TruenoBlkOl.otf; path = ../assets/fonts/TruenoBlkOl.otf; sourceTree = "<group>"; };
+		51C60078025F498CA817D202 /* libRNPaypal.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNPaypal.a; sourceTree = "<group>"; };
 		5DCC2D6BFBCD84B7C170F368 /* Pods-rentoo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rentoo.release.xcconfig"; path = "Target Support Files/Pods-rentoo/Pods-rentoo.release.xcconfig"; sourceTree = "<group>"; };
 		5E30AA99868C40048BEBB953 /* TruenoBd.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = TruenoBd.otf; path = ../assets/fonts/TruenoBd.otf; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
@@ -611,6 +620,7 @@
 		ED4124AD1409C63FD1D25EA3 /* libPods-rentooTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-rentooTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE98E5C8F5944708B80E6CE9 /* TruenoBlkIt.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = TruenoBlkIt.otf; path = ../assets/fonts/TruenoBlkIt.otf; sourceTree = "<group>"; };
 		F1BB236A56914D029396486F /* SFProText-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProText-Regular.ttf"; path = "../assets/fonts/SFProText-Regular.ttf"; sourceTree = "<group>"; };
+		F43F5FC662F54BEA9031BE51 /* RNPaypal.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNPaypal.xcodeproj; path = "../node_modules/react-native-paypal/ios/RNPaypal.xcodeproj"; sourceTree = "<group>"; };
 		FA9E786240F0401C956159A5 /* TruenoExBd.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = TruenoExBd.otf; path = ../assets/fonts/TruenoExBd.otf; sourceTree = "<group>"; };
 		FDB83F4C330949D2A4045227 /* TruenoBdIt.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = TruenoBdIt.otf; path = ../assets/fonts/TruenoBdIt.otf; sourceTree = "<group>"; };
 		FEC7975E2B254FF0945BAFBF /* TruenoBdOl.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = TruenoBdOl.otf; path = ../assets/fonts/TruenoBdOl.otf; sourceTree = "<group>"; };
@@ -649,6 +659,7 @@
 				84736D472291BC36005DA782 /* libAirMaps.a in Frameworks */,
 				BA60C3C25BF434DE1AC99369 /* libPods-rentoo.a in Frameworks */,
 				C11B3932AF1F4EEF837D8DB8 /* libRNFirebase.a in Frameworks */,
+				86C71ADD5EC24948A8E1EA0E /* libRNPaypal.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -877,6 +888,7 @@
 				16D7798BB12F4F61B62A4C35 /* RNReanimated.xcodeproj */,
 				41AC09B72D7F4654B3ED714F /* RNGestureHandler.xcodeproj */,
 				9046EA41EBB04EBE882AACF3 /* RNFirebase.xcodeproj */,
+				F43F5FC662F54BEA9031BE51 /* RNPaypal.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -930,6 +942,7 @@
 				3FD18B627E19459D80E0ABD1 /* libRNVectorIcons-tvOS.a */,
 				3617E191B92E4E0F8534DC56 /* libRNGestureHandler-tvOS.a */,
 				9FE93369CFF54E888900D225 /* libRNFirebase.a */,
+				51C60078025F498CA817D202 /* libRNPaypal.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -1082,6 +1095,14 @@
 			isa = PBXGroup;
 			children = (
 				E47DF5C522A67C5400DD934C /* libRNGeocoder.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E4A82EA422BAC21B00B34B32 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E4A82EA822BAC21B00B34B32 /* libRNPaypal.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1290,6 +1311,10 @@
 				{
 					ProductGroup = 84736CE12291B366005DA782 /* Products */;
 					ProjectRef = 41AC09B72D7F4654B3ED714F /* RNGestureHandler.xcodeproj */;
+				},
+				{
+					ProductGroup = E4A82EA422BAC21B00B34B32 /* Products */;
+					ProjectRef = F43F5FC662F54BEA9031BE51 /* RNPaypal.xcodeproj */;
 				},
 				{
 					ProductGroup = 84736CCF2291B365005DA782 /* Products */;
@@ -1619,6 +1644,13 @@
 			remoteRef = E47DF5C422A67C5400DD934C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		E4A82EA822BAC21B00B34B32 /* libRNPaypal.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNPaypal.a;
+			remoteRef = E4A82EA722BAC21B00B34B32 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		E4BCD84422A1986A008F921A /* libBVLinearGradient.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1797,10 +1829,14 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-rentoo/Pods-rentoo-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/Braintree/Braintree-UI-Localization.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/Braintree/Braintree-Drop-In-Localization.bundle",
 				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Braintree-UI-Localization.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Braintree-Drop-In-Localization.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1956,12 +1992,14 @@
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)/../node_modules/react-native-paypal/ios",
 				);
 				INFOPLIST_FILE = rentooTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1993,12 +2031,14 @@
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)/../node_modules/react-native-paypal/ios",
 				);
 				INFOPLIST_FILE = rentooTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -2038,6 +2078,7 @@
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)/../node_modules/react-native-paypal/ios",
 				);
 				INFOPLIST_FILE = rentoo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -2073,6 +2114,7 @@
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)/../node_modules/react-native-paypal/ios",
 				);
 				INFOPLIST_FILE = rentoo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -2108,11 +2150,13 @@
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)/../node_modules/react-native-paypal/ios",
 				);
 				INFOPLIST_FILE = "rentoo-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -2153,11 +2197,13 @@
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)/../node_modules/react-native-paypal/ios",
 				);
 				INFOPLIST_FILE = "rentoo-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -2197,11 +2243,13 @@
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)/../node_modules/react-native-paypal/ios",
 				);
 				INFOPLIST_FILE = "rentoo-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -2242,11 +2290,13 @@
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)/../node_modules/react-native-paypal/ios",
 				);
 				INFOPLIST_FILE = "rentoo-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",

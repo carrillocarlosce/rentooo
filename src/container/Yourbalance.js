@@ -41,7 +41,9 @@ export default class Yourbalance extends Component {
     });
 
     this.getRecentTransactions();
-    this.getDollarValue();
+
+    if (data.name !== "paypal" && data.name !== "creditCard")
+      this.getDollarValue();
   }
 
   getRecentTransactions() {
@@ -96,7 +98,7 @@ export default class Yourbalance extends Component {
               <Text style={styles.currencyName}>{data.name.toUpperCase()}</Text>
             </View>
             <Text style={styles.currencyBalance}>{balance.toFixed(2)}</Text>
-            {data.name !== "dollar" && (
+            {dollarPrice !== 0 && (
               <Text style={styles.dollarCurrency}>
                 {dollarPrice.toFixed(2)}$
               </Text>
@@ -157,6 +159,7 @@ export default class Yourbalance extends Component {
             })}
           </View>
         </ScrollView>
+
         <View style={styles.bottomContainer}>
           <TouchableOpacity
             onPress={() => Actions.Send()}
@@ -169,24 +172,30 @@ export default class Yourbalance extends Component {
             />
             <Text style={styles.buttonText}>Send</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() =>
-              Actions.Receive({
-                title:
-                  "Receive " +
-                  data.name.charAt(0).toUpperCase() +
-                  data.name.slice(1)
-              })
-            }
-            style={[styles.bottomButton, { backgroundColor: "#0055FF" }]}
-          >
-            <Image
-              resizeMode="contain"
-              style={[styles.arrowBalance, styles.rotateIcons]}
-              source={require("../../assets/images/toparrow.png")}
-            />
-            <Text style={styles.buttonText}>Receive</Text>
-          </TouchableOpacity>
+
+          {data.name !== "paypal" && data.name !== "creditCard" && (
+            <TouchableOpacity
+              onPress={() =>
+                Actions.Receive({
+                  title:
+                    "Receive " +
+                    data.name.charAt(0).toUpperCase() +
+                    data.name.slice(1)
+                })
+              }
+              style={[
+                styles.bottomButton,
+                { backgroundColor: "#0055FF", marginLeft: 10 }
+              ]}
+            >
+              <Image
+                resizeMode="contain"
+                style={[styles.arrowBalance, styles.rotateIcons]}
+                source={require("../../assets/images/toparrow.png")}
+              />
+              <Text style={styles.buttonText}>Receive</Text>
+            </TouchableOpacity>
+          )}
         </View>
       </View>
     );
