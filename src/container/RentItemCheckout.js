@@ -6,7 +6,14 @@
  */
 
 import React, { Component } from "react";
-import { Text, View, TextInput, TouchableOpacity, Image } from "react-native";
+import {
+  Alert,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+  Image
+} from "react-native";
 import { Actions } from "react-native-router-flux";
 import {
   responsiveWidth,
@@ -106,7 +113,15 @@ export default class RentItemCheckout extends Component {
         shippingAddressRequired: false,
         userAction: "commit",
         intent: "authorize"
-      }).then(result => console.log(result));
+      })
+        .then(result => {
+          console.log(result);
+          this.handleReservationTransactions();
+        })
+        .catch(err => {
+          Alert.alert("Payment issue please check your PayPal account.");
+          console.log("error:", err);
+        });
     } else {
       this.handleReservationTransactions();
     }
@@ -170,7 +185,10 @@ export default class RentItemCheckout extends Component {
           }
           return amount;
         })
-        .then(result => {});
+        .then(result => {})
+        .catch(err => {
+          console.log("error:", err);
+        });
 
       firebase
         .database()
@@ -181,7 +199,10 @@ export default class RentItemCheckout extends Component {
           }
           return amount;
         })
-        .then(result => {});
+        .then(result => {})
+        .catch(err => {
+          console.log("error:", err);
+        });
 
       firebase
         .database()
