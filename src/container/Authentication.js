@@ -224,13 +224,13 @@ export default class Authentication extends Component {
   }
 
   onBarCodeRead = e => {
-    const { key } = this.props;
+    const { reservationKey } = this.props;
 
-    if (e.data == key) {
+    if (e.data == reservationKey) {
       this.setState({ isScanQrVisible: false });
       this.doneStepAuthentication(0);
     } else {
-      Alert.alert(e.data);
+      Alert.alert("This QR code is not valid");
     }
   };
 
