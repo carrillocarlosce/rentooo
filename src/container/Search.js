@@ -38,7 +38,7 @@ export default class Search extends Component {
     super(props);
     this.state = {
       searchString: "",
-      firstQuery: "",
+      query: "",
       rentals: []
     };
   }
@@ -70,7 +70,7 @@ export default class Search extends Component {
   _renderItem = (data, i) => <ItemRental data={data} />;
 
   render() {
-    const { firstQuery, rentals } = this.state;
+    const { query, rentals } = this.state;
     console.disableYellowBox = true;
 
     return (
@@ -92,10 +92,10 @@ export default class Search extends Component {
             inputStyle={styles.searchBarInput}
             placeholder="Search"
             onChangeText={query => {
-              this.setState({ firstQuery: query });
+              this.setState({ query: query });
             }}
-            value={firstQuery}
-            onSubmitEditing={() => Actions.Searchresult()}
+            value={query}
+            onSubmitEditing={() => Actions.Searchresult({ query: query })}
           />
           <View style={styles.btnContainer}>
             <TouchableOpacity style={styles.btnFiltersLayout}>

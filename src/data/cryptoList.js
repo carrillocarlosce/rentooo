@@ -1,7 +1,7 @@
 export default (cryptoList = [
   {
-    name: "euro",
-    logo: require("../../assets/coins/euro.png"),
+    name: "Credit Card",
+    logo: require("../../assets/coins/card.png"),
     color: "#17A370",
     isSelected: false
   },

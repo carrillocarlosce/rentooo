@@ -186,7 +186,7 @@ export default class ItemRental extends Component {
 
 const styles = StyleSheet.create({
   interestImageContainer: {
-    flex: 1,
+    width: "100%",
     flexDirection: "column",
     justifyContent: "flex-start",
     alignItems: "flex-start",
