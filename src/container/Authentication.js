@@ -463,7 +463,7 @@ export default class Authentication extends Component {
                         value={notes}
                         onChangeText={notes => this.setState({ notes })}
                         onSubmitEditing={() =>
-                          notes.length > 10 && this.nextStep()
+                          notes.length > 10 && this.doneStepAuthentication(0)
                         }
                         maxLength={200}
                         multiline={true}
@@ -583,28 +583,34 @@ export default class Authentication extends Component {
 
           <ScrollView style={styles.containerItemTab}>
             <View style={styles.containerAuthentication}>
-              <View style={styles.itemAuthentication}>
-                <Text style={styles.titleAuthentication}>
-                  1. State of the property
+              {currentStartStep < 6 ? (
+                <Text style={styles.textAuthentication}>
+                  This part will be available when you rental is done.
                 </Text>
-                {currentEndStep > 0 ? (
-                  <Done />
-                ) : (
-                  <View>
-                    <Text style={styles.textAuthentication}>
-                      Lorem ipsum dolor sit amet, consectetur adipis elit. Fusce
-                      vestibulum dapibus dolor sit amet.
-                    </Text>
+              ) : (
+                <View style={styles.itemAuthentication}>
+                  <Text style={styles.titleAuthentication}>
+                    1. State of the property
+                  </Text>
+                  {currentEndStep > 0 ? (
+                    <Done />
+                  ) : (
+                    <View>
+                      <Text style={styles.textAuthentication}>
+                        Lorem ipsum dolor sit amet, consectetur adipis elit.
+                        Fusce vestibulum dapibus dolor sit amet.
+                      </Text>
 
-                    <TouchableOpacity
-                      onPress={() => this.doneStepAuthentication(1)}
-                      style={styles.doneBtn}
-                    >
-                      <Text style={styles.textDoneBtn}>Done</Text>
-                    </TouchableOpacity>
-                  </View>
-                )}
-              </View>
+                      <TouchableOpacity
+                        onPress={() => this.doneStepAuthentication(1)}
+                        style={styles.doneBtn}
+                      >
+                        <Text style={styles.textDoneBtn}>Done</Text>
+                      </TouchableOpacity>
+                    </View>
+                  )}
+                </View>
+              )}
 
               {currentEndStep > 0 && (
                 <View style={styles.itemAuthentication}>

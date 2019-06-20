@@ -108,14 +108,15 @@ export default class RentItemCheckout extends Component {
         phone
       } = await requestOneTimePayment(token, {
         amount: totalCurrencyAmount,
-        currency: "GBP",
-        localeCode: "en_GB",
+        currency: "USD",
+        localeCode: "fr_FR",
         shippingAddressRequired: false,
         userAction: "commit",
         intent: "authorize"
       })
         .then(result => {
           console.log(result);
+          // todo créditer le compte paypal du montant reçu
           this.handleReservationTransactions();
         })
         .catch(err => {

@@ -195,7 +195,21 @@ export default class Inbox extends Component {
                           user: userData
                         };
 
-                        chatlist.push(object);
+                        if (chatlist.length > 0) {
+                          let replace_index = -1;
+                          chatlist.map((item, index) => {
+                            if (item.chatID == object.chatID) {
+                              replace_index = index;
+                            }
+                          });
+                          if (replace_index > -1) {
+                            chatlist[replace_index] = object;
+                          } else {
+                            chatlist.push(object);
+                          }
+                        } else {
+                          chatlist.push(object);
+                        }
 
                         let userRentals =
                           window.currentUser["userRentals"] !== undefined

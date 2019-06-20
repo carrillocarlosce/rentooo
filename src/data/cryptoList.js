@@ -18,21 +18,27 @@ export default (cryptoList = [
     isSelected: false
   },
   {
+    name: "binancecoin",
+    logo: require("../../assets/coins/binance.png"),
+    color: "#D79E28",
+    isSelected: false
+  },
+  {
     name: "bitcoin",
     logo: require("../../assets/coins/bitcoin.png"),
     color: "#F5922F",
     isSelected: false
   },
   {
-    name: "litecoin",
-    logo: require("../../assets/coins/litecoin.png"),
+    name: "ethereum",
+    logo: require("../../assets/coins/ethereum.png"),
     color: "#638EA9",
     isSelected: false
   },
   {
-    name: "binancecoin",
-    logo: require("../../assets/coins/binance.png"),
-    color: "#D79E28",
+    name: "Waves",
+    logo: require("../../assets/coins/waves.png"),
+    color: "#05F",
     isSelected: false
   }
 ]);
