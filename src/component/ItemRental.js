@@ -26,7 +26,8 @@ export default class ItemRental extends Component {
     super(props);
 
     this.state = {
-      isFullyLoaded: false,
+      isFullWidth:
+        this.props.isFullWidth !== undefined ? this.props.isFullWidth : false,
       hasCurrentUserReservedItem: false,
       reservationStatus: []
     };
@@ -34,10 +35,6 @@ export default class ItemRental extends Component {
 
   componentWillMount() {
     this.getReservationStatus();
-  }
-
-  componentDidMount() {
-    this.setState({ isFullyLoaded: true });
   }
 
   getReservationStatus() {
@@ -89,7 +86,7 @@ export default class ItemRental extends Component {
   render() {
     const { data } = this.props;
     const {
-      isFullyLoaded,
+      isFullWidth,
       hasCurrentUserReservedItem,
       reservationStatus
     } = this.state;
@@ -99,17 +96,33 @@ export default class ItemRental extends Component {
         ? Object.values(window.currentUser["watchlist"])
         : [];
 
-    const ComponentLoaded = () => (
-      <View style={styles.interestImageContainer}>
+    return (
+      <View
+        style={[
+          styles.containerItemRental,
+          this.props.style,
+          {
+            margin: isFullWidth ? 0 : 5
+          }
+        ]}
+      >
         <TouchableOpacity
-          style={styles.itemIterestBtnContainer}
+          style={styles.containerImageRental}
           onPress={() =>
             Actions.ItemDetails({
               data: data
             })
           }
         >
-          <Image style={styles.itemImage} source={{ uri: data.pictures[0] }} />
+          <Image
+            style={[
+              styles.itemImage,
+              {
+                height: isFullWidth ? responsiveWidth(60) : responsiveWidth(30)
+              }
+            ]}
+            source={{ uri: data.pictures[0] }}
+          />
           <TouchableOpacity
             style={styles.likeContainer}
             onPress={() => this.addToWatchlist(data.key)}
@@ -168,38 +181,25 @@ export default class ItemRental extends Component {
         )}
       </View>
     );
-
-    return (
-      <Placeholder
-        isReady={isFullyLoaded}
-        animation="fade"
-        whenReadyRender={() => <ComponentLoaded />}
-        style={{ margin: 5 }}
-      >
-        <Line height={90} width="90%" />
-        <Line width="50%" />
-        <Line width="70%" style={{ marginBottom: 40 }} />
-      </Placeholder>
-    );
   }
 }
 
 const styles = StyleSheet.create({
-  interestImageContainer: {
-    width: "100%",
+  containerItemRental: {
+    flex: 1,
     flexDirection: "column",
     justifyContent: "flex-start",
-    alignItems: "flex-start",
-    margin: 5
+    alignItems: "flex-start"
   },
-  itemIterestBtnContainer: {
+  containerImageRental: {
+    width: "100%",
     flexDirection: "column",
     justifyContent: "flex-start",
     alignItems: "flex-start"
   },
   itemImage: {
-    width: responsiveWidth(43),
-    height: responsiveWidth(30),
+    width: "100%",
+    height: "100%",
     borderRadius: 8,
     overflow: "hidden"
   },

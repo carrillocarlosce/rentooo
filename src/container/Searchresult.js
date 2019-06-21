@@ -38,12 +38,10 @@ export default class Searchresult extends Component {
   }
 
   componentWillMount() {
-    this.getRentals();
+    this.queryRentals(this.props.query);
   }
 
-  getRentals() {
-    const { query } = this.props;
-
+  queryRentals(query) {
     firebase
       .database()
       .ref("rentals/")
@@ -79,6 +77,7 @@ export default class Searchresult extends Component {
             placeholder="Search"
             onChangeText={query => {
               this.setState({ query: query });
+              this.queryRentals(query);
             }}
             value={query}
           />
@@ -104,7 +103,11 @@ export default class Searchresult extends Component {
 
             <View style={{ flex: 1 }}>
               {rentalsQuery.map((item, index) => (
-                <ItemRental data={item} />
+                <ItemRental
+                  data={item}
+                  style={{ marginBottom: responsiveHeight(2) }}
+                  isFullWidth={true}
+                />
               ))}
             </View>
           </View>
