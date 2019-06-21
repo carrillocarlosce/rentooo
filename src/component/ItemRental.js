@@ -26,8 +26,6 @@ export default class ItemRental extends Component {
     super(props);
 
     this.state = {
-      isFullWidth:
-        this.props.isFullWidth !== undefined ? this.props.isFullWidth : false,
       hasCurrentUserReservedItem: false,
       reservationStatus: []
     };
@@ -84,12 +82,8 @@ export default class ItemRental extends Component {
   }
 
   render() {
-    const { data } = this.props;
-    const {
-      isFullWidth,
-      hasCurrentUserReservedItem,
-      reservationStatus
-    } = this.state;
+    const { data, isFullWidth } = this.props;
+    const { hasCurrentUserReservedItem, reservationStatus } = this.state;
 
     const userWatchlist =
       window.currentUser["watchlist"] !== undefined
@@ -222,7 +216,7 @@ const styles = StyleSheet.create({
     color: "#767676"
   },
   currencyWrapper: {
-    width: responsiveWidth(43),
+    width: "100%",
     flexDirection: "row",
     justifyContent: "space-between"
   },
