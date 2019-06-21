@@ -70,6 +70,7 @@ export default class CategoryPage extends Component {
   }
 
   _renderItem = (data, i) => <ItemRental data={data} />;
+  _renderPlaceholder = (data, i) => <View style={{ flex: 1, margin: 5 }} />;
 
   headerTitleUpdate(event) {
     let scrollVertical = event.nativeEvent.contentOffset.y;
@@ -101,6 +102,7 @@ export default class CategoryPage extends Component {
           <Grid
             style={{ marginHorizontal: -5 }}
             renderItem={this._renderItem}
+            renderPlaceholder={this._renderPlaceholder}
             data={rentals}
             numColumns={2}
           />

@@ -53,75 +53,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: "white"
   },
-  interestImageContainer: {
-    flexDirection: "column",
-    justifyContent: "flex-start",
-    alignItems: "flex-start",
-    width: responsiveWidth(43.2),
-    // height: responsiveHeight(30),
-    marginHorizontal: 10
-  },
-  itemIterestBtnContainer: {
-    flexDirection: "column",
-    justifyContent: "flex-start",
-    alignItems: "flex-start"
-  },
-  heartIcon: {
-    position: "absolute",
-    right: responsiveHeight(1),
-    top: responsiveHeight(1)
-  },
-  itemText: {
-    marginTop: responsiveHeight(1),
-    fontFamily: "SFProText-Semibold",
-    fontSize: 15
-  },
-  currencyText: {
-    marginTop: 5,
-    fontFamily: "SFProText-Semibold",
-    fontSize: 13,
-    color: "#767676"
-  },
-  currencyWrapper: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignSelf: "stretch"
-  },
-  currencyContainer: {
-    width: responsiveWidth(10),
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center"
-  },
-  currency: {
-    width: responsiveWidth(3),
-    height: responsiveHeight(3)
-  },
-  starLayout: {
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignSelf: "flex-start",
-    alignItems: "center"
-  },
-  starText: {
-    fontFamily: "SFProText-Semibold",
-    fontSize: 13,
-    marginLeft: 5,
-    color: "#FFC08A"
-  },
-  starView: {
-    width: 50,
-    height: 10
-  },
-  interestRowContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center"
-  },
-  itemImage: {
-    width: 162,
-    height: 122
-  }
+  scrollViewRentals: { marginTop: 24, paddingLeft: responsiveWidth(5.33) }
 });
 
 module.exports = styles;

@@ -63,6 +63,7 @@ export default class Profile extends Component {
   getUserRentals;
 
   _renderItem = (data, i) => <ItemRental data={data} />;
+  _renderPlaceholder = (data, i) => <View style={{ flex: 1, margin: 5 }} />;
 
   render() {
     const userName =

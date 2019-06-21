@@ -68,6 +68,7 @@ export default class Search extends Component {
   }
 
   _renderItem = (data, i) => <ItemRental data={data} />;
+  _renderPlaceholder = (data, i) => <View style={{ flex: 1, margin: 5 }} />;
 
   render() {
     const { query, rentals } = this.state;
@@ -160,6 +161,7 @@ export default class Search extends Component {
               <Grid
                 style={{ marginHorizontal: -5 }}
                 renderItem={this._renderItem}
+                renderPlaceholder={this._renderPlaceholder}
                 data={rentals}
                 numColumns={2}
               />
@@ -180,6 +182,7 @@ export default class Search extends Component {
               <Grid
                 style={{ marginHorizontal: -5 }}
                 renderItem={this._renderItem}
+                renderPlaceholder={this._renderPlaceholder}
                 data={rentals}
                 numColumns={2}
               />

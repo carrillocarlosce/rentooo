@@ -25,6 +25,7 @@ import styles from "../style/dashboardStyle";
 const width = Dimensions.get("window").width;
 
 const itemTab = [
+  { title: "Now" },
   { title: "Upcoming" },
   { title: "Past" },
   { title: "Watchlist" },
@@ -137,6 +138,7 @@ export default class Dashboard extends React.Component {
   };
 
   _renderItem = (data, i) => <ItemRental data={data} />;
+  _renderPlaceholder = (data, i) => <View style={{ flex: 1, margin: 5 }} />;
 
   render() {
     const {
@@ -195,6 +197,7 @@ export default class Dashboard extends React.Component {
             <Grid
               style={{ marginHorizontal: -5 }}
               renderItem={this._renderItem}
+              renderPlaceholder={this._renderPlaceholder}
               data={rentalsUpcoming}
               numColumns={2}
             />
@@ -203,6 +206,7 @@ export default class Dashboard extends React.Component {
             <Grid
               style={{ marginHorizontal: -5 }}
               renderItem={this._renderItem}
+              renderPlaceholder={this._renderPlaceholder}
               data={rentalsPast}
               numColumns={2}
             />
@@ -211,6 +215,7 @@ export default class Dashboard extends React.Component {
             <Grid
               style={{ marginHorizontal: -5 }}
               renderItem={this._renderItem}
+              renderPlaceholder={this._renderPlaceholder}
               data={rentalsWatchlist}
               numColumns={2}
             />
@@ -219,6 +224,7 @@ export default class Dashboard extends React.Component {
             <Grid
               style={{ marginHorizontal: -5 }}
               renderItem={this._renderItem}
+              renderPlaceholder={this._renderPlaceholder}
               data={rentalsMyOffers}
               numColumns={2}
             />

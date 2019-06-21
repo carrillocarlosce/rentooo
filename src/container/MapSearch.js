@@ -92,7 +92,7 @@ export default class MapSearch extends Component {
           <ScrollView
             horizontal
             showsHorizontalScrollIndicator={false}
-            style={{ marginTop: 24, paddingLeft: responsiveWidth(5.33) }}
+            style={styles.scrollViewRentals}
           >
             {rentals.map(item => {
               return (

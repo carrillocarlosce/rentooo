@@ -112,6 +112,7 @@ export default class ItemDetails extends Component {
   }
 
   _renderItem = (data, i) => <ItemRental data={data} />;
+  _renderPlaceholder = (data, i) => <View style={{ flex: 1, margin: 5 }} />;
 
   updateRentalStatus(status) {
     const { data } = this.props;
@@ -129,8 +130,6 @@ export default class ItemDetails extends Component {
   render() {
     const { data } = this.props;
     const { ownerName, rentalsYouMayLike, reservationStatus } = this.state;
-
-    console.log(data);
 
     return (
       <View style={styles.container}>
@@ -388,6 +387,7 @@ export default class ItemDetails extends Component {
                 <Grid
                   style={{ marginHorizontal: -5 }}
                   renderItem={this._renderItem}
+                  renderPlaceholder={this._renderPlaceholder}
                   data={rentalsYouMayLike}
                   numColumns={2}
                 />
