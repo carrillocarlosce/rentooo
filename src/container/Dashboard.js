@@ -17,6 +17,7 @@ import {
 import firebase from "react-native-firebase";
 import Grid from "react-native-grid-component";
 import moment from "moment";
+import { extendMoment } from "moment-range";
 
 import ItemRental from "../component/ItemRental";
 
@@ -28,8 +29,7 @@ const itemTab = [
   { title: "Now" },
   { title: "Upcoming" },
   { title: "Past" },
-  { title: "Watchlist" },
-  { title: "My offers" }
+  { title: "Watchlist" }
 ];
 
 export default class Dashboard extends React.Component {
@@ -37,10 +37,10 @@ export default class Dashboard extends React.Component {
     super(props);
     this.state = {
       pageIndex: 0,
+      rentalsNow: [],
       rentalsUpcoming: [],
       rentalsPast: [],
-      rentalsWatchlist: [],
-      rentalsMyOffers: []
+      rentalsWatchlist: []
     };
   }
 
@@ -59,10 +59,10 @@ export default class Dashboard extends React.Component {
       .ref("rentals/")
       .on("value", rentalsSnapshot => {
         let rentals = [];
+        let rentalsNow = [];
         let rentalsUpcoming = [];
         let rentalsPast = [];
         let rentalsWatchlist = [];
-        let rentalsMyOffers = [];
 
         rentalsSnapshot.forEach(function(childSnapshot) {
           var item = childSnapshot.val();
@@ -76,10 +76,6 @@ export default class Dashboard extends React.Component {
             rentalsWatchlist.push(item);
           }
 
-          if (item.owner == window.currentUser["userID"]) {
-            rentalsMyOffers.push(item);
-          }
-
           if (item["reservations"] !== undefined) {
             let reservations = Object.values(item["reservations"]);
 
@@ -88,10 +84,15 @@ export default class Dashboard extends React.Component {
                 let startDate = moment(
                   itemReservation.reservationDates.startDate
                 );
+                let endDate = moment(itemReservation.reservationDates.endDate);
+                let reservationRange = moment().range(startDate, endDate);
                 let now = moment(new Date());
+
                 let upcoming = startDate.diff(now, "days") >= 0 ? true : false;
 
-                if (upcoming) {
+                if (reservationRange.contains(now)) {
+                  rentalsNow.push(item);
+                } else if (upcoming) {
                   rentalsUpcoming.push(item);
                 } else {
                   rentalsPast.push(item);
@@ -102,10 +103,10 @@ export default class Dashboard extends React.Component {
         });
 
         this.setState({
+          rentalsNow: rentalsNow.reverse(),
           rentalsUpcoming: rentalsUpcoming.reverse(),
           rentalsPast: rentalsPast.reverse(),
-          rentalsWatchlist: rentalsWatchlist.reverse(),
-          rentalsMyOffers: rentalsMyOffers.reverse()
+          rentalsWatchlist: rentalsWatchlist.reverse()
         });
       });
   }
@@ -143,10 +144,10 @@ export default class Dashboard extends React.Component {
   render() {
     const {
       pageIndex,
+      rentalsNow,
       rentalsUpcoming,
       rentalsPast,
-      rentalsWatchlist,
-      rentalsMyOffers
+      rentalsWatchlist
     } = this.state;
 
     return (
@@ -198,6 +199,15 @@ export default class Dashboard extends React.Component {
               style={{ marginHorizontal: -5 }}
               renderItem={this._renderItem}
               renderPlaceholder={this._renderPlaceholder}
+              data={rentalsNow}
+              numColumns={2}
+            />
+          </View>
+          <View style={styles.containerItemTab}>
+            <Grid
+              style={{ marginHorizontal: -5 }}
+              renderItem={this._renderItem}
+              renderPlaceholder={this._renderPlaceholder}
               data={rentalsUpcoming}
               numColumns={2}
             />
@@ -217,15 +227,6 @@ export default class Dashboard extends React.Component {
               renderItem={this._renderItem}
               renderPlaceholder={this._renderPlaceholder}
               data={rentalsWatchlist}
-              numColumns={2}
-            />
-          </View>
-          <View style={styles.containerItemTab}>
-            <Grid
-              style={{ marginHorizontal: -5 }}
-              renderItem={this._renderItem}
-              renderPlaceholder={this._renderPlaceholder}
-              data={rentalsMyOffers}
               numColumns={2}
             />
           </View>
