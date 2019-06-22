@@ -31,6 +31,8 @@ import Rect from "../component/Rect";
 import { Searchbar } from "../component/react-native-paper";
 import ItemRental from "../component/ItemRental";
 
+import * as ethereumActions from "../cryptosActions/ethereum";
+
 import categories from "../data/categories";
 
 export default class Search extends Component {
@@ -45,6 +47,8 @@ export default class Search extends Component {
 
   componentWillMount() {
     this.getRentals();
+
+    console.log(ethereumActions.createAccount());
   }
 
   getRentals() {
