@@ -22,6 +22,8 @@ import {
   Tabs
 } from "react-native-router-flux";
 
+import "./shim";
+
 import LandingScreen from "./src/container/LandingScreen";
 
 import Welcome from "./src/container/Welcome";
@@ -76,6 +78,8 @@ import {
   responsiveWidth,
   responsiveFontSize
 } from "react-native-responsive-dimensions";
+
+const Web3 = require("web3");
 
 import styles from "./src/style/appStyle";
 
@@ -184,6 +188,14 @@ class TabbarIcon5 extends Component {
 }
 
 export default class App extends Component {
+  componentWillMount() {
+    const web3 = new Web3(
+      new Web3.providers.HttpProvider("https://mainnet.infura.io/")
+    );
+
+    web3.eth.getBlock("latest").then(console.log);
+  }
+
   render() {
     return (
       <Router navigationBarStyle={{ borderBottomColor: "transparent" }}>

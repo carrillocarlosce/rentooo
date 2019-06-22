@@ -1,4 +1,6 @@
 rootProject.name = 'rentoo'
+include ':react-native-randombytes'
+project(':react-native-randombytes').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-randombytes/android')
 include ':react-native-paypal'
 project(':react-native-paypal').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-paypal/android')
 include ':react-native-camera'
