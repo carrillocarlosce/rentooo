@@ -7,6 +7,7 @@ import {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     marginHorizontal: responsiveWidth(5.33)
   },
   walletsText: {
@@ -42,6 +43,20 @@ const styles = StyleSheet.create({
     fontFamily: "SFProText-Semibold",
     color: "white",
     fontSize: responsiveFontSize(2.3)
+  },
+  noWalletContainer: {
+    marginTop: responsiveHeight(30)
+  },
+  noWalletTitle: {
+    fontFamily: "SFProText-Regular",
+    color: "black",
+    fontSize: responsiveFontSize(2.5),
+    marginBottom: responsiveHeight(2)
+  },
+  noWalletText: {
+    fontFamily: "SFProText-Regular",
+    color: "rgba(0,0,0,0.6)",
+    fontSize: responsiveFontSize(1.8)
   }
 });
 

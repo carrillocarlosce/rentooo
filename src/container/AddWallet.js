@@ -14,7 +14,7 @@ import {
   Image,
   ScrollView
 } from "react-native";
-import { Action } from "react-native-router-flux";
+import { Actions } from "react-native-router-flux";
 import styles from "../style/addWalletStyle";
 import {
   responsiveWidth,
@@ -29,7 +29,8 @@ export default class AddWallet extends Component {
     super(props);
     this.state = {
       wallet: [],
-      filteredCryptoList: []
+      filteredCryptoList: [],
+      hasSelectedOne: false
     };
   }
 
@@ -42,10 +43,16 @@ export default class AddWallet extends Component {
       .database()
       .ref("users/" + window.currentUser["userID"] + "/wallet")
       .on("value", walletSnapshot => {
-        let wallet = Object.keys(walletSnapshot.val());
+        let wallet =
+          walletSnapshot._value !== null
+            ? Object.keys(walletSnapshot.val())
+            : [];
+
         let filteredCryptoList = [];
 
         cryptoList.map(cryptoItem => {
+          cryptoItem.isSelected = false;
+
           if (!wallet.includes(cryptoItem.name)) {
             filteredCryptoList.push(cryptoItem);
           }
@@ -58,14 +65,59 @@ export default class AddWallet extends Component {
       });
   }
 
-  render() {
+  selectCrypto(crypto) {
+    const { filteredCryptoList } = this.state;
+
+    let numberSelected = 0;
+
+    filteredCryptoList.map(item => {
+      item == crypto && item.isSelected == true
+        ? (item.isSelected = false)
+        : item == crypto &&
+          item.isSelected == false &&
+          (item.isSelected = true);
+
+      if (item.isSelected) {
+        numberSelected++;
+      }
+    });
+
+    this.setState({
+      filteredCryptoList: filteredCryptoList,
+      hasSelectedOne: numberSelected > 0 ? true : false
+    });
+  }
+
+  createWallet() {
     const { wallet, filteredCryptoList } = this.state;
 
+    let newWallet = {};
+
+    filteredCryptoList.map(item => {
+      if (item.isSelected) {
+        newWallet[item.name] = 0;
+      }
+    });
+
+    firebase
+      .database()
+      .ref("users/" + window.currentUser["userID"] + "/wallet")
+      .update(newWallet);
+
+    Actions.pop();
+  }
+
+  render() {
+    const { wallet, filteredCryptoList, hasSelectedOne } = this.state;
+
     return (
-      <ScrollView style={styles.container}>
-        {filteredCryptoList.map(cryptoItem => {
+      <View style={styles.container}>
+        {filteredCryptoList.map((cryptoItem, key) => {
           return (
-            <View>
+            <TouchableOpacity
+              key={key}
+              onPress={() => this.selectCrypto(cryptoItem)}
+            >
               <View style={styles.itemCrypto}>
                 <View style={styles.titleCryptoContainer}>
                   <View
@@ -80,19 +132,39 @@ export default class AddWallet extends Component {
                       source={cryptoItem.logo}
                     />
                   </View>
-                  <Text style={styles.cryptoText}>{cryptoItem.name}</Text>
+                  <Text style={styles.cryptoText}>
+                    {cryptoItem.name.charAt(0).toUpperCase() +
+                      cryptoItem.name.slice(1)}
+                  </Text>
                 </View>
-                <Image
-                  resizeMode="contain"
-                  style={styles.isCheckedCrypto}
-                  source={require("../../assets/UI/checked.png")}
-                />
+                {cryptoItem.isSelected ? (
+                  <Image
+                    resizeMode="contain"
+                    style={styles.isCheckedCrypto}
+                    source={require("../../assets/UI/checked.png")}
+                  />
+                ) : (
+                  <Image
+                    resizeMode="contain"
+                    style={styles.isCheckedCrypto}
+                    source={require("../../assets/UI/unchecked.png")}
+                  />
+                )}
               </View>
               <View style={styles.separatorLine} />
-            </View>
+            </TouchableOpacity>
           );
         })}
-      </ScrollView>
+
+        {hasSelectedOne && (
+          <TouchableOpacity
+            style={styles.btnSave}
+            onPress={() => this.createWallet()}
+          >
+            <Text style={styles.textBtnSave}>Create wallet(s)</Text>
+          </TouchableOpacity>
+        )}
+      </View>
     );
   }
 }

@@ -25,8 +25,8 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   cryptoLogoContainer: {
-    height: responsiveWidth(10),
-    width: responsiveWidth(10),
+    height: responsiveWidth(8),
+    width: responsiveWidth(8),
     borderRadius: 200,
     marginRight: 20,
     justifyContent: "center",
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     width: "50%"
   },
   cryptoText: {
-    fontSize: responsiveFontSize(2.4)
+    fontSize: responsiveFontSize(2)
   },
   isCheckedCrypto: { height: responsiveWidth(7), width: responsiveWidth(7) },
   separatorLine: {
@@ -46,6 +46,22 @@ const styles = StyleSheet.create({
     height: 1,
     backgroundColor: "#F5F5FD",
     marginVertical: responsiveHeight(2)
+  },
+  btnSave: {
+    position: "absolute",
+    bottom: responsiveHeight(5),
+    right: responsiveWidth(5),
+    left: responsiveWidth(5),
+    height: responsiveHeight(7),
+    borderRadius: 5,
+    backgroundColor: "#0055FF",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  textBtnSave: {
+    fontFamily: "SFProText-Semibold",
+    color: "#fff",
+    fontSize: responsiveFontSize(2.4)
   }
 });
 

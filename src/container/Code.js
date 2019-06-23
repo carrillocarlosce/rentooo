@@ -25,14 +25,6 @@ export default class Code extends Component {
   async createAccount() {
     const { createdUser } = this.props;
 
-    const wallet = {};
-
-    cryptoList.map(item => {
-      wallet[item.name] = 250;
-    });
-
-    createdUser["wallet"] = wallet;
-
     firebase
       .auth()
       .createUserWithEmailAndPassword(

@@ -12,8 +12,8 @@ const styles = StyleSheet.create({
   },
   plusBtn: {
     marginRight: responsiveWidth(5),
-    width: responsiveWidth(5),
-    height: responsiveWidth(5)
+    width: responsiveWidth(7),
+    height: responsiveWidth(7)
   },
   leftBtn: {
     marginLeft: responsiveWidth(5),

@@ -45,7 +45,11 @@ export default class Wallets extends Component {
       .database()
       .ref("users/" + window.currentUser["userID"] + "/wallet")
       .on("value", walletSnapshot => {
-        let userCurrencies = Object.keys(walletSnapshot.val());
+        let userCurrencies =
+          walletSnapshot._value !== null
+            ? Object.keys(walletSnapshot.val())
+            : [];
+
         let filteredCryptoList = [];
 
         cryptoList.map(cryptoItem => {
@@ -53,6 +57,8 @@ export default class Wallets extends Component {
             filteredCryptoList.push(cryptoItem);
           }
         });
+
+        console.log(filteredCryptoList);
 
         this.setState({
           wallet: walletSnapshot.val(),
@@ -99,7 +105,7 @@ export default class Wallets extends Component {
         <View style={styles.container}>
           <Text style={styles.walletsText}>Wallets</Text>
 
-          <View style={styles.walletsRowLayout}>
+          {filteredCryptoList.length > 0 ? (
             <Grid
               style={{ marginHorizontal: -5 }}
               renderItem={this._renderItem}
@@ -115,7 +121,14 @@ export default class Wallets extends Component {
               data={filteredCryptoList}
               numColumns={2}
             />
-          </View>
+          ) : (
+            <View style={styles.noWalletContainer}>
+              <Text style={styles.noWalletTitle}>No wallets yet</Text>
+              <Text style={styles.noWalletText}>
+                Let's create your first wallet to start renting.
+              </Text>
+            </View>
+          )}
         </View>
       </ScrollView>
     );
