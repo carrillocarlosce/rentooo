@@ -355,7 +355,7 @@ export default class App extends Component {
               </TouchableOpacity>
             }
             renderRightButton={
-              <TouchableOpacity onPress={() => Actions.EditProfile()}>
+              <TouchableOpacity onPress={() => {}}>
                 <Text
                   style={{
                     marginRight: responsiveWidth(5.33),
@@ -398,19 +398,6 @@ export default class App extends Component {
             }
             key="RentItemDates"
             component={RentItemDates}
-          />
-
-          <Scene
-            renderLeftButton={
-              <TouchableOpacity onPress={() => Actions.pop()}>
-                <Image
-                  style={styles.leftBtn}
-                  source={require("./assets/images/back.png")}
-                />
-              </TouchableOpacity>
-            }
-            key="EditProfile"
-            component={EditProfile}
           />
 
           <Scene

@@ -11,6 +11,23 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     paddingHorizontal: responsiveWidth(5.33)
   },
+  profilePictureContainer: {
+    alignItems: "center",
+    marginBottom: responsiveHeight(5)
+  },
+  profilePicture: {
+    height: responsiveHeight(10),
+    width: responsiveHeight(10),
+    marginBottom: responsiveHeight(1),
+    borderRadius: 500,
+    overflow: "hidden"
+  },
+  editProfilePicture: {
+    color: "#0055FF",
+    fontFamily: "SFProText-Regular",
+    fontWeight: "600",
+    fontSize: responsiveFontSize(2)
+  },
   headerInput: {
     flexDirection: "row",
     justifyContent: "space-between",
