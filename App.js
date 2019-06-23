@@ -354,20 +354,6 @@ export default class App extends Component {
                 />
               </TouchableOpacity>
             }
-            renderRightButton={
-              <TouchableOpacity onPress={() => {}}>
-                <Text
-                  style={{
-                    marginRight: responsiveWidth(5.33),
-                    color: "#0055FF",
-                    fontSize: responsiveFontSize(2.3),
-                    fontFamily: "SFProText-Semibold"
-                  }}
-                >
-                  Save
-                </Text>
-              </TouchableOpacity>
-            }
           />
 
           <Scene key="MapSearch" component={MapSearch} hideNavBar={true} />

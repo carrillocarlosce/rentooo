@@ -44,6 +44,22 @@ const styles = StyleSheet.create({
     height: 1,
     backgroundColor: "rgba(0,0,0,0.1)",
     marginVertical: responsiveHeight(2.5)
+  },
+  btnSave: {
+    position: "absolute",
+    bottom: responsiveHeight(5),
+    right: responsiveWidth(5),
+    left: responsiveWidth(5),
+    height: responsiveHeight(7),
+    borderRadius: 5,
+    backgroundColor: "#0055FF",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  textBtnSave: {
+    fontFamily: "SFProText-Semibold",
+    color: "#fff",
+    fontSize: responsiveFontSize(2.4)
   }
 });
 

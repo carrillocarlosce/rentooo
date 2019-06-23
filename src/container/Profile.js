@@ -66,40 +66,48 @@ export default class Profile extends Component {
   _renderPlaceholder = (data, i) => <View style={{ flex: 1, margin: 5 }} />;
 
   render() {
-    const userName =
-      window.currentUser["firstname"] + " " + window.currentUser["lastname"];
-
     const { userRentals } = this.state;
+    const {
+      firstname,
+      lastname,
+      profilePicture,
+      location,
+      bio
+    } = window.currentUser;
+
+    const userName = firstname + " " + lastname;
 
     console.disableYellowBox = true;
 
     return (
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         <View style={styles.upperContainer}>
-          <Image
-            style={styles.profilePicture}
-            resizeMode="contain"
-            source={require("../../assets/images/Oval.png")}
-          />
-
-          <TouchableOpacity onPress={() => Actions.reset("Login")}>
-            <Text style={styles.name}>{userName}</Text>
-          </TouchableOpacity>
-
-          <View style={styles.location}>
+          <View style={styles.profilePicture}>
             <Image
-              resizeMode="contain"
-              style={styles.locationPicto}
-              source={require("../../assets/images/location.png")}
+              style={{ width: "100%", height: "100%" }}
+              resizeMode="cover"
+              source={
+                profilePicture !== undefined
+                  ? { uri: profilePicture }
+                  : require("../../assets/images/defaultProfilePicture.png")
+              }
             />
-            <Text style={styles.locationText}>Paris, France</Text>
           </View>
 
-          <Text style={styles.profileContent}>
-            Lorm ipsum dolor sit amet, consectetur adipis{"\n"}
-            elit. Fusce vestibulum dapibus tempus. Aliquam{"\n"}
-            dapibus sit amet neque eget volutpat
-          </Text>
+          {firstname && <Text style={styles.name}>{userName}</Text>}
+
+          {location && (
+            <View style={styles.location}>
+              <Image
+                resizeMode="contain"
+                style={styles.locationPicto}
+                source={require("../../assets/images/location.png")}
+              />
+              <Text style={styles.locationText}>{location}</Text>
+            </View>
+          )}
+
+          {bio && <Text style={styles.profileContent}>{bio}</Text>}
         </View>
 
         <TouchableOpacity

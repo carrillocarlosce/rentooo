@@ -33,6 +33,7 @@ import Slideshow from "../component/Slideshow";
 
 import * as userActions from "../actions/userActions";
 import styles from "../style/itemdetailsStyle";
+import mapStyle from "../style/mapStyle";
 
 export default class ItemDetails extends Component {
   constructor(props) {
@@ -323,6 +324,7 @@ export default class ItemDetails extends Component {
               <MapView
                 style={styles.mapView}
                 provider={PROVIDER_GOOGLE}
+                customMapStyle={mapStyle}
                 region={{
                   latitude: data.meetingPlace.meetingCoordinates.lat,
                   longitude: data.meetingPlace.meetingCoordinates.lng,

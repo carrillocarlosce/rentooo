@@ -13,17 +13,20 @@ const styles = StyleSheet.create({
   },
   upperContainer: {
     flexDirection: "column",
-    justifyContent: "space-around",
-    alignItems: "center",
-    height: responsiveHeight(30)
+    justifyContent: "flex-start",
+    alignItems: "center"
   },
   profilePicture: {
     height: responsiveHeight(10),
-    width: responsiveHeight(10)
+    width: responsiveHeight(10),
+    marginBottom: responsiveHeight(1),
+    borderRadius: 500,
+    overflow: "hidden"
   },
   name: {
     fontFamily: "SFProText-Regular",
-    fontSize: responsiveFontSize(2.5)
+    fontSize: responsiveFontSize(2.5),
+    marginBottom: responsiveHeight(1)
   },
   location: {
     flexDirection: "row",

@@ -9,21 +9,22 @@ import React, { Component } from "react";
 import {
   Text,
   View,
+  KeyboardAvoidingView,
   TextInput,
   TouchableOpacity,
   Image,
   ScrollView
 } from "react-native";
-import {
-  responsiveHeight,
-  responsiveWidth,
-  responsiveFontSize
-} from "react-native-responsive-dimensions";
 import { Actions } from "react-native-router-flux";
 import ImagePicker from "react-native-image-picker";
 import ImageResizer from "react-native-image-resizer";
 import firebase from "react-native-firebase";
 import uuid from "uuid/v4"; // Import UUID to generate UUID
+import {
+  responsiveHeight,
+  responsiveWidth,
+  responsiveFontSize
+} from "react-native-responsive-dimensions";
 
 import styles from "../style/editProfileStyle";
 
@@ -44,36 +45,12 @@ export default class EditProfile extends Component {
     super(props);
 
     this.state = {
-      userProfilePicture:
-        window.currentUser["profilePicture"] !== undefined
-          ? window.currentUser["profilePicture"]
-          : require("../../assets/images/defaultProfilePicture.png"),
-      firstname: "",
-      lastname: "",
-      location: "",
-      bio: ""
+      profilePicture: window.currentUser["profilePicture"],
+      firstname: window.currentUser["firstname"],
+      lastname: window.currentUser["lastname"],
+      location: window.currentUser["location"],
+      bio: window.currentUser["bio"]
     };
-  }
-
-  componentDidMount() {
-    Actions.refresh({
-      renderRightButton: this.renderSaveButton()
-    });
-  }
-
-  renderSaveButton() {
-    return (
-      <Text
-        style={{
-          marginRight: responsiveWidth(5.33),
-          color: "#0055FF",
-          fontSize: responsiveFontSize(2.3),
-          fontFamily: "SFProText-Semibold"
-        }}
-      >
-        Save
-      </Text>
-    );
   }
 
   uploadProfilePicture = () => {
@@ -113,19 +90,11 @@ export default class EditProfile extends Component {
                       imgSource: "",
                       imageUri: "",
                       progress: 0,
-                      userProfilePicture: snapshot.downloadURL
+                      profilePicture: snapshot.downloadURL
                     };
                   }
 
                   this.setState(state);
-
-                  let currentUser = window.currentUser;
-                  currentUser["profilePicture"] = snapshot.downloadURL;
-
-                  firebase
-                    .database()
-                    .ref("users/" + currentUser["userID"])
-                    .update(currentUser);
                 },
                 error => {
                   unsubscribe();
@@ -142,103 +111,130 @@ export default class EditProfile extends Component {
     });
   };
 
+  saveProfile() {
+    const { profilePicture, firstname, lastname, location, bio } = this.state;
+
+    window.currentUser["profilePicture"] = profilePicture;
+    window.currentUser["firstname"] = firstname;
+    window.currentUser["lastname"] = lastname;
+    window.currentUser["location"] = location;
+    window.currentUser["bio"] = bio;
+
+    firebase
+      .database()
+      .ref("users/" + currentUser["userID"])
+      .update(window.currentUser);
+
+    Actions.pop();
+  }
+
   render() {
-    const {
-      userProfilePicture,
-      firstname,
-      lastname,
-      location,
-      bio
-    } = this.state;
+    const { profilePicture, firstname, lastname, location, bio } = this.state;
 
     return (
       <View style={styles.container}>
-        <View style={styles.profilePictureContainer}>
-          <View style={styles.profilePicture}>
-            <Image
-              style={{ width: "100%", height: "100%" }}
-              resizeMode="cover"
-              source={{ uri: userProfilePicture }}
-            />
+        <KeyboardAvoidingView
+          behavior="position"
+          keyboardVerticalOffset={responsiveHeight(15)}
+        >
+          <View style={styles.profilePictureContainer}>
+            <View style={styles.profilePicture}>
+              <Image
+                style={{ width: "100%", height: "100%" }}
+                resizeMode="cover"
+                source={
+                  profilePicture !== undefined
+                    ? { uri: profilePicture }
+                    : require("../../assets/images/defaultProfilePicture.png")
+                }
+              />
+            </View>
+            <TouchableOpacity onPress={() => this.uploadProfilePicture()}>
+              <Text style={styles.editProfilePicture}>Edit</Text>
+            </TouchableOpacity>
           </View>
-          <TouchableOpacity onPress={() => this.uploadProfilePicture()}>
-            <Text style={styles.editProfilePicture}>Edit</Text>
-          </TouchableOpacity>
-        </View>
 
-        <View style={styles.headerInput}>
-          <Text style={styles.headerInputTitle}>First name</Text>
-        </View>
+          <View style={styles.headerInput}>
+            <Text style={styles.headerInputTitle}>First name</Text>
+          </View>
 
-        <TextInput
-          ref={userFirstname => {
-            this.userFirstnameInput = userFirstname;
-          }}
-          returnKeyType={"next"}
-          placeholder="Firstname"
-          value={firstname}
-          onChangeText={firstname => this.setState({ firstname })}
-          onSubmitEditing={() => this.userLastnameInput.focus()}
-          maxLength={40}
-        />
+          <TextInput
+            ref={userFirstname => {
+              this.userFirstnameInput = userFirstname;
+            }}
+            returnKeyType={"next"}
+            placeholder="Firstname"
+            value={firstname}
+            onChangeText={firstname => this.setState({ firstname })}
+            onSubmitEditing={() => this.userLastnameInput.focus()}
+            maxLength={40}
+          />
 
-        <View style={styles.separatorLine} />
+          <View style={styles.separatorLine} />
 
-        <View style={styles.headerInput}>
-          <Text style={styles.headerInputTitle}>Last name</Text>
-        </View>
+          <View style={styles.headerInput}>
+            <Text style={styles.headerInputTitle}>Last name</Text>
+          </View>
 
-        <TextInput
-          ref={userLastname => {
-            this.userLastnameInput = userLastname;
-          }}
-          returnKeyType={"next"}
-          placeholder="Lastname"
-          value={lastname}
-          onChangeText={lastname => this.setState({ lastname })}
-          onSubmitEditing={() => this.userLocationInput.focus()}
-          maxLength={40}
-        />
+          <TextInput
+            ref={userLastname => {
+              this.userLastnameInput = userLastname;
+            }}
+            returnKeyType={"next"}
+            placeholder="Lastname"
+            value={lastname}
+            onChangeText={lastname => this.setState({ lastname })}
+            onSubmitEditing={() => this.userLocationInput.focus()}
+            maxLength={40}
+          />
 
-        <View style={styles.separatorLine} />
+          <View style={styles.separatorLine} />
 
-        <View style={styles.headerInput}>
-          <Text style={styles.headerInputTitle}>Location</Text>
-        </View>
+          <View style={styles.headerInput}>
+            <Text style={styles.headerInputTitle}>Location</Text>
+          </View>
 
-        <TextInput
-          ref={userLocation => {
-            this.userLocationInput = userLocation;
-          }}
-          returnKeyType={"next"}
-          placeholder="Location"
-          value={location}
-          onChangeText={location => this.setState({ location })}
-          onSubmitEditing={() => this.userBioInput.focus()}
-          maxLength={40}
-        />
+          <TextInput
+            ref={userLocation => {
+              this.userLocationInput = userLocation;
+            }}
+            returnKeyType={"next"}
+            placeholder="Location"
+            value={location}
+            onChangeText={location => this.setState({ location })}
+            onSubmitEditing={() => this.userBioInput.focus()}
+            maxLength={40}
+          />
 
-        <View style={styles.separatorLine} />
+          <View style={styles.separatorLine} />
 
-        <View style={styles.headerInput}>
-          <Text style={styles.headerInputTitle}>Bio</Text>
-          <Text>{200 - bio.length}</Text>
-        </View>
+          <View style={styles.headerInput}>
+            <Text style={styles.headerInputTitle}>Bio</Text>
+            <Text>{200 - bio.length}</Text>
+          </View>
 
-        <TextInput
-          ref={userBio => {
-            this.userBioInput = userBio;
-          }}
-          returnKeyType={"done"}
-          placeholder="Bio"
-          value={bio}
-          onChangeText={bio => this.setState({ bio })}
-          onSubmitEditing={() => bio.length > 10 && this.nextStep()}
-          maxLength={200}
-          multiline={true}
-          numberOfLines={4}
-          blurOnSubmit
-        />
+          <TextInput
+            ref={userBio => {
+              this.userBioInput = userBio;
+            }}
+            returnKeyType={"done"}
+            placeholder="Bio"
+            value={bio}
+            onChangeText={bio => this.setState({ bio })}
+            onSubmitEditing={() => bio.length > 10 && this.nextStep()}
+            maxLength={200}
+            multiline={true}
+            numberOfLines={4}
+            blurOnSubmit
+          />
+        </KeyboardAvoidingView>
+
+        <TouchableOpacity
+          style={styles.btnSave}
+          onPress={() => this.saveProfile()}
+        >
+          <Text style={styles.textBtnSave}>Save</Text>
+        </TouchableOpacity>
       </View>
     );
   }
