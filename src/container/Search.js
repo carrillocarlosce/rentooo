@@ -47,8 +47,6 @@ export default class Search extends Component {
 
   componentWillMount() {
     this.getRentals();
-
-    console.log(ethereumActions.createAccount());
   }
 
   getRentals() {

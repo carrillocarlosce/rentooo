@@ -22,8 +22,33 @@ const styles = StyleSheet.create({
     width: 48,
     height: 48
   },
+  containerItemRental: {
+    backgroundColor: "#002266",
+    paddingHorizontal: 8,
+    paddingVertical: 6,
+    borderRadius: 5,
+    overflow: "visible"
+  },
+  itemRentalPrice: {
+    color: "white",
+    fontSize: responsiveFontSize(1.6),
+    fontWeight: "600"
+  },
+  triangle: {
+    width: 0,
+    height: 0,
+    backgroundColor: "transparent",
+    borderStyle: "solid",
+    borderLeftWidth: 8,
+    borderRightWidth: 8,
+    borderBottomWidth: 8,
+    borderLeftColor: "transparent",
+    borderRightColor: "transparent",
+    borderBottomColor: "#002266",
+    transform: [{ rotate: "180deg" }]
+  },
   bottomContainer: {
-    position: "absolute",
+    flex: 1,
     width: "100%",
     backgroundColor: "white",
     left: 0,

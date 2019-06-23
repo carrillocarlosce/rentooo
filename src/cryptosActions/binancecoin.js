@@ -1,7 +1,7 @@
-import BnbApiClient from "@binance-chain/javascript-sdk";
-import axios from "axios";
+const BnbApiClient = require("@binance-chain/javascript-sdk");
+const axios = require("axios");
 
-export function BinancePayment() {
+export function newTransaction() {
   const asset = "BNB"; // asset string
   const amount = 1.123; // amount float
   const addressTo = "tbnb1hgm0p7khfk85zpz5v0j8wnej3a90w709zzlffd"; // addressTo string

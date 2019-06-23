@@ -26,17 +26,50 @@ import {
 
 import ItemRental from "../component/ItemRental";
 import styles from "../style/mapsearchStyle";
+import mapStyle from "../style/mapStyle";
+
+const DEFAULT_REGION = {
+  latitude: 42.882004,
+  longitude: 74.582748,
+  latitudeDelta: 0.0922,
+  longitudeDelta: 0.0421
+};
+
+export const getCurrentLocation = () => {
+  return new Promise((resolve, reject) => {
+    navigator.geolocation.getCurrentPosition(
+      position => resolve(position),
+      e => reject(e)
+    );
+  });
+};
 
 export default class MapSearch extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      region: DEFAULT_REGION,
       rentals: []
     };
   }
 
   componentWillMount() {
     this.getRentals();
+  }
+
+  componentDidMount() {
+    return getCurrentLocation().then(position => {
+      if (position) {
+        this.setState({
+          region: {
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+            latitudeDelta: 0.1,
+            longitudeDelta: 0.1
+          }
+        });
+      }
+    });
   }
 
   getRentals() {
@@ -58,7 +91,7 @@ export default class MapSearch extends Component {
   }
 
   render() {
-    const { rentals } = this.state;
+    const { region, rentals } = this.state;
 
     return (
       <View style={styles.container}>
@@ -71,15 +104,32 @@ export default class MapSearch extends Component {
 
         <MapView
           provider={PROVIDER_GOOGLE}
-          style={{ flex: 1 }}
-          region={{
-            latitude: 42.882004,
-            longitude: 74.582748,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421
-          }}
+          style={{ flex: 2 }}
+          region={region}
           showsUserLocation={true}
-        />
+          customMapStyle={mapStyle}
+        >
+          {rentals.map((marker, index) => (
+            <Marker
+              coordinate={{
+                latitude: marker.meetingPlace.meetingCoordinates.lat,
+                longitude: marker.meetingPlace.meetingCoordinates.lng
+              }}
+              key={index}
+              cluster={true}
+              onPress={e => this.markerClicked(index)}
+            >
+              <View style={{ justifyContent: "center", alignItems: "center" }}>
+                <View style={styles.containerItemRental}>
+                  <Text style={styles.itemRentalPrice}>
+                    {marker.dailyDollarPrice}$
+                  </Text>
+                </View>
+                <View style={styles.triangle} />
+              </View>
+            </Marker>
+          ))}
+        </MapView>
 
         <SafeAreaView style={styles.bottomContainer}>
           <View style={styles.titleContainer}>
