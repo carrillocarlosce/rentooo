@@ -94,9 +94,11 @@ export default class Profile extends Component {
             />
           </View>
 
-          {firstname && <Text style={styles.name}>{userName}</Text>}
+          {firstname !== undefined && (
+            <Text style={styles.name}>{userName}</Text>
+          )}
 
-          {location && (
+          {location !== undefined && (
             <View style={styles.location}>
               <Image
                 resizeMode="contain"
@@ -107,7 +109,9 @@ export default class Profile extends Component {
             </View>
           )}
 
-          {bio && <Text style={styles.profileContent}>{bio}</Text>}
+          {bio !== undefined && (
+            <Text style={styles.profileContent}>{bio}</Text>
+          )}
         </View>
 
         <TouchableOpacity

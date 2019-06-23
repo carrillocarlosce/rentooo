@@ -36,7 +36,7 @@ export default (cryptoList = [
     isSelected: false
   },
   {
-    name: "Waves",
+    name: "waves",
     logo: require("../../assets/coins/waves.png"),
     color: "#05F",
     isSelected: false

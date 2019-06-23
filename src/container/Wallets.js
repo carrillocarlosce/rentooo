@@ -31,7 +31,8 @@ export default class Wallets extends Component {
     super(props);
 
     this.state = {
-      wallet: []
+      wallet: [],
+      filteredCryptoList: []
     };
   }
 
@@ -44,7 +45,19 @@ export default class Wallets extends Component {
       .database()
       .ref("users/" + window.currentUser["userID"] + "/wallet")
       .on("value", walletSnapshot => {
-        this.setState({ wallet: walletSnapshot.val() });
+        let userCurrencies = Object.keys(walletSnapshot.val());
+        let filteredCryptoList = [];
+
+        cryptoList.map(cryptoItem => {
+          if (userCurrencies.includes(cryptoItem.name)) {
+            filteredCryptoList.push(cryptoItem);
+          }
+        });
+
+        this.setState({
+          wallet: walletSnapshot.val(),
+          filteredCryptoList: filteredCryptoList
+        });
       });
   }
 
@@ -79,7 +92,7 @@ export default class Wallets extends Component {
   };
 
   render() {
-    const { wallet } = this.state;
+    const { wallet, filteredCryptoList } = this.state;
 
     return (
       <ScrollView style={{ flex: 1, backgroundColor: "#ffffff" }}>
@@ -99,7 +112,7 @@ export default class Wallets extends Component {
                   }}
                 />
               )}
-              data={cryptoList}
+              data={filteredCryptoList}
               numColumns={2}
             />
           </View>

@@ -20,56 +20,50 @@ import {
   responsiveWidth,
   responsiveHeight
 } from "react-native-responsive-dimensions";
-import StarView from "../component/Startview";
+import firebase from "react-native-firebase";
 
-const cryptoList = [
-  {
-    name: "Euro",
-    logo: require("../../assets/coins/euro.png"),
-    color: "#30A4E8",
-    isSelected: false
-  },
-  {
-    name: "Dollar",
-    logo: require("../../assets/coins/dollar.png"),
-    color: "#17A370",
-    isSelected: false
-  },
-  {
-    name: "Rentoo",
-    logo: require("../../assets/coins/rentoo.png"),
-    color: "#226BFB",
-    isSelected: false
-  },
-  {
-    name: "Bitcoin",
-    logo: require("../../assets/coins/bitcoin.png"),
-    color: "#F5922F",
-    isSelected: false
-  },
-  {
-    name: "Litecoin",
-    logo: require("../../assets/coins/litecoin.png"),
-    color: "#638EA9",
-    isSelected: false
-  },
-  {
-    name: "Binance",
-    logo: require("../../assets/coins/binance.png"),
-    color: "#D79E28",
-    isSelected: false
-  }
-];
+import cryptoList from "../data/cryptoList";
 
 export default class AddWallet extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      wallet: [],
+      filteredCryptoList: []
+    };
+  }
+
+  componentDidMount() {
+    this.getWalletData();
+  }
+
+  getWalletData() {
+    firebase
+      .database()
+      .ref("users/" + window.currentUser["userID"] + "/wallet")
+      .on("value", walletSnapshot => {
+        let wallet = Object.keys(walletSnapshot.val());
+        let filteredCryptoList = [];
+
+        cryptoList.map(cryptoItem => {
+          if (!wallet.includes(cryptoItem.name)) {
+            filteredCryptoList.push(cryptoItem);
+          }
+        });
+
+        this.setState({
+          wallet: wallet,
+          filteredCryptoList: filteredCryptoList
+        });
+      });
   }
 
   render() {
+    const { wallet, filteredCryptoList } = this.state;
+
     return (
       <ScrollView style={styles.container}>
-        {cryptoList.map(cryptoItem => {
+        {filteredCryptoList.map(cryptoItem => {
           return (
             <View>
               <View style={styles.itemCrypto}>

@@ -46,10 +46,20 @@ export default class EditProfile extends Component {
 
     this.state = {
       profilePicture: window.currentUser["profilePicture"],
-      firstname: window.currentUser["firstname"],
-      lastname: window.currentUser["lastname"],
-      location: window.currentUser["location"],
-      bio: window.currentUser["bio"]
+      firstname:
+        window.currentUser["firstname"] !== undefined
+          ? window.currentUser["firstname"]
+          : "",
+      lastname:
+        window.currentUser["lastname"] !== undefined
+          ? window.currentUser["lastname"]
+          : "",
+      location:
+        window.currentUser["location"] !== undefined
+          ? window.currentUser["location"]
+          : "",
+      bio:
+        window.currentUser["bio"] !== undefined ? window.currentUser["bio"] : ""
     };
   }
 
