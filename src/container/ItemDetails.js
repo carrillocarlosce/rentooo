@@ -196,35 +196,38 @@ export default class ItemDetails extends Component {
               <View
                 style={{ flexDirection: "row", alignItems: "space-between" }}
               >
-                {reservationStatus.status !== "Canceled" && (
-                  <TouchableOpacity
-                    style={[styles.btnActionRental]}
-                    onPress={() => this.updateRentalStatus("Canceled")}
-                  >
-                    <Text style={styles.textBtnRental}>Cancel renting</Text>
-                  </TouchableOpacity>
-                )}
+                {reservationStatus.status !== "Canceled" &&
+                  reservationStatus.status !== "Completed" && (
+                    <TouchableOpacity
+                      style={[styles.btnActionRental]}
+                      onPress={() => this.updateRentalStatus("Canceled")}
+                    >
+                      <Text style={styles.textBtnRental}>Cancel renting</Text>
+                    </TouchableOpacity>
+                  )}
 
-                {reservationStatus.status == "Confirmed" && (
-                  <TouchableOpacity
-                    style={[
-                      styles.btnActionRental,
-                      { marginLeft: 10, backgroundColor: "#0055FF" }
-                    ]}
-                    onPress={() =>
-                      Actions.Authentication({
-                        isOwner:
-                          data.owner == window.currentUser["userID"]
-                            ? true
-                            : false,
-                        rentalKey: data.key,
-                        reservationKey: reservationStatus.key
-                      })
-                    }
-                  >
-                    <Text style={styles.textBtnRental}>Authentication</Text>
-                  </TouchableOpacity>
-                )}
+                {reservationStatus.status == "Confirmed" ||
+                  reservationStatus.status ==
+                    "Completed"(
+                      <TouchableOpacity
+                        style={[
+                          styles.btnActionRental,
+                          { marginLeft: 10, backgroundColor: "#0055FF" }
+                        ]}
+                        onPress={() =>
+                          Actions.Authentication({
+                            isOwner:
+                              data.owner == window.currentUser["userID"]
+                                ? true
+                                : false,
+                            rentalKey: data.key,
+                            reservationKey: reservationStatus.key
+                          })
+                        }
+                      >
+                        <Text style={styles.textBtnRental}>Authentication</Text>
+                      </TouchableOpacity>
+                    )}
 
                 {reservationStatus.status == "Pending" &&
                   data.owner == window.currentUser["userID"] && (

@@ -95,7 +95,9 @@ export default class Profile extends Component {
           </View>
 
           {firstname !== undefined && (
-            <Text style={styles.name}>{userName}</Text>
+            <TouchableOpacity onPress={() => Actions.Login()}>
+              <Text style={styles.name}>{userName}</Text>
+            </TouchableOpacity>
           )}
 
           {location !== undefined && (

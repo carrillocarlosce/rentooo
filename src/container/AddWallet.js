@@ -95,7 +95,7 @@ export default class AddWallet extends Component {
 
     filteredCryptoList.map(item => {
       if (item.isSelected) {
-        newWallet[item.name] = 0;
+        newWallet[item.name] = 30;
       }
     });
 

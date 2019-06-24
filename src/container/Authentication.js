@@ -166,7 +166,11 @@ export default class Authentication extends Component {
   };
 
   componentWillMount() {
+    const { isOwner } = this.props;
+
     this.getAuthenticationState();
+
+    isOwner && this.listenerWasCodeScanned();
   }
 
   getAuthenticationState() {
@@ -188,6 +192,40 @@ export default class Authentication extends Component {
         let authenticationState = authenticationSnapshot.val();
 
         this.setState(authenticationState);
+      });
+  }
+
+  listenerWasCodeScanned() {
+    const { rentalKey, reservationKey, isOwner } = this.props;
+
+    let isUserOwner = isOwner ? "owner/" : "renter/";
+
+    firebase
+      .database()
+      .ref(
+        "rentals/" +
+          rentalKey +
+          "/reservations/" +
+          reservationKey +
+          "/authentication/renter"
+      )
+      .on("value", authenticationSnapshot => {
+        let authenticationState = authenticationSnapshot.val();
+
+        console.log(authenticationState.currentStartStep);
+
+        if (
+          authenticationState.currentStartStep == 6 &&
+          authenticationState.currentEndStep == 0
+        ) {
+          this.setState({ isDisplayQrVisible: false });
+          this.doneStepAuthentication(0);
+        }
+
+        if (authenticationState.currentEndStep == 4) {
+          this.setState({ isDisplayQrVisible: false });
+          this.doneStepAuthentication(1);
+        }
       });
   }
 
@@ -221,16 +259,31 @@ export default class Authentication extends Component {
           isUserOwner
       )
       .update(this.state);
+
+    if (currentEndStep == 4) {
+      firebase
+        .database()
+        .ref("rentals/" + rentalKey + "/reservations/" + reservationKey)
+        .update({ status: "Completed" });
+
+      Actions.pop();
+    }
   }
 
   onBarCodeRead = e => {
     const { reservationKey } = this.props;
+    const { currentEndStep } = this.state;
 
     if (e.data == reservationKey) {
       this.setState({ isScanQrVisible: false });
-      this.doneStepAuthentication(0);
+
+      if (currentEndStep > 2) {
+        this.doneStepAuthentication(1);
+      } else {
+        this.doneStepAuthentication(0);
+      }
     } else {
-      Alert.alert("This QR code is not valid");
+      Alert.alert("This QR code is not valid.");
     }
   };
 
@@ -555,7 +608,7 @@ export default class Authentication extends Component {
                         Fusce vestibulum dapibus dolor sit amet.
                       </Text>
 
-                      {!isOwner ? (
+                      {isOwner ? (
                         <TouchableOpacity
                           onPress={() =>
                             this.setState({ isDisplayQrVisible: true })
@@ -731,7 +784,7 @@ export default class Authentication extends Component {
                         value={notesEnd}
                         onChangeText={notesEnd => this.setState({ notesEnd })}
                         onSubmitEditing={() =>
-                          notesEnd.length > 10 && this.nextStep()
+                          notesEnd.length > 10 && this.doneStepAuthentication(1)
                         }
                         maxLength={200}
                         multiline={true}
@@ -757,7 +810,7 @@ export default class Authentication extends Component {
               {currentEndStep > 2 && (
                 <View style={styles.itemAuthentication}>
                   <Text style={styles.titleAuthentication}>4. QR code</Text>
-                  {currentEndStep > 5 ? (
+                  {currentEndStep > 3 ? (
                     <Done />
                   ) : (
                     <View>
@@ -766,7 +819,7 @@ export default class Authentication extends Component {
                         Fusce vestibulum dapibus dolor sit amet.
                       </Text>
 
-                      {!isOwner ? (
+                      {isOwner ? (
                         <TouchableOpacity
                           onPress={() =>
                             this.setState({ isDisplayQrVisible: true })

@@ -12,7 +12,7 @@ export default (cryptoList = [
     isSelected: false
   },
   {
-    name: "rentoo",
+    name: "rentapp",
     logo: require("../../assets/coins/rentoo.png"),
     color: "#226BFB",
     isSelected: false

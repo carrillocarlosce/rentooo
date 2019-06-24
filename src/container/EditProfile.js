@@ -231,7 +231,7 @@ export default class EditProfile extends Component {
             placeholder="Bio"
             value={bio}
             onChangeText={bio => this.setState({ bio })}
-            onSubmitEditing={() => bio.length > 10 && this.nextStep()}
+            onSubmitEditing={() => bio.length > 10 && this.saveProfile()}
             maxLength={200}
             multiline={true}
             numberOfLines={4}
