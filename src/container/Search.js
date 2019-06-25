@@ -164,7 +164,9 @@ export default class Search extends Component {
                 style={{ marginHorizontal: -5 }}
                 renderItem={this._renderItem}
                 renderPlaceholder={this._renderPlaceholder}
-                data={rentals}
+                data={rentals.sort((a, b) =>
+                  a.trending < b.trending ? 1 : b.trending < a.trending ? -1 : 0
+                )}
                 numColumns={2}
               />
             </View>

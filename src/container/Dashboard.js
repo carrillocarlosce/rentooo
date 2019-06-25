@@ -86,6 +86,7 @@ export default class Dashboard extends React.Component {
                 );
                 let endDate = moment(itemReservation.reservationDates.endDate);
                 let reservationRange = moment().range(startDate, endDate);
+
                 let now = moment(new Date());
 
                 let upcoming = startDate.diff(now, "days") >= 0 ? true : false;
