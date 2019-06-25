@@ -124,11 +124,11 @@ export default class RentItemCheckout extends Component {
           console.log("error:", err);
         });
     } else {
-      this.handleReservationTransactions();
+      this.handleReservationTransaction();
     }
   }
 
-  handleReservationTransactions() {
+  handleReservationTransaction() {
     const { rentalReservation, itemRental } = this.props;
     const {
       chosenCurrency,
@@ -139,7 +139,8 @@ export default class RentItemCheckout extends Component {
     } = this.state;
 
     const userData = window.currentUser;
-    const userWalletChosenCurrency = userData["wallet"][chosenCurrency];
+    const userWalletChosenCurrency =
+      userData["wallet"][chosenCurrency]["amount"];
 
     const receiverID = itemRental["owner"];
 
@@ -178,7 +179,11 @@ export default class RentItemCheckout extends Component {
       firebase
         .database()
         .ref(
-          "users/" + window.currentUser["userID"] + "/wallet/" + chosenCurrency
+          "users/" +
+            window.currentUser["userID"] +
+            "/wallet/" +
+            chosenCurrency +
+            "/amount"
         )
         .transaction(function(amount) {
           if (amount >= totalCurrencyAmount) {
@@ -193,7 +198,7 @@ export default class RentItemCheckout extends Component {
 
       firebase
         .database()
-        .ref("users/" + receiverID + "/wallet/" + chosenCurrency)
+        .ref("users/" + receiverID + "/wallet/" + chosenCurrency + "/amount")
         .transaction(function(amount) {
           if (amount) {
             amount = amount + totalCurrencyAmount;

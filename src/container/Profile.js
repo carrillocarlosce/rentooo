@@ -136,6 +136,7 @@ export default class Profile extends Component {
           <Grid
             style={{ marginHorizontal: -10 }}
             renderItem={this._renderItem}
+            renderPlaceholder={this._renderPlaceholder}
             data={userRentals}
             numColumns={2}
           />

@@ -26,6 +26,8 @@ import styles from "../style/walletsStyle";
 import StarView from "../component/Startview";
 import cryptoList from "../data/cryptoList";
 
+import * as ethereumActions from "../cryptosActions/ethereum";
+
 export default class Wallets extends Component {
   constructor(props) {
     super(props);
@@ -72,7 +74,13 @@ export default class Wallets extends Component {
   }
 
   _renderItem = (data, i) => {
-    let balance = this.state.wallet[data.name];
+    let publicKey = this.state.wallet[data.name].public;
+
+    let balance = 0;
+
+    ethereumActions.getBalance(publicKey).then(ethBalance => {
+      balance = ethBalance;
+    });
 
     return (
       <TouchableOpacity

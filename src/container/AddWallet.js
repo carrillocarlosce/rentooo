@@ -24,6 +24,8 @@ import firebase from "react-native-firebase";
 
 import cryptoList from "../data/cryptoList";
 
+import * as ethereumActions from "../cryptosActions/ethereum";
+
 export default class AddWallet extends Component {
   constructor(props) {
     super(props);
@@ -91,11 +93,17 @@ export default class AddWallet extends Component {
   createWallet() {
     const { wallet, filteredCryptoList } = this.state;
 
+    let ethereumWallet = ethereumActions.createAccount();
+
     let newWallet = {};
 
     filteredCryptoList.map(item => {
       if (item.isSelected) {
-        newWallet[item.name] = 30;
+        newWallet[item.name] = {
+          amount: 30,
+          public: ethereumWallet.address,
+          private: ethereumWallet.privateKey
+        };
       }
     });
 
