@@ -29,14 +29,14 @@ import styles from "../style/receiveStyle";
 export default class Yourbalance extends Component {
   constructor(props) {
     super(props);
-
-    this.state = { address: "38Y3kntfHJoTPFWnmU2K4gxo2oTi5rjXRT" };
   }
 
   onShare = async () => {
+    const { address } = this.props;
+
     try {
       const result = await Share.share({
-        message: this.state.address
+        message: address
       });
 
       if (result.action === Share.sharedAction) {
@@ -54,7 +54,7 @@ export default class Yourbalance extends Component {
   };
 
   render() {
-    const { address } = this.state;
+    const { address } = this.props;
 
     return (
       <View style={styles.container}>

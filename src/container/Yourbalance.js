@@ -180,7 +180,8 @@ export default class Yourbalance extends Component {
                   title:
                     "Receive " +
                     data.name.charAt(0).toUpperCase() +
-                    data.name.slice(1)
+                    data.name.slice(1),
+                  address: this.props.publicKey
                 })
               }
               style={[

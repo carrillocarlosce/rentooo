@@ -26,6 +26,7 @@ import styles from "../style/walletsStyle";
 import StarView from "../component/Startview";
 import cryptoList from "../data/cryptoList";
 
+import * as userActions from "../actions/userActions";
 import * as ethereumActions from "../cryptosActions/ethereum";
 
 export default class Wallets extends Component {
@@ -42,6 +43,12 @@ export default class Wallets extends Component {
     this.getWalletData();
   }
 
+  async asyncForEach(array, callback) {
+    for (let index = 0; index < array.length; index++) {
+      await callback(array[index], index, array);
+    }
+  }
+
   getWalletData() {
     firebase
       .database()
@@ -52,6 +59,19 @@ export default class Wallets extends Component {
             ? Object.keys(walletSnapshot.val())
             : [];
 
+        let wallet = walletSnapshot;
+
+        wallet.forEach(wallet => {
+          let item = wallet.val();
+          if (wallet.key == "ethereum") {
+            ethereumActions.getBalance(item.public).then(ethBalance => {
+              item.amount = ethBalance;
+            });
+          }
+        });
+
+        console.log(wallet.val());
+
         let filteredCryptoList = [];
 
         cryptoList.map(cryptoItem => {
@@ -60,10 +80,8 @@ export default class Wallets extends Component {
           }
         });
 
-        console.log(filteredCryptoList);
-
         this.setState({
-          wallet: walletSnapshot.val(),
+          wallet: wallet.val(),
           filteredCryptoList: filteredCryptoList
         });
       });
@@ -74,13 +92,10 @@ export default class Wallets extends Component {
   }
 
   _renderItem = (data, i) => {
-    let publicKey = this.state.wallet[data.name].public;
+    const { wallet } = this.state;
 
-    let balance = 0;
-
-    ethereumActions.getBalance(publicKey).then(ethBalance => {
-      balance = ethBalance;
-    });
+    let publicKey = wallet[data.name].public;
+    let balance = wallet[data.name].amount;
 
     return (
       <TouchableOpacity
@@ -88,7 +103,8 @@ export default class Wallets extends Component {
         onPress={() =>
           Actions.Yourbalance({
             data: data,
-            balance: balance
+            balance: balance,
+            publicKey: publicKey
           })
         }
       >

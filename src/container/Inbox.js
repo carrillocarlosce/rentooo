@@ -347,13 +347,18 @@ class ItemChatRow extends Component {
   render() {
     const { item } = this.props;
 
+    let profilePicture =
+      item.user.profilePicture !== undefined
+        ? { uri: item.user.profilePicture }
+        : require("../../assets/images/profile.png");
+
     return (
       <TouchableOpacity onPress={() => this.props.onPress()}>
         <View style={styles.itemLayout}>
           <Image
             resizeMode="contain"
             style={styles.userChatProfilePicture}
-            source={require("../../assets/images/profile.png")}
+            source={profilePicture}
           />
           <View style={styles.itemContainer}>
             <View style={styles.upperItem}>
